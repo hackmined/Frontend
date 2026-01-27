@@ -1,0 +1,55 @@
+@use '@/styles/variables.scss' as *;
+
+.container {
+    // Must be full viewport width to fit into the horrorzontal stream nicely
+    width: 100vw;
+    height: 100vh;
+    flex-shrink: 0;
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-start;
+    padding: 4rem 2rem;
+    box-sizing: border-box;
+    overflow: hidden; // Hide the overflow so we can animate it manually
+    background: rgba(255, 255, 255, 0.05);
+    border-right: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.header {
+    text-align: center;
+    margin-bottom: 3rem;
+    z-index: 2; // Keep header on top? Or scroll it away?
+    // Let's keep it simple: everything scrolls away? 
+    // Actually, usually headers stay pinned or move with content.
+    // For this simple test, let's just let it all be in the flow.
+}
+
+.scrollContent {
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+    align-items: center;
+    width: 100%;
+    max-width: 800px;
+    // We don't set height/overflow here because GSAP will transform translateY this whole block.
+}
+
+.card {
+    background: rgba(0, 0, 0, 0.4);
+    border: 1px solid $primary; // specific border to make it pop
+    padding: 2rem;
+    border-radius: 12px;
+    width: 100%;
+    
+    h3 {
+        color: $primary;
+        margin-bottom: 0.5rem;
+    }
+    
+    p {
+        color: $foreground;
+        opacity: 0.8;
+    }
+}
