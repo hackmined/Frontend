@@ -73,7 +73,7 @@ export default function HorizontalScroll({ children }: HorizontalScrollProps) {
             {/* Parallax Background Image */}
             <img
                 ref={bgRef}
-                src="/Background Upscaled.png"
+                src="/bg.svg"
                 alt="Background"
                 className={styles.backgroundImage}
             />
