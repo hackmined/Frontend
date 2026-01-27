@@ -1,0 +1,85 @@
+@use '@/styles/variables.scss' as *;
+
+.button {
+    font-size: $font-size-md;
+    font-weight: $font-weight-bold;
+    border: none;
+    cursor: pointer;
+    text-transform: uppercase;
+    letter-spacing: 0.15em;
+    transition: all $transition-base;
+    position: relative;
+    overflow: hidden;
+    font-family: $font-family-base;
+
+    &::before {
+        content: '';
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        width: 0;
+        height: 0;
+        background: rgba(255, 255, 255, 0.3);
+        border-radius: 50%;
+        transform: translate(-50%, -50%);
+        transition: width $transition-slow, height $transition-slow;
+    }
+
+    &:hover::before {
+        width: 300px;
+        height: 300px;
+    }
+
+    &:active {
+        transform: translateY(-1px);
+    }
+}
+
+// Variants
+.primary {
+    color: $bg-dark;
+    background: $accent-primary;
+
+    &:hover {
+        transform: translateY(-3px);
+        box-shadow: 0 10px 30px rgba($accent-primary, 0.5);
+    }
+}
+
+.secondary {
+    color: $text-light;
+    background: transparent;
+    border: 2px solid $accent-secondary;
+
+    &:hover {
+        background: $accent-secondary;
+        color: $bg-dark;
+    }
+}
+
+.outline {
+    color: $text-light;
+    background: transparent;
+    border: 2px solid $accent-primary;
+
+    &:hover {
+        background: $accent-primary;
+        color: $bg-dark;
+    }
+}
+
+// Sizes
+.sm {
+    padding: $spacing-xs $spacing-md;
+    font-size: $font-size-sm;
+}
+
+.md {
+    padding: $spacing-md $spacing-xl;
+    font-size: $font-size-md;
+}
+
+.lg {
+    padding: $spacing-md $spacing-2xl;
+    font-size: $font-size-lg;
+}

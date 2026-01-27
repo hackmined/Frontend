@@ -1,0 +1,43 @@
+@use '@/styles/variables.scss' as *;
+
+.timelineItem {
+    position: relative;
+    padding: $spacing-lg;
+    background: $bg-dark;
+    border: 1px solid $border-color;
+    transition: all $transition-base;
+
+    &:hover {
+        border-color: $accent-primary;
+        transform: translateY(-5px);
+    }
+}
+
+.timeNumber {
+    font-size: $font-size-3xl;
+    font-weight: $font-weight-black;
+    color: $accent-primary;
+    opacity: 0.2;
+    margin-bottom: $spacing-md;
+}
+
+.title {
+    font-size: $font-size-xl;
+    font-weight: $font-weight-bold;
+    color: $text-light;
+    margin: 0 0 $spacing-xs 0;
+}
+
+.date {
+    font-size: $font-size-sm;
+    font-weight: $font-weight-semibold;
+    color: $accent-primary;
+    margin: $spacing-xs 0;
+}
+
+.description {
+    font-size: $font-size-sm;
+    color: $text-muted;
+    margin: $spacing-xs 0 0 0;
+    line-height: 1.5;
+}

@@ -1,0 +1,59 @@
+@use '@/styles/variables.scss' as *;
+
+.trackCard {
+    padding: 2.5rem 2rem;
+    background: $bg-dark-alt;
+    border: 2px solid $border-color;
+    text-align: center;
+    transition: all $transition-base;
+    position: relative;
+    overflow: hidden;
+
+    &::before {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        height: 4px;
+        background: linear-gradient(90deg, $accent-primary, $accent-secondary);
+        transform: scaleX(0);
+        transition: transform $transition-base;
+    }
+
+    &:hover {
+        border-color: $accent-primary;
+        transform: translateY(-8px);
+
+        &::before {
+            transform: scaleX(1);
+        }
+    }
+}
+
+.trackIcon {
+    font-size: $font-size-3xl;
+    margin-bottom: $spacing-md;
+}
+
+.title {
+    font-size: $font-size-xl;
+    font-weight: $font-weight-bold;
+    color: $text-light;
+    margin: $spacing-md 0;
+}
+
+.description {
+    font-size: $font-size-sm;
+    color: $text-muted;
+    line-height: 1.6;
+    margin-bottom: $spacing-md;
+}
+
+.prize {
+    display: inline-block;
+    font-size: $font-size-2xl;
+    font-weight: $font-weight-black;
+    color: $accent-primary;
+    margin-top: $spacing-xs;
+}

@@ -1,0 +1,99 @@
+@use '@/styles/variables.scss' as *;
+
+.timelineSection {
+    width: 100vw;
+    min-height: 100vh;
+    height: auto;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 5rem 5vw;
+    background: $bg-section-alt;
+    flex-shrink: 0;
+    position: relative;
+}
+
+.sectionContent {
+    max-width: 1400px;
+    width: 100%;
+}
+
+.sectionTitle {
+    font-size: clamp(2.5rem, 6vw, 6rem);
+    font-weight: $font-weight-black;
+    line-height: 0.95;
+    margin: 0 0 3rem 0;
+    text-transform: uppercase;
+    letter-spacing: -0.02em;
+    display: flex;
+    flex-direction: column;
+
+    .titleAccent {
+        color: $text-muted;
+        font-size: 0.4em;
+        font-weight: $font-weight-semibold;
+        letter-spacing: 0.1em;
+    }
+
+    .titleMain {
+        color: $accent-secondary;
+        font-size: 1em;
+    }
+}
+
+.timelineGrid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 2rem;
+    margin-top: 3rem;
+}
+
+.verticalTextWrapper {
+    position: absolute;
+    left: 0;
+    top: 0;
+    height: 100%;
+    width: 60px;
+    background: rgba($bg-dark, 0.5);
+    border-right: 1px solid $border-color;
+    overflow: hidden;
+
+    @media (max-width: $breakpoint-mobile) {
+        display: none;
+    }
+}
+
+.verticalText {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    will-change: transform;
+
+    span {
+        writing-mode: vertical-rl;
+        text-orientation: mixed;
+        transform: rotate(180deg);
+        font-size: 0.75rem;
+        font-weight: $font-weight-semibold;
+        letter-spacing: 0.2em;
+        color: $text-muted;
+        white-space: nowrap;
+        opacity: 0.5;
+        transition: opacity $transition-base;
+        padding: 2rem 0;
+    }
+
+    &:hover span {
+        opacity: 0.9;
+    }
+}
+
+@media (max-width: $breakpoint-mobile) {
+    .timelineGrid {
+        grid-template-columns: 1fr;
+    }
+
+    .timelineSection {
+        padding: 3rem 5vw;
+    }
+}
