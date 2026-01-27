@@ -49,12 +49,10 @@ export default function HeroSection() {
             <div className={styles.heroContent}>
                 <div className={styles.heroText}>
                     <h1 className={styles.heroTitle}>
-                        <span ref={titleTopRef} className={styles.titleTop}>WE BUILD</span>
-                        <span ref={titleMainRef} className={styles.titleMain}>HACKAMINED</span>
-                        <span ref={titleBottomRef} className={styles.titleBottom}>INNOVATION</span>
+                        <span ref={titleMainRef} className={styles.titleMain}>HackaMined</span>
                     </h1>
                     <p className={styles.heroSubtitle}>
-                        THE ULTIMATE 24-HOUR HACKATHON EXPERIENCE
+                        THE ULTIMATE 48-HOUR HACKATHON EXPERIENCE
                     </p>
                     <div className={styles.heroMeta}>
                         <span className={styles.date}>MARCH 15-16, 2026</span>
@@ -62,15 +60,7 @@ export default function HeroSection() {
                         <span className={styles.location}>VIRTUAL & ON-SITE</span>
                     </div>
                 </div>
-                <div className={styles.heroGraphic}>
-                    <div ref={badgeRef} className={styles.circularBadge}>
-                        <svg viewBox="0 0 200 200" className={styles.badgeSvg}>
-                            <circle cx="100" cy="100" r="90" fill="none" stroke="currentColor" strokeWidth="2" />
-                            <text x="100" y="95" textAnchor="middle" className={styles.badgeText}>24HR</text>
-                            <text x="100" y="120" textAnchor="middle" className={styles.badgeSubtext}>HACKATHON</text>
-                        </svg>
-                    </div>
-                </div>
+
             </div>
         </section>
     );

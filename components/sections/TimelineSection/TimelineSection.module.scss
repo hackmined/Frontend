@@ -8,7 +8,8 @@
     justify-content: center;
     align-items: center;
     padding: 5rem 5vw;
-    background: $bg-section-alt;
+    /* background: $background-alt; */
+    background: transparent;
     flex-shrink: 0;
     position: relative;
 }
@@ -29,14 +30,14 @@
     flex-direction: column;
 
     .titleAccent {
-        color: $text-muted;
+        color: $foreground-muted;
         font-size: 0.4em;
         font-weight: $font-weight-semibold;
         letter-spacing: 0.1em;
     }
 
     .titleMain {
-        color: $accent-secondary;
+        color: $primary;
         font-size: 1em;
     }
 }
@@ -54,8 +55,8 @@
     top: 0;
     height: 100%;
     width: 60px;
-    background: rgba($bg-dark, 0.5);
-    border-right: 1px solid $border-color;
+    background: $bg-dark;
+    border-right: 1px solid $color-black;
     overflow: hidden;
 
     @media (max-width: $breakpoint-mobile) {
@@ -76,7 +77,7 @@
         font-size: 0.75rem;
         font-weight: $font-weight-semibold;
         letter-spacing: 0.2em;
-        color: $text-muted;
+        color: $color-black;
         white-space: nowrap;
         opacity: 0.5;
         transition: opacity $transition-base;

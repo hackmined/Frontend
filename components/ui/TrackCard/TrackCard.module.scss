@@ -16,13 +16,13 @@
         left: 0;
         right: 0;
         height: 4px;
-        background: linear-gradient(90deg, $accent-primary, $accent-secondary);
+        background: linear-gradient(90deg, $color-red, $color-blue);
         transform: scaleX(0);
         transition: transform $transition-base;
     }
 
     &:hover {
-        border-color: $accent-primary;
+        border-color: $color-red;
         transform: translateY(-8px);
 
         &::before {
@@ -54,6 +54,6 @@
     display: inline-block;
     font-size: $font-size-2xl;
     font-weight: $font-weight-black;
-    color: $accent-primary;
+    color: $color-red;
     margin-top: $spacing-xs;
 }

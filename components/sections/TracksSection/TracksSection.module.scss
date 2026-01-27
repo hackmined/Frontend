@@ -7,7 +7,8 @@
     justify-content: center;
     align-items: center;
     padding: 0 5vw;
-    background: $bg-dark;
+    /* background: $background; */
+    background: transparent;
     flex-shrink: 0;
 }
 
@@ -34,7 +35,7 @@
     }
 
     .titleMain {
-        color: $accent-secondary;
+        color: $color-blue;
         font-size: 1em;
     }
 }
@@ -49,7 +50,7 @@
 .grandPrize {
     text-align: center;
     padding: 3rem;
-    background: linear-gradient(135deg, $accent-primary 0%, #cc3333 100%);
+    background: linear-gradient(135deg, $color-red 0%, #cc3333 100%);
     position: relative;
     overflow: hidden;
 
@@ -60,14 +61,13 @@
         left: 50%;
         width: 500px;
         height: 500px;
-        background: radial-gradient(circle, rgba(255, 255, 255, 0.1) 0%, transparent 70%);
         transform: translate(-50%, -50%);
     }
 
     p {
         font-size: $font-size-sm;
         font-weight: $font-weight-semibold;
-        color: rgba(255, 255, 255, 0.9);
+        color: $color-white;
         margin: 0 0 $spacing-xs 0;
         letter-spacing: 0.2em;
     }
@@ -77,12 +77,11 @@
         font-weight: $font-weight-black;
         color: $text-light;
         margin: $spacing-md 0;
-        text-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
     }
 
     .subtitle {
         font-size: $font-size-md;
-        color: rgba(255, 255, 255, 0.95);
+        color: $color-white;
         margin: $spacing-xs 0 0 0;
     }
 }

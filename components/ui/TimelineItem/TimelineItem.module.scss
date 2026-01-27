@@ -8,7 +8,7 @@
     transition: all $transition-base;
 
     &:hover {
-        border-color: $accent-primary;
+        border-color: $color-red;
         transform: translateY(-5px);
     }
 }
@@ -16,7 +16,7 @@
 .timeNumber {
     font-size: $font-size-3xl;
     font-weight: $font-weight-black;
-    color: $accent-primary;
+    color: $color-red;
     opacity: 0.2;
     margin-bottom: $spacing-md;
 }
@@ -31,7 +31,7 @@
 .date {
     font-size: $font-size-sm;
     font-weight: $font-weight-semibold;
-    color: $accent-primary;
+    color: $color-red;
     margin: $spacing-xs 0;
 }
 

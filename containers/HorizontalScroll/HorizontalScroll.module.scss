@@ -2,9 +2,22 @@
 
 .scrollSectionOuter {
     overflow: hidden;
-    background: $bg-dark;
+    background: $background;
     min-height: 100vh;
     position: relative;
+}
+
+.backgroundImage {
+    position: fixed;
+    top: 0;
+    left: 0;
+    height: 100vh;
+    width: auto;
+    max-width: none;
+    z-index: 0;
+    /* Behind content but in front of base background */
+    pointer-events: none;
+    will-change: transform;
 }
 
 .scrollSectionInner {
@@ -20,8 +33,8 @@
     top: 0;
     height: 100vh;
     width: 60px;
-    background: $bg-dark-alt;
-    border-left: 1px solid $border-color;
+    background: $background-alt;
+    border-left: 1px solid $foreground;
     display: flex;
     flex-direction: column;
     justify-content: space-around;
@@ -36,7 +49,7 @@
         font-size: 0.75rem;
         font-weight: $font-weight-semibold;
         letter-spacing: 0.2em;
-        color: $text-muted;
+        color: $foreground;
         white-space: nowrap;
         opacity: 0.4;
         transition: opacity $transition-base;

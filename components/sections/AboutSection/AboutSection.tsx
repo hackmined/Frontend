@@ -13,7 +13,6 @@ export default function AboutSection() {
     const textRef = useRef<HTMLDivElement>(null);
     const tickerRef = useRef<HTMLDivElement>(null);
 
-    /* TEXT + IMAGE ANIMATIONS */
     useLayoutEffect(() => {
         if (!sectionRef.current) return;
 
@@ -78,7 +77,7 @@ export default function AboutSection() {
                 { y: 0 },
                 {
                     y: -distance,
-                    duration: 22,
+                    duration: 120,
                     ease: "none",
                     repeat: -1,
                 }
@@ -102,9 +101,28 @@ export default function AboutSection() {
 
     return (
         <section ref={sectionRef} className={styles.aboutSection}>
-            {/* STIFF-STYLE VERTICAL TICKER */}
             <div className={styles.verticalTextWrapper}>
                 <div ref={tickerRef} className={styles.verticalText}>
+                    <span>{text}</span>
+                    <span>{text}</span>
+                    <span>{text}</span>
+                    <span>{text}</span>
+                    <span>{text}</span>
+                    <span>{text}</span>
+                    <span>{text}</span>
+                    <span>{text}</span>
+                    <span>{text}</span>
+                    <span>{text}</span>
+                    <span>{text}</span>
+                    <span>{text}</span>
+                    <span>{text}</span>
+                    <span>{text}</span>
+                    <span>{text}</span>
+                    <span>{text}</span>
+                    <span>{text}</span>
+                    <span>{text}</span>
+                    <span>{text}</span>
+                    <span>{text}</span>
                     <span>{text}</span>
                     <span>{text}</span>
                     <span>{text}</span>
@@ -129,24 +147,15 @@ export default function AboutSection() {
             </div>
 
             <div className={styles.aboutContent}>
-                <div ref={imageRef} className={styles.imageContainer}>
-                    <div className={styles.imagePlaceholder}>
-                        <span className={styles.imageIcon}>💡</span>
-                    </div>
-                </div>
-
                 <div ref={textRef} className={styles.textContent}>
-                    <span className={styles.label}>WHO WE ARE</span>
                     <h2 className={styles.title}>
-                        BUILDING THE FUTURE, ONE HACK AT A TIME
+                        About the Event
                     </h2>
                     <p className={styles.description}>
-                        HACKAMINED is where innovators, creators, and builders come together
-                        to push the boundaries of what&apos;s possible.
+                        HACKAMINED is where innovators, creators, and builders come together to push the boundaries of what&apos;s possible.
                     </p>
                     <p className={styles.description}>
-                        Join a community of passionate developers and designers who believe
-                        technology can change the world.
+                        Join a community of passionate developers and designers who believe technology can change the world.
                     </p>
                 </div>
             </div>

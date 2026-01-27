@@ -1,11 +1,16 @@
 import type { Metadata } from "next";
-import { Inter } from "next/font/google";
+import { Inter, Space_Grotesk } from "next/font/google";
 import "./globals.css";
 import Header from "@/components/layout/Header/Header";
 import ScrollProgress from "@/components/layout/ScrollProgress/ScrollProgress";
 import CursorTrail from "@/components/ui/CursorTrail/CursorTrail";
 
 const inter = Inter({ subsets: ["latin"] });
+const spaceGrotesk = Space_Grotesk({
+  subsets: ["latin"],
+  weight: ["500", "600", "700"],
+  variable: "--font-space-grotesk"
+});
 
 export const metadata: Metadata = {
   title: "HACKAMINED 2026 - The Ultimate Hackathon",
@@ -19,7 +24,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body className={inter.className}>
+      <body className={`${inter.className} ${spaceGrotesk.variable}`}>
         <CursorTrail />
         <ScrollProgress />
         <Header />

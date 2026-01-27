@@ -15,6 +15,30 @@ const navItems: NavItem[] = [
 export default function Header() {
     const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
 
+    const handleLinkMouseMove = (e: React.MouseEvent<HTMLAnchorElement>) => {
+        const link = e.currentTarget;
+        const rect = link.getBoundingClientRect();
+
+        // Calculate mouse position relative to link center
+        const centerX = rect.left + rect.width / 2;
+        const centerY = rect.top + rect.height / 2;
+
+        const deltaX = (e.clientX - centerX) / rect.width;
+        const deltaY = (e.clientY - centerY) / rect.height;
+
+        // Apply parallax transform
+        const intensity = 15;
+        const offsetX = deltaX * intensity;
+        const offsetY = deltaY * intensity;
+
+        link.style.transform = `translate(${offsetX}px, ${offsetY}px)`;
+    };
+
+    const handleLinkMouseLeave = (e: React.MouseEvent<HTMLAnchorElement>) => {
+        const link = e.currentTarget;
+        link.style.transform = 'translate(0, 0)';
+    };
+
     const toggleMobileMenu = () => {
         setMobileMenuOpen(!mobileMenuOpen);
     };
@@ -33,6 +57,8 @@ export default function Header() {
                             href={item.href}
                             className={styles.navLink}
                             onClick={() => setMobileMenuOpen(false)}
+                            onMouseMove={handleLinkMouseMove}
+                            onMouseLeave={handleLinkMouseLeave}
                         >
                             {item.label}
                         </Link>

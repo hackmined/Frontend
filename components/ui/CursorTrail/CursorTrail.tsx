@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useRef } from "react";
+import { useEffect, useRef, useState } from "react";
 import styles from "./CursorTrail.module.css";
 
 interface Point {
@@ -13,6 +13,7 @@ export default function CursorTrail() {
     const canvasRef = useRef<HTMLCanvasElement>(null);
     const pointsRef = useRef<Point[]>([]);
     const animationFrameRef = useRef<number | undefined>(undefined);
+    const [cursorPos, setCursorPos] = useState({ x: -100, y: -100 });
 
     const TRAIL_DURATION = 300; // Trail lasts 300ms
     const MIN_DISTANCE = 5; // Minimum distance between points to avoid clutter
@@ -33,6 +34,9 @@ export default function CursorTrail() {
 
         // Track mouse position with timestamp
         const handleMouseMove = (e: MouseEvent) => {
+            // Update cursor position for the custom cursor element
+            setCursorPos({ x: e.clientX, y: e.clientY });
+
             const newPoint = {
                 x: e.clientX,
                 y: e.clientY,
@@ -143,5 +147,19 @@ export default function CursorTrail() {
         };
     }, []);
 
-    return <canvas ref={canvasRef} className={styles.canvas} />;
+    return (
+        <>
+            <canvas ref={canvasRef} className={styles.canvas} />
+            <div
+                className={styles.customCursor}
+                style={{
+                    left: `${cursorPos.x}px`,
+                    top: `${cursorPos.y}px`,
+                }}
+            >
+                <div className={styles.cursorDot}></div>
+                <div className={styles.cursorCircle}></div>
+            </div>
+        </>
+    );
 }

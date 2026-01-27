@@ -19,7 +19,7 @@
         left: 50%;
         width: 0;
         height: 0;
-        background: rgba(255, 255, 255, 0.3);
+        background: $foreground-inverse;
         border-radius: 50%;
         transform: translate(-50%, -50%);
         transition: width $transition-slow, height $transition-slow;
@@ -37,34 +37,33 @@
 
 // Variants
 .primary {
-    color: $bg-dark;
-    background: $accent-primary;
+    color: $background;
+    background: $accent-1;
 
     &:hover {
         transform: translateY(-3px);
-        box-shadow: 0 10px 30px rgba($accent-primary, 0.5);
     }
 }
 
 .secondary {
-    color: $text-light;
+    color: $foreground-inverse;
     background: transparent;
-    border: 2px solid $accent-secondary;
+    border: 2px solid $primary;
 
     &:hover {
-        background: $accent-secondary;
-        color: $bg-dark;
+        background: $primary;
+        color: $background;
     }
 }
 
 .outline {
-    color: $text-light;
+    color: $foreground-inverse;
     background: transparent;
-    border: 2px solid $accent-primary;
+    border: 2px solid $accent-1;
 
     &:hover {
-        background: $accent-primary;
-        color: $bg-dark;
+        background: $accent-1;
+        color: $background;
     }
 }
 

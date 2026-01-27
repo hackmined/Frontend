@@ -1,15 +1,42 @@
-// Design Tokens - Shared Variables
-// Import this file in all component SCSS files: @import '@/styles/variables.scss';
+// ===== SEMANTIC COLOR SYSTEM =====
+// Modern design token naming for better maintainability and theming
 
-// Colors
-$bg-dark: #0f0f0f;
-$bg-dark-alt: #1a1a1a;
-$bg-section-alt: #151515;
-$accent-primary: #ff4444;
-$accent-secondary: #f5f1e8;
-$text-light: #ffffff;
-$text-muted: #999999;
-$border-color: #2a2a2a;
+// Base Colors (Backgrounds)
+$background: #f7efe9; // Main background color
+$background-alt: #f7efe9; // Alternative background for sections
+
+// Foreground Colors (Text)
+$foreground: #231f20; // Primary text color
+$foreground-muted: #999999; // Secondary/muted text
+$foreground-inverse: #fafafa; // Light text on dark backgrounds
+
+// Primary Brand Color
+$primary: #77a4d4; // Main brand/accent color
+$primary-foreground: #ffffff; // Text color on primary background
+
+// Accent Colors
+$accent-1: #ff5757; // Red accent
+$accent-2: #fbb040; // Yellow/orange accent
+$accent-3: #ff85a5; // Pink accent
+
+// Border & Dividers
+$border: #2a2a2a; // Border and divider color
+
+// ===== LEGACY COMPATIBILITY ALIASES =====
+// These maintain backwards compatibility during migration
+// TODO: Remove these once all components are updated
+$bg-dark: $background;
+$bg-dark-alt: $background-alt;
+$bg-section-alt: $background-alt;
+$color-black: $foreground;
+$color-white: $foreground-inverse;
+$color-red: $accent-1;
+$color-blue: $primary;
+$color-yellow: $accent-2;
+$color-pink: $accent-3;
+$text-light: $foreground-inverse;
+$text-muted: $foreground-muted;
+$border-color: $border;
 
 // Typography
 $font-family-base: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen', 'Ubuntu', sans-serif;

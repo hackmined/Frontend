@@ -15,13 +15,14 @@
 
 /* SECTION */
 .aboutSection {
-    width: 100vw;
+    width: 40vw;
     height: 100vh;
-    padding: 0 5vw;
     padding-left: 140px;
+    padding-right: 40px;
     /* Space for WORK carousel (90px) + gap */
     position: relative;
-    background: $bg-dark-alt;
+    /* background: $background-alt; */
+    background: transparent;
     display: flex;
     align-items: center;
     overflow: hidden;
@@ -33,9 +34,7 @@
 .aboutContent {
     max-width: var(--content-max-width);
     width: 100%;
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 6rem;
+    display: block;
     align-items: center;
 }
 
@@ -47,9 +46,7 @@
 .imagePlaceholder {
     aspect-ratio: 1;
     border: 2px solid $border-color;
-    background: linear-gradient(135deg,
-            rgba($accent-primary, 0.12),
-            rgba($accent-secondary, 0.05));
+    background: $background-alt;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -69,12 +66,13 @@
 .label {
     font-size: $font-size-xs;
     letter-spacing: 0.3em;
-    color: $accent-primary;
+    color: $accent-1;
 }
 
 .title {
     font-size: clamp(2.5rem, 5vw, 5rem);
     line-height: 1;
+    color: $foreground;
 }
 
 .description {
@@ -83,32 +81,27 @@
     line-height: 1.7;
 }
 
-/* ───────────────────────────── */
-/* STIFF-STYLE VERTICAL TICKER */
-/* ───────────────────────────── */
-
 .verticalTextWrapper {
     position: absolute;
     left: 0;
     /* At the left edge of About section */
-    top: 110px;
+    top: 95px;
     /* Start below header (20px + ~80px header + 20px gap) */
     transform: none;
 
-    height: calc(100vh - 130px);
+    height: calc(100vh - 100px);
     /* Full height minus header area */
     max-height: none;
-    width: 90px;
+    width: 60px;
     /* Wider */
 
     overflow: hidden;
     z-index: 20;
 
-    border: 1.5px solid rgba(255, 255, 255, 0.8);
+    border: 1.5px solid $foreground;
     border-radius: 8px;
 
-    background: rgba(25, 25, 25, 0.7);
-    backdrop-filter: blur(12px);
+    background: $background;
     box-sizing: border-box;
 }
 
@@ -139,7 +132,7 @@
     font-weight: 600;
     letter-spacing: 0.35em;
 
-    color: rgba(255, 255, 255, 0.9);
+    color: $foreground;
 
     padding: 30px 0;
     /* More spacing */

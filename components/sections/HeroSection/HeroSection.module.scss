@@ -1,13 +1,14 @@
 @use '@/styles/variables.scss' as *;
 
 .heroSection {
-    width: 85vw;
+    width: 60vw;
     height: 100vh;
     display: flex;
     justify-content: center;
     align-items: center;
     padding: 0 5vw;
-    background: linear-gradient(135deg, $bg-dark 0%, $bg-dark-alt 100%);
+    /* background: linear-gradient(135deg, $background 0%, $background-alt 100%); */
+    background: transparent;
     flex-shrink: 0;
 }
 
@@ -15,13 +16,17 @@
     max-width: 1400px;
     width: 100%;
     display: flex;
-    justify-content: space-between;
+    justify-content: center;
     align-items: center;
     gap: 4rem;
 }
 
 .heroText {
     flex: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
 }
 
 .heroTitle {
@@ -31,21 +36,20 @@
     margin: 0 0 2rem 0;
     display: flex;
     flex-direction: column;
-    text-transform: uppercase;
     letter-spacing: -0.03em;
 
     .titleTop {
-        color: $accent-secondary;
+        color: $primary;
         font-size: 0.35em;
         font-weight: $font-weight-semibold;
         letter-spacing: 0.1em;
     }
 
     .titleMain {
-        color: $accent-primary;
-        font-size: 1em;
+        color: $accent-1;
+        font-size: 1.2em;
+
         margin: 0.1em 0;
-        text-shadow: 0 0 40px rgba($accent-primary, 0.3);
     }
 
     .titleBottom {
@@ -57,7 +61,7 @@
 
 .heroSubtitle {
     font-size: clamp(1rem, 1.5vw, 1.5rem);
-    color: $text-muted;
+    color: $foreground;
     margin: 0 0 2rem 0;
     letter-spacing: 0.15em;
     font-weight: $font-weight-light;
@@ -73,11 +77,11 @@
 
     .date,
     .location {
-        color: $accent-secondary;
+        color: $primary;
     }
 
     .divider {
-        color: $accent-primary;
+        color: $accent-1;
         font-weight: $font-weight-light;
     }
 }
@@ -92,7 +96,7 @@
     display: flex;
     align-items: center;
     justify-content: center;
-    color: $accent-primary;
+    color: $color-red;
     animation: rotate 20s linear infinite;
     will-change: transform, opacity;
 }
@@ -115,7 +119,7 @@
 .badgeText {
     font-size: 48px;
     font-weight: $font-weight-black;
-    fill: $accent-primary;
+    fill: $color-red;
 }
 
 .badgeSubtext {

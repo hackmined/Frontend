@@ -6,8 +6,12 @@
     display: flex;
     justify-content: center;
     align-items: center;
+    display: flex;
+    justify-content: center;
+    align-items: center;
     padding: 0 5vw;
-    background: linear-gradient(135deg, $bg-dark-alt 0%, $bg-dark 100%);
+    /* background: linear-gradient(135deg, $background-alt 0%, $background 100%); */
+    background: transparent;
     flex-shrink: 0;
 }
 
@@ -34,9 +38,8 @@
     }
 
     .titleMain {
-        color: $accent-primary;
+        color: $accent-1;
         font-size: 1em;
-        text-shadow: 0 0 60px rgba($accent-primary, 0.4);
     }
 }
 
@@ -61,7 +64,7 @@
     h4 {
         font-size: $font-size-sm;
         font-weight: $font-weight-semibold;
-        color: $accent-secondary;
+        color: $primary;
         margin: 0 0 $spacing-xs 0;
         text-transform: uppercase;
         letter-spacing: 0.1em;
@@ -87,7 +90,7 @@
         transition: color $transition-base;
 
         &:hover {
-            color: $accent-primary;
+            color: $accent-1;
         }
     }
 }

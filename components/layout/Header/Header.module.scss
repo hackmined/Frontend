@@ -5,8 +5,8 @@
     top: 20px;
     left: 20px;
     right: 20px;
-    background: #1a1a1a;
-    border: 1px solid rgba(255, 255, 255, 0.15);
+    background: $foreground-inverse;
+    border: 1px solid $foreground;
     border-radius: 8px;
     z-index: $z-header;
     transition: all $transition-base;
@@ -25,7 +25,7 @@
     font-size: 1.5rem;
     font-weight: 400;
     font-style: italic;
-    color: $text-light;
+    color: $foreground;
     text-decoration: none;
     letter-spacing: 0.02em;
     transition: opacity $transition-base;
@@ -47,12 +47,12 @@
         height: 100vh;
         width: 80%;
         max-width: 300px;
-        background: $bg-dark;
+        background: $background;
         flex-direction: column;
         justify-content: center;
         gap: $spacing-lg;
         transition: right $transition-base;
-        border-left: 1px solid $border-color;
+        border-left: 1px solid $color-black;
     }
 }
 
@@ -63,17 +63,19 @@
 }
 
 .navLink {
-    color: rgba(255, 255, 255, 0.85);
+    color: $foreground;
     text-decoration: none;
-    font-weight: 500;
+    font-family: var(--font-space-grotesk), -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+    font-weight: 700;
     font-size: 0.875rem;
     text-transform: uppercase;
     letter-spacing: 0.05em;
     position: relative;
-    transition: color $transition-base;
+    transition: transform 0.2s ease-out, color $transition-base;
+    will-change: transform;
 
     &:hover {
-        color: $text-light;
+        color: $color-red;
     }
 
     @media (max-width: $breakpoint-mobile) {
@@ -85,7 +87,7 @@
     display: none;
     background: none;
     border: none;
-    color: $text-light;
+    color: $foreground;
     font-size: $font-size-2xl;
     cursor: pointer;
     z-index: $z-header + 1;
