@@ -101,7 +101,7 @@ export default function AboutSection() {
 
     return (
         <section ref={sectionRef} className={styles.aboutSection}>
-            <div className={styles.verticalTextWrapper}>
+            {/* <div className={styles.verticalTextWrapper}>
                 <div ref={tickerRef} className={styles.verticalText}>
                     <span>{text}</span>
                     <span>{text}</span>
@@ -144,7 +144,7 @@ export default function AboutSection() {
                     <span>{text}</span>
                     <span>{text}</span>
                 </div>
-            </div>
+            </div> */}
 
             <div className={styles.aboutContent}>
                 <div ref={textRef} className={styles.textContent}>
