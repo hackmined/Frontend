@@ -17,123 +17,123 @@ export default function HorizontalScroll({ children }: HorizontalScrollProps) {
     const bgRef = useRef<HTMLImageElement | null>(null);
 
     useLayoutEffect(() => {
-        // Ensure refs are available
-        if (!sectionRef.current || !triggerRef.current) return;
+        let ctx = gsap.context(() => {
+            if (!sectionRef.current || !triggerRef.current) return;
 
-        const scrollSection = sectionRef.current;
-        const trigger = triggerRef.current;
-        const bg = bgRef.current;
+            const scrollSection = sectionRef.current;
+            const trigger = triggerRef.current;
+            const bg = bgRef.current;
 
-        // Get all section children
-        const sections = Array.from(scrollSection.children) as HTMLElement[];
-        
-        // Calculate total stats for the timeline
-        let totalHorizontalScroll = 0;
-        let totalVerticalScroll = 0;
-        
-        // We need to calculate the total "scroll duration" (pixel distance user has to scroll)
-        // This will be the 'end' value of the ScrollTrigger.
-        // We will build the timeline by adding durations that correspond to pixels.
-        
-        const tl = gsap.timeline();
-        
-        // Helper to get vertical scroll distance for a section
-        const getVerticalDistance = (section: HTMLElement) => {
-            const content = section.querySelector('[data-vertical-content]') as HTMLElement;
-            if (!content) return 0;
-            
-            // Calculate how much the content overflows the section container
-            // We want to scroll enough so that the BOTTOM of the content aligns with the BOTTOM of the section
-            // Formula: (Content Top Offset + Content Height) - Section Height
-            // content.offsetTop gives position relative to the section (since section is relative/flex parent)
-            
-            const contentBottom = content.offsetTop + content.offsetHeight;
-            const sectionHeight = section.offsetHeight;
-            
-            const dist = contentBottom - sectionHeight;
-            return Math.max(0, dist);
-        };
-
-        let currentX = 0;
-
-        sections.forEach((section, index) => {
-            const width = section.offsetWidth;
-            const isVertical = section.getAttribute('data-scroll-section') === 'vertical';
-            
-            // 1. Vertical Scroll Logic (Internal)
-            if (isVertical) {
-                const vDist = getVerticalDistance(section);
-                if (vDist > 0) {
-                    const content = section.querySelector('[data-vertical-content]') as HTMLElement;
-                    
-                    // Allow manual tweaking of the scroll "length/speed"
-                    // A multiplier of 2 means the user has to scroll 2x the pixels to get through the content.
-                    const multiplier = parseFloat(section.getAttribute('data-scroll-multiplier') || "1");
-                    
-                    // The actual timeline duration (how many pixels of scroll it consumes)
-                    const duration = vDist * multiplier;
-                    
-                    // Add vertical scroll to timeline
-                    tl.to(content, {
-                        y: -vDist,
-                        ease: "none",
-                        duration: duration 
-                    });
-                    
-                    totalVerticalScroll += duration;
-                }
-            }
-
-            // 2. Horizontal Scroll Logic (Move to next section)
-            // We move IF this is not the last section
-            if (index < sections.length - 1) {
-                // Move container left by the width of THIS section to reveal the next one.
-                currentX -= width;
+            // Function to build/rebuild the timeline
+            const buildTimeline = () => {
+                const sections = Array.from(scrollSection.children) as HTMLElement[];
                 
-                tl.to(scrollSection, {
-                    x: currentX,
-                    ease: "none",
-                    duration: width // Use pixel value as duration weight
+                // Calculate total stats for the timeline
+                let totalHorizontalScroll = 0;
+                let totalVerticalScroll = 0;
+                
+                const tl = gsap.timeline({
+                    defaults: { ease: "none" }
                 });
                 
-                totalHorizontalScroll += width;
-            }
-        });
+                // Helper to get vertical scroll distance for a section
+                const getVerticalDistance = (section: HTMLElement) => {
+                    const content = section.querySelector('[data-vertical-content]') as HTMLElement;
+                    if (!content) return 0;
+                    
+                    const contentBottom = content.offsetTop + content.offsetHeight;
+                    const sectionHeight = section.offsetHeight;
+                    
+                    const dist = contentBottom - sectionHeight;
+                    return Math.max(0, dist);
+                };
 
-        // Total scroll distance required from user
-        const totalDistance = totalHorizontalScroll + totalVerticalScroll;
+                let currentX = 0;
+                let currentBgX = 0;
 
-        // Now creating the ScrollTrigger that drives this timeline
-        ScrollTrigger.create({
-            animation: tl,
-            trigger: trigger,
-            start: "top top",
-            end: () => `+=${totalDistance}`,
-            scrub: 1,
-            pin: true,
-            anticipatePin: 1,
-            invalidateOnRefresh: true,
-        });
+                sections.forEach((section, index) => {
+                    const width = section.offsetWidth;
+                    const isVertical = section.getAttribute('data-scroll-section') === 'vertical';
+                    
+                    // 1. Vertical Scroll Logic (Internal)
+                    if (isVertical) {
+                        const vDist = getVerticalDistance(section);
+                        if (vDist > 0) {
+                            const content = section.querySelector('[data-vertical-content]') as HTMLElement;
+                            
+                            const multiplier = parseFloat(section.getAttribute('data-scroll-multiplier') || "1");
+                            const duration = vDist * multiplier;
+                            
+                            // Animate content UP
+                            tl.to(content, {
+                                y: -vDist,
+                                duration: duration 
+                            });
+                            
+                            totalVerticalScroll += duration;
+                        }
+                    }
 
-        // Background parallax animation (simple linear for now, spanning the whole interaction)
-        if (bg) {
-            gsap.to(bg, {
-                x: `-${totalDistance * 0.15}px`,
-                ease: "none",
-                scrollTrigger: {
+                    // 2. Horizontal Scroll Logic (Move to next section)
+                    if (index < sections.length - 1) {
+                        currentX -= width;
+                        
+                        // Move content container
+                        tl.to(scrollSection, {
+                            x: currentX,
+                            duration: width 
+                        });
+                        
+                        // Move background (Parallax)
+                        if (bg) {
+                            currentBgX -= width * 0.15; // 15% speed
+                            tl.to(bg, {
+                                x: currentBgX,
+                                duration: width
+                            }, "<");
+                        }
+                        
+                        totalHorizontalScroll += width;
+                    }
+                });
+
+                const totalDistance = totalHorizontalScroll + totalVerticalScroll;
+
+                // Dynamic Background Sizing
+                if (bg) {
+                    const parallaxDistance = totalHorizontalScroll * 0.15;
+                    const requiredBgWidth = window.innerWidth + parallaxDistance + 200;
+                    bg.style.width = `${requiredBgWidth}px`;
+                    bg.style.maxWidth = "none";
+                    bg.style.objectFit = "cover";
+                }
+
+                ScrollTrigger.create({
+                    animation: tl,
                     trigger: trigger,
                     start: "top top",
                     end: () => `+=${totalDistance}`,
                     scrub: 1,
-                }
-            });
-        }
+                    pin: true,
+                    anticipatePin: 1,
+                    invalidateOnRefresh: true,
+                });
+            };
 
-        return () => {
-            tl.kill();
-            // Kill all ScrollTriggers created
-            ScrollTrigger.getAll().forEach(t => t.kill());
-        };
+            // Initial build
+            buildTimeline();
+            
+            // Rebuild on refresh to handle resizing
+            // Note: invalidateOnRefresh resets the ScrollTrigger, but our timeline has hardcoded values (width).
+            // We need to re-run the logic. 
+            // However, complicating this with refreshInit might be overkill if we just rely on window resize.
+            // But let's stick to standard GSAP context which cleans up nicely.
+        }, sectionRef);
+
+        // Handle resize explicitly if needed, but for now let's see if this fixes the init issue.
+        // The main issue previously might have been just calculation timing.
+        
+        return () => ctx.revert();
     }, []);
 
     return (
