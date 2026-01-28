@@ -16,6 +16,7 @@ export default function HorizontalScroll({ children }: HorizontalScrollProps) {
     const triggerRef = useRef<HTMLDivElement | null>(null);
     const bgRef = useRef<HTMLImageElement | null>(null);
     const portalRef = useRef<HTMLDivElement | null>(null);
+    const logoRef = useRef<HTMLImageElement | null>(null);
 
     useLayoutEffect(() => {
         let ctx = gsap.context(() => {
@@ -25,6 +26,7 @@ export default function HorizontalScroll({ children }: HorizontalScrollProps) {
             const trigger = triggerRef.current;
             const bg = bgRef.current;
             const portal = portalRef.current;
+            const logo = logoRef.current;
             const portalMask = portal?.querySelector('[data-portal-mask]') as HTMLElement | null;
 
             // Portal scroll distance (in timeline units)
@@ -79,8 +81,36 @@ export default function HorizontalScroll({ children }: HorizontalScrollProps) {
                         ease: "power2.in",
                     }, 0);
                 }
+
+                // LOGO ANIMATION
+                // Moves from center (initial CSS) to navbar position
+                if (logo) {
+                    tl.to(logo, {
+                        top: '95px', // Approx center of navbar
+                        width: '45px', // Shrink to reasonable logo size
+                        yPercent: -50, // Keep centered vertically relative to the new top
+                        // xPercent is -50% from CSS, which is fine to keep centered horizontally
+                        duration: portalScrollDistance,
+                        ease: "power2.inOut",
+                    }, 0);
+                }
                 
                 tl.addLabel(portalPhaseLabel);
+
+                // PHASE 2: LOGO SLIDE TO LEFT
+                // As we scroll horizontally through the first section (SpacerSection),
+                // move the logo to the left of the navbar.
+                if (logo) {
+                    const spacerWidth = window.innerWidth; // SpacerSection is 100vw
+                    
+                    tl.to(logo, {
+                        left: '40px', // Slide to left
+                        xPercent: 0, // Remove centering offset horizontally
+                        // Maintain top and yPercent from previous phase to prevent Y movement
+                        duration: spacerWidth,
+                        ease: "power1.inOut"
+                    }, portalPhaseLabel);
+                }
             }
             
             // Helper to get vertical scroll distance for a section
@@ -125,10 +155,15 @@ export default function HorizontalScroll({ children }: HorizontalScrollProps) {
                 if (index < sections.length - 1) {
                     currentX -= width;
                     
+                    // IF it's the first section (Spacer), we want it to scroll simulatenously
+                    // with the Logo Slide (Phase 2), which starts at 'portalPhaseLabel'.
+                    // Otherwise, just append to the timeline normally.
+                    const position = index === 0 ? portalPhaseLabel : ">";
+
                     tl.to(scrollSection, {
                         x: currentX,
                         duration: width 
-                    });
+                    }, position);
                     
                     if (bg) {
                         currentBgX -= width * 0.15;
@@ -202,6 +237,14 @@ export default function HorizontalScroll({ children }: HorizontalScrollProps) {
                 className={styles.backgroundImage}
             />
 
+            {/* Logo - Animates from center to navbar */}
+            <img 
+                ref={logoRef}
+                src="/Logo_inverted.png"
+                alt="HackaMined"
+                className={styles.animatedLogo}
+            />
+
             {/* Portal Overlay - Creates "entering" effect on scroll */}
             {/* Elements scale at different rates for 3D parallax depth effect */}
             <div ref={portalRef} className={styles.portalOverlay}>
@@ -220,7 +263,7 @@ export default function HorizontalScroll({ children }: HorizontalScrollProps) {
                 
                 {/* Front layer - scales fastest (appears closest) */}
                 <h1 data-portal-text-front className={styles.portalTextFront}>
-                    THE FUTURE
+                    HackaMined
                 </h1>
             </div>
 

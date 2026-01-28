@@ -125,7 +125,7 @@
     transform: translateX(-50%);
     font-size: clamp(2rem, 6vw, 5rem);
     font-weight: $font-weight-black;
-    color: $foreground;
+    color: $foreground-inverse;
     letter-spacing: 0.1em;
     text-transform: uppercase;
     white-space: nowrap;
@@ -133,3 +133,17 @@
     will-change: transform, opacity;
 }
 
+// Animated Logo
+.animatedLogo {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    // Center it initially
+    transform: translate(-50%, -50%); 
+    z-index: 2000; // Very high, above portal (50) and potentially header (1000)
+    width: 12vw; // Start large
+    max-width: 400px; 
+    height: auto;
+    object-fit: contain;
+    will-change: transform, top, width;
+}
