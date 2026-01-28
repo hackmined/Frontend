@@ -21,6 +21,7 @@
     position: relative;
 }
 
+/*
 .scroll-stack-card {
     transform-origin: top center;
     will-change: transform, filter;
@@ -33,11 +34,10 @@
     padding: 3rem;
     border-radius: 40px;
     box-sizing: border-box;
-    /* Improve mobile performance */
     -webkit-transform: translateZ(0);
     transform: translateZ(0);
     position: relative;
-}
+}*/
 
 .scroll-stack-end {
     width: 100%;

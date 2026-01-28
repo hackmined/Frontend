@@ -23,7 +23,7 @@ export default function VerticalScrollSection() {
                         itemStackDistance={24}
                         baseScale={0.9}
                         itemScale={0.04}
-                        blurAmount={1.5}
+                    /* blurAmount={1.5} Removed blur as requested */
                     >
                         {SPONSORS.map((sponsor, index) => (
                             <ScrollStackItem key={index}>
