@@ -1,0 +1,13 @@
+@use '@/styles/variables.scss' as *;
+
+.spacerSection {
+    width: 100vw;
+    height: 100vh;
+    flex-shrink: 0;
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    /* Transparent so the global background/parallax works */
+    background: transparent; 
+}

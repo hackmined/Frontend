@@ -63,3 +63,87 @@
         display: none;
     }
 }
+
+// ===== PORTAL EFFECT STYLES =====
+// The portal creates an "entering" effect when the page loads.
+// 
+// HOW TO USE:
+// 1. Create an image with a transparent hollow shape in the center (e.g., PNG with alpha)
+// 2. Place it at /public/portal-mask.png (or update the src in HorizontalScroll.tsx)
+// 3. Adjust --portal-initial-scale to control starting size
+
+.portalOverlay {
+    position: fixed;
+    inset: 0;
+    z-index: 50; // Above content, below navbar
+    pointer-events: none;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    
+    // Portal appearance (TWEAK THESE!)
+    // --portal-initial-scale: Starting scale of the mask image (default: 1)
+    // --portal-final-scale: Ending scale when fully expanded (default: 8)
+    --portal-initial-scale: 1;
+    --portal-final-scale: 8;
+}
+
+.portalMask {
+    // The portal mask image - should have a transparent hole in the center
+    // GSAP will scale this up to reveal the content behind
+    position: absolute;
+    width: 100vw;
+    height: 100vh;
+    object-fit: cover;
+    transform: scale(var(--portal-initial-scale));
+    transform-origin: center center;
+    will-change: transform;
+}
+
+// Portal text layers for parallax effect
+// Different z-index and scale rates create 3D depth illusion
+
+.portalTextBack {
+    position: absolute;
+    top: 20%;
+    left: 50%;
+    transform: translateX(-50%);
+    font-size: clamp(1.5rem, 4vw, 3rem);
+    font-weight: $font-weight-bold;
+    color: $foreground-muted;
+    letter-spacing: 0.3em;
+    text-transform: uppercase;
+    white-space: nowrap;
+    z-index: 1; // Behind the mask
+    will-change: transform, opacity;
+}
+
+.portalTextFront {
+    position: absolute;
+    bottom: 15%;
+    left: 50%;
+    transform: translateX(-50%);
+    font-size: clamp(2rem, 6vw, 5rem);
+    font-weight: $font-weight-black;
+    color: $foreground-inverse;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    white-space: nowrap;
+    z-index: 10; // In front of the mask
+    will-change: transform, opacity;
+}
+
+// Animated Logo
+.animatedLogo {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    // Center it initially
+    transform: translate(-50%, -50%); 
+    z-index: 2000; // Very high, above portal (50) and potentially header (1000)
+    width: 12vw; // Start large
+    max-width: 400px; 
+    height: auto;
+    object-fit: contain;
+    will-change: transform, top, width;
+}

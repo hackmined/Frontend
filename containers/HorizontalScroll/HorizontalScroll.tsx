@@ -15,125 +15,216 @@ export default function HorizontalScroll({ children }: HorizontalScrollProps) {
     const sectionRef = useRef<HTMLDivElement | null>(null);
     const triggerRef = useRef<HTMLDivElement | null>(null);
     const bgRef = useRef<HTMLImageElement | null>(null);
+    const portalRef = useRef<HTMLDivElement | null>(null);
+    const logoRef = useRef<HTMLImageElement | null>(null);
 
     useLayoutEffect(() => {
-        // Ensure refs are available
-        if (!sectionRef.current || !triggerRef.current) return;
+        let ctx = gsap.context(() => {
+            if (!sectionRef.current || !triggerRef.current) return;
 
-        const scrollSection = sectionRef.current;
-        const trigger = triggerRef.current;
-        const bg = bgRef.current;
+            const scrollSection = sectionRef.current;
+            const trigger = triggerRef.current;
+            const bg = bgRef.current;
+            const portal = portalRef.current;
+            const logo = logoRef.current;
+            const portalMask = portal?.querySelector('[data-portal-mask]') as HTMLElement | null;
 
-        // Get all section children
-        const sections = Array.from(scrollSection.children) as HTMLElement[];
-        
-        // Calculate total stats for the timeline
-        let totalHorizontalScroll = 0;
-        let totalVerticalScroll = 0;
-        
-        // We need to calculate the total "scroll duration" (pixel distance user has to scroll)
-        // This will be the 'end' value of the ScrollTrigger.
-        // We will build the timeline by adding durations that correspond to pixels.
-        
-        const tl = gsap.timeline();
-        
-        // Helper to get vertical scroll distance for a section
-        const getVerticalDistance = (section: HTMLElement) => {
-            const content = section.querySelector('[data-vertical-content]') as HTMLElement;
-            if (!content) return 0;
-            
-            // Calculate how much the content overflows the section container
-            // We want to scroll enough so that the BOTTOM of the content aligns with the BOTTOM of the section
-            // Formula: (Content Top Offset + Content Height) - Section Height
-            // content.offsetTop gives position relative to the section (since section is relative/flex parent)
-            
-            const contentBottom = content.offsetTop + content.offsetHeight;
-            const sectionHeight = section.offsetHeight;
-            
-            const dist = contentBottom - sectionHeight;
-            return Math.max(0, dist);
-        };
+            // Portal scroll distance (in timeline units)
+            const portalScrollDistance = window.innerHeight;
 
-        let currentX = 0;
-
-        sections.forEach((section, index) => {
-            const width = section.offsetWidth;
-            const isVertical = section.getAttribute('data-scroll-section') === 'vertical';
+            // Build the combined timeline
+            const sections = Array.from(scrollSection.children) as HTMLElement[];
             
-            // 1. Vertical Scroll Logic (Internal)
-            if (isVertical) {
-                const vDist = getVerticalDistance(section);
-                if (vDist > 0) {
-                    const content = section.querySelector('[data-vertical-content]') as HTMLElement;
+            let totalHorizontalScroll = 0;
+            let totalVerticalScroll = 0;
+            
+            const tl = gsap.timeline({
+                defaults: { ease: "none" }
+            });
+
+            // ===== PHASE 1: PORTAL EXPANSION WITH PARALLAX =====
+            const portalPhaseLabel = "portalEnd";
+            
+            // Get portal text elements for parallax
+            const portalTextFront = portal?.querySelector('[data-portal-text-front]') as HTMLElement;
+            const portalTextBack = portal?.querySelector('[data-portal-text-back]') as HTMLElement;
+            
+            if (portal && portalMask) {
+                // Create parallax zoom effect - different elements scale at different rates
+                // Faster scale = appears closer (comes toward viewer faster)
+                
+                // Front text - scales fastest + moves DOWN fast (closest to viewer)
+                if (portalTextFront) {
+                    tl.to(portalTextFront, {
+                        scale: 10,
+                        yPercent: 4000, // Move downward fast
+                        opacity: 0,
+                        duration: portalScrollDistance,
+                        ease: "power2.in",
+                    }, 0);
+                }
+                
+                // Portal mask - medium scale
+                tl.to(portalMask, {
+                    scale: 8,
+                    duration: portalScrollDistance,
+                    ease: "power2.inOut",
+                }, 0);
+                
+                // Back text - scales slowest + moves UP fast (furthest from viewer)
+                if (portalTextBack) {
+                    tl.to(portalTextBack, {
+                        scale: 8,
+                        yPercent: -4000, // Move upward fast
+                        opacity: 0,
+                        duration: portalScrollDistance,
+                        ease: "power2.in",
+                    }, 0);
+                }
+
+                // LOGO ANIMATION
+                // Moves from center (initial CSS) to navbar position
+                if (logo) {
+                    tl.to(logo, {
+                        top: '95px', // Approx center of navbar
+                        width: '45px', // Shrink to reasonable logo size
+                        yPercent: -50, // Keep centered vertically relative to the new top
+                        // xPercent is -50% from CSS, which is fine to keep centered horizontally
+                        duration: portalScrollDistance,
+                        ease: "power2.inOut",
+                    }, 0);
+                }
+                
+                tl.addLabel(portalPhaseLabel);
+
+                // PHASE 2: LOGO SLIDE TO LEFT
+                // As we scroll horizontally through the first section (SpacerSection),
+                // move the logo to the left of the navbar.
+                if (logo) {
+                    const spacerWidth = window.innerWidth; // SpacerSection is 100vw
                     
-                    // Allow manual tweaking of the scroll "length/speed"
-                    // A multiplier of 2 means the user has to scroll 2x the pixels to get through the content.
-                    const multiplier = parseFloat(section.getAttribute('data-scroll-multiplier') || "1");
-                    
-                    // The actual timeline duration (how many pixels of scroll it consumes)
-                    const duration = vDist * multiplier;
-                    
-                    // Add vertical scroll to timeline
-                    tl.to(content, {
-                        y: -vDist,
-                        ease: "none",
-                        duration: duration 
-                    });
-                    
-                    totalVerticalScroll += duration;
+                    tl.to(logo, {
+                        left: '40px', // Slide to left
+                        xPercent: 0, // Remove centering offset horizontally
+                        // Maintain top and yPercent from previous phase to prevent Y movement
+                        duration: spacerWidth,
+                        ease: "power1.inOut"
+                    }, portalPhaseLabel);
                 }
             }
-
-            // 2. Horizontal Scroll Logic (Move to next section)
-            // We move IF this is not the last section
-            if (index < sections.length - 1) {
-                // Move container left by the width of THIS section to reveal the next one.
-                currentX -= width;
+            
+            // Helper to get vertical scroll distance for a section
+            const getVerticalDistance = (section: HTMLElement) => {
+                const content = section.querySelector('[data-vertical-content]') as HTMLElement;
+                if (!content) return 0;
                 
-                tl.to(scrollSection, {
-                    x: currentX,
-                    ease: "none",
-                    duration: width // Use pixel value as duration weight
-                });
+                const contentBottom = content.offsetTop + content.offsetHeight;
+                const sectionHeight = section.offsetHeight;
                 
-                totalHorizontalScroll += width;
-            }
-        });
+                const dist = contentBottom - sectionHeight;
+                return Math.max(0, dist);
+            };
 
-        // Total scroll distance required from user
-        const totalDistance = totalHorizontalScroll + totalVerticalScroll;
+            let currentX = 0;
+            let currentBgX = 0;
 
-        // Now creating the ScrollTrigger that drives this timeline
-        ScrollTrigger.create({
-            animation: tl,
-            trigger: trigger,
-            start: "top top",
-            end: () => `+=${totalDistance}`,
-            scrub: 1,
-            pin: true,
-            anticipatePin: 1,
-            invalidateOnRefresh: true,
-        });
+            // ===== PHASE 2: HORIZONTAL SCROLL =====
+            sections.forEach((section, index) => {
+                const width = section.offsetWidth;
+                const isVertical = section.getAttribute('data-scroll-section') === 'vertical';
+                
+                // Vertical Scroll Logic (Internal)
+                if (isVertical) {
+                    const vDist = getVerticalDistance(section);
+                    if (vDist > 0) {
+                        const content = section.querySelector('[data-vertical-content]') as HTMLElement;
+                        
+                        const multiplier = parseFloat(section.getAttribute('data-scroll-multiplier') || "1");
+                        const duration = vDist * multiplier;
+                        
+                        tl.to(content, {
+                            y: -vDist,
+                            duration: duration 
+                        });
+                        
+                        totalVerticalScroll += duration;
+                    }
+                }
 
-        // Background parallax animation (simple linear for now, spanning the whole interaction)
-        if (bg) {
-            gsap.to(bg, {
-                x: `-${totalDistance * 0.15}px`,
-                ease: "none",
-                scrollTrigger: {
-                    trigger: trigger,
-                    start: "top top",
-                    end: () => `+=${totalDistance}`,
-                    scrub: 1,
+                // Horizontal Scroll Logic
+                if (index < sections.length - 1) {
+                    currentX -= width;
+                    
+                    // IF it's the first section (Spacer), we want it to scroll simulatenously
+                    // with the Logo Slide (Phase 2), which starts at 'portalPhaseLabel'.
+                    // Otherwise, just append to the timeline normally.
+                    const position = index === 0 ? portalPhaseLabel : ">";
+
+                    tl.to(scrollSection, {
+                        x: currentX,
+                        duration: width 
+                    }, position);
+                    
+                    if (bg) {
+                        currentBgX -= width * 0.15;
+                        tl.to(bg, {
+                            x: currentBgX,
+                            duration: width
+                        }, "<");
+                    }
+                    
+                    totalHorizontalScroll += width;
                 }
             });
-        }
 
-        return () => {
-            tl.kill();
-            // Kill all ScrollTriggers created
-            ScrollTrigger.getAll().forEach(t => t.kill());
-        };
+            const totalDistance = portalScrollDistance + totalHorizontalScroll + totalVerticalScroll;
+
+            // Dynamic Background Sizing
+            if (bg) {
+                const parallaxDistance = totalHorizontalScroll * 0.15;
+                const requiredBgWidth = window.innerWidth + parallaxDistance + 200;
+                bg.style.width = `${requiredBgWidth}px`;
+                bg.style.maxWidth = "none";
+                bg.style.objectFit = "cover";
+            }
+
+            // SINGLE ScrollTrigger for everything
+            // Calculate portal phase end progress (0-1 scale)
+            const portalEndTime = tl.labels[portalPhaseLabel] || portalScrollDistance;
+            const totalDuration = tl.duration();
+            const portalEndProgress = portalEndTime / totalDuration;
+            let portalHidden = false;
+
+            ScrollTrigger.create({
+                animation: tl,
+                trigger: trigger,
+                start: "top top",
+                end: () => `+=${totalDistance}`,
+                scrub: 1,
+                pin: true,
+                anticipatePin: 1,
+                invalidateOnRefresh: true,
+                onUpdate: (self) => {
+                    if (!portal) return;
+                    
+                    // Hide portal once we've passed the portal phase
+                    if (self.progress > portalEndProgress && !portalHidden) {
+                        gsap.set(portal, { autoAlpha: 0 });
+                        portalHidden = true;
+                    }
+                    // Show portal when scrolling back into the portal phase
+                    else if (self.progress <= portalEndProgress && portalHidden) {
+                        gsap.set(portal, { autoAlpha: 1 });
+                        portalHidden = false;
+                    }
+                }
+            });
+        }, sectionRef);
+
+        // Handle resize explicitly if needed, but for now let's see if this fixes the init issue.
+        // The main issue previously might have been just calculation timing.
+        
+        return () => ctx.revert();
     }, []);
 
     return (
@@ -145,6 +236,36 @@ export default function HorizontalScroll({ children }: HorizontalScrollProps) {
                 alt="Background"
                 className={styles.backgroundImage}
             />
+
+            {/* Logo - Animates from center to navbar */}
+            <img 
+                ref={logoRef}
+                src="/Logo_inverted.png"
+                alt="HackaMined"
+                className={styles.animatedLogo}
+            />
+
+            {/* Portal Overlay - Creates "entering" effect on scroll */}
+            {/* Elements scale at different rates for 3D parallax depth effect */}
+            <div ref={portalRef} className={styles.portalOverlay}>
+                {/* Back layer - scales slowest (appears furthest) */}
+                <h2 data-portal-text-back className={styles.portalTextBack}>
+                    WELCOME TO
+                </h2>
+                
+                {/* Middle layer - the portal mask */}
+                <img 
+                    data-portal-mask 
+                    src="/portal-mask.png" 
+                    alt="" 
+                    className={styles.portalMask} 
+                />
+                
+                {/* Front layer - scales fastest (appears closest) */}
+                <h1 data-portal-text-front className={styles.portalTextFront}>
+                    HackaMined
+                </h1>
+            </div>
 
             <div ref={triggerRef}>
                 <div ref={sectionRef} className={styles.scrollSectionInner}>
