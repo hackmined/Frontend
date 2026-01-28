@@ -5,7 +5,7 @@ import HeroSection from "@/components/sections/HeroSection/HeroSection";
 import AboutSection from "@/components/sections/AboutSection/AboutSection";
 import TimelineSection from "@/components/sections/TimelineSection/TimelineSection";
 import TracksSection from "@/components/sections/TracksSection/TracksSection";
-import CTASection from "@/components/sections/CTASection/CTASection";
+import FAQSection from "@/components/sections/FAQSection/FAQSection";
 import VerticalScrollSection from "@/components/sections/VerticalScrollSection/VerticalScrollSection";
 
 export default function Home() {
@@ -17,7 +17,7 @@ export default function Home() {
       <AboutSection />
       <TimelineSection />
       <TracksSection />
-      <CTASection />
+      <FAQSection />
     </HorizontalScroll>
   );
 }

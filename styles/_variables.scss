@@ -39,7 +39,8 @@ $text-muted: $foreground-muted;
 $border-color: $border;
 
 // Typography
-$font-family-base: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen', 'Ubuntu', sans-serif;
+$font-family-base: var(--font-gaegu), cursive;
+$font-family-title: var(--font-bruno-ace), sans-serif;
 
 // Font Sizes
 $font-size-xs: 0.875rem;

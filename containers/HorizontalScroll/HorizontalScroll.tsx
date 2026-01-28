@@ -34,25 +34,25 @@ export default function HorizontalScroll({ children }: HorizontalScrollProps) {
 
             // Build the combined timeline
             const sections = Array.from(scrollSection.children) as HTMLElement[];
-            
+
             let totalHorizontalScroll = 0;
             let totalVerticalScroll = 0;
-            
+
             const tl = gsap.timeline({
                 defaults: { ease: "none" }
             });
 
             // ===== PHASE 1: PORTAL EXPANSION WITH PARALLAX =====
             const portalPhaseLabel = "portalEnd";
-            
+
             // Get portal text elements for parallax
             const portalTextFront = portal?.querySelector('[data-portal-text-front]') as HTMLElement;
             const portalTextBack = portal?.querySelector('[data-portal-text-back]') as HTMLElement;
-            
+
             if (portal && portalMask) {
                 // Create parallax zoom effect - different elements scale at different rates
                 // Faster scale = appears closer (comes toward viewer faster)
-                
+
                 // Front text - scales fastest + moves DOWN fast (closest to viewer)
                 if (portalTextFront) {
                     tl.to(portalTextFront, {
@@ -63,14 +63,14 @@ export default function HorizontalScroll({ children }: HorizontalScrollProps) {
                         ease: "power2.in",
                     }, 0);
                 }
-                
+
                 // Portal mask - medium scale
                 tl.to(portalMask, {
                     scale: 8,
                     duration: portalScrollDistance,
                     ease: "power2.inOut",
                 }, 0);
-                
+
                 // Back text - scales slowest + moves UP fast (furthest from viewer)
                 if (portalTextBack) {
                     tl.to(portalTextBack, {
@@ -94,7 +94,7 @@ export default function HorizontalScroll({ children }: HorizontalScrollProps) {
                         ease: "power2.inOut",
                     }, 0);
                 }
-                
+
                 tl.addLabel(portalPhaseLabel);
 
                 // PHASE 2: LOGO SLIDE TO LEFT
@@ -102,7 +102,7 @@ export default function HorizontalScroll({ children }: HorizontalScrollProps) {
                 // move the logo to the left of the navbar.
                 if (logo) {
                     const spacerWidth = window.innerWidth; // SpacerSection is 100vw
-                    
+
                     tl.to(logo, {
                         left: '40px', // Slide to left
                         xPercent: 0, // Remove centering offset horizontally
@@ -112,15 +112,15 @@ export default function HorizontalScroll({ children }: HorizontalScrollProps) {
                     }, portalPhaseLabel);
                 }
             }
-            
+
             // Helper to get vertical scroll distance for a section
             const getVerticalDistance = (section: HTMLElement) => {
                 const content = section.querySelector('[data-vertical-content]') as HTMLElement;
                 if (!content) return 0;
-                
+
                 const contentBottom = content.offsetTop + content.offsetHeight;
                 const sectionHeight = section.offsetHeight;
-                
+
                 const dist = contentBottom - sectionHeight;
                 return Math.max(0, dist);
             };
@@ -132,21 +132,21 @@ export default function HorizontalScroll({ children }: HorizontalScrollProps) {
             sections.forEach((section, index) => {
                 const width = section.offsetWidth;
                 const isVertical = section.getAttribute('data-scroll-section') === 'vertical';
-                
+
                 // Vertical Scroll Logic (Internal)
                 if (isVertical) {
                     const vDist = getVerticalDistance(section);
                     if (vDist > 0) {
                         const content = section.querySelector('[data-vertical-content]') as HTMLElement;
-                        
+
                         const multiplier = parseFloat(section.getAttribute('data-scroll-multiplier') || "1");
                         const duration = vDist * multiplier;
-                        
+
                         tl.to(content, {
                             y: -vDist,
-                            duration: duration 
+                            duration: duration
                         });
-                        
+
                         totalVerticalScroll += duration;
                     }
                 }
@@ -154,7 +154,7 @@ export default function HorizontalScroll({ children }: HorizontalScrollProps) {
                 // Horizontal Scroll Logic
                 if (index < sections.length - 1) {
                     currentX -= width;
-                    
+
                     // IF it's the first section (Spacer), we want it to scroll simulatenously
                     // with the Logo Slide (Phase 2), which starts at 'portalPhaseLabel'.
                     // Otherwise, just append to the timeline normally.
@@ -162,9 +162,9 @@ export default function HorizontalScroll({ children }: HorizontalScrollProps) {
 
                     tl.to(scrollSection, {
                         x: currentX,
-                        duration: width 
+                        duration: width
                     }, position);
-                    
+
                     if (bg) {
                         currentBgX -= width * 0.15;
                         tl.to(bg, {
@@ -172,7 +172,7 @@ export default function HorizontalScroll({ children }: HorizontalScrollProps) {
                             duration: width
                         }, "<");
                     }
-                    
+
                     totalHorizontalScroll += width;
                 }
             });
@@ -180,9 +180,10 @@ export default function HorizontalScroll({ children }: HorizontalScrollProps) {
             const totalDistance = portalScrollDistance + totalHorizontalScroll + totalVerticalScroll;
 
             // Dynamic Background Sizing
+            // Added extra buffer (1000px) to prevent corner cutting
             if (bg) {
                 const parallaxDistance = totalHorizontalScroll * 0.15;
-                const requiredBgWidth = window.innerWidth + parallaxDistance + 200;
+                const requiredBgWidth = window.innerWidth + parallaxDistance + 1000;
                 bg.style.width = `${requiredBgWidth}px`;
                 bg.style.maxWidth = "none";
                 bg.style.objectFit = "cover";
@@ -206,7 +207,7 @@ export default function HorizontalScroll({ children }: HorizontalScrollProps) {
                 invalidateOnRefresh: true,
                 onUpdate: (self) => {
                     if (!portal) return;
-                    
+
                     // Hide portal once we've passed the portal phase
                     if (self.progress > portalEndProgress && !portalHidden) {
                         gsap.set(portal, { autoAlpha: 0 });
@@ -223,7 +224,7 @@ export default function HorizontalScroll({ children }: HorizontalScrollProps) {
 
         // Handle resize explicitly if needed, but for now let's see if this fixes the init issue.
         // The main issue previously might have been just calculation timing.
-        
+
         return () => ctx.revert();
     }, []);
 
@@ -238,7 +239,7 @@ export default function HorizontalScroll({ children }: HorizontalScrollProps) {
             />
 
             {/* Logo - Animates from center to navbar */}
-            <img 
+            <img
                 ref={logoRef}
                 src="/Logo_inverted.png"
                 alt="HackaMined"
@@ -252,15 +253,15 @@ export default function HorizontalScroll({ children }: HorizontalScrollProps) {
                 <h2 data-portal-text-back className={styles.portalTextBack}>
                     WELCOME TO
                 </h2>
-                
+
                 {/* Middle layer - the portal mask */}
-                <img 
-                    data-portal-mask 
-                    src="/portal-mask.png" 
-                    alt="" 
-                    className={styles.portalMask} 
+                <img
+                    data-portal-mask
+                    src="/portal-mask.png"
+                    alt=""
+                    className={styles.portalMask}
                 />
-                
+
                 {/* Front layer - scales fastest (appears closest) */}
                 <h1 data-portal-text-front className={styles.portalTextFront}>
                     HackaMined

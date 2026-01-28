@@ -9,7 +9,8 @@ const navItems: NavItem[] = [
     { label: 'NEWS', href: '#news' },
     { label: 'ABOUT', href: '#about' },
     { label: 'CAPABILITIES', href: '#capabilities' },
-    { label: 'CONTACT', href: '#contact' },
+    { label: 'CONTACT', href: '/contact' },
+    { label: 'REGISTER', href: '/register' },
 ];
 
 export default function Header() {
@@ -47,7 +48,7 @@ export default function Header() {
         <header className={styles.header}>
             <div className={styles.container}>
                 <Link href="/" className={styles.logo}>
-                    
+
                 </Link>
 
                 <nav className={`${styles.nav} ${mobileMenuOpen ? styles.mobileOpen : ''}`}>

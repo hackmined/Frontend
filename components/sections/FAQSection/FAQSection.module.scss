@@ -1,0 +1,202 @@
+@use '@/styles/variables.scss' as *;
+
+.faqSection {
+    width: 100vw;
+    min-width: 100vw;
+    /* Robust width enforcement */
+    min-height: 100vh;
+    display: flex;
+    flex-shrink: 0;
+    align-items: center;
+    justify-content: center;
+    background-color: transparent;
+    padding: $spacing-xl;
+    position: relative;
+    border-right: none;
+    z-index: 20;
+    /* Ensure visibility above potential overlays */
+
+    @media (max-width: $breakpoint-mobile) {
+        padding: $spacing-lg $spacing-sm;
+    }
+}
+
+.sectionContent {
+    width: 100%;
+    max-width: 900px;
+    display: flex;
+    flex-direction: column;
+    gap: $spacing-xl;
+}
+
+.sectionTitle {
+    font-family: $font-family-title;
+    font-size: 3.5rem;
+    line-height: 1;
+    margin-bottom: $spacing-lg;
+    text-align: center;
+    color: #ffffff;
+    text-transform: uppercase;
+    font-weight: 700;
+
+    @media (max-width: $breakpoint-mobile) {
+        font-size: 2rem;
+        text-align: center;
+    }
+}
+
+.faqContainer {
+    display: flex;
+    flex-direction: column;
+    gap: 0;
+    /* Blue glassmorphism card style */
+    background: rgba(50, 60, 160, 0.6);
+    backdrop-filter: blur(12px);
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    border-radius: 24px;
+    padding: $spacing-md;
+    box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.37);
+}
+
+.faqItem {
+    border-bottom: 1px solid rgba(255, 255, 255, 0.3);
+    /* For rough line effect, could use border-image or SVG, simpler to use dashed/solid for now */
+    border-radius: 0;
+    overflow: hidden;
+    transition: background-color $transition-base;
+
+    &:last-child {
+        border-bottom: none;
+    }
+
+    &:hover {
+        background: rgba(255, 255, 255, 0.05);
+    }
+
+    &.open {
+        background: transparent;
+
+        .question {
+            color: #ffffff;
+        }
+
+        .iconContainer {
+            background: transparent;
+            color: #ffffff;
+        }
+
+        .answer {
+            background: transparent;
+            /* border-top: 1px dashed rgba(255, 255, 255, 0.3); */
+        }
+    }
+}
+
+.question {
+    width: 100%;
+    padding: $spacing-md;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    /* Center icons with text */
+    color: #ffffff;
+    min-height: 60px;
+    background: transparent;
+
+    border: none;
+    /* Using base font (Gaegu) for handwritten look as per image */
+    font-family: $font-family-base;
+    font-size: 1.4rem;
+    /* Specific size for Gaegu legibility */
+    font-weight: 500;
+    text-align: left;
+    cursor: pointer;
+    transition: all $transition-base;
+
+    @media (max-width: $breakpoint-mobile) {
+        font-size: 1.2rem;
+        padding: $spacing-sm;
+    }
+}
+
+.questionContent {
+    display: flex;
+    align-items: center;
+    gap: $spacing-sm;
+    flex: 1;
+}
+
+.starIcon {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #ffffff;
+    flex-shrink: 0;
+
+    svg {
+        stroke-width: 2.5px;
+        filter: drop-shadow(0 0 2px rgba(255, 255, 255, 0.5));
+    }
+}
+
+.questionText {
+    /* padding: $spacing-md $spacing-lg; Removed standard padding to align with star */
+    flex: 1;
+    display: flex;
+    align-items: center;
+    line-height: 1.2;
+}
+
+.iconContainer {
+    width: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-left: none;
+    /* Removed border */
+    font-size: 1.2rem;
+    transition: all $transition-base;
+    background: transparent;
+}
+
+.icon {
+    transition: transform $transition-base;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    &.rotate {
+        transform: rotate(180deg);
+        /* Rotate arrow up */
+    }
+}
+
+.answer {
+    padding: 0;
+    max-height: 0;
+    overflow: hidden;
+    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    opacity: 0;
+    color: #ffffff;
+    font-family: $font-family-base;
+    font-size: 1.2rem;
+    line-height: 1.5;
+    background: transparent;
+
+    &.visible {
+        max-height: 500px;
+        /* Increased max-height */
+        opacity: 1;
+        padding-bottom: $spacing-md;
+    }
+}
+
+.answerText {
+    padding: 0 $spacing-md $spacing-md calc(40px + #{$spacing-md} + #{$spacing-sm});
+    /* Align with text */
+    border-top: none;
+
+    @media (max-width: $breakpoint-mobile) {
+        padding: 0 $spacing-sm $spacing-sm $spacing-sm;
+    }
+}

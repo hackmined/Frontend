@@ -1,48 +1,12 @@
 "use client";
-import React, { useEffect, useRef } from 'react';
-import { gsap } from 'gsap';
-import { ScrollTrigger } from 'gsap/dist/ScrollTrigger';
+import React, { useRef } from 'react';
+import Link from 'next/link';
+import Button from '@/components/ui/Button/Button';
 import styles from './HeroSection.module.scss';
-
-gsap.registerPlugin(ScrollTrigger);
 
 export default function HeroSection() {
     const sectionRef = useRef<HTMLElement>(null);
-    const titleTopRef = useRef<HTMLSpanElement>(null);
     const titleMainRef = useRef<HTMLSpanElement>(null);
-    const titleBottomRef = useRef<HTMLSpanElement>(null);
-    const badgeRef = useRef<HTMLDivElement>(null);
-
-    useEffect(() => {
-        if (!sectionRef.current) return;
-
-        const tl = gsap.timeline({
-            scrollTrigger: {
-                trigger: sectionRef.current,
-                start: 'top top',
-                end: 'bottom top',
-                scrub: 2,
-            },
-        });
-
-        // Parallax effects - each element moves at different speed
-        if (titleTopRef.current) {
-            tl.to(titleTopRef.current, { x: -50, opacity: 0.5 }, 0);
-        }
-        if (titleMainRef.current) {
-            tl.to(titleMainRef.current, { x: -100, scale: 1.05 }, 0);
-        }
-        if (titleBottomRef.current) {
-            tl.to(titleBottomRef.current, { x: -150, opacity: 0.3 }, 0);
-        }
-        if (badgeRef.current) {
-            tl.to(badgeRef.current, { y: 100, rotation: 45, opacity: 0 }, 0);
-        }
-
-        return () => {
-            tl.kill();
-        };
-    }, []);
 
     return (
         <section ref={sectionRef} className={styles.heroSection}>
@@ -59,8 +23,15 @@ export default function HeroSection() {
                         <span className={styles.divider}>|</span>
                         <span className={styles.location}>VIRTUAL & ON-SITE</span>
                     </div>
-                </div>
 
+                    <div className={styles.ctaContainer}>
+                        <Link href="/register">
+                            <Button variant="primary" size="lg">
+                                REGISTER NOW
+                            </Button>
+                        </Link>
+                    </div>
+                </div>
             </div>
         </section>
     );

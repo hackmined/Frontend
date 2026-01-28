@@ -2,58 +2,48 @@
 
 .trackCard {
     padding: 2.5rem 2rem;
-    background: $bg-dark-alt;
-    border: 2px solid $border-color;
+    background: rgba(255, 255, 255, 0.03);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    backdrop-filter: blur(5px);
+    border-radius: 16px;
     text-align: center;
     transition: all $transition-base;
     position: relative;
     overflow: hidden;
 
-    &::before {
-        content: '';
-        position: absolute;
-        top: 0;
-        left: 0;
-        right: 0;
-        height: 4px;
-        background: linear-gradient(90deg, $color-red, $color-blue);
-        transform: scaleX(0);
-        transition: transform $transition-base;
-    }
-
     &:hover {
-        border-color: $color-red;
-        transform: translateY(-8px);
-
-        &::before {
-            transform: scaleX(1);
-        }
+        background: rgba(255, 255, 255, 0.08);
+        border-color: rgba(255, 255, 255, 0.3);
+        transform: translateY(-5px);
     }
 }
 
 .trackIcon {
-    font-size: $font-size-3xl;
+    font-size: 3rem;
     margin-bottom: $spacing-md;
 }
 
 .title {
-    font-size: $font-size-xl;
-    font-weight: $font-weight-bold;
-    color: $text-light;
+    font-family: $font-family-title;
+    font-size: 1.5rem;
+    font-weight: 700;
+    color: #ffffff;
     margin: $spacing-md 0;
 }
 
 .description {
-    font-size: $font-size-sm;
-    color: $text-muted;
-    line-height: 1.6;
+    font-family: $font-family-base;
+    font-size: 1.1rem;
+    color: rgba(255, 255, 255, 0.7);
+    line-height: 1.5;
     margin-bottom: $spacing-md;
 }
 
 .prize {
     display: inline-block;
-    font-size: $font-size-2xl;
-    font-weight: $font-weight-black;
-    color: $color-red;
+    font-family: $font-family-title;
+    font-size: 1.8rem;
+    font-weight: 700;
+    color: $primary;
     margin-top: $spacing-xs;
 }

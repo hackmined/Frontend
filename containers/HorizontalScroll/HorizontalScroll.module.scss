@@ -13,11 +13,14 @@
     left: 0;
     height: 100vh;
     width: auto;
+    min-width: 100vw;
+    /* Ensure it covers width at minimum */
     max-width: none;
     z-index: 0;
     /* Behind content but in front of base background */
     pointer-events: none;
     will-change: transform;
+    object-fit: cover;
 }
 
 .scrollSectionInner {
@@ -66,7 +69,7 @@
 
 // ===== PORTAL EFFECT STYLES =====
 // The portal creates an "entering" effect when the page loads.
-// 
+//
 // HOW TO USE:
 // 1. Create an image with a transparent hollow shape in the center (e.g., PNG with alpha)
 // 2. Place it at /public/portal-mask.png (or update the src in HorizontalScroll.tsx)
@@ -80,7 +83,7 @@
     display: flex;
     align-items: center;
     justify-content: center;
-    
+
     // Portal appearance (TWEAK THESE!)
     // --portal-initial-scale: Starting scale of the mask image (default: 1)
     // --portal-final-scale: Ending scale when fully expanded (default: 8)
@@ -139,10 +142,10 @@
     top: 50%;
     left: 50%;
     // Center it initially
-    transform: translate(-50%, -50%); 
+    transform: translate(-50%, -50%);
     z-index: 2000; // Very high, above portal (50) and potentially header (1000)
     width: 12vw; // Start large
-    max-width: 400px; 
+    max-width: 400px;
     height: auto;
     object-fit: contain;
     will-change: transform, top, width;

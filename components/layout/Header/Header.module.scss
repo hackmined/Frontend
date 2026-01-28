@@ -5,12 +5,10 @@
     top: 10px;
     left: 10px;
     right: 10px;
-    border: 2px solid $color-white;
+    border: none;
     border-radius: 6px;
     z-index: $z-header;
     transition: all $transition-base;
-    backdrop-filter: blur(10px);
-    background: rgba(0, 0, 0, 0.2);
 }
 
 .container {
@@ -66,7 +64,7 @@
 .navLink {
     color: $color-white;
     text-decoration: none;
-    font-family: var(--font-space-grotesk), -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+    font-family: $font-family-title;
     font-weight: 700;
     font-size: 1rem;
     text-transform: uppercase;

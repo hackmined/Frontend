@@ -83,7 +83,7 @@ export default function CursorTrail() {
 
             // Draw smooth curved path with gradient opacity
             ctx.beginPath();
-            ctx.lineWidth = 3;
+            ctx.lineWidth = 2;
             ctx.lineCap = "round";
             ctx.lineJoin = "round";
 
@@ -101,7 +101,9 @@ export default function CursorTrail() {
                 const opacity = Math.pow(progress, 1.5); // Easing for smoother fade
 
                 // Draw segment with calculated opacity
-                ctx.strokeStyle = `rgba(255, 107, 53, ${opacity})`;
+                ctx.strokeStyle = `rgba(255, 255, 255, ${opacity})`;
+                ctx.shadowBlur = 10;
+                ctx.shadowColor = `rgba(255, 255, 255, ${opacity})`;
 
                 // Use quadratic curve for smooth path
                 const xc = (current.x + next.x) / 2;
@@ -121,7 +123,9 @@ export default function CursorTrail() {
                 const progress = 1 - age / TRAIL_DURATION;
                 const opacity = Math.pow(progress, 1.5);
 
-                ctx.strokeStyle = `rgba(255, 107, 53, ${opacity})`;
+                ctx.strokeStyle = `rgba(255, 255, 255, ${opacity})`;
+                ctx.shadowBlur = 10;
+                ctx.shadowColor = `rgba(255, 255, 255, ${opacity})`;
                 ctx.lineTo(lastPoint.x, lastPoint.y);
                 ctx.stroke();
             }

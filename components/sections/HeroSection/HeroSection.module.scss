@@ -1,13 +1,14 @@
 @use '@/styles/variables.scss' as *;
 
 .heroSection {
-    width: 100vw;
+    width: 100%;
+    /* Changed from 100vw to avoid scrollbar issues */
     height: 100vh;
     display: flex;
     justify-content: center;
     align-items: center;
-    padding: 0 5vw;
-    /* background: linear-gradient(135deg, $background 0%, $background-alt 100%); */
+    padding: 0;
+    /* Removed padding */
     background: transparent;
     flex-shrink: 0;
 }
@@ -18,7 +19,7 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    gap: 4rem;
+    /* Removed gap: 4rem */
 }
 
 .heroText {
@@ -27,33 +28,37 @@
     flex-direction: column;
     align-items: center;
     text-align: center;
+    width: 100%;
 }
 
 .heroTitle {
+    font-family: $font-family-title;
     font-size: clamp(3rem, 8vw, 8rem);
     font-weight: $font-weight-black;
     line-height: 0.95;
     margin: 0 0 2rem 0;
     display: flex;
     flex-direction: column;
+    align-items: center;
+    /* Enforce column centering */
     letter-spacing: -0.03em;
 
     .titleTop {
-        color: $primary;
+        color: #ffffff;
         font-size: 0.35em;
         font-weight: $font-weight-semibold;
         letter-spacing: 0.1em;
     }
 
     .titleMain {
-        color: $accent-1;
+        color: #ffffff;
         font-size: 1.2em;
 
         margin: 0.1em 0;
     }
 
     .titleBottom {
-        color: $text-light;
+        color: #ffffff;
         font-size: 0.5em;
         font-weight: $font-weight-bold;
     }
@@ -61,7 +66,7 @@
 
 .heroSubtitle {
     font-size: clamp(1rem, 1.5vw, 1.5rem);
-    color: $foreground;
+    color: #ffffff;
     margin: 0 0 2rem 0;
     letter-spacing: 0.15em;
     font-weight: $font-weight-light;
@@ -73,15 +78,15 @@
     gap: 1.5rem;
     font-size: clamp(0.9rem, 1.2vw, 1.2rem);
     font-weight: $font-weight-semibold;
-    color: $text-light;
+    color: #ffffff;
 
     .date,
     .location {
-        color: $primary;
+        color: #ffffff;
     }
 
     .divider {
-        color: $accent-1;
+        color: #ffffff;
         font-weight: $font-weight-light;
     }
 }
@@ -129,9 +134,31 @@
     letter-spacing: 0.15em;
 }
 
+.ctaContainer {
+    margin-top: 3rem;
+    opacity: 0;
+    animation: fadeIn 1s ease-out 0.5s forwards;
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
 @media (max-width: $breakpoint-mobile) {
     .heroContent {
         flex-direction: column;
         text-align: center;
+    }
+
+    .heroTitle {
+        font-size: 3rem; // Fallback for smaller screens
     }
 }
