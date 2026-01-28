@@ -1,55 +1,66 @@
+// VerticalScrollSection.module.scss
 @use '@/styles/variables.scss' as *;
 
 .container {
-    // Must be full viewport width to fit into the horrorzontal stream nicely
     width: 100vw;
     height: 100vh;
     flex-shrink: 0;
     position: relative;
     display: flex;
-    flex-direction: column;
     align-items: center;
-    justify-content: flex-start;
-    padding: 4rem 2rem;
+    justify-content: center;
+    padding: 0 4rem; // Add side padding
     box-sizing: border-box;
-    overflow: hidden; // Hide the overflow so we can animate it manually
-    background: rgba(255, 255, 255, 0.05);
-    border-right: 1px solid rgba(255, 255, 255, 0.1);
+    overflow: hidden;
 }
 
-.header {
-    text-align: center;
-    margin-bottom: 3rem;
-    z-index: 2; // Keep header on top? Or scroll it away?
-    // Let's keep it simple: everything scrolls away? 
-    // Actually, usually headers stay pinned or move with content.
-    // For this simple test, let's just let it all be in the flow.
+.contentWrapper {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 4rem;
+    width: 100%;
+    max-width: 1400px;
+    height: 100%;
+    align-items: center;
 }
 
-.scrollContent {
+.stackColumn {
+    position: relative;
+    height: 100%;
     display: flex;
     flex-direction: column;
-    gap: 2rem;
-    align-items: center;
-    width: 100%;
-    max-width: 800px;
-    // We don't set height/overflow here because GSAP will transform translateY this whole block.
+    justify-content: flex-start; // Let content flow from top
+    // The ScrollStack itself handles padding/margins
 }
 
-.card {
-    background: rgba(0, 0, 0, 0.4);
-    border: 1px solid $primary; // specific border to make it pop
-    padding: 2rem;
-    border-radius: 12px;
-    width: 100%;
-    
-    h3 {
-        color: $primary;
-        margin-bottom: 0.5rem;
+.textColumn {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    height: 100%;
+    pointer-events: none; // Let scroll pass through if needed
+}
+
+.stickyText {
+    position: sticky;
+    top: 50%;
+    transform: translateY(-50%);
+    text-align: left;
+
+    h2 {
+        font-family: var(--font-space-grotesk);
+        font-size: 4rem;
+        margin-bottom: 1.5rem;
+        background: linear-gradient(135deg, #fff 0%, #aaa 100%);
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
     }
-    
+
     p {
-        color: $foreground;
-        opacity: 0.8;
+        font-size: 1.25rem;
+        color: rgba(255, 255, 255, 0.7);
+        line-height: 1.6;
+        max-width: 500px;
     }
 }
