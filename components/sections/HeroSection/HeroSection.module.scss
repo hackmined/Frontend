@@ -1,164 +1,168 @@
 @use '@/styles/variables.scss' as *;
 
 .heroSection {
-    width: 100%;
-    /* Changed from 100vw to avoid scrollbar issues */
+    width: 100vw;
     height: 100vh;
+    flex-shrink: 0;
+    position: relative;
     display: flex;
-    justify-content: center;
     align-items: center;
-    padding: 0;
-    /* Removed padding */
+    justify-content: center;
+    /* Transparent so the global background/parallax works */
     background: transparent;
-    flex-shrink: 0;
+    overflow: hidden; // Prevent overflow from floating animation if it goes too wide
 }
 
-.heroContent {
-    max-width: 1400px;
+.imageContainer {
     width: 100%;
     display: flex;
     justify-content: center;
     align-items: center;
-    /* Removed gap: 4rem */
 }
 
-.heroText {
-    flex: 1;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    text-align: center;
-    width: 100%;
+.titleImage {
+    width: 60vw; // Big size
+    max-width: 800px;
+    min-width: 300px;
+    height: auto;
+
+    will-change: transform;
+
+    // "Slowly animate"
+    animation: float 6s ease-in-out infinite;
 }
 
-.heroTitle {
-    font-family: $font-family-title;
-    font-size: clamp(3rem, 8vw, 8rem);
-    font-weight: $font-weight-black;
-    line-height: 0.95;
-    margin: 0 0 2rem 0;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    /* Enforce column centering */
-    letter-spacing: -0.03em;
-
-    .titleTop {
-        color: #ffffff;
-        font-size: 0.35em;
-        font-weight: $font-weight-semibold;
-        letter-spacing: 0.1em;
+@keyframes float {
+    0% {
+        transform: translateY(0px);
     }
 
-    .titleMain {
-        color: #ffffff;
-        font-size: 1.2em;
-
-        margin: 0.1em 0;
+    50% {
+        transform: translateY(-10px);
     }
 
-    .titleBottom {
-        color: #ffffff;
-        font-size: 0.5em;
-        font-weight: $font-weight-bold;
+    // Subtle float
+    100% {
+        transform: translateY(0px);
     }
 }
 
-.heroSubtitle {
-    font-size: clamp(1rem, 1.5vw, 1.5rem);
-    color: #ffffff;
-    margin: 0 0 2rem 0;
-    letter-spacing: 0.15em;
-    font-weight: $font-weight-light;
-}
+.registerButton {
+    position: absolute;
+    top: -2%;
+    left: 5%;
+    transform: rotate(0deg);
+    z-index: 20; // Ensure it's clickable
+    cursor: pointer;
+    transition: transform 0.2s ease-out; // Smooth return after hover
+    will-change: transform;
 
-.heroMeta {
-    display: flex;
-    align-items: center;
-    gap: 1.5rem;
-    font-size: clamp(0.9rem, 1.2vw, 1.2rem);
-    font-weight: $font-weight-semibold;
-    color: #ffffff;
+    img {
+        width: 12vw; // Responsive size
+        min-width: 300px;
+        max-width: 450px;
+        height: auto;
+        display: block; // Remove inline gap
+        transition: filter 0.3s ease;
 
-    .date,
-    .location {
-        color: #ffffff;
+        // Static floating animation moved here to avoid conflict with JS parallax on parent
+        animation: float 5s ease-in-out infinite reverse;
+
+        &:hover {
+            filter: drop-shadow(0 0 10px rgba(255, 255, 255, 0.4));
+        }
     }
 
-    .divider {
-        color: #ffffff;
-        font-weight: $font-weight-light;
-    }
-}
-
-.heroGraphic {
-    flex-shrink: 0;
-}
-
-.circularBadge {
-    width: clamp(150px, 20vw, 250px);
-    height: clamp(150px, 20vw, 250px);
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    color: $color-red;
-    animation: rotate 20s linear infinite;
-    will-change: transform, opacity;
-}
-
-@keyframes rotate {
-    from {
-        transform: rotate(0deg);
-    }
-
-    to {
-        transform: rotate(360deg);
+    @media (max-width: $breakpoint-mobile) {
+        bottom: 15%; // Move up a bit on mobile to avoid strict bottom edge
+        right: 50%;
+        transform: translateX(50%) rotate(0deg); // Center on mobile? Or just right
+        // Let's keep it right for now but maybe smaller
+        right: 20px;
+        transform: rotate(-45deg);
     }
 }
 
-.badgeSvg {
-    width: 100%;
-    height: 100%;
-}
+// Planets
+.leftPlanet,
+.rightPlanet,
+.bottomPlanet {
+    position: absolute;
+    z-index: 1; // Behind register button (20) but maybe in front of title? Title is just in flow.
+    // Let's put them behind title if needed, but absolute usually goes on top of static unless z-index is managed.
+    // Title doesn't have z-index, so it's auto (0). Planets w/ 10 will be on top.
+    // If we want them background, use z-index: -1 or lower.
+    // Assuming they are "floating around", z-index 10 is fine.
 
-.badgeText {
-    font-size: 48px;
-    font-weight: $font-weight-black;
-    fill: $color-red;
-}
+    will-change: transform;
+    transition: transform 0.2s ease-out; // Smooth return from parallax
 
-.badgeSubtext {
-    font-size: 16px;
-    font-weight: $font-weight-semibold;
-    fill: $text-light;
-    letter-spacing: 0.15em;
-}
-
-.ctaContainer {
-    margin-top: 3rem;
-    opacity: 0;
-    animation: fadeIn 1s ease-out 0.5s forwards;
-}
-
-@keyframes fadeIn {
-    from {
-        opacity: 0;
-        transform: translateY(20px);
-    }
-
-    to {
-        opacity: 1;
-        transform: translateY(0);
+    img {
+        width: 100%;
+        height: auto;
+        display: block;
     }
 }
 
-@media (max-width: $breakpoint-mobile) {
-    .heroContent {
-        flex-direction: column;
-        text-align: center;
-    }
+.leftPlanet {
+    top: 15%;
+    left: 5%;
+    width: 15vw;
+    min-width: 100px;
 
-    .heroTitle {
-        font-size: 3rem; // Fallback for smaller screens
+    img {
+        // animation removed
     }
+}
+
+.rightPlanet {
+    top: 25%;
+    right: 8%;
+    width: 12vw;
+    min-width: 80px;
+
+    img {
+        // animation removed
+    }
+}
+
+.bottomPlanet {
+    bottom: 6%;
+    right: 30%;
+    width: 20vw;
+    min-width: 150px;
+
+    img {
+        // animation removed
+    }
+}
+
+// Satellites
+.satellite1,
+.satellite2 {
+    position: absolute;
+    z-index: 1;
+    will-change: transform;
+    transition: transform 0.2s ease-out;
+
+    img {
+        width: 100%;
+        height: auto;
+        display: block;
+    }
+}
+
+.satellite1 {
+    top: 5%;
+    right: 1%;
+    width: 8vw;
+    rotate: 70deg;
+    min-width: 60px;
+}
+
+.satellite2 {
+    bottom: -10%;
+    left: 3%;
+    width: 20vw;
+    min-width: 50px;
 }

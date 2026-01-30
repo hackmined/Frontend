@@ -85,31 +85,43 @@ export default function HorizontalScroll({ children }: HorizontalScrollProps) {
                 // LOGO ANIMATION
                 // Moves from center (initial CSS) to navbar position
                 if (logo) {
+                    const navLogo = document.querySelector('[data-nav-logo]');
+                    let targetTop = '35px'; // Fallback
+                    let targetLeft = '40px'; // Fallback for phase 2
+
+                    if (navLogo) {
+                        const rect = navLogo.getBoundingClientRect();
+                        // vertical center of nav logo
+                        const centerY = rect.top + rect.height / 2;
+                        targetTop = `${centerY}px`;
+                        targetLeft = `${rect.left}px`;
+                    }
+
                     tl.to(logo, {
-                        top: '95px', // Approx center of navbar
-                        width: '45px', // Shrink to reasonable logo size
+                        top: targetTop, // Dynamic top
+                        width: '40px', // Shrink to reasonable logo size
                         yPercent: -50, // Keep centered vertically relative to the new top
                         // xPercent is -50% from CSS, which is fine to keep centered horizontally
                         duration: portalScrollDistance,
                         ease: "power2.inOut",
                     }, 0);
-                }
 
-                tl.addLabel(portalPhaseLabel);
+                    // Store targetLeft for Phase 2 use if needed, though usually Phase 2 slides offscreen or to side.
+                    // If Phase 2 is supposed to slide the logo to the left of the screen or left of content:
+                    tl.addLabel(portalPhaseLabel);
 
-                // PHASE 2: LOGO SLIDE TO LEFT
-                // As we scroll horizontally through the first section (SpacerSection),
-                // move the logo to the left of the navbar.
-                if (logo) {
-                    const spacerWidth = window.innerWidth; // SpacerSection is 100vw
+                    // PHASE 2: LOGO SLIDE TO LEFT
+                    const spacerWidth = window.innerWidth;
 
                     tl.to(logo, {
-                        left: '40px', // Slide to left
+                        left: '40px', // Slide to left (fixed margin for side)
                         xPercent: 0, // Remove centering offset horizontally
-                        // Maintain top and yPercent from previous phase to prevent Y movement
-                        duration: spacerWidth,
+                        opacity: 0, // Fade out
+                        duration: spacerWidth * 0.01,
                         ease: "power1.inOut"
                     }, portalPhaseLabel);
+                } else {
+                    tl.addLabel(portalPhaseLabel);
                 }
             }
 

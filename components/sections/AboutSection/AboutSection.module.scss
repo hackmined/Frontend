@@ -1,153 +1,59 @@
-@use "@/styles/variables.scss" as *;
+@use '@/styles/variables.scss' as *;
 
-/* ───────────────────────────── */
-/* LAYOUT ROOT */
-/* ───────────────────────────── */
-
-:root {
-    /* matches aboutContent max-width */
-    --content-max-width: 1400px;
-
-    /* dynamic page gutter (Stiff trick) */
-    --page-gutter: max(24px,
-            calc((100vw - var(--content-max-width)) / 2));
-}
-
-/* SECTION */
 .aboutSection {
-    width: 40vw;
+    width: 100vw;
     height: 100vh;
-    padding-left: 140px;
-    padding-right: 40px;
-    /* Space for WORK carousel (90px) + gap */
-    position: relative;
-    /* background: $background-alt; */
-    background: transparent;
-    display: flex;
-    align-items: center;
-    overflow: hidden;
     flex-shrink: 0;
-    /* Prevent compression in horizontal scroll */
+    position: relative;
+    display: block; // Keep block to avoid issues, but flex on parent is removed below
 }
 
-/* CONTENT */
-.aboutContent {
-    max-width: var(--content-max-width);
-    width: 100%;
-    display: block;
-    align-items: center;
-}
-
-/* IMAGE */
-.imageContainer {
-    will-change: transform;
-}
-
-.imagePlaceholder {
-    aspect-ratio: 1;
-    border: 2px solid $border-color;
-    background: $background-alt;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-}
-
-.imageIcon {
-    font-size: clamp(4rem, 8vw, 8rem);
-}
-
-/* TEXT */
-.textContent {
-    display: flex;
-    flex-direction: column;
-    gap: 1.5rem;
-}
-
-.label {
-    font-size: $font-size-xs;
-    letter-spacing: 0.3em;
-    color: $accent-1;
-}
-
-.title {
-    font-size: clamp(2.5rem, 5vw, 5rem);
-    line-height: 1;
-    color: $foreground;
-}
-
-.description {
-    font-size: $font-size-md;
-    color: $text-muted;
-    line-height: 1.7;
-}
-
-.verticalTextWrapper {
+.imageWrapper {
     position: absolute;
-    left: 0;
-    /* At the left edge of About section */
-    top: 95px;
-    /* Start below header (20px + ~80px header + 20px gap) */
-    transform: none;
+    top: 17%;
+    left: -10%;
 
-    height: calc(100vh - 100px);
-    /* Full height minus header area */
-    max-height: none;
-    width: 60px;
-    /* Wider */
-
-    overflow: hidden;
-    z-index: 20;
-
-    border: 1.5px solid $foreground;
-    border-radius: 8px;
-
-    background: $background;
-    box-sizing: border-box;
-}
-
-/* INNER COLUMN */
-.verticalText {
     display: flex;
-    flex-direction: column;
+    justify-content: center;
     align-items: center;
-    will-change: transform;
-    box-sizing: border-box;
+    z-index: 10;
 }
 
-/* BUFFER (prevents snap) */
-.verticalText::before,
-.verticalText::after {
-    content: "";
-    display: block;
-    height: 44px;
+.aboutImage {
+    width: 60vw;
+    height: auto;
+    object-fit: contain;
+    display: block; // Ensure no inline gap
 }
 
-/* TEXT */
-.verticalText span {
-    writing-mode: vertical-rl;
-    transform: rotate(180deg);
+.textBox {
+    position: absolute;
+    top: 24%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    rotate: 0.5deg;
 
-    font-size: 1.1rem;
-    /* Larger text */
-    font-weight: 600;
-    letter-spacing: 0.35em;
+    // background: rgba(0, 0, 0, 0.7);
+    // backdrop-filter: blur(10px);
+    // border: 1px solid rgba(255, 255, 255, 0.2);
+    // border-radius: 12px;
 
-    color: $foreground;
+    padding: 2rem;
+    max-width: 500px;
+    width: 60%;
 
-    padding: 30px 0;
-    /* More spacing */
-    white-space: nowrap;
-    user-select: none;
-}
+    color: $color-black;
 
-/* RESPONSIVE */
-@media (max-width: $breakpoint-tablet) {
-    .aboutContent {
-        grid-template-columns: 1fr;
-        gap: 3rem;
+    h2 {
+        font-size: clamp(1.5rem, 3vw, 2.5rem);
+        margin: 0 0 1rem 0;
+        font-weight: bold;
     }
 
-    .verticalTextWrapper {
-        display: none;
+    p {
+        font-size: clamp(0.7rem, 1.5vw, 1.15rem);
+        line-height: 1.6;
+        margin: 0;
+        opacity: 0.9;
     }
 }

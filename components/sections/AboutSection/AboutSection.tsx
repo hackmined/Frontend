@@ -1,161 +1,27 @@
 "use client";
-
-import React, { useLayoutEffect, useRef } from "react";
-import { gsap } from "gsap";
-import { ScrollTrigger } from "gsap/dist/ScrollTrigger";
-import styles from "./AboutSection.module.scss";
-
-gsap.registerPlugin(ScrollTrigger);
+import React, { useRef } from 'react';
+import styles from './AboutSection.module.scss';
 
 export default function AboutSection() {
     const sectionRef = useRef<HTMLElement>(null);
-    const imageRef = useRef<HTMLDivElement>(null);
-    const textRef = useRef<HTMLDivElement>(null);
-    const tickerRef = useRef<HTMLDivElement>(null);
-
-    useLayoutEffect(() => {
-        if (!sectionRef.current) return;
-
-        const ctx = gsap.context(() => {
-            const tl = gsap.timeline({
-                scrollTrigger: {
-                    trigger: sectionRef.current,
-                    start: "top 80%",
-                    end: "bottom top",
-                    toggleActions: "play none none reverse",
-                },
-            });
-
-            if (textRef.current) {
-                tl.from(textRef.current.children, {
-                    opacity: 0,
-                    y: 50,
-                    stagger: 0.2,
-                    duration: 1,
-                    ease: "power3.out",
-                });
-            }
-
-            if (imageRef.current) {
-                gsap.to(imageRef.current, {
-                    y: -50,
-                    scale: 1.1,
-                    ease: "none",
-                    scrollTrigger: {
-                        trigger: sectionRef.current,
-                        start: "top bottom",
-                        end: "bottom top",
-                        scrub: 2,
-                    },
-                });
-            }
-        }, sectionRef);
-
-        return () => ctx.revert();
-    }, []);
-
-    /* STABLE INFINITE VERTICAL TICKER */
-    useLayoutEffect(() => {
-        if (!tickerRef.current) return;
-
-        const el = tickerRef.current;
-        let animation: gsap.core.Tween | null = null;
-
-        gsap.set(el, {
-            force3D: true,
-            willChange: "transform",
-        });
-
-        const setup = () => {
-            animation?.kill();
-            gsap.set(el, { clearProps: "y" });
-
-            const distance = Math.floor(el.scrollHeight / 2);
-
-            animation = gsap.fromTo(
-                el,
-                { y: 0 },
-                {
-                    y: -distance,
-                    duration: 120,
-                    ease: "none",
-                    repeat: -1,
-                }
-            );
-        };
-
-        setup();
-
-        const resizeObserver = new ResizeObserver(setup);
-        resizeObserver.observe(el);
-
-        document.fonts?.ready.then(setup);
-
-        return () => {
-            animation?.kill();
-            resizeObserver.disconnect();
-        };
-    }, []);
-
-    const text = "hackNUthon x MINeD";
 
     return (
         <section ref={sectionRef} className={styles.aboutSection}>
-            {/* <div className={styles.verticalTextWrapper}>
-                <div ref={tickerRef} className={styles.verticalText}>
-                    <span>{text}</span>
-                    <span>{text}</span>
-                    <span>{text}</span>
-                    <span>{text}</span>
-                    <span>{text}</span>
-                    <span>{text}</span>
-                    <span>{text}</span>
-                    <span>{text}</span>
-                    <span>{text}</span>
-                    <span>{text}</span>
-                    <span>{text}</span>
-                    <span>{text}</span>
-                    <span>{text}</span>
-                    <span>{text}</span>
-                    <span>{text}</span>
-                    <span>{text}</span>
-                    <span>{text}</span>
-                    <span>{text}</span>
-                    <span>{text}</span>
-                    <span>{text}</span>
-                    <span>{text}</span>
-                    <span>{text}</span>
-                    <span>{text}</span>
-                    <span>{text}</span>
-                    <span>{text}</span>
-                    <span>{text}</span>
-                    <span>{text}</span>
-                    <span>{text}</span>
-                    <span>{text}</span>
-                    <span>{text}</span>
-                    <span>{text}</span>
-                    <span>{text}</span>
-                    <span>{text}</span>
-                    <span>{text}</span>
-                    <span>{text}</span>
-                    <span>{text}</span>
-                    <span>{text}</span>
-                    <span>{text}</span>
-                    <span>{text}</span>
-                    <span>{text}</span>
-                </div>
-            </div> */}
-
-            <div className={styles.aboutContent}>
-                <div ref={textRef} className={styles.textContent}>
-                    <h2 className={styles.title}>
-                        About the Event
-                    </h2>
-                    <p className={styles.description}>
-                        HACKAMINED is where innovators, creators, and builders come together to push the boundaries of what&apos;s possible.
+            <div className={styles.imageWrapper}>
+                <img
+                    src="/about.svg"
+                    alt="About HackaMined"
+                    className={styles.aboutImage}
+                />
+                <div className={styles.textBox}>
+                    {/* <h2>About HackaMined</h2> */}
+                    <p>
+                        Join us for an exciting 48-hour hackathon where innovation meets creativity.
+                        Build groundbreaking solutions, connect with fellow developers, and compete for amazing prizes.
                     </p>
-                    <p className={styles.description}>
-                        Join a community of passionate developers and designers who believe technology can change the world.
+                    <br></br>
+                    <p>
+                        Organized by the Centre of Excellence in Data Science and the Computer Society of India (CSI) Student Chapter, Nirma University.
                     </p>
                 </div>
             </div>
