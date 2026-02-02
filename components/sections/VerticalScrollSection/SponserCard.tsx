@@ -6,9 +6,10 @@ interface SponsorCardProps {
     name: string;
     description: string;
     website?: string;
+    backgroundImage?: string;
 }
 
-const SponsorCard: React.FC<SponsorCardProps> = ({ logo, name, description, website }) => {
+const SponsorCard: React.FC<SponsorCardProps> = ({ logo, name, description, website, backgroundImage }) => {
     const cardRef = useRef<HTMLDivElement | null>(null);
     const [visible, setVisible] = useState(false);
 
@@ -53,20 +54,32 @@ const SponsorCard: React.FC<SponsorCardProps> = ({ logo, name, description, webs
     };
 
     return (
-        <div
-            ref={cardRef}
-            className={`${styles.card} ${visible ? styles.show : ""}`}
-            onMouseMove={handleMouseMove}
-            onMouseLeave={resetTilt}
-        >
-            <div className={styles.logo}>{logo}</div>
-            <h3>{name}</h3>
-            <p>{description}</p>
-            {website && (
-                <a href={website} target="_blank" rel="noopener noreferrer" className={styles.link}>
-                    Visit
-                </a>
-            )}
+        <div className={styles.floatingWrapper}>
+            <div
+                ref={cardRef}
+                className={`${styles.card} ${visible ? styles.show : ""}`}
+                onMouseMove={handleMouseMove}
+                onMouseLeave={resetTilt}
+            >
+                {backgroundImage && (
+                    <img
+                        src={backgroundImage}
+                        alt=""
+                        className={styles.backgroundImage}
+                    />
+                )}
+                <div className={styles.cardContent}>
+                    <div className={styles.logo}>{logo}</div>
+                    <h3>{name}</h3>
+                    <p>{description}</p>
+
+                    {website && (
+                        <a href={website} target="_blank" rel="noopener noreferrer" className={styles.link}>
+                            Visit
+                        </a>
+                    )}
+                </div>
+            </div>
         </div>
     );
 };

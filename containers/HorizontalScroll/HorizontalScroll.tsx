@@ -248,6 +248,7 @@ export default function HorizontalScroll({ children }: HorizontalScrollProps) {
                 src="/bg.svg"
                 alt="Background"
                 className={styles.backgroundImage}
+                style={{ filter: "brightness(0.7)" }}
             />
 
             {/* Logo - Animates from center to navbar */}

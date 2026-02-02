@@ -22,32 +22,39 @@
     max-width: 1400px;
     height: 100%;
     align-items: center;
+    // border: 2px solid red;
 }
 
 .stackColumn {
+    // border: 2px solid blue;
     position: relative;
+    width: 120%;
     height: 100%;
     display: flex;
     flex-direction: column;
     justify-content: flex-start; // Let content flow from top
-    // The ScrollStack itself handles padding/margins
 }
 
 .textColumn {
     position: relative;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: flex-end; // Align content to the right
+    position: relative;
+    // display: flex;
+    // flex-direction: column;
+    // justify-content: center;
+    // align-items: flex-end; 
+    align-self: center; // Grid item alignment
+    justify-self: end; // Grid item alignment
+    text-align: right;
     height: 100%;
-    pointer-events: none; // Let scroll pass through if needed
+    pointer-events: auto; // Allow interaction
+    z-index: 10; // Ensure it sits on top of any overlapping stack elements
 }
 
 .stickyText {
-    position: sticky;
-    top: 50%;
-    transform: translateY(-50%);
-    text-align: right; // Align text to the right
+    position: relative; 
+    top: 6%; // REMOVED: Conflicts with flex center
+    // transform: translateY(-50%); // REMOVED: Conflicts with flex center
+    text-align: center; // Align text to the right
 
     h2 {
         font-family: var(--font-space-grotesk);

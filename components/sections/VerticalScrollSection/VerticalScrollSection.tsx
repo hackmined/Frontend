@@ -3,10 +3,10 @@ import SponsorCard from "./SponserCard";
 import ScrollStack, { ScrollStackItem } from './ScrollStack';
 
 const SPONSORS = [
-    { logo: "⚡", name: "Scroll Sync", description: "Animations are synced with user scroll." },
-    { logo: "🎯", name: "Precision Motion", description: "Hover, tilt, depth & parallax combined." },
-    { logo: "🧊", name: "Glass UI", description: "Modern glassmorphic UI layers." },
-    { logo: "🚀", name: "Speedster", description: "Optimized for high performance." },
+    { logo: "⚡", name: "Scroll Sync", description: "Animations are synced with user scroll.", backgroundImage: "/Card_final.svg" },
+    { logo: "🎯", name: "Precision Motion", description: "Hover, tilt, depth & parallax combined.", backgroundImage: "/Card_final.svg" },
+    { logo: "🧊", name: "Glass UI", description: "Modern glassmorphic UI layers.", backgroundImage: "/Card_final.svg" },
+    { logo: "🚀", name: "Speedster", description: "Optimized for high performance.", backgroundImage: "/Card_final.svg" },
 ];
 
 export default function VerticalScrollSection() {
@@ -26,6 +26,7 @@ export default function VerticalScrollSection() {
                                     logo={sponsor.logo}
                                     name={sponsor.name}
                                     description={sponsor.description}
+                                    backgroundImage={sponsor.backgroundImage}
                                 />
                             </ScrollStackItem>
                         ))}
@@ -34,8 +35,8 @@ export default function VerticalScrollSection() {
 
                 <div className={styles.textColumn}>
                     <div className={styles.stickyText}>
-                        <h2>Our Sponsors</h2>
-                        <p>We thank our dear sponsors for making this event possible. Their support drives innovation and creativity.</p>
+                        <h2>Tracks</h2>
+                        <p>Explore our diverse tracks designed to challenge your creativity and technical skills. Choose your path and build the future.</p>
                     </div>
                 </div>
             </div>

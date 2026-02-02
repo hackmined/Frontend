@@ -4,7 +4,7 @@
     height: 100%;
     overflow-y: auto;
     overflow-x: visible;
-    overscroll-behavior: contain;
+    /* overscroll-behavior: contain; */
     -webkit-overflow-scrolling: touch;
     scroll-behavior: smooth;
     -webkit-transform: translateZ(0);
@@ -13,8 +13,9 @@
 }
 
 .scroll-stack-inner {
-    padding: 20vh 5rem 50rem;
+    padding: 20vh 10rem 40rem 2rem;
     min-height: 100vh;
+    /* overflow: hidden; */
 }
 
 .scroll-stack-card-wrapper {
