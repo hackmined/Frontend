@@ -16,7 +16,7 @@
 
     background: transparent;
     // border: 2px solid transparent; // Transparent but keeps layout stability
-    border-radius: $radius-lg; // Standard radius if available, or keep 24px/16px logic if preferred. Stick to 24px for now as it was there.
+    // border-radius: $radius-lg; // Standard radius if available, or keep 24px/16px logic if preferred. Stick to 24px for now as it was there.
     position: relative;
     overflow: hidden;
     transition: all 0.3s ease;
@@ -48,7 +48,7 @@
 
 .cardContent {
     // border: 2px solid green;
-    padding: 4% 8%;
+    padding: 4% 15%;
 
     position: relative;
     z-index: 2;
