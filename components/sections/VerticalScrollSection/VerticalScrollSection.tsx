@@ -7,11 +7,6 @@ const SPONSORS = [
     { logo: "🎯", name: "Precision Motion", description: "Hover, tilt, depth & parallax combined." },
     { logo: "🧊", name: "Glass UI", description: "Modern glassmorphic UI layers." },
     { logo: "🚀", name: "Speedster", description: "Optimized for high performance." },
-    { logo: "🎨", name: "Creative Flow", description: "Smooth transitions and easing." },
-    { logo: "💎", name: "Crystal Clear", description: "High fidelity rendering." },
-    { logo: "🔧", name: "Robust Core", description: "Built on solid architecture." },
-    { logo: "🌐", name: "Global Reach", description: "Content delivery optimization." },
-    { logo: "🛡️", name: "Secure Guard", description: "Enterprise grade security." },
 ];
 
 export default function VerticalScrollSection() {

@@ -253,7 +253,7 @@ export default function HorizontalScroll({ children }: HorizontalScrollProps) {
             {/* Logo - Animates from center to navbar */}
             <img
                 ref={logoRef}
-                src="/Logo_inverted.png"
+                src="/Hackamined Logo White.svg"
                 alt="HackaMined"
                 className={styles.animatedLogo}
             />
