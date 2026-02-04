@@ -3,13 +3,18 @@
 .timelineItem {
     position: relative;
     padding: $spacing-lg;
-    background: $bg-dark;
-    border: 1px solid $border-color;
+    background: rgba(0, 0, 0, 0.3);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    border: 1px solid rgba(255, 255, 255, 0.1);
     transition: all $transition-base;
+    border-radius: $radius-lg;
 
     &:hover {
-        border-color: $color-red;
+        background: rgba(255, 255, 255, 0.08);
+        border-color: rgba(255, 255, 255, 0.3);
         transform: translateY(-5px);
+        box-shadow: 0 10px 40px -10px rgba(0, 0, 0, 0.5);
     }
 }
 
@@ -17,7 +22,7 @@
     font-size: $font-size-3xl;
     font-weight: $font-weight-black;
     color: $color-red;
-    opacity: 0.2;
+    opacity: 0.5;
     margin-bottom: $spacing-md;
 }
 
