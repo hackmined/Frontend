@@ -11,7 +11,7 @@ const SPONSORS = [
 
 export default function VerticalScrollSection() {
     return (
-        <section className={styles.container} data-scroll-section="vertical" data-scroll-multiplier="2">
+        <section className={styles.container} data-scroll-section="vertical" data-scroll-multiplier="1">
             <div className={styles.contentWrapper}>
                 <div className={styles.stackColumn} data-vertical-content>
                     <ScrollStack

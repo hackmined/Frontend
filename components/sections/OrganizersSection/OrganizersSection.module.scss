@@ -1,0 +1,212 @@
+@use '@/styles/variables.scss' as *;
+
+.section {
+    position: relative;
+    width: 100%;
+    min-height: 100vh;
+    padding: $spacing-2xl $spacing-md;
+    background-color: #0f0f0f; // Explicit dark background
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    overflow-x: hidden; // Prevent horizontal scroll
+
+    @media (max-width: $breakpoint-mobile) {
+        padding: $spacing-xl $spacing-sm;
+    }
+}
+
+.title {
+    font-family: $font-family-title;
+    font-size: $font-size-3xl;
+    color: $color-white; // Changed to white for dark theme
+    margin-bottom: $spacing-2xl;
+    text-align: center;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    position: relative;
+    z-index: 2;
+    text-shadow: 0 0 10px rgba(255, 255, 255, 0.3);
+
+    &::after {
+        content: '';
+        display: block;
+        width: 60px;
+        height: 4px;
+        background-color: $color-red;
+        margin: $spacing-xs auto 0;
+        box-shadow: 0 0 10px $color-red;
+    }
+}
+
+.categorySection {
+    width: 100%;
+    max-width: 1200px;
+    margin-bottom: $spacing-2xl;
+    z-index: 2;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.categoryTitle {
+    font-family: $font-family-title;
+    font-size: $font-size-xl;
+    color: $accent-2; // Yellow/Orange accent
+    margin-bottom: $spacing-lg;
+    text-align: center;
+    text-transform: uppercase;
+    letter-spacing: 0.15em;
+    position: relative;
+    padding-bottom: $spacing-xs;
+
+    // Gradient underline
+    &::after {
+        content: '';
+        position: absolute;
+        bottom: 0;
+        left: 50%;
+        transform: translateX(-50%);
+        width: 40px;
+        height: 2px;
+        background: linear-gradient(90deg, transparent, $accent-2, transparent);
+    }
+}
+
+.grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+    gap: $spacing-lg;
+    width: 100%;
+    justify-items: center;
+}
+
+.card {
+    width: 100%;
+    // Glassmorphism Dark Theme
+    background: rgba(255, 255, 255, 0.03);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+
+    // Rounded shape instead of square
+    border-radius: 20px;
+
+    padding: $spacing-lg;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275); // Bouncy transition
+    position: relative;
+    overflow: hidden;
+
+    // Inner glow effect
+    box-shadow: inset 0 0 20px rgba(0, 0, 0, 0.2);
+
+    &:hover {
+        transform: translateY(-10px) scale(1.02);
+        background: rgba(255, 255, 255, 0.07);
+        border: 1px solid rgba(255, 255, 255, 0.3);
+        box-shadow:
+            0 20px 40px rgba(0, 0, 0, 0.4),
+            inset 0 0 20px rgba(255, 255, 255, 0.05);
+
+        .imageWrapper {
+            transform: scale(1.1);
+            border-color: $accent-2; // Change border color on hover
+            box-shadow: 0 0 15px $accent-2;
+        }
+
+        .role {
+            letter-spacing: 0.1em;
+        }
+    }
+}
+
+.imageWrapper {
+    width: 120px;
+    height: 120px;
+    border-radius: 50%;
+    overflow: hidden;
+    margin-bottom: $spacing-md;
+    border: 3px solid $primary;
+    background-color: $color-black;
+    position: relative;
+    transition: all 0.4s ease;
+    box-shadow: 0 0 10px rgba($primary, 0.5);
+
+    img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+    }
+}
+
+.name {
+    font-family: $font-family-title;
+    font-size: $font-size-lg;
+    font-weight: $font-weight-bold;
+    color: $color-white;
+    margin-bottom: $spacing-xs;
+    text-shadow: 0 2px 4px rgba(0, 0, 0, 0.5);
+}
+
+.role {
+    font-family: $font-family-base;
+    font-size: $font-size-md;
+    color: $primary;
+    font-weight: $font-weight-bold;
+    margin-bottom: $spacing-md;
+    text-transform: uppercase;
+    transition: all 0.3s ease;
+}
+
+.bio {
+    font-family: $font-family-base;
+    font-size: $font-size-sm;
+    color: $text-muted;
+    margin-bottom: $spacing-md;
+    line-height: 1.5;
+    opacity: 0.8;
+}
+
+.socials {
+    display: flex;
+    gap: $spacing-sm;
+    margin-top: auto;
+    width: 100%;
+    justify-content: center;
+    padding-top: $spacing-sm;
+    border-top: 1px solid rgba(255, 255, 255, 0.05);
+
+    a {
+        color: $color-white;
+        font-size: $font-size-lg;
+        transition: all 0.3s ease;
+        opacity: 0.7;
+
+        &:hover {
+            opacity: 1;
+            color: $accent-2;
+            transform: translateY(-2px);
+        }
+    }
+}
+
+// Background decorations
+.bgDecoration {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+    pointer-events: none;
+    z-index: 1;
+    opacity: 0.15;
+    background:
+        radial-gradient(circle at 15% 15%, rgba($primary, 0.4) 0%, transparent 25%),
+        radial-gradient(circle at 85% 85%, rgba($accent-1, 0.4) 0%, transparent 25%),
+        radial-gradient(circle at 50% 50%, rgba($accent-2, 0.2) 0%, transparent 35%);
+    filter: blur(40px);
+}

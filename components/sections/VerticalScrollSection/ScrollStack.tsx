@@ -258,6 +258,35 @@ const ScrollStack: React.FC<ScrollStackProps> = ({
 
         // Use GSAP ticker to sync with parent animations
         gsap.ticker.add(handleTicker);
+
+        // Calculate and set precise container height to match the stack animation
+        // This ensures HorizontalScroll doesn't scroll past the point where stacking completes
+        const lastCardIndex = cards.length - 1;
+        if (lastCardIndex >= 0) {
+            const lastCard = cards[lastCardIndex];
+            const lastCardTop = getElementOffset(lastCard);
+            const containerHeight = useWindowScroll ? window.innerHeight : scroller.clientHeight;
+
+            const stackPositionPx = parsePercentage(stackPosition, containerHeight);
+
+            // Calculate the scroll position where the last card pins
+            // pinStart = cardTop - stackPosition - (stackSpacing * index)
+            const pinStart = lastCardTop - stackPositionPx - (itemStackDistance * lastCardIndex);
+
+            // We want the total scrollable distance (scrollHeight - clientHeight) to be exactly pinStart.
+            // So scrollHeight should be pinStart + clientHeight.
+            // We set the inner container height to achieve this.
+            // Adding a small buffer (e.g., 2px) to safely ensure float calculations don't underestimate.
+            const requiredHeight = pinStart + containerHeight + 2;
+
+            const inner = scroller.querySelector('.scroll-stack-inner') as HTMLElement;
+            if (inner) {
+                inner.style.minHeight = '0'; // Override CSS min-height
+                inner.style.height = `${requiredHeight}px`;
+                inner.style.paddingBottom = '0'; // Remove CSS padding
+            }
+        }
+
         updateCardTransforms();
 
         return () => {

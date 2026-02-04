@@ -10,6 +10,7 @@ const navItems: NavItem[] = [
     { label: 'ABOUT', href: '#about' },
     { label: 'CAPABILITIES', href: '#capabilities' },
     { label: 'CONTACT', href: '/contact' },
+    { label: 'ORGANIZERS', href: '/organizers' },
     { label: 'REGISTER', href: '/register' },
 ];
 

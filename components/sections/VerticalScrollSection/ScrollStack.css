@@ -1,7 +1,7 @@
 .scroll-stack-scroller {
     position: relative;
     width: 100%;
-    height: 100%;
+    /* height: 100%; Removed to allow dynamic height from JS */
     overflow-y: auto;
     overflow-x: visible;
     /* overscroll-behavior: contain; */
@@ -13,7 +13,7 @@
 }
 
 .scroll-stack-inner {
-    padding: 20vh 10rem 40rem 2rem;
+    padding: 20vh 10rem 20rem 2rem;
     min-height: 100vh;
     /* overflow: hidden; */
 }
