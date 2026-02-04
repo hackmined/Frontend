@@ -5,9 +5,6 @@ import styles from './Header.module.scss';
 import { NavItem } from '@/types';
 
 const navItems: NavItem[] = [
-    { label: 'HOME', href: '/' },
-    { label: 'ABOUT', href: '#about' },
-    { label: 'CAPABILITIES', href: '#capabilities' },
     { label: 'CONTACT', href: '/contact' },
     { label: 'ORGANIZERS', href: '/organizers' },
     { label: 'REGISTER', href: '/register' },
