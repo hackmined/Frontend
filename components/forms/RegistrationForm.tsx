@@ -70,7 +70,7 @@ export default function RegistrationForm({ onSubmit, loading, error }: Registrat
                             className="w-full px-4 py-3 bg-white border-2 border-gray-300 rounded-xl text-gray-900 placeholder-gray-400 focus:outline-none focus:border-[#00f2ff] focus:shadow-[0_0_15px_rgba(0,242,255,0.2)] transition-all duration-300"
                             placeholder="John Doe"
                         />
-                        {validationErrors.fullName && <p className={errorClassName}>{validationErrors.fullName}</p>}
+                        {validationErrors.fullName && <p className={styles.fieldError}>{validationErrors.fullName}</p>}
                     </div>
 
                     <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
@@ -85,7 +85,7 @@ export default function RegistrationForm({ onSubmit, loading, error }: Registrat
                                 className="w-full px-4 py-3 bg-white border-2 border-gray-300 rounded-xl text-gray-900 placeholder-gray-400 focus:outline-none focus:border-[#00f2ff] focus:shadow-[0_0_15px_rgba(0,242,255,0.2)] transition-all duration-300"
                                 placeholder="+91 1234567890"
                             />
-                            {validationErrors.phoneNumber && <p className={errorClassName}>{validationErrors.phoneNumber}</p>}
+                            {validationErrors.phoneNumber && <p className={styles.fieldError}>{validationErrors.phoneNumber}</p>}
                         </div>
 
                         <div>
@@ -99,7 +99,7 @@ export default function RegistrationForm({ onSubmit, loading, error }: Registrat
                                 className="w-full px-4 py-3 bg-white border-2 border-gray-300 rounded-xl text-gray-900 placeholder-gray-400 focus:outline-none focus:border-[#00f2ff] focus:shadow-[0_0_15px_rgba(0,242,255,0.2)] transition-all duration-300"
                                 placeholder="+91 1234567890"
                             />
-                            {validationErrors.whatsappNumber && <p className={errorClassName}>{validationErrors.whatsappNumber}</p>}
+                            {validationErrors.whatsappNumber && <p className={styles.fieldError}>{validationErrors.whatsappNumber}</p>}
                         </div>
                     </div>
                 </div>
@@ -131,7 +131,7 @@ export default function RegistrationForm({ onSubmit, loading, error }: Registrat
                             className="w-full px-4 py-3 bg-white border-2 border-gray-300 rounded-xl text-gray-900 placeholder-gray-400 focus:outline-none focus:border-[#00f2ff] focus:shadow-[0_0_15px_rgba(0,242,255,0.2)] transition-all duration-300"
                             placeholder="IIT Bombay"
                         />
-                        {validationErrors.college && <p className={errorClassName}>{validationErrors.college}</p>}
+                        {validationErrors.college && <p className={styles.fieldError}>{validationErrors.college}</p>}
                     </div>
 
                     <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
@@ -146,7 +146,7 @@ export default function RegistrationForm({ onSubmit, loading, error }: Registrat
                                 className="w-full px-4 py-3 bg-white border-2 border-gray-300 rounded-xl text-gray-900 placeholder-gray-400 focus:outline-none focus:border-[#00f2ff] focus:shadow-[0_0_15px_rgba(0,242,255,0.2)] transition-all duration-300"
                                 placeholder="B.Tech"
                             />
-                            {validationErrors.degree && <p className={errorClassName}>{validationErrors.degree}</p>}
+                            {validationErrors.degree && <p className={styles.fieldError}>{validationErrors.degree}</p>}
                         </div>
 
                         <div>
@@ -160,7 +160,7 @@ export default function RegistrationForm({ onSubmit, loading, error }: Registrat
                                 className="w-full px-4 py-3 bg-white border-2 border-gray-300 rounded-xl text-gray-900 placeholder-gray-400 focus:outline-none focus:border-[#00f2ff] focus:shadow-[0_0_15px_rgba(0,242,255,0.2)] transition-all duration-300"
                                 placeholder="Computer Science"
                             />
-                            {validationErrors.branch && <p className={errorClassName}>{validationErrors.branch}</p>}
+                            {validationErrors.branch && <p className={styles.fieldError}>{validationErrors.branch}</p>}
                         </div>
 
                         <div>
@@ -176,7 +176,7 @@ export default function RegistrationForm({ onSubmit, loading, error }: Registrat
                                 min="2020"
                                 max="2030"
                             />
-                            {validationErrors.graduationYear && <p className={errorClassName}>{validationErrors.graduationYear}</p>}
+                            {validationErrors.graduationYear && <p className={styles.fieldError}>{validationErrors.graduationYear}</p>}
                         </div>
                     </div>
                 </div>
@@ -209,7 +209,7 @@ export default function RegistrationForm({ onSubmit, loading, error }: Registrat
                                 className="w-full px-4 py-3 bg-white border-2 border-gray-300 rounded-xl text-gray-900 placeholder-gray-400 focus:outline-none focus:border-[#00f2ff] focus:shadow-[0_0_15px_rgba(0,242,255,0.2)] transition-all duration-300"
                                 placeholder="Mumbai"
                             />
-                            {validationErrors.city && <p className={errorClassName}>{validationErrors.city}</p>}
+                            {validationErrors.city && <p className={styles.fieldError}>{validationErrors.city}</p>}
                         </div>
 
                         <div>
@@ -223,7 +223,7 @@ export default function RegistrationForm({ onSubmit, loading, error }: Registrat
                                 className="w-full px-4 py-3 bg-white border-2 border-gray-300 rounded-xl text-gray-900 placeholder-gray-400 focus:outline-none focus:border-[#00f2ff] focus:shadow-[0_0_15px_rgba(0,242,255,0.2)] transition-all duration-300"
                                 placeholder="Maharashtra"
                             />
-                            {validationErrors.state && <p className={errorClassName}>{validationErrors.state}</p>}
+                            {validationErrors.state && <p className={styles.fieldError}>{validationErrors.state}</p>}
                         </div>
 
                         <div>
@@ -237,7 +237,7 @@ export default function RegistrationForm({ onSubmit, loading, error }: Registrat
                                 className="w-full px-4 py-3 bg-white border-2 border-gray-300 rounded-xl text-gray-900 placeholder-gray-400 focus:outline-none focus:border-[#00f2ff] focus:shadow-[0_0_15px_rgba(0,242,255,0.2)] transition-all duration-300"
                                 placeholder="India"
                             />
-                            {validationErrors.country && <p className={errorClassName}>{validationErrors.country}</p>}
+                            {validationErrors.country && <p className={styles.fieldError}>{validationErrors.country}</p>}
                         </div>
                     </div>
                 </div>
@@ -269,7 +269,7 @@ export default function RegistrationForm({ onSubmit, loading, error }: Registrat
                             className="w-full px-4 py-3 bg-white border-2 border-gray-300 rounded-xl text-gray-900 placeholder-gray-400 focus:outline-none focus:border-[#00f2ff] focus:shadow-[0_0_15px_rgba(0,242,255,0.2)] transition-all duration-300"
                             placeholder="https://github.com/username"
                         />
-                        {validationErrors.githubUrl && <p className={errorClassName}>{validationErrors.githubUrl}</p>}
+                        {validationErrors.githubUrl && <p className={styles.fieldError}>{validationErrors.githubUrl}</p>}
                     </div>
 
                     <div>
@@ -283,7 +283,7 @@ export default function RegistrationForm({ onSubmit, loading, error }: Registrat
                             className="w-full px-4 py-3 bg-white border-2 border-gray-300 rounded-xl text-gray-900 placeholder-gray-400 focus:outline-none focus:border-[#00f2ff] focus:shadow-[0_0_15px_rgba(0,242,255,0.2)] transition-all duration-300"
                             placeholder="https://linkedin.com/in/username"
                         />
-                        {validationErrors.linkedinUrl && <p className={errorClassName}>{validationErrors.linkedinUrl}</p>}
+                        {validationErrors.linkedinUrl && <p className={styles.fieldError}>{validationErrors.linkedinUrl}</p>}
                     </div>
 
                     <div>
@@ -297,7 +297,7 @@ export default function RegistrationForm({ onSubmit, loading, error }: Registrat
                             className="w-full px-4 py-3 bg-white border-2 border-gray-300 rounded-xl text-gray-900 placeholder-gray-400 focus:outline-none focus:border-[#00f2ff] focus:shadow-[0_0_15px_rgba(0,242,255,0.2)] transition-all duration-300"
                             placeholder="https://yourportfolio.com"
                         />
-                        {validationErrors.portfolioUrl && <p className={errorClassName}>{validationErrors.portfolioUrl}</p>}
+                        {validationErrors.portfolioUrl && <p className={styles.fieldError}>{validationErrors.portfolioUrl}</p>}
                     </div>
                 </div>
             </div>
