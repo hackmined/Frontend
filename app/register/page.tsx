@@ -7,6 +7,15 @@ import { registerIndividual } from '@/lib/api/user';
 import { getErrorMessage } from '@/lib/utils/errors';
 import { RegistrationData, RegistrationStatus } from '@/types';
 import RegistrationForm from '@/components/forms/RegistrationForm';
+import GoogleSignIn from '@/components/auth/GoogleSignIn';
+import styles from './register.module.scss';
+
+// Helper function to generate random star positions
+const generateStars = (count: number, color: string) => {
+    return Array.from({ length: count }, () =>
+        `${Math.random() * 2000}px ${Math.random() * 2000}px ${color}`
+    ).join(', ');
+};
 
 export default function RegisterPage() {
     const router = useRouter();
@@ -20,14 +29,8 @@ export default function RegisterPage() {
         checkAuth();
         setIsCheckingAuth(false);
 
-        // Redirect if not authenticated
-        if (!isAuthenticated) {
-            router.push('/');
-            return;
-        }
-
         // Redirect if already registered
-        if (user?.registrationStatus === RegistrationStatus.REGISTERED) {
+        if (isAuthenticated && user?.registrationStatus === RegistrationStatus.REGISTERED) {
             router.push('/dashboard');
         }
     }, [isAuthenticated, user, router, checkAuth]);
@@ -50,22 +53,84 @@ export default function RegisterPage() {
     };
 
     // Show loading state while checking auth
-    if (isCheckingAuth || !isAuthenticated) {
+    if (isCheckingAuth) {
         return (
-            <div className="min-h-screen bg-black flex items-center justify-center">
+            <div className="min-h-screen bg-gradient-to-b from-[#05051a] via-[#0a0a2e] to-black flex items-center justify-center">
                 <div className="text-white text-xl">Loading...</div>
             </div>
         );
     }
 
+    // Show Google Sign-In if not authenticated
+    if (!isAuthenticated) {
+        return (
+            <main className={`${styles.pageContainer} ${styles.centerContent}`}>
+                {/* Starfield Background */}
+                <div className={styles.starfield}>
+                    <div className={styles.starsSmall} style={{ boxShadow: generateStars(100, 'white') }}></div>
+                    <div className={styles.starsMedium} style={{ boxShadow: generateStars(50, 'white') }}></div>
+                    <div className={styles.starsLarge} style={{ boxShadow: generateStars(20, '#00f2ff') }}></div>
+                </div>
+
+                <div className={styles.signInCard}>
+                    <div className={styles.header}>
+                        <h1>
+                            HACKAMINED
+                        </h1>
+                        <p className={styles.subtitle}>
+                            2 0 2 6
+                        </p>
+                        <p className={styles.description}>
+                            The Ultimate 24-Hour Hackathon Experience
+                        </p>
+                    </div>
+
+                    {/* Billboard-style Card */}
+                    <div>
+                        {/* Hand-drawn Border Effect */}
+                        <div className={styles.border}></div>
+
+                        <div className={styles.content}>
+                            <h2>
+                                Sign In to Register
+                            </h2>
+                            <p>
+                                Join us for an exciting coding journey
+                            </p>
+
+                            <GoogleSignIn />
+
+                            <p className={styles.disclaimer}>
+                                Sign in with Google to complete your registration
+                            </p>
+                        </div>
+
+                        {/* Billboard Stand */}
+                        <div className={styles.stand}></div>
+                    </div>
+                </div>
+
+
+            </main>
+        );
+    }
+
+    // Show registration form if authenticated
     return (
-        <main className="min-h-screen bg-black py-20 px-4">
-            <div className="max-w-4xl mx-auto">
-                <div className="text-center mb-12">
-                    <h1 className="text-4xl md:text-5xl font-bold text-white mb-4">
+        <main className={styles.pageContainer}>
+            {/* Starfield Background */}
+            <div className={`${styles.starfield} ${styles.dimmed}`}>
+                <div className={styles.starsSmall} style={{ boxShadow: generateStars(100, 'white') }}></div>
+                <div className={styles.starsMedium} style={{ boxShadow: generateStars(50, 'white') }}></div>
+                <div className={styles.starsLarge} style={{ boxShadow: generateStars(20, '#00f2ff') }}></div>
+            </div>
+
+            <div className={styles.contentWrapper}>
+                <div className={styles.header}>
+                    <h1>
                         Complete Your Registration
                     </h1>
-                    <p className="text-gray-400 text-lg">
+                    <p className={styles.subtitle}>
                         Fill in your details to participate in HACKAMINED 2026
                     </p>
                 </div>
@@ -76,6 +141,8 @@ export default function RegisterPage() {
                     error={error}
                 />
             </div>
+
+
         </main>
     );
 }
