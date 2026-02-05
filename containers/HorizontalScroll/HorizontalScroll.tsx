@@ -38,6 +38,18 @@ export default function HorizontalScroll({ children }: HorizontalScrollProps) {
             let totalHorizontalScroll = 0;
             let totalVerticalScroll = 0;
 
+            // Initialize logo state explicitly to prevent lateral drift during animation
+            if (logo) {
+                gsap.set(logo, {
+                    x: 0,
+                    y: 0,
+                    left: "50%",
+                    top: "50%",
+                    xPercent: -50,
+                    yPercent: -50
+                });
+            }
+
             const tl = gsap.timeline({
                 defaults: { ease: "none" }
             });
@@ -101,7 +113,7 @@ export default function HorizontalScroll({ children }: HorizontalScrollProps) {
                         top: targetTop, // Dynamic top
                         width: '40px', // Shrink to reasonable logo size
                         yPercent: -50, // Keep centered vertically relative to the new top
-                        // xPercent is -50% from CSS, which is fine to keep centered horizontally
+                        xPercent: -50, // FORCE horizontal centering
                         duration: portalScrollDistance,
                         ease: "power2.inOut",
                     }, 0);
@@ -116,9 +128,8 @@ export default function HorizontalScroll({ children }: HorizontalScrollProps) {
                     tl.to(logo, {
                         left: '40px', // Slide to left (fixed margin for side)
                         xPercent: 0, // Remove centering offset horizontally
-                        opacity: 0, // Fade out
-                        duration: spacerWidth * 0.01,
-                        ease: "power1.inOut"
+                        duration: spacerWidth,
+                        ease: "none"
                     }, portalPhaseLabel);
                 } else {
                     tl.addLabel(portalPhaseLabel);

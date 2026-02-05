@@ -1,13 +1,11 @@
 "use client";
 import React, { useState } from 'react';
 import Link from 'next/link';
+import { usePathname } from 'next/navigation';
 import styles from './Header.module.scss';
 import { NavItem } from '@/types';
 
 const navItems: NavItem[] = [
-    { label: 'HOME', href: '/' },
-    { label: 'ABOUT', href: '#about' },
-    { label: 'CAPABILITIES', href: '#capabilities' },
     { label: 'CONTACT', href: '/contact' },
     { label: 'ORGANIZERS', href: '/organizers' },
     { label: 'REGISTER', href: '/register' },
@@ -15,6 +13,8 @@ const navItems: NavItem[] = [
 
 export default function Header() {
     const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+
+    const pathname = usePathname();
 
     const handleLinkMouseMove = (e: React.MouseEvent<HTMLAnchorElement>) => {
         const link = e.currentTarget;
@@ -48,7 +48,13 @@ export default function Header() {
         <header className={styles.header}>
             <div className={styles.container}>
                 <Link href="/" className={styles.logo} data-nav-logo>
-
+                    {pathname !== '/' && (
+                        <img
+                            src="/Hackamined Logo White.svg"
+                            alt="Hackamined"
+                            className={styles.staticLogo}
+                        />
+                    )}
                 </Link>
 
                 <nav className={`${styles.nav} ${mobileMenuOpen ? styles.mobileOpen : ''}`}>

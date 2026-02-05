@@ -13,7 +13,7 @@ const apiClient: AxiosInstance = axios.create({
     headers: {
         'Content-Type': 'application/json',
     },
-    timeout: 15000, // 15 seconds
+    timeout: 30000, // 30 seconds (matches backend maxDuration)
 });
 
 // Request interceptor - attach JWT token

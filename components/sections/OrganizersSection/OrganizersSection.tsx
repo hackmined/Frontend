@@ -3,6 +3,7 @@ import React, { useRef, useLayoutEffect, useState, useEffect } from 'react';
 import gsap from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import styles from './OrganizersSection.module.scss';
+import Starfield from '@/components/ui/Starfield/Starfield';
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -289,6 +290,7 @@ export default function OrganizersSection() {
     return (
         <section ref={sectionRef} className={styles.section}>
             <div className={styles.bgDecoration} />
+            <Starfield className={styles.starfield} />
 
             <h1 className={styles.title}>Meet the Team</h1>
 

@@ -7,13 +7,14 @@ import { setToken } from '../auth/token';
  */
 export const loginWithGoogle = async (idToken: string): Promise<AuthResponse> => {
     const response = await apiClient.post<AuthResponse>('/auth/google', {
-        idToken,
+        credential: idToken,
     });
 
-    // Store JWT token
-    if (response.data.token) {
-        setToken(response.data.token);
+    // Store JWT token (response has nested data)
+    if (response.data.data.token) {
+        setToken(response.data.data.token);
     }
 
     return response.data;
 };
+

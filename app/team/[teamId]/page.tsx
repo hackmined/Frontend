@@ -4,7 +4,7 @@ import { useEffect, useState } from 'react';
 import { useRouter, useParams } from 'next/navigation';
 import { useAuthStore } from '@/lib/stores/authStore';
 import { getTeam } from '@/lib/api/team';
-import { Team } from '@/types';
+import { Team, User } from '@/types';
 import { getErrorMessage } from '@/lib/utils/errors';
 import TeamCard from '@/components/team/TeamCard';
 import MemberList from '@/components/team/MemberList';
@@ -19,7 +19,7 @@ export default function TeamManagementPage() {
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState<string | null>(null);
 
-    const isLeader = team && user && team.leaderId === user._id;
+    const isLeader = team && user && team.leaderId === user.id;
     const canEdit = team?.status === 'OPEN';
 
     useEffect(() => {
@@ -103,13 +103,15 @@ export default function TeamManagementPage() {
                     <TeamCard team={team} />
 
                     {/* Member List */}
-                    <MemberList
-                        members={team.members}
-                        leaderId={team.leaderId}
-                        isUserLeader={!!isLeader}
-                        canEdit={canEdit}
-                        onMemberRemoved={loadTeamData}
-                    />
+                    {team.members.length > 0 && typeof team.members[0] !== 'string' && (
+                        <MemberList
+                            members={team.members as User[]}
+                            leaderId={typeof team.leaderId === 'string' ? team.leaderId : team.leaderId.id}
+                            isUserLeader={!!isLeader}
+                            canEdit={canEdit}
+                            onMemberRemoved={loadTeamData}
+                        />
+                    )}
 
                     {/* Invite Form (Leader Only) */}
                     {isLeader && canEdit && team.members.length < 4 && (

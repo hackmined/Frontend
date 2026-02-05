@@ -37,12 +37,8 @@
 
 .textColumn {
     position: relative;
-    position: relative;
-    // display: flex;
-    // flex-direction: column;
-    // justify-content: center;
-    // align-items: flex-end; 
-    align-self: center; // Grid item alignment
+    /* Revert flexbox centering on the column itself */
+    align-self: stretch; // Ensure column spans full height of grid
     justify-self: end; // Grid item alignment
     text-align: right;
     height: 100%;
@@ -51,10 +47,14 @@
 }
 
 .stickyText {
-    position: relative; 
-    top: 6%; // REMOVED: Conflicts with flex center
-    // transform: translateY(-50%); // REMOVED: Conflicts with flex center
-    text-align: center; // Align text to the right
+    position: sticky;
+    top: 0;
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: flex-end;
+    text-align: right;
 
     h2 {
         font-family: var(--font-space-grotesk);

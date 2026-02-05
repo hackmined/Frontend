@@ -29,19 +29,18 @@ export default function GoogleSignIn() {
             // Call backend auth endpoint
             const response = await loginWithGoogle(idToken);
 
-            // Update auth store
-            login(response.token, {
-                _id: response.user.id,
-                email: response.user.email,
-                fullName: response.user.fullName,
-                profilePicture: response.user.profilePicture,
-                registrationStatus: response.user.registrationStatus,
-                teamId: response.user.teamId,
-                isTeamLeader: response.user.isTeamLeader,
+            // Update auth store (response has nested data)
+            login(response.data.token, {
+                id: response.data.user.id,
+                email: response.data.user.email,
+                fullName: response.data.user.fullName,
+                profilePicture: response.data.user.profilePicture,
+                registrationStatus: response.data.user.registrationStatus,
+                isTeamLeader: false,
             } as any);
 
             // Redirect based on registration status
-            if (response.user.registrationStatus === RegistrationStatus.PENDING) {
+            if (response.data.user.registrationStatus === RegistrationStatus.PENDING) {
                 router.push('/register');
             } else {
                 router.push('/dashboard');

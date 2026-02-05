@@ -10,12 +10,7 @@ import RegistrationForm from '@/components/forms/RegistrationForm';
 import GoogleSignIn from '@/components/auth/GoogleSignIn';
 import styles from './register.module.scss';
 
-// Helper function to generate random star positions
-const generateStars = (count: number, color: string) => {
-    return Array.from({ length: count }, () =>
-        `${Math.random() * 2000}px ${Math.random() * 2000}px ${color}`
-    ).join(', ');
-};
+import Starfield from '@/components/ui/Starfield/Starfield';
 
 export default function RegisterPage() {
     const router = useRouter();
@@ -44,8 +39,16 @@ export default function RegisterPage() {
 
             // Redirect to dashboard after successful registration
             router.push('/dashboard');
-        } catch (err) {
+        } catch (err: any) {
             console.error('Registration Error:', err);
+
+            // Handle 409 Conflict - user is already registered
+            if (err.response?.status === 409) {
+                // Redirect to dashboard since user is already registered
+                router.push('/dashboard');
+                return;
+            }
+
             setError(getErrorMessage(err));
         } finally {
             setLoading(false);
@@ -66,11 +69,7 @@ export default function RegisterPage() {
         return (
             <main className={`${styles.pageContainer} ${styles.centerContent}`}>
                 {/* Starfield Background */}
-                <div className={styles.starfield}>
-                    <div className={styles.starsSmall} style={{ boxShadow: generateStars(100, 'white') }}></div>
-                    <div className={styles.starsMedium} style={{ boxShadow: generateStars(50, 'white') }}></div>
-                    <div className={styles.starsLarge} style={{ boxShadow: generateStars(20, '#00f2ff') }}></div>
-                </div>
+                <Starfield />
 
                 <div className={styles.signInCard}>
                     <div className={styles.header}>
@@ -119,11 +118,7 @@ export default function RegisterPage() {
     return (
         <main className={styles.pageContainer}>
             {/* Starfield Background */}
-            <div className={`${styles.starfield} ${styles.dimmed}`}>
-                <div className={styles.starsSmall} style={{ boxShadow: generateStars(100, 'white') }}></div>
-                <div className={styles.starsMedium} style={{ boxShadow: generateStars(50, 'white') }}></div>
-                <div className={styles.starsLarge} style={{ boxShadow: generateStars(20, '#00f2ff') }}></div>
-            </div>
+            <Starfield dimmed />
 
             <div className={styles.contentWrapper}>
                 <div className={styles.header}>
