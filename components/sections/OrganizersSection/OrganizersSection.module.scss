@@ -5,7 +5,10 @@
     width: 100%;
     min-height: 100vh;
     padding: $spacing-2xl $spacing-md;
-    background-color: #0f0f0f; // Explicit dark background
+    background-image: linear-gradient(rgba(0, 0, 0, 0.2), rgba(0, 0, 0, 0.4)), url('/bg.svg');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -84,7 +87,7 @@
 .card {
     width: 100%;
     // Glassmorphism Dark Theme
-    background: rgba(255, 255, 255, 0.03);
+    background: rgba(255, 255, 255, 0.2);
     backdrop-filter: blur(10px);
     -webkit-backdrop-filter: blur(10px);
     border: 1px solid rgba(255, 255, 255, 0.1);
@@ -204,6 +207,10 @@
     pointer-events: none;
     z-index: 1;
     opacity: 0.15;
+
+    // Use mix-blend-mode for better integration if needed
+    // mix-blend-mode: overlay;
+
     background:
         radial-gradient(circle at 15% 15%, rgba($primary, 0.4) 0%, transparent 25%),
         radial-gradient(circle at 85% 85%, rgba($accent-1, 0.4) 0%, transparent 25%),
