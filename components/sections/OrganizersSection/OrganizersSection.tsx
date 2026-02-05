@@ -28,20 +28,20 @@ interface OrganizerCategory {
 const initialCategories: OrganizerCategory[] = [
     {
         id: 'faculty',
-        title: 'Faculty Advisors',
+        title: 'Faculty',
         members: [
             {
-                id: 101,
-                name: "Dr. Alan Grant",
-                role: "Faculty Advisor",
+                id: 1,
+                name: "Dr. Vishal Parikh",
+                role: "Faculty",
                 image: "/avatar-placeholder.png",
                 bio: "Professor of Computer Science with 20 years of experience.",
                 socials: { linkedin: "#" }
             },
             {
-                id: 102,
-                name: "Dr. Ellie Sattler",
-                role: "Faculty Mentor",
+                id: 2,
+                name: "Dr. Rupal Kapdi",
+                role: "Faculty",
                 image: "/avatar-placeholder.png",
                 bio: "Specializing in Paleobotany and computational biology.",
                 socials: { linkedin: "#" }
@@ -53,17 +53,17 @@ const initialCategories: OrganizerCategory[] = [
         title: 'President',
         members: [
             {
-                id: 201,
-                name: "Alex Johnson",
-                role: "President",
+                id: 11,
+                name: "Karm Dave",
+                role: "DSC President",
                 image: "/avatar-placeholder.png",
                 bio: "Leading the vision and execution of Hackamined 2026.",
                 socials: { linkedin: "#", github: "#" }
             },
             {
-                id: 202,
-                name: "Alex Heart",
-                role: "President",
+                id: 12,
+                name: "Het Modi",
+                role: "CSI President",
                 image: "/avatar-placeholder.png",
                 bio: "Leading the vision and execution of Hackamined 2026.",
                 socials: { linkedin: "#", github: "#" }
@@ -75,9 +75,17 @@ const initialCategories: OrganizerCategory[] = [
         title: 'Vice President',
         members: [
             {
-                id: 301,
-                name: "Sarah Smith",
-                role: "Vice President",
+                id: 21,
+                name: "Krisha Shastri",
+                role: "DSC Vice President",
+                image: "/avatar-placeholder.png",
+                bio: "Overseeing technical operations and team coordination.",
+                socials: { linkedin: "#", github: "#" }
+            },
+            {
+                id: 22,
+                name: "Mihir Jain",
+                role: "CSI Vice President",
                 image: "/avatar-placeholder.png",
                 bio: "Overseeing technical operations and team coordination.",
                 socials: { linkedin: "#", github: "#" }
@@ -85,51 +93,89 @@ const initialCategories: OrganizerCategory[] = [
         ]
     },
     {
-        id: 'core-team',
-        title: 'Core Team',
+        id: 'secretary',
+        title: 'Secretary',
+        members: [
+            {
+                id: 31,
+                name: "Jyot Kikani",
+                role: "DSC General Secretary",
+                image: "/avatar-placeholder.png",
+                bio: "Creative mind behind the visuals and user experience.",
+                socials: { linkedin: "#" }
+            },
+            {
+                id: 32,
+                name: "Luv Patel",
+                role: "CSI General Secretary",
+                image: "/avatar-placeholder.png",
+                bio: "Ensuring everything runs smoothly from start to finish.",
+                socials: { linkedin: "#" }
+            },
+            {
+                id: 33,
+                name: "Rudra Moradiya",
+                role: "CSI Organising Secretary ",
+                image: "/avatar-placeholder.png",
+                bio: "Connecting with partners to make this event possible.",
+                socials: { linkedin: "#" }
+            },
+            {
+                id: 34,
+                name: "Hrushi Bhanvadiya",
+                role: "CSI Joint Secretary",
+                image: "/avatar-placeholder.png",
+                bio: "Spreading the word and managing social media.",
+                socials: { linkedin: "#" }
+            }
+        ]
+    },
+    {
+        id: 'technical-team',
+        title: 'Technical Team',
         members: [
             {
                 id: 401,
-                name: "Mike Brown",
-                role: "Design Lead",
+                name: "Hem Kastiya",
+                role: "DSC Technical Head",
                 image: "/avatar-placeholder.png",
                 bio: "Creative mind behind the visuals and user experience.",
                 socials: { linkedin: "#" }
             },
             {
                 id: 402,
-                name: "Emily Davis",
-                role: "Logistics Lead",
+                name: "Jay Gor",
+                role: "DSC Technical Head",
                 image: "/avatar-placeholder.png",
                 bio: "Ensuring everything runs smoothly from start to finish.",
                 socials: { linkedin: "#" }
             },
             {
                 id: 403,
-                name: "David Wilson",
-                role: "Sponsorship Lead",
+                name: "Chinmay Patel",
+                role: "CSI Technical Head",
                 image: "/avatar-placeholder.png",
                 bio: "Connecting with partners to make this event possible.",
                 socials: { linkedin: "#" }
             },
             {
                 id: 404,
-                name: "Jessica Lee",
-                role: "Marketing Lead",
+                name: "Ritika Parikh",
+                role: "CSI Technical Head",
                 image: "/avatar-placeholder.png",
                 bio: "Spreading the word and managing social media.",
                 socials: { linkedin: "#" }
-            },
-            {
-                id: 405,
-                name: "Ryan Garcia",
-                role: "DevRel",
-                image: "/avatar-placeholder.png",
-                bio: "Ensuring a great experience for all hackers.",
-                socials: { linkedin: "#" }
             }
         ]
+    },
+    {
+        id: 'social-team',
+        title: 'Social Team',
+        members: [
+
+        ]
     }
+
 ];
 
 // Fisher-Yates Shuffle Algorithm
