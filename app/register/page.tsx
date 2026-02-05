@@ -39,8 +39,16 @@ export default function RegisterPage() {
 
             // Redirect to dashboard after successful registration
             router.push('/dashboard');
-        } catch (err) {
+        } catch (err: any) {
             console.error('Registration Error:', err);
+
+            // Handle 409 Conflict - user is already registered
+            if (err.response?.status === 409) {
+                // Redirect to dashboard since user is already registered
+                router.push('/dashboard');
+                return;
+            }
+
             setError(getErrorMessage(err));
         } finally {
             setLoading(false);
