@@ -5,7 +5,7 @@ import { useRouter } from 'next/navigation';
 import { useAuthStore } from '@/lib/stores/authStore';
 import { getUserProfile } from '@/lib/api/user';
 import { getTeam } from '@/lib/api/team';
-import { getMyInvitations } from '@/lib/api/invitations';
+import { getUserInvitations } from '@/lib/api/invitations';
 import { User, Team, Invitation } from '@/types';
 import { getErrorMessage } from '@/lib/utils/errors';
 import UserProfile from '@/components/dashboard/UserProfile';
@@ -40,14 +40,15 @@ export default function DashboardPage() {
             const userProfile = await getUserProfile();
             setUser(userProfile);
 
-            // Fetch team if user has one
+            // Fetch team if user has one (teamId can be string or Team object)
             if (userProfile.teamId) {
-                const teamData = await getTeam(userProfile.teamId);
+                const teamId = typeof userProfile.teamId === 'string' ? userProfile.teamId : userProfile.teamId.id;
+                const teamData = await getTeam(teamId);
                 setTeam(teamData);
             }
 
             // Fetch invitations
-            const userInvitations = await getMyInvitations();
+            const userInvitations = await getUserInvitations();
             setInvitations(userInvitations);
         } catch (err) {
             console.error('Dashboard Error:', err);
@@ -115,12 +116,12 @@ export default function DashboardPage() {
                             <div className="space-y-3">
                                 {invitations.map((inv) => (
                                     <div
-                                        key={inv._id}
+                                        key={inv.id}
                                         className="flex items-center justify-between bg-white/5 p-4 rounded-lg"
                                     >
                                         <div>
                                             <p className="text-white font-medium">
-                                                Team: {inv.team?.name || 'Unknown'}
+                                                Team: {typeof inv.teamId === 'object' ? inv.teamId.name : 'Unknown'}
                                             </p>
                                             <p className="text-gray-400 text-sm">
                                                 Status: {inv.status}

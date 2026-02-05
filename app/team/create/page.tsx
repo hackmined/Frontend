@@ -40,7 +40,7 @@ export default function CreateTeamPage() {
             const team = await createTeam(teamName);
 
             // Redirect to team page
-            router.push(`/team/${team._id}`);
+            router.push(`/team/${team.id}`);
         } catch (err) {
             console.error('Create Team Error:', err);
 

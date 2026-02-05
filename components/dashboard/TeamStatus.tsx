@@ -1,6 +1,6 @@
 "use client";
 
-import { Team } from '@/types';
+import { Team, User } from '@/types';
 import Link from 'next/link';
 
 interface TeamStatusProps {
@@ -39,8 +39,8 @@ export default function TeamStatus({ team, isLeader }: TeamStatusProps) {
                 <div>
                     <p className="text-gray-500 text-sm">Members ({team.members.length}/4)</p>
                     <div className="mt-2 space-y-2">
-                        {team.members.map((member) => (
-                            <div key={member._id} className="flex items-center gap-3">
+                        {(team.members as User[]).map((member) => (
+                            <div key={member.id} className="flex items-center gap-3">
                                 {member.profilePicture && (
                                     <img
                                         src={member.profilePicture}
@@ -52,7 +52,7 @@ export default function TeamStatus({ team, isLeader }: TeamStatusProps) {
                                     <p className="text-white text-sm">{member.fullName}</p>
                                     <p className="text-gray-500 text-xs">{member.email}</p>
                                 </div>
-                                {member._id === team.leaderId && (
+                                {member.id === (typeof team.leaderId === 'string' ? team.leaderId : team.leaderId.id) && (
                                     <span className="text-yellow-400 text-xs">Leader</span>
                                 )}
                             </div>
@@ -63,8 +63,8 @@ export default function TeamStatus({ team, isLeader }: TeamStatusProps) {
                 <div className="pt-4 border-t border-white/10">
                     <p className="text-gray-500 text-sm">Status</p>
                     <span className={`inline-block mt-1 px-3 py-1 rounded-full text-xs font-semibold ${team.status === 'OPEN'
-                            ? 'bg-green-500/20 text-green-400'
-                            : 'bg-red-500/20 text-red-400'
+                        ? 'bg-green-500/20 text-green-400'
+                        : 'bg-red-500/20 text-red-400'
                         }`}>
                         {team.status}
                     </span>
@@ -72,7 +72,7 @@ export default function TeamStatus({ team, isLeader }: TeamStatusProps) {
             </div>
 
             <Link
-                href={`/team/${team._id}`}
+                href={`/team/${team.id}`}
                 className="block mt-6 text-center bg-white/10 hover:bg-white/20 text-white font-semibold py-2 px-6 rounded-lg transition-colors"
             >
                 Manage Team

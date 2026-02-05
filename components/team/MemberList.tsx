@@ -59,7 +59,7 @@ export default function MemberList({ members, leaderId, isUserLeader, canEdit, o
             <div className="space-y-3">
                 {members.map((member) => (
                     <div
-                        key={member._id}
+                        key={member.id}
                         className="flex items-center justify-between bg-white/5 p-4 rounded-lg"
                     >
                         <div className="flex items-center gap-3 flex-1">
@@ -74,20 +74,20 @@ export default function MemberList({ members, leaderId, isUserLeader, canEdit, o
                                 <p className="text-white font-medium">{member.fullName}</p>
                                 <p className="text-gray-400 text-sm">{member.email}</p>
                             </div>
-                            {member._id === leaderId && (
+                            {member.id === leaderId && (
                                 <span className="bg-yellow-500/20 text-yellow-400 px-2 py-1 rounded text-xs font-semibold">
                                     Leader
                                 </span>
                             )}
                         </div>
 
-                        {isUserLeader && member._id !== leaderId && canEdit && (
+                        {isUserLeader && member.id !== leaderId && canEdit && (
                             <button
-                                onClick={() => handleRemove(member._id)}
-                                disabled={removing === member._id}
+                                onClick={() => handleRemove(member.id)}
+                                disabled={removing === member.id}
                                 className="ml-4 bg-red-600/20 hover:bg-red-600/30 text-red-400 px-3 py-1 rounded text-sm transition-colors disabled:opacity-50 disabled:cursor-not-allowed"
                             >
-                                {removing === member._id ? 'Removing...' : 'Remove'}
+                                {removing === member.id ? 'Removing...' : 'Remove'}
                             </button>
                         )}
                     </div>
