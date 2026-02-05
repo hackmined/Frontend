@@ -1,5 +1,5 @@
 import { create } from 'zustand';
-import { User, RegistrationStatus } from '@/types';
+import { User, Team, RegistrationStatus } from '@/types';
 import { getToken, setToken as saveToken, removeToken, isAuthenticated as checkAuth } from '../auth/token';
 
 interface AuthState {
@@ -12,6 +12,7 @@ interface AuthState {
     login: (token: string, user: Partial<User>) => void;
     logout: () => void;
     updateUser: (userData: Partial<User>) => void;
+    updateUserTeam: (teamId: string | Team, isLeader: boolean) => void;
     checkAuth: () => void;
 }
 
@@ -47,6 +48,12 @@ export const useAuthStore = create<AuthState>((set) => ({
     updateUser: (userData) => {
         set((state) => ({
             user: state.user ? { ...state.user, ...userData } : null,
+        }));
+    },
+
+    updateUserTeam: (teamId, isLeader) => {
+        set((state) => ({
+            user: state.user ? { ...state.user, teamId, isTeamLeader: isLeader } : null,
         }));
     },
 

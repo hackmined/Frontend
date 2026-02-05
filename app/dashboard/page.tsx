@@ -10,6 +10,7 @@ import { User, Team, Invitation } from '@/types';
 import { getErrorMessage } from '@/lib/utils/errors';
 import UserProfile from '@/components/dashboard/UserProfile';
 import TeamStatus from '@/components/dashboard/TeamStatus';
+import LoadingSpinner from '@/components/ui/LoadingSpinner/LoadingSpinner';
 
 export default function DashboardPage() {
     const router = useRouter();
@@ -65,7 +66,7 @@ export default function DashboardPage() {
     if (loading) {
         return (
             <div className="min-h-screen bg-black flex items-center justify-center">
-                <div className="text-white text-xl">Loading dashboard...</div>
+                <LoadingSpinner size="lg" text="Loading dashboard..." />
             </div>
         );
     }
@@ -102,7 +103,12 @@ export default function DashboardPage() {
 
                     {/* Team Status */}
                     <div>
-                        <TeamStatus team={team} isLeader={user.isTeamLeader} />
+                        <TeamStatus
+                            team={team}
+                            isLeader={user.isTeamLeader}
+                            userId={user.id}
+                            onTeamLeft={loadDashboardData}
+                        />
                     </div>
                 </div>
 

@@ -4,11 +4,12 @@ import { useEffect, useState } from 'react';
 import { useRouter, useParams } from 'next/navigation';
 import { useAuthStore } from '@/lib/stores/authStore';
 import { getTeam } from '@/lib/api/team';
-import { Team, User } from '@/types';
+import { Team, User, getUserId } from '@/types';
 import { getErrorMessage } from '@/lib/utils/errors';
 import TeamCard from '@/components/team/TeamCard';
 import MemberList from '@/components/team/MemberList';
 import InviteForm from '@/components/team/InviteForm';
+import LoadingSpinner from '@/components/ui/LoadingSpinner/LoadingSpinner';
 
 export default function TeamManagementPage() {
     const router = useRouter();
@@ -19,7 +20,8 @@ export default function TeamManagementPage() {
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState<string | null>(null);
 
-    const isLeader = team && user && team.leaderId === user.id;
+    // Safe leader check using helper function
+    const isLeader = team && user && getUserId(team.leaderId) === user.id;
     const canEdit = team?.status === 'OPEN';
 
     useEffect(() => {
@@ -55,7 +57,7 @@ export default function TeamManagementPage() {
     if (loading) {
         return (
             <div className="min-h-screen bg-black flex items-center justify-center">
-                <div className="text-white text-xl">Loading team...</div>
+                <LoadingSpinner size="lg" text="Loading team..." />
             </div>
         );
     }
@@ -100,13 +102,18 @@ export default function TeamManagementPage() {
 
                 <div className="space-y-6">
                     {/* Team Info */}
-                    <TeamCard team={team} />
+                    <TeamCard
+                        team={team}
+                        isLeader={!!isLeader}
+                        canEdit={canEdit}
+                        onTeamUpdated={loadTeamData}
+                    />
 
                     {/* Member List */}
                     {team.members.length > 0 && typeof team.members[0] !== 'string' && (
                         <MemberList
                             members={team.members as User[]}
-                            leaderId={typeof team.leaderId === 'string' ? team.leaderId : team.leaderId.id}
+                            leaderId={getUserId(team.leaderId)}
                             isUserLeader={!!isLeader}
                             canEdit={canEdit}
                             onMemberRemoved={loadTeamData}

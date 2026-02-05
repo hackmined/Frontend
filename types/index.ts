@@ -140,3 +140,33 @@ export interface ApiError {
     status: 'fail';
     message: string;
 }
+
+// ============ TYPE GUARDS ============
+
+/**
+ * Type guard to check if a User reference is populated
+ */
+export function isPopulatedUser(user: string | User): user is User {
+    return typeof user === 'object' && user !== null && 'id' in user;
+}
+
+/**
+ * Type guard to check if a Team reference is populated
+ */
+export function isPopulatedTeam(team: string | Team): team is Team {
+    return typeof team === 'object' && team !== null && 'id' in team;
+}
+
+/**
+ * Helper to safely get user ID from string or User object
+ */
+export function getUserId(user: string | User): string {
+    return typeof user === 'string' ? user : user.id;
+}
+
+/**
+ * Helper to safely get team ID from string or Team object
+ */
+export function getTeamId(team: string | Team): string {
+    return typeof team === 'string' ? team : team.id;
+}

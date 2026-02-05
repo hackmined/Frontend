@@ -26,6 +26,14 @@ export const inviteMember = async (email: string): Promise<any> => {
 };
 
 /**
+ * Update team details (leader only)
+ */
+export const updateTeam = async (teamId: string, data: { name?: string; description?: string }): Promise<Team> => {
+    const response = await apiClient.patch<{ status: string; data: { team: Team } }>(`/team/${teamId}`, data);
+    return response.data.data.team;
+};
+
+/**
  * Remove a member from the team
  */
 export const removeMember = async (memberId: string): Promise<any> => {

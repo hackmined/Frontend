@@ -35,7 +35,31 @@ export default function RegisterPage() {
         setError(null);
 
         try {
-            await registerIndividual(data);
+            const result = await registerIndividual(data);
+
+            // Update auth store with complete user data
+            const { updateUser, updateUserTeam } = useAuthStore.getState();
+            updateUser({
+                fullName: result.user.fullName,
+                phoneNumber: result.user.phoneNumber,
+                whatsappNumber: result.user.whatsappNumber,
+                college: result.user.college,
+                degree: result.user.degree,
+                branch: result.user.branch,
+                graduationYear: result.user.graduationYear,
+                city: result.user.city,
+                state: result.user.state,
+                country: result.user.country,
+                githubUrl: result.user.githubUrl,
+                linkedinUrl: result.user.linkedinUrl,
+                portfolioUrl: result.user.portfolioUrl,
+                registrationStatus: result.user.registrationStatus,
+            });
+
+            // If user auto-joined a team, update auth store
+            if (result.team && result.user.teamId) {
+                updateUserTeam(result.user.teamId, result.user.isTeamLeader);
+            }
 
             // Redirect to dashboard after successful registration
             router.push('/dashboard');

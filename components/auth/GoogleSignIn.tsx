@@ -29,15 +29,8 @@ export default function GoogleSignIn() {
             // Call backend auth endpoint
             const response = await loginWithGoogle(idToken);
 
-            // Update auth store (response has nested data)
-            login(response.data.token, {
-                id: response.data.user.id,
-                email: response.data.user.email,
-                fullName: response.data.user.fullName,
-                profilePicture: response.data.user.profilePicture,
-                registrationStatus: response.data.user.registrationStatus,
-                isTeamLeader: false,
-            } as any);
+            // Update auth store with complete user data from API
+            login(response.data.token, response.data.user);
 
             // Redirect based on registration status
             if (response.data.user.registrationStatus === RegistrationStatus.PENDING) {
