@@ -5,6 +5,7 @@ import { Team, getUserId } from '@/types';
 import { updateTeam } from '@/lib/api/team';
 import { getErrorMessage } from '@/lib/utils/errors';
 import { validateTeamName } from '@/lib/utils/validation';
+import styles from '@/styles/shared-page.module.scss';
 
 interface TeamCardProps {
     team: Team;
@@ -56,92 +57,104 @@ export default function TeamCard({ team, isLeader = false, canEdit = false, onTe
     const leaderId = typeof team.leaderId === 'string' ? team.leaderId : team.leaderId?.id;
 
     return (
-        <div className="bg-black/50 border border-white/20 rounded-lg p-6">
-            {error && (
-                <div className="mb-4 bg-red-500/10 border border-red-500 text-red-400 px-4 py-2 rounded-lg text-sm">
-                    {error}
-                </div>
-            )}
-
-            <div className="flex items-center justify-between mb-4">
-                {editing ? (
-                    <input
-                        type="text"
-                        value={name}
-                        onChange={(e) => setName(e.target.value)}
-                        className="text-2xl font-bold text-white bg-black/50 border border-white/20 rounded px-3 py-1 focus:outline-none focus:border-red-500"
-                        placeholder="Team name"
-                        disabled={loading}
-                    />
-                ) : (
-                    <h2 className="text-2xl font-bold text-white">{team.name}</h2>
+        <div className={styles.billboardCard}>
+            <div className={styles.border}></div>
+            <div className={styles.content}>
+                {error && (
+                    <div className={styles.errorBanner}>
+                        {error}
+                    </div>
                 )}
-                <span className={`px-3 py-1 rounded-full text-xs font-semibold ${team.status === 'OPEN'
-                    ? 'bg-green-500/20 text-green-400'
-                    : 'bg-red-500/20 text-red-400'
-                    }`}>
-                    {team.status}
-                </span>
-            </div>
 
-            {editing ? (
-                <div className="mb-4">
-                    <label className="block text-sm font-medium text-gray-300 mb-2">
-                        Description (optional)
-                    </label>
-                    <textarea
-                        value={description}
-                        onChange={(e) => setDescription(e.target.value)}
-                        className="w-full px-3 py-2 bg-black/50 border border-white/20 rounded text-white placeholder-gray-500 focus:outline-none focus:border-red-500 resize-none"
-                        rows={3}
-                        placeholder="Describe your team..."
-                        disabled={loading}
-                    />
-                </div>
-            ) : (
-                team.description && (
-                    <p className="text-gray-400 text-sm mb-4">{team.description}</p>
-                )
-            )}
-
-            <div className="text-gray-400 text-sm space-y-1">
-                <p>Members: {team.members.length}/4</p>
-                {team.lockDate && (
-                    <p>
-                        Locked: {new Date(team.lockDate).toLocaleDateString()}
-                    </p>
-                )}
-            </div>
-
-            {isLeader && canEdit && (
-                <div className="mt-4 pt-4 border-t border-white/10 flex gap-2">
+                <div className="flex items-center justify-between mb-6">
                     {editing ? (
-                        <>
-                            <button
-                                onClick={handleSave}
-                                disabled={loading}
-                                className="flex-1 bg-red-600 hover:bg-red-700 disabled:bg-gray-600 text-white font-semibold py-2 px-4 rounded-lg transition-colors disabled:cursor-not-allowed"
-                            >
-                                {loading ? 'Saving...' : 'Save Changes'}
-                            </button>
-                            <button
-                                onClick={handleCancel}
-                                disabled={loading}
-                                className="flex-1 bg-white/10 hover:bg-white/20 text-white font-semibold py-2 px-4 rounded-lg transition-colors"
-                            >
-                                Cancel
-                            </button>
-                        </>
+                        <input
+                            type="text"
+                            value={name}
+                            onChange={(e) => setName(e.target.value)}
+                            className={styles.inputField}
+                            style={{ fontSize: '1.5rem', fontWeight: 'bold' }}
+                            placeholder="Team name"
+                            disabled={loading}
+                        />
                     ) : (
-                        <button
-                            onClick={() => setEditing(true)}
-                            className="w-full bg-white/10 hover:bg-white/20 text-white font-semibold py-2 px-4 rounded-lg transition-colors"
-                        >
-                            Edit Team Details
-                        </button>
+                        <h2 className={styles.cardHeader} style={{ marginBottom: 0 }}>{team.name}</h2>
+                    )}
+                    <span className={`px-4 py-1.5 rounded-full text-sm font-semibold border ${team.status === 'OPEN'
+                        ? 'bg-green-500/10 text-green-400 border-green-500/30'
+                        : 'bg-red-500/10 text-red-400 border-red-500/30'
+                        }`}>
+                        {team.status}
+                    </span>
+                </div>
+
+                {editing ? (
+                    <div className={styles.formGroup}>
+                        <label className="block text-sm font-medium text-gray-300 mb-2">
+                            Description
+                        </label>
+                        <textarea
+                            value={description}
+                            onChange={(e) => setDescription(e.target.value)}
+                            className={styles.inputField}
+                            rows={3}
+                            placeholder="Describe your team..."
+                            disabled={loading}
+                        />
+                    </div>
+                ) : (
+                    team.description && (
+                        <p className="text-gray-300 text-base mb-6 leading-relaxed">{team.description}</p>
+                    )
+                )}
+
+                <div className="text-gray-400 text-sm space-y-2 mb-6 border-t border-white/10 pt-4">
+                    <p className="flex items-center gap-2">
+                        <span className="text-gray-500">Members:</span>
+                        <span className="text-white font-mono">{team.members.length}/4</span>
+                    </p>
+                    {team.lockDate && (
+                        <p className="flex items-center gap-2">
+                            <span className="text-gray-500">Locked:</span>
+                            <span className="text-white font-mono">{new Date(team.lockDate).toLocaleDateString()}</span>
+                        </p>
                     )}
                 </div>
-            )}
+
+                {isLeader && canEdit && (
+                    <div className="flex gap-4">
+                        {editing ? (
+                            <>
+                                <button
+                                    onClick={handleSave}
+                                    disabled={loading}
+                                    className={styles.primaryButton}
+                                    style={{ padding: '0.75rem 1.5rem', fontSize: '1rem' }}
+
+                                >
+                                    {loading ? 'Saving...' : 'Save Changes'}
+                                </button>
+                                <button
+                                    onClick={handleCancel}
+                                    disabled={loading}
+                                    className={styles.secondaryButton}
+                                    style={{ padding: '0.75rem 1.5rem', fontSize: '1rem' }}
+                                >
+                                    Cancel
+                                </button>
+                            </>
+                        ) : (
+                            <button
+                                onClick={() => setEditing(true)}
+                                className={styles.secondaryButton}
+                                style={{ width: '100%' }}
+                            >
+                                Edit Team Details
+                            </button>
+                        )}
+                    </div>
+                )}
+            </div>
         </div>
     );
 }

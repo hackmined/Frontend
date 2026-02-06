@@ -11,6 +11,8 @@ import { getErrorMessage } from '@/lib/utils/errors';
 import UserProfile from '@/components/dashboard/UserProfile';
 import TeamStatus from '@/components/dashboard/TeamStatus';
 import LoadingSpinner from '@/components/ui/LoadingSpinner/LoadingSpinner';
+import Starfield from '@/components/ui/Starfield/Starfield';
+import styles from '@/styles/shared-page.module.scss';
 
 export default function DashboardPage() {
     const router = useRouter();
@@ -43,7 +45,9 @@ export default function DashboardPage() {
 
             // Fetch team if user has one (teamId can be string or Team object)
             if (userProfile.teamId) {
-                const teamId = typeof userProfile.teamId === 'string' ? userProfile.teamId : userProfile.teamId.id;
+                const teamId = typeof userProfile.teamId === 'string'
+                    ? userProfile.teamId
+                    : (userProfile.teamId as any)._id || userProfile.teamId.id;
                 const teamData = await getTeam(teamId);
                 setTeam(teamData);
             }
@@ -65,16 +69,38 @@ export default function DashboardPage() {
 
     if (loading) {
         return (
-            <div className="min-h-screen bg-black flex items-center justify-center">
-                <LoadingSpinner size="lg" text="Loading dashboard..." />
+            <div className={styles.pageContainer}>
+                <Starfield />
+                <div style={{
+                    position: 'relative',
+                    zIndex: 10,
+                    minHeight: '100vh',
+                    display: 'flex',
+                    alignItems: 'center',
+                    justifyContent: 'center'
+                }}>
+                    <LoadingSpinner size="lg" text="Loading dashboard..." />
+                </div>
             </div>
         );
     }
 
     if (error) {
         return (
-            <div className="min-h-screen bg-black flex items-center justify-center">
-                <div className="text-red-400 text-xl">{error}</div>
+            <div className={styles.pageContainer}>
+                <Starfield />
+                <div className={styles.contentWrapper}>
+                    <div className={styles.errorBanner}>
+                        <p>{error}</p>
+                        <button
+                            onClick={loadDashboardData}
+                            className={styles.secondaryButton}
+                            style={{ marginTop: '1rem', width: 'auto', padding: '0.5rem 1.5rem' }}
+                        >
+                            Retry
+                        </button>
+                    </div>
+                </div>
             </div>
         );
     }
@@ -84,57 +110,49 @@ export default function DashboardPage() {
     }
 
     return (
-        <main className="min-h-screen bg-black py-20 px-4">
-            <div className="max-w-6xl mx-auto">
-                <div className="mb-12">
-                    <h1 className="text-4xl md:text-5xl font-bold text-white mb-4">
-                        Dashboard
-                    </h1>
-                    <p className="text-gray-400 text-lg">
-                        Welcome to HACKAMINED 2026
-                    </p>
+        <main className={styles.pageContainer}>
+            <Starfield />
+
+            <div className={styles.contentWrapper}>
+                <div className={styles.pageHeader}>
+                    <h1>Dashboard</h1>
+                    <p className={styles.subtitle}>Welcome back, {user.fullName}!</p>
                 </div>
 
-                <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
-                    {/* User Profile */}
-                    <div>
-                        <UserProfile user={user} />
+                <div className={styles.gridTwo}>
+                    {/* User Profile Card */}
+                    <div className={styles.billboardCard}>
+                        <div className={styles.border}></div>
+                        <div className={styles.content}>
+                            <UserProfile user={user} />
+                        </div>
                     </div>
 
-                    {/* Team Status */}
-                    <div>
-                        <TeamStatus
-                            team={team}
-                            isLeader={user.isTeamLeader}
-                            userId={user.id}
-                            onTeamLeft={loadDashboardData}
-                        />
+                    {/* Team Status Card */}
+                    <div className={styles.billboardCard}>
+                        <div className={styles.border}></div>
+                        <div className={styles.content}>
+                            <TeamStatus
+                                team={team}
+                                isLeader={user.isTeamLeader}
+                                userId={user.id}
+                                onTeamLeft={loadDashboardData}
+                            />
+                        </div>
                     </div>
                 </div>
 
-                {/* Invitations */}
+                {/* Invitations Section */}
                 {invitations.length > 0 && (
-                    <div className="mt-8">
-                        <div className="bg-black/50 border border-white/20 rounded-lg p-6">
-                            <h3 className="text-xl font-semibold text-white mb-4">
-                                Pending Invitations ({invitations.length})
-                            </h3>
-                            <div className="space-y-3">
-                                {invitations.map((inv) => (
-                                    <div
-                                        key={inv.id}
-                                        className="flex items-center justify-between bg-white/5 p-4 rounded-lg"
-                                    >
-                                        <div>
-                                            <p className="text-white font-medium">
-                                                Team: {typeof inv.teamId === 'object' ? inv.teamId.name : 'Unknown'}
-                                            </p>
-                                            <p className="text-gray-400 text-sm">
-                                                Status: {inv.status}
-                                            </p>
-                                        </div>
-                                    </div>
-                                ))}
+                    <div className={styles.billboardCard}>
+                        <div className={styles.border}></div>
+                        <div className={styles.content}>
+                            <h3 className={styles.cardHeader}>Pending Invitations</h3>
+                            <div style={{ color: '#d1d5db' }}>
+                                <p>You have {invitations.length} pending team invitation{invitations.length > 1 ? 's' : ''}.</p>
+                                <p style={{ marginTop: '0.5rem', fontSize: '0.875rem', color: '#9ca3af' }}>
+                                    Complete your registration to accept invitations.
+                                </p>
                             </div>
                         </div>
                     </div>

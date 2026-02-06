@@ -5,8 +5,8 @@ import { ApiResponse, Team } from '@/types';
  * Create a new team
  */
 export const createTeam = async (name: string, description?: string): Promise<Team> => {
-    const response = await apiClient.post<{ status: string; data: { team: Team } }>('/team/create', { name, description });
-    return response.data.data.team;
+    const response = await apiClient.post<{ status: string; data: Team }>('/team/create', { name, description });
+    return response.data.data;
 };
 
 /**

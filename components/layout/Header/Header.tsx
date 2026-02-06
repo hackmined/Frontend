@@ -1,20 +1,32 @@
 "use client";
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 import styles from './Header.module.scss';
 import { NavItem } from '@/types';
+import { useAuthStore } from '@/lib/stores/authStore';
 
-const navItems: NavItem[] = [
+const baseNavItems: NavItem[] = [
     { label: 'CONTACT', href: '/contact' },
     { label: 'ORGANIZERS', href: '/organizers' },
-    { label: 'REGISTER', href: '/register' },
 ];
 
 export default function Header() {
     const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
-
+    const { isAuthenticated, checkAuth } = useAuthStore();
     const pathname = usePathname();
+
+    useEffect(() => {
+        checkAuth();
+    }, [checkAuth]);
+
+    // Build nav items dynamically based on auth status
+    const navItems = [
+        ...baseNavItems,
+        isAuthenticated
+            ? { label: 'DASHBOARD', href: '/dashboard' }
+            : { label: 'REGISTER', href: '/register' }
+    ];
 
     const handleLinkMouseMove = (e: React.MouseEvent<HTMLAnchorElement>) => {
         const link = e.currentTarget;

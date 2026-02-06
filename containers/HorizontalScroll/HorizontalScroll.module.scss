@@ -23,6 +23,24 @@
     object-fit: cover;
 }
 
+.starsLayer {
+    position: fixed;
+    top: 0;
+    left: 0;
+    height: 100vh;
+    width: auto;
+    min-width: 100vw;
+    /* Ensure it covers width at minimum */
+    max-width: none;
+    z-index: 0;
+    /* In front of base background (0) DOM order handles layering */
+    pointer-events: none;
+    will-change: transform;
+    object-fit: cover;
+    mix-blend-mode: screen;
+    /* Optional: helps blend stars on top of dark bg */
+}
+
 .scrollSectionInner {
     height: 100vh;
     display: flex;

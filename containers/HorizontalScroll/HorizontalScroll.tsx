@@ -15,6 +15,7 @@ export default function HorizontalScroll({ children }: HorizontalScrollProps) {
     const sectionRef = useRef<HTMLDivElement | null>(null);
     const triggerRef = useRef<HTMLDivElement | null>(null);
     const bgRef = useRef<HTMLImageElement | null>(null);
+    const starsRef = useRef<HTMLImageElement | null>(null);
     const portalRef = useRef<HTMLDivElement | null>(null);
     const logoRef = useRef<HTMLImageElement | null>(null);
 
@@ -25,6 +26,7 @@ export default function HorizontalScroll({ children }: HorizontalScrollProps) {
             const scrollSection = sectionRef.current;
             const trigger = triggerRef.current;
             const bg = bgRef.current;
+            const stars = starsRef.current;
             const portal = portalRef.current;
             const logo = logoRef.current;
             const portalMask = portal?.querySelector('[data-portal-mask]') as HTMLElement | null;
@@ -150,6 +152,7 @@ export default function HorizontalScroll({ children }: HorizontalScrollProps) {
 
             let currentX = 0;
             let currentBgX = 0;
+            let currentStarsX = 0;
 
             // ===== PHASE 2: HORIZONTAL SCROLL =====
             sections.forEach((section, index) => {
@@ -196,6 +199,15 @@ export default function HorizontalScroll({ children }: HorizontalScrollProps) {
                         }, "<");
                     }
 
+                    if (stars) {
+                        // Stars move faster (0.25 multiplier vs 0.15 for bg)
+                        currentStarsX -= width * 0.25;
+                        tl.to(stars, {
+                            x: currentStarsX,
+                            duration: width
+                        }, "<");
+                    }
+
                     totalHorizontalScroll += width;
                 }
             });
@@ -210,6 +222,14 @@ export default function HorizontalScroll({ children }: HorizontalScrollProps) {
                 bg.style.width = `${requiredBgWidth}px`;
                 bg.style.maxWidth = "none";
                 bg.style.objectFit = "cover";
+            }
+
+            if (stars) {
+                const parallaxDistance = totalHorizontalScroll * 0.25;
+                const requiredStarsWidth = window.innerWidth + parallaxDistance + 1000;
+                stars.style.width = `${requiredStarsWidth}px`;
+                stars.style.maxWidth = "none";
+                stars.style.objectFit = "cover";
             }
 
             // SINGLE ScrollTrigger for everything
@@ -260,6 +280,14 @@ export default function HorizontalScroll({ children }: HorizontalScrollProps) {
                 alt="Background"
                 className={styles.backgroundImage}
                 style={{ filter: "brightness(0.7)" }}
+            />
+
+            {/* Parallax Star Layer - Moves Faster */}
+            <img
+                ref={starsRef}
+                src="/stars.svg"
+                alt="Stars"
+                className={styles.starsLayer}
             />
 
             {/* Logo - Animates from center to navbar */}

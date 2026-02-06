@@ -10,6 +10,8 @@ import TeamCard from '@/components/team/TeamCard';
 import MemberList from '@/components/team/MemberList';
 import InviteForm from '@/components/team/InviteForm';
 import LoadingSpinner from '@/components/ui/LoadingSpinner/LoadingSpinner';
+import Starfield from '@/components/ui/Starfield/Starfield';
+import styles from '@/styles/shared-page.module.scss';
 
 export default function TeamManagementPage() {
     const router = useRouter();
@@ -83,24 +85,28 @@ export default function TeamManagementPage() {
     }
 
     return (
-        <main className="min-h-screen bg-black py-20 px-4">
-            <div className="max-w-4xl mx-auto">
-                <div className="mb-8">
+        <main className={styles.pageContainer}>
+            <Starfield />
+
+            <div className={styles.contentWrapper}>
+                <div className={styles.pageHeader}>
                     <button
                         onClick={() => router.push('/dashboard')}
-                        className="text-gray-400 hover:text-white transition-colors mb-4"
+                        className="text-gray-400 hover:text-white transition-colors mb-4 flex items-center gap-2 mx-auto"
+                        style={{ fontFamily: 'var(--font-gaegu)', fontSize: '1.1rem' }}
                     >
                         ← Back to Dashboard
                     </button>
-                    <h1 className="text-4xl font-bold text-white mb-2">Team Management</h1>
+                    <h1>Team Management</h1>
+
                     {!canEdit && (
-                        <div className="bg-yellow-500/10 border border-yellow-500 text-yellow-400 px-4 py-2 rounded-lg text-sm mt-4">
+                        <div className="bg-yellow-500/10 border border-yellow-500 text-yellow-400 px-4 py-2 rounded-lg text-sm mt-4 inline-block">
                             ⚠️ Team editing is locked. The deadline has passed or the team is locked.
                         </div>
                     )}
                 </div>
 
-                <div className="space-y-6">
+                <div className="space-y-8">
                     {/* Team Info */}
                     <TeamCard
                         team={team}
@@ -122,12 +128,18 @@ export default function TeamManagementPage() {
 
                     {/* Invite Form (Leader Only) */}
                     {isLeader && canEdit && team.members.length < 4 && (
-                        <InviteForm onInviteSuccess={loadTeamData} />
+                        <div className={styles.billboardCard}>
+                            <div className={styles.border}></div>
+                            <div className={styles.content}>
+                                <h3 className={styles.cardHeader}>Invite Team Member</h3>
+                                <InviteForm onInviteSuccess={loadTeamData} />
+                            </div>
+                        </div>
                     )}
 
                     {/* Team Full Message */}
                     {team.members.length >= 4 && (
-                        <div className="bg-green-500/10 border border-green-500 text-green-400 px-4 py-3 rounded-lg text-center">
+                        <div className="bg-green-500/10 border border-green-500 text-green-400 px-4 py-3 rounded-lg text-center backdrop-blur-sm">
                             ✓ Your team is complete with 4 members!
                         </div>
                     )}
