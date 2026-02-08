@@ -2,19 +2,17 @@
 
 import { GoogleOAuthProvider, GoogleLogin, CredentialResponse } from '@react-oauth/google';
 import { useState } from 'react';
-import { loginWithGoogle } from '@/lib/api/auth';
-import { useAuthStore } from '@/lib/stores/authStore';
-import { getErrorMessage } from '@/lib/utils/errors';
-import { RegistrationStatus } from '@/types';
 import { useRouter } from 'next/navigation';
 
 const GOOGLE_CLIENT_ID = process.env.NEXT_PUBLIC_GOOGLE_CLIENT_ID!;
 
-export default function GoogleSignIn() {
+interface GoogleSignInProps {
+    onGoogleSuccess: (credential: string) => void;
+}
+
+export default function GoogleSignIn({ onGoogleSuccess }: GoogleSignInProps) {
     const [error, setError] = useState<string | null>(null);
     const [loading, setLoading] = useState(false);
-    const router = useRouter();
-    const { login } = useAuthStore();
 
     const handleSuccess = async (credentialResponse: CredentialResponse) => {
         setLoading(true);
@@ -26,21 +24,11 @@ export default function GoogleSignIn() {
                 throw new Error('No credential received from Google');
             }
 
-            // Call backend auth endpoint
-            const response = await loginWithGoogle(idToken);
-
-            // Update auth store with complete user data from API
-            login(response.data.token, response.data.user);
-
-            // Redirect based on registration status
-            if (response.data.user.registrationStatus === RegistrationStatus.PENDING) {
-                router.push('/register');
-            } else {
-                router.push('/dashboard');
-            }
+            // Pass the credential to parent component
+            onGoogleSuccess(idToken);
         } catch (err) {
             console.error('Google Sign-In Error:', err);
-            setError(getErrorMessage(err));
+            setError('Failed to process Google Sign-In. Please try again.');
         } finally {
             setLoading(false);
         }
@@ -72,7 +60,7 @@ export default function GoogleSignIn() {
 
                 {loading && (
                     <div className="text-sm text-gray-400">
-                        Signing you in...
+                        Processing...
                     </div>
                 )}
             </div>

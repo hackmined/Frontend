@@ -42,7 +42,7 @@ export default function TeamManagementPage() {
         setError(null);
 
         try {
-            const teamData = await getTeam(teamId);
+            const { team: teamData } = await getTeam(teamId);
             setTeam(teamData);
         } catch (err) {
             console.error('Team Load Error:', err);

@@ -31,7 +31,7 @@
 /* -------------------------------------------------- */
 
 .signInCard {
-    height: 120vh;
+    height: 100vh;
     max-height: 920px;
     aspect-ratio: 1 / 0.85;
     width: auto;
@@ -46,25 +46,17 @@
     justify-content: center;
 
     overflow: hidden;
-
-    transform: translateY(5%);
 }
 
 /* -------------------------------------------------- */
 
 .panelContent {
     width: 100%;
-    max-width: 800px;
+    max-width: 600px;
     max-height: 85%;
     box-sizing: border-box;
 
-    position: absolute;
-    top: 25%;
-    left: 16%;
-    width: 65%;
-    height: 47%;
-
-    padding: 0rem 0rem 0rem 0rem;
+    padding: 1.5rem 2.5rem 4rem;
 
     display: flex;
     flex-direction: column;
@@ -76,7 +68,6 @@
 
     /* visual alignment for illustrated panel */
     transform: translateY(-25%);
-
 }
 
 /* -------------------------------------------------- */
@@ -84,7 +75,7 @@
 .year {
     font-family: var(--font-gaegu);
     width: 100%;
-    font-size: 5rem;
+    font-size: 4rem;
     font-weight: 700;
     color: #000000;
 }

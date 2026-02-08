@@ -1,5 +1,5 @@
 import apiClient from './client';
-import { ApiResponse, Team } from '@/types';
+import { ApiResponse, Team, Invitation } from '@/types';
 
 /**
  * Create a new team
@@ -9,12 +9,14 @@ export const createTeam = async (name: string, description?: string): Promise<Te
     return response.data.data;
 };
 
+// ...
+
 /**
- * Get team details by ID
+ * Get team details by ID with invitations
  */
-export const getTeam = async (teamId: string): Promise<Team> => {
-    const response = await apiClient.get<{ status: string; data: { team: Team } }>(`/team/${teamId}`);
-    return response.data.data.team;
+export const getTeam = async (teamId: string): Promise<{ team: Team; invitations: Invitation[] }> => {
+    const response = await apiClient.get<{ status: string; data: { team: Team; invitations: Invitation[] } }>(`/team/${teamId}`);
+    return response.data.data;
 };
 
 /**

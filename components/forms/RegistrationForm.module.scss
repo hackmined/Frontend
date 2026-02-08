@@ -1,258 +1,197 @@
-
+/* ================= DEVICE FORM ================= */
 
 .formContainer {
-    max-width: 100%;
-    margin: 0 auto;
-}
-
-.formWrapper {
+    width: 100%;
+    height: 100%;
+    padding: 1rem 3rem;
     display: flex;
     flex-direction: column;
-    gap: 3rem;
+    font-family: var(--font-gaegu);
 }
+
+/* ================= HEADER ================= */
+
+.headerZone {
+    text-align: center;
+    margin-bottom: 1.2rem;
+}
+
+.title {
+    font-size: 2.6rem;
+    color: #1f2937;
+}
+
+.subtitle {
+    font-size: 1.3rem;
+    color: #64748b;
+}
+
+/* ================= ERROR ================= */
 
 .errorMessage {
-    background: rgba(239, 68, 68, 0.1);
-    border: 2px solid rgb(239, 68, 68);
-    color: rgb(248, 113, 113);
-    padding: 1.5rem;
-    border-radius: 1rem;
-    backdrop-filter: blur(4px);
-    text-align: center;
-    font-weight: 500;
+    background: #fee2e2;
+    border: 2px solid #ef4444;
+    color: #991b1b;
+    padding: 1rem;
+    border-radius: 10px;
+    margin-bottom: 1rem;
 }
 
-.billboardSection {
-    position: relative;
-    padding: 2.5rem;
-    width: 100%;
-    
-    // Background handling - Dark Theme
-    background-color: rgba(15, 15, 20, 0.6); // Dark semi-transparent base
-    // background-image: url('/panel.svg');
-    background-size: 100% 100%;
-    background-position: center;
-    background-repeat: no-repeat;
-    // Add a blend mode if needed, or rely on the svg being compatible
-    
-    border-radius: 1.5rem;
-    transition: transform 0.3s ease;
-    backdrop-filter: blur(10px); // Frosted glass effect
+/* ================= PANEL ================= */
 
-    &:hover {
-        transform: translateY(-2px);
-    }
-
-    .border {
-        position: absolute;
-        inset: 0;
-        border-radius: 1.5rem;
-        border: 2px solid rgba(0, 242, 255, 0.3); // Cyan tint border
-        pointer-events: none;
-        box-shadow: 
-            0 0 0 1px rgba(0, 0, 0, 0.5), // Inner shadow
-            0 0 15px rgba(0, 242, 255, 0.1); // Subtle glow
-        z-index: 5;
-    }
-
-    .content {
-        position: relative;
-        z-index: 10;
-        
-        h3 {
-            font-size: 2rem;
-            font-weight: bold;
-            color: #ffffff; // White text
-            margin-bottom: 2rem;
-            font-family: var(--font-gaegu);
-            text-transform: uppercase;
-            letter-spacing: 0.1em;
-            text-shadow: 0 0 10px rgba(255,255,255,0.3);
-            
-            display: flex;
-            align-items: center;
-            gap: 1rem;
-            
-            &::after {
-                content: '';
-                flex: 1;
-                height: 1px;
-                background: linear-gradient(90deg, rgba(0, 242, 255, 0.5), transparent); // Cyan gradient
-                border-radius: 2px;
-            }
-        }
-    }
+.formBody {
+    flex: 1;
+    padding: 1.6rem 2rem;
 }
 
-.fieldGroup {
-    display: flex;
-    flex-direction: column;
-    gap: 1.5rem;
-}
-
-.gridTwo {
-    display: grid;
-    grid-template-columns: 1fr;
-    gap: 1.5rem;
-
-    @media (min-width: 768px) {
-        grid-template-columns: repeat(2, 1fr);
-    }
-}
-
-.gridThree {
-    display: grid;
-    grid-template-columns: 1fr;
-    gap: 1.5rem;
-
-    @media (min-width: 768px) {
-        grid-template-columns: repeat(3, 1fr);
-    }
-}
+/* ================= DEVICE INPUT ================= */
 
 .inputGroup {
+    display: grid;
+    grid-template-columns: auto 1fr;
+    align-items: center;
+    gap: 2rem;
+    padding: 0.6rem 0;
+}
+
+.deviceLabel {
+    font-size: 1rem;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: #334155;
+    text-align: left;
+    white-space: nowrap;
+}
+
+.required {
+    color: #ef4444;
+}
+
+.valueWrapper {
+    position: relative;
     display: flex;
-    flex-direction: column;
-    gap: 0.5rem;
+    align-items: center;
+    gap: 1rem;
+}
 
-    label {
-        font-size: 0.95rem;
-        font-weight: 600;
-        color: #d1d5db; // Light gray text
-        margin-left: 0.25rem;
-        font-family: inherit;
-        letter-spacing: 0.02em;
-    }
+.valueWrapper::before {
+    content: "................................................";
+    position: absolute;
+    left: 0;
+    top: 75%;
+    transform: translateY(-50%);
+    color: rgba(0, 0, 0, 0.2);
+    pointer-events: none;
+}
 
-    input, select {
-        width: 100%;
-        padding: 0.875rem 1.25rem;
-        background: rgba(10, 10, 15, 0.6); // Very dark input background
-        border: 1px solid rgba(255, 255, 255, 0.15);
-        border-radius: 1rem;
-        color: #f3f4f6; // Nearly white text
-        font-size: 1rem;
-        transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-        backdrop-filter: blur(5px);
-        
-        &::placeholder {
-            color: #6b7280; // Muted placeholder
-        }
+.deviceInput {
+    flex: 1;
+    background: transparent;
+    border: none;
+    outline: none;
+    font-family: var(--font-gaegu);
+    font-size: 1.3rem;
+    letter-spacing: 0.1em;
+    color: #0f172a;
+    caret-color: #2563eb;
+}
 
-        &:hover:not(:disabled) {
-            border-color: rgba(255, 255, 255, 0.3);
-            background: rgba(10, 10, 15, 0.8);
-        }
+/* ================= ERROR STATE ================= */
 
-        &:focus {
-            outline: none;
-            border-color: #00f2ff;
-            background: rgba(10, 10, 15, 0.9);
-            box-shadow: 0 0 15px rgba(0, 242, 255, 0.2); // Cyan glow
-            transform: translateY(-1px);
-        }
+.errorLine {
+    color: #b91c1c;
+}
 
-        &:disabled {
-            background-color: rgba(255, 255, 255, 0.05);
-            cursor: not-allowed;
-            color: #9ca3af;
-            border-color: transparent;
-        }
-    }
+.errorLine .deviceLabel::before {
+    content: "⚠ ";
+}
 
-    // Auto-fill style fix for WebKit
-    input:-webkit-autofill,
-    input:-webkit-autofill:hover, 
-    input:-webkit-autofill:focus, 
-    input:-webkit-autofill:active{
-        -webkit-box-shadow: 0 0 0 30px #0c0c14 inset !important;
-        -webkit-text-fill-color: white !important;
-        background-clip: content-box !important;
-    }
+.fieldError {
+    font-size: 0.8rem;
+    color: #b91c1c;
+    white-space: nowrap;
+}
 
-    .fieldError {
-        color: #ef4444;
-        font-size: 0.85rem;
-        margin-top: 0.25rem;
-        padding-left: 0.25rem;
-        font-weight: 500;
-        display: flex;
-        align-items: center;
-        gap: 0.35rem;
-        
-        &::before {
-            content: '!';
-            display: inline-flex;
-            align-items: center;
-            justify-content: center;
-            width: 16px;
-            height: 16px;
-            background: rgba(239, 68, 68, 0.2);
-            color: #ef4444;
-            border: 1px solid #ef4444;
-            border-radius: 50%;
-            font-size: 0.75rem;
-            font-weight: bold;
-        }
+/* ================= YES / NO ================= */
+
+.choiceLine {
+    display: grid;
+    grid-template-columns: auto 1fr;
+    align-items: center;
+    gap: 2rem;
+    padding: 0.8rem 0;
+}
+
+.choiceGroup {
+    display: flex;
+    gap: 0.8rem;
+}
+
+.choice {
+    padding: 0.3rem 1.2rem;
+    border-radius: 999px;
+    border: 2px solid #64748b;
+    background: transparent;
+    letter-spacing: 0.15em;
+    cursor: pointer;
+}
+
+.choice.active {
+    background: #0f172a;
+    color: #f8fafc;
+}
+
+/* ================= FOOTER ================= */
+
+.footerZone {
+    display: flex;
+    justify-content: space-between;
+}
+
+.navButton {
+    background: none;
+    border: none;
+    font-size: 1.2rem;
+    font-weight: 700;
+    font-family: var(--font-gaegu);
+    cursor: pointer;
+}
+
+.submitButton {
+    background: #1f2937;
+    color: white;
+    border-radius: 10px;
+    font-family: var(--font-gaegu);
+    padding: 0.7rem 2rem;
+}
+
+/* ================= PROGRESS ================= */
+
+.progressIndicator {
+    display: flex;
+    justify-content: center;
+    gap: 0.6rem;
+    margin-top: 1rem;
+}
+
+.progressDot {
+    width: 42px;
+    height: 5px;
+    border-radius: 6px;
+    background: #d1d5db;
+
+    &.active {
+        background: #1f2937;
     }
 }
 
-.submitButtonContainer {
-    position: relative;
-    margin-top: 1rem;
-    
-    button {
-        width: 100%;
-        background: #889191;
-        color: black;
-        font-weight: 800;
-        padding: 1.5rem 2rem;
-        border-radius: 1.25rem;
-        border: none;
-        cursor: pointer;
-        font-size: 1.25rem;
-        letter-spacing: 0.1em;
-        text-transform: uppercase;
-        font-family: var(--font-gaegu);
-        transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-        position: relative;
-        z-index: 10;
-        
-        &:hover:not(:disabled) {
-            background: #cbcbcb; // White hover for maximum pop
-            transform: translateY(-2px) scale(1.01);
-            box-shadow: 
-                0 0 20px rgba(227, 254, 255, 0.5),
-                0 0 10px rgba(255, 255, 255, 0.5);
-        }
-        
-        &:active:not(:disabled) {
-            transform: translateY(0) scale(0.99);
-        }
+/* ================= MOBILE ================= */
 
-        &:disabled {
-            background: #1f2937;
-            color: #6b7280;
-            cursor: not-allowed;
-            transform: none;
-            box-shadow: none;
-            border: 1px solid #374151;
-        }
-    }
+@media (max-width: 768px) {
 
-    .glow {
-        position: absolute;
-        inset: 0;
-        background: #dbfdff;
-        opacity: 0;
-        filter: blur(2rem);
-        border-radius: 1.25rem;
-        transition: opacity 0.3s ease;
-        pointer-events: none;
-        z-index: 1;
-    }
-    
-    &:hover .glow {
-        opacity: 0.3;
+    .inputGroup,
+    .choiceLine {
+        grid-template-columns: 1fr;
+        gap: 0.4rem;
     }
 }

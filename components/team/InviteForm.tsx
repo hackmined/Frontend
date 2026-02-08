@@ -2,93 +2,111 @@
 
 import { useState, FormEvent } from 'react';
 import { inviteMember } from '@/lib/api/team';
-import { validateEmail } from '@/lib/utils/validation';
-import { getErrorMessage, isRateLimitError } from '@/lib/utils/errors';
-import styles from '@/styles/shared-page.module.scss';
+import styles from './TeamCreationModal.module.scss';
 
 interface InviteFormProps {
     onInviteSuccess?: () => void;
+    onCancel?: () => void;
 }
 
-export default function InviteForm({ onInviteSuccess }: InviteFormProps) {
+export default function InviteForm({ onInviteSuccess, onCancel }: InviteFormProps) {
     const [email, setEmail] = useState('');
     const [loading, setLoading] = useState(false);
     const [error, setError] = useState<string | null>(null);
-    const [success, setSuccess] = useState<string | null>(null);
 
     const handleSubmit = async (e: FormEvent) => {
         e.preventDefault();
-        setError(null);
-        setSuccess(null);
 
-        // Validate email
-        const validationError = validateEmail(email);
-        if (validationError) {
-            setError(validationError);
+        if (!email.trim()) {
+            setError('Email is required');
             return;
         }
 
         setLoading(true);
+        setError(null);
 
         try {
-            await inviteMember(email);
-            setSuccess(`Invitation sent to ${email}`);
+            await inviteMember(email.trim());
             setEmail('');
-
             if (onInviteSuccess) {
                 onInviteSuccess();
             }
-        } catch (err) {
-            console.error('Invite Error:', err);
-
-            if (isRateLimitError(err)) {
-                setError('Too many invitations. Please wait a moment and try again.');
-            } else {
-                setError(getErrorMessage(err));
-            }
+        } catch (err: any) {
+            setError(err.response?.data?.message || err.message || 'Failed to send invitation');
         } finally {
             setLoading(false);
         }
     };
 
     return (
-        <div>
-            {error && (
-                <div className={styles.errorBanner}>
-                    {error}
+        <div className={styles.inlineForm}>
+            <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start', marginBottom: '1rem' }}>
+                <div>
+                    <h2 className={styles.title} style={{ fontSize: '2rem' }}>Invite Team Member</h2>
+                    <p className={styles.subtitle} style={{ fontSize: '1.1rem' }}>
+                        Enter the email address of the person you want to invite.
+                    </p>
                 </div>
-            )}
+                {onCancel && (
+                    <button
+                        onClick={onCancel}
+                        style={{
+                            background: 'none',
+                            border: 'none',
+                            fontSize: '2rem',
+                            cursor: 'pointer',
+                            color: '#64748b',
+                            lineHeight: 1,
+                            padding: '0 0.5rem'
+                        }}
+                    >
+                        ×
+                    </button>
+                )}
+            </div>
 
-            {success && (
-                <div className="mb-6 bg-green-500/10 border border-green-500 text-green-400 px-4 py-3 rounded-xl font-medium">
-                    {success}
+            <form onSubmit={handleSubmit}>
+                {error && (
+                    <div className={styles.errorMessage}>{error}</div>
+                )}
+
+                <div className={styles.inputGroup} style={{ gridTemplateColumns: '150px 1fr' }}>
+                    <label className={styles.label}>Email Address</label>
+                    <div className={styles.valueWrapper}>
+                        <input
+                            type="email"
+                            className={styles.input}
+                            value={email}
+                            onChange={(e) => setEmail(e.target.value)}
+                            placeholder="friend@example.com"
+                            required
+                            disabled={loading}
+                            autoFocus
+                        />
+                    </div>
                 </div>
-            )}
 
-            <form onSubmit={handleSubmit} className="flex gap-4">
-                <div className="flex-1">
-                    <input
-                        type="email"
-                        value={email}
-                        onChange={(e) => setEmail(e.target.value)}
-                        placeholder="teammate@email.com"
-                        className={styles.inputField}
+                <div className={styles.modalFooter} style={{ padding: '1rem 0 0 0', justifyContent: 'flex-start', gap: '1rem' }}>
+                    <button
+                        type="submit"
+                        className={`${styles.button} ${styles.createButton}`}
                         disabled={loading}
-                    />
+                        style={{ transform: 'none' }} // Ensure no weird transforms
+                    >
+                        {loading ? 'Sending...' : 'Send Invitation'}
+                    </button>
+
+                    {onCancel && (
+                        <button
+                            type="button"
+                            className={`${styles.button} ${styles.cancelButton}`}
+                            onClick={onCancel}
+                            disabled={loading}
+                        >
+                            Cancel
+                        </button>
+                    )}
                 </div>
-                <button
-                    type="submit"
-                    disabled={loading}
-                    className={styles.primaryButton}
-                    style={{
-                        width: 'auto',
-                        padding: '0.75rem 2rem',
-                        fontSize: '1rem',
-                        height: 'fit-content'
-                    }}
-                >
-                    {loading ? 'Sending...' : 'Invite'}
-                </button>
             </form>
         </div>
     );

@@ -1,149 +1,136 @@
 "use client";
 
 import { useState } from 'react';
-import { Team, User, isPopulatedUser, getUserId } from '@/types';
-import Link from 'next/link';
+import { Team, User, isPopulatedUser, getUserId, Invitation } from '@/types';
 import { removeMember } from '@/lib/api/team';
-import { getErrorMessage } from '@/lib/utils/errors';
-import { useRouter } from 'next/navigation';
+import styles from './TeamStatus.module.scss';
 
 interface TeamStatusProps {
-    team: Team | null;
+    team: Team;
+    invitations?: Invitation[];
     isLeader: boolean;
-    userId?: string;
-    onTeamLeft?: () => void;
+    userId: string;
+    onMemberRemoved?: () => void;
 }
 
-export default function TeamStatus({ team, isLeader, userId, onTeamLeft }: TeamStatusProps) {
-    const router = useRouter();
-    const [leaving, setLeaving] = useState(false);
+export default function TeamStatus({ team, invitations = [], isLeader, userId, onMemberRemoved }: TeamStatusProps) {
+    const [removingId, setRemovingId] = useState<string | null>(null);
     const [error, setError] = useState<string | null>(null);
-
-    const handleLeaveTeam = async () => {
-        if (!userId || !confirm('Are you sure you want to leave this team? You can join another team or create your own after leaving.')) {
-            return;
-        }
-
-        setLeaving(true);
-        setError(null);
-
-        try {
-            // Use removeMember API to remove self from team
-            await removeMember(userId);
-
-            // Refresh the page or notify parent
-            if (onTeamLeft) {
-                onTeamLeft();
-            } else {
-                router.refresh();
-            }
-        } catch (err) {
-            console.error('Leave Team Error:', err);
-            setError(getErrorMessage(err));
-        } finally {
-            setLeaving(false);
-        }
-    };
-
-    if (!team) {
-        return (
-            <div className="bg-black/50 border border-white/20 rounded-lg p-6">
-                <h3 className="text-xl font-semibold text-white mb-4">Team</h3>
-                <p className="text-gray-400 mb-4">You are not currently in a team.</p>
-                <Link
-                    href="/team/create"
-                    className="inline-block bg-red-600 hover:bg-red-700 text-white font-semibold py-2 px-6 rounded-lg transition-colors"
-                >
-                    Create Team
-                </Link>
-            </div>
-        );
-    }
 
     // Handle populated members array
     const members = team.members;
-    const hasPopulatedMembers = members.length > 0 && isPopulatedUser(members[0]);
+    // We can filter out unpopulated members if needed, but assuming they are populated based on usagecontext
+
+    const handleRemoveMember = async (memberId: string, memberName: string) => {
+        if (!confirm(`Are you sure you want to remove ${memberName} from the team?`)) {
+            return;
+        }
+
+        setRemovingId(memberId);
+        setError(null);
+
+        try {
+            await removeMember(memberId);
+            if (onMemberRemoved) {
+                onMemberRemoved();
+            }
+        } catch (err: any) {
+            setError(err.response?.data?.message || err.message || 'Failed to remove member');
+        } finally {
+            setRemovingId(null);
+        }
+    };
 
     return (
-        <div className="bg-black/50 border border-white/20 rounded-lg p-6">
+        <div className={styles.container}>
             {error && (
-                <div className="mb-4 bg-red-500/10 border border-red-500 text-red-400 px-4 py-2 rounded-lg text-sm">
+                <div className={styles.error}>
                     {error}
                 </div>
             )}
 
-            <div className="flex items-center justify-between mb-4">
-                <h3 className="text-xl font-semibold text-white">Team: {team.name}</h3>
-                {isLeader && (
-                    <span className="bg-yellow-500/20 text-yellow-400 px-3 py-1 rounded-full text-xs font-semibold">
-                        Leader
-                    </span>
-                )}
-            </div>
+            {(members as User[]).map((member) => {
+                const leaderId = getUserId(team.leaderId);
+                const isMemberLeader = member.id === leaderId;
+                const isCurrentUser = member.id === userId;
+                const canRemove = isLeader && !isMemberLeader;
 
-            {team.description && (
-                <p className="text-gray-400 text-sm mb-4">{team.description}</p>
-            )}
-
-            <div className="space-y-3">
-                <div>
-                    <p className="text-gray-500 text-sm">Members ({team.members.length}/4)</p>
-                    {hasPopulatedMembers && (
-                        <div className="mt-2 space-y-2">
-                            {(members as User[]).map((member) => {
-                                const leaderId = getUserId(team.leaderId);
-                                return (
-                                    <div key={member.id} className="flex items-center gap-3">
-                                        {member.profilePicture && (
-                                            <img
-                                                src={member.profilePicture}
-                                                alt={member.fullName}
-                                                className="w-8 h-8 rounded-full"
-                                            />
-                                        )}
-                                        <div className="flex-1">
-                                            <p className="text-white text-sm">{member.fullName}</p>
-                                            <p className="text-gray-500 text-xs">{member.email}</p>
-                                        </div>
-                                        {member.id === leaderId && (
-                                            <span className="text-yellow-400 text-xs">Leader</span>
-                                        )}
-                                    </div>
-                                );
-                            })}
-                        </div>
-                    )}
-                </div>
-
-                <div className="pt-4 border-t border-white/10">
-                    <p className="text-gray-500 text-sm">Status</p>
-                    <span className={`inline-block mt-1 px-3 py-1 rounded-full text-xs font-semibold ${team.status === 'OPEN'
-                        ? 'bg-green-500/20 text-green-400'
-                        : 'bg-red-500/20 text-red-400'
-                        }`}>
-                        {team.status || 'OPEN'}
-                    </span>
-                </div>
-            </div>
-
-            <div className="mt-6 space-y-2">
-                <Link
-                    href={`/team/${team.id}`}
-                    className="block text-center bg-white/10 hover:bg-white/20 text-white font-semibold py-2 px-6 rounded-lg transition-colors"
-                >
-                    {isLeader ? 'Manage Team' : 'View Team'}
-                </Link>
-
-                {!isLeader && userId && (
-                    <button
-                        onClick={handleLeaveTeam}
-                        disabled={leaving}
-                        className="w-full bg-red-600/20 hover:bg-red-600/30 disabled:bg-gray-600/20 text-red-400 font-semibold py-2 px-6 rounded-lg transition-colors disabled:cursor-not-allowed"
+                return (
+                    <div
+                        key={member.id}
+                        className={styles.memberCard}
                     >
-                        {leaving ? 'Leaving...' : 'Leave Team'}
-                    </button>
-                )}
-            </div>
+                        <div className={styles.memberInfo}>
+                            {/* Uncomment if profile pictures are working */}
+                            {/* <div className={styles.imageContainer}>
+                                {member.profilePicture ? (
+                                    <img
+                                        src={member.profilePicture}
+                                        alt={member.fullName}
+                                    />
+                                ) : (
+                                    member.fullName.charAt(0).toUpperCase()
+                                )}
+                            </div> */}
+
+                            <div className={styles.details}>
+                                <span className={styles.name}>
+                                    {member.fullName}
+                                </span>
+                                <span className={styles.email}>
+                                    {member.email}
+                                </span>
+                            </div>
+                        </div>
+
+                        <div className={styles.actions}>
+                            {isMemberLeader && (
+                                <span className={styles.leaderBadge}>
+                                    Leader
+                                </span>
+                            )}
+
+                            {canRemove && (
+                                <button
+                                    onClick={() => handleRemoveMember(member.id, member.fullName)}
+                                    disabled={!!removingId}
+                                    className={styles.removeButton}
+                                >
+                                    {removingId === member.id ? 'Removing...' : 'Remove'}
+                                </button>
+                            )}
+                        </div>
+                    </div>
+                );
+            })}
+
+            {/* Pending Invitations */}
+            {invitations && invitations.map((invite) => (
+                <div
+                    key={invite.id || invite._id}
+                    className={`${styles.memberCard}`}
+                    style={{ opacity: 0.7, borderStyle: 'dashed' }}
+                >
+                    <div className={styles.memberInfo}>
+                        <div className={styles.details}>
+                            <span className={styles.name}>
+                                {invite.email}
+                            </span>
+                            <span className={styles.email}>
+                                Invitation Sent
+                            </span>
+                        </div>
+                    </div>
+
+                    <div className={styles.actions}>
+                        <span className={styles.pendingBadge} style={{
+                            backgroundColor: '#e5e7eb', color: '#6b7280', fontSize: '0.75rem', padding: '0.125rem 0.5rem', borderRadius: '9999px', fontWeight: 600, fontFamily: 'var(--font-gaegu)'
+                        }}>
+                            Pending
+                        </span>
+                    </div>
+                </div>
+            ))}
         </div>
     );
 }

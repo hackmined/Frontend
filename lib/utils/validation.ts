@@ -17,10 +17,14 @@ export const validateRegistrationData = (data: Partial<RegistrationData>): Valid
 
     if (!data.phoneNumber?.trim()) {
         errors.phoneNumber = 'Phone number is required';
+    } else if (!isValidPhoneNumber(data.phoneNumber)) {
+        errors.phoneNumber = 'Invalid phone number (10 digits required)';
     }
 
     if (!data.whatsappNumber?.trim()) {
         errors.whatsappNumber = 'WhatsApp number is required';
+    } else if (!isValidPhoneNumber(data.whatsappNumber)) {
+        errors.whatsappNumber = 'Invalid WhatsApp number (10 digits required)';
     }
 
     if (!data.college?.trim()) {
@@ -94,6 +98,23 @@ export const validateEmail = (email: string): string | null => {
         return 'Invalid email address';
     }
     return null;
+};
+
+/**
+ * Validate phone number (Indian format)
+ * Accepts: 10 digits with optional +91 or 0 prefix
+ */
+const isValidPhoneNumber = (phone: string): boolean => {
+    // Remove spaces, hyphens, and parentheses
+    const cleaned = phone.replace(/[\s\-()]/g, '');
+
+    // Check for valid Indian phone number patterns:
+    // 1. 10 digits: 9876543210
+    // 2. +91 followed by 10 digits: +919876543210
+    // 3. 0 followed by 10 digits: 09876543210
+    const phoneRegex = /^(\+91)?0?[6-9]\d{9}$/;
+
+    return phoneRegex.test(cleaned);
 };
 
 /**

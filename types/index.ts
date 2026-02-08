@@ -55,6 +55,7 @@ export enum InvitationStatus {
 }
 
 export interface User {
+    _id?: string;
     id: string;
     email: string;
     googleId?: string;
@@ -80,6 +81,7 @@ export interface User {
 }
 
 export interface Team {
+    _id?: string;
     id: string;
     name: string;
     description?: string;
@@ -87,14 +89,17 @@ export interface Team {
     members: string[] | User[];
     status?: TeamStatus;
     lockDate?: string;
+    teamCode?: string;
     createdAt: string;
     updatedAt?: string;
 }
 
 export interface Invitation {
+    _id?: string;
     id: string;
     email: string;
     teamId: string | Team;
+    invitedBy?: string | User;
     status: InvitationStatus;
     createdAt: string;
     updatedAt?: string;

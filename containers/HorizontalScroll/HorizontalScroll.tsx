@@ -18,6 +18,7 @@ export default function HorizontalScroll({ children }: HorizontalScrollProps) {
     const starsRef = useRef<HTMLImageElement | null>(null);
     const portalRef = useRef<HTMLDivElement | null>(null);
     const logoRef = useRef<HTMLImageElement | null>(null);
+    const indicatorRef = useRef<HTMLDivElement | null>(null);
 
     useLayoutEffect(() => {
         let ctx = gsap.context(() => {
@@ -62,6 +63,7 @@ export default function HorizontalScroll({ children }: HorizontalScrollProps) {
             // Get portal text elements for parallax
             const portalTextFront = portal?.querySelector('[data-portal-text-front]') as HTMLElement;
             const portalTextBack = portal?.querySelector('[data-portal-text-back]') as HTMLElement;
+            const indicator = indicatorRef.current;
 
             if (portal && portalMask) {
                 // Create parallax zoom effect - different elements scale at different rates
@@ -93,6 +95,16 @@ export default function HorizontalScroll({ children }: HorizontalScrollProps) {
                         opacity: 0,
                         duration: portalScrollDistance,
                         ease: "power2.in",
+                    }, 0);
+                }
+
+                // Scroll Indicator - Fades out quickly
+                if (indicator) {
+                    tl.to(indicator, {
+                        opacity: 0,
+                        y: 20,
+                        duration: portalScrollDistance * 0.3,
+                        ease: "power1.out"
                     }, 0);
                 }
 
@@ -302,9 +314,6 @@ export default function HorizontalScroll({ children }: HorizontalScrollProps) {
             {/* Elements scale at different rates for 3D parallax depth effect */}
             <div ref={portalRef} className={styles.portalOverlay}>
                 {/* Back layer - scales slowest (appears furthest) */}
-                <h2 data-portal-text-back className={styles.portalTextBack}>
-                    WELCOME TO
-                </h2>
 
                 {/* Middle layer - the portal mask */}
                 <img
@@ -315,9 +324,14 @@ export default function HorizontalScroll({ children }: HorizontalScrollProps) {
                 />
 
                 {/* Front layer - scales fastest (appears closest) */}
-                <h1 data-portal-text-front className={styles.portalTextFront}>
-                    HackaMined
-                </h1>
+
+                {/* Scroll Indicator */}
+                <div ref={indicatorRef} className={styles.scrollIndicator}>
+                    <div className={styles.mouse}>
+                        <div className={styles.wheel}></div>
+                    </div>
+                    <span>Scroll to Enter</span>
+                </div>
             </div>
 
             <div ref={triggerRef}>

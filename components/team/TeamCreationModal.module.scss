@@ -1,0 +1,237 @@
+/* ================= MODAL OVERLAY ================= */
+
+.modalOverlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(0, 0, 0, 0.5);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 1000;
+    animation: fadeIn 0.2s ease;
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+    }
+
+    to {
+        opacity: 1;
+    }
+}
+
+/* ================= MODAL PANEL ================= */
+
+.modalPanel {
+    background: #fef9e7;
+    border-radius: 14px;
+    border: 3px solid #2c3e50;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+    width: 90%;
+    max-width: 500px;
+    max-height: 90vh;
+    overflow-y: auto;
+    font-family: var(--font-gaegu);
+    animation: slideIn 0.3s ease;
+}
+
+@keyframes slideIn {
+    from {
+        transform: translateY(-20px);
+        opacity: 0;
+    }
+
+    to {
+        transform: translateY(0);
+        opacity: 1;
+    }
+}
+
+/* ================= HEADER ================= */
+
+.modalHeader {
+    padding: 1.5rem 2rem;
+    border-bottom: 2px dashed rgba(0, 0, 0, 0.2);
+}
+
+.title {
+    font-size: 2.2rem;
+    color: #1f2937;
+    margin: 0;
+}
+
+/* ================= BODY ================= */
+
+.modalBody {
+    padding: 2rem;
+}
+
+.inputGroup {
+    display: grid;
+    grid-template-columns: 150px 1fr;
+    align-items: center;
+    gap: 1rem;
+    margin-bottom: 1.5rem;
+    width: 100%;
+    position: relative;
+    /* Context for absolute positioning */
+}
+
+.label {
+    font-size: 1.6rem;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: #334155;
+    font-family: var(--font-gaegu);
+    font-weight: 600;
+}
+
+.required {
+    color: #ef4444;
+}
+
+.valueWrapper {
+    position: relative;
+    display: flex;
+    align-items: center;
+    width: 100%;
+}
+
+.valueWrapper::before {
+    content: "................................................................................................";
+    position: absolute;
+    left: 0;
+    top: 65%;
+    width: 100%;
+    overflow: hidden;
+    white-space: nowrap;
+    transform: translateY(-50%);
+    color: rgba(0, 0, 0, 0.2);
+    pointer-events: none;
+    font-family: monospace;
+    letter-spacing: 2px;
+}
+
+.input,
+.textarea {
+    width: 100%;
+    font-size: 1.8rem;
+    font-family: var(--font-gaegu);
+    border: none;
+    background: transparent;
+    padding: 0.6rem 0.5rem;
+    color: #0f172a;
+    outline: none;
+    position: relative;
+    z-index: 1;
+
+    &:focus {
+        outline: none;
+        box-shadow: none;
+        border: none;
+    }
+}
+
+.textarea {
+    resize: vertical;
+    min-height: 60px;
+    border-bottom: 2px dashed rgba(0, 0, 0, 0.1);
+    /* Textarea might not work well with dots, using line */
+}
+
+.charCount {
+    font-size: 0.8rem;
+    color: #64748b;
+    position: absolute;
+    bottom: 0.2rem;
+    right: 0;
+    pointer-events: none;
+    padding-left: 0.5rem;
+}
+
+.errorMessage {
+    background: #fee2e2;
+    border: 2px solid #ef4444;
+    color: #991b1b;
+    padding: 1rem;
+    border-radius: 8px;
+    margin-bottom: 1rem;
+    font-size: 1.1rem;
+}
+
+/* ================= FOOTER ================= */
+
+.modalFooter {
+    padding: 1.5rem 2rem;
+    display: flex;
+    gap: 1rem;
+    justify-content: flex-end;
+}
+
+.button {
+    font-family: var(--font-gaegu);
+    font-size: 0.9rem;
+    padding: 0.7rem 1.5rem;
+    border-radius: 10px;
+    border: 2px solid #64748b;
+    cursor: pointer;
+    transition: all 0.2s ease;
+
+    &:disabled {
+        opacity: 0.5;
+        cursor: not-allowed;
+    }
+}
+
+.cancelButton {
+    background: transparent;
+    color: #64748b;
+
+    &:hover:not(:disabled) {
+        background: #f1f5f9;
+        border-color: #475569;
+    }
+}
+
+.createButton {
+    background: #1f2937;
+    color: white;
+    border-color: #1f2937;
+
+    transform: translateY(60px);
+
+    &:hover:not(:disabled) {
+        background: #374151;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    }
+}
+
+.inlineForm {
+    width: 100%;
+    animation: fadeIn 0.3s ease;
+
+    .inputGroup {
+        margin-bottom: 0.5rem;
+    }
+
+    .label {
+        font-size: 0.9rem;
+    }
+
+    .input,
+    .textarea {
+        padding: 0.3rem 0.6rem;
+        font-size: 1rem;
+    }
+}
+
+.inlineFooter {
+    display: flex;
+    gap: 1rem;
+    margin-top: 0.5rem;
+    justify-content: flex-start;
+}

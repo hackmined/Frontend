@@ -8,14 +8,39 @@
 body {
   width: 100%;
   min-height: 100vh;
-  background-color: #0f0f0f;
-  color: #ffffff;
+  background-image: url('/bg.svg');
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+  color: #000000;
   overflow-x: hidden;
 }
 
 /* Ensure proper height for scrolling */
 html {
   scroll-behavior: smooth;
+  scrollbar-width: none;
+  /* Firefox */
+  -ms-overflow-style: none;
+  /* IE and Edge */
+}
+
+html::-webkit-scrollbar {
+  display: none;
+  /* Chrome, Safari and Opera */
+}
+
+body {
+  scrollbar-width: none;
+  /* Firefox */
+  -ms-overflow-style: none;
+  /* IE and Edge */
+}
+
+body::-webkit-scrollbar {
+  display: none;
+  /* Chrome, Safari and Opera */
 }
 
 /* Remove default link styles */

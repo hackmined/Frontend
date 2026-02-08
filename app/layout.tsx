@@ -30,6 +30,8 @@ export default function RootLayout({
   return (
     <html lang="en">
       <head>
+        <link rel="preload" href="/panel.svg" as="image" />
+        <link rel="preload" href="/bg.svg" as="image" />
         <script src="https://accounts.google.com/gsi/client" async defer></script>
       </head>
       <body className={`${gaegu.className} ${brunoAce.variable}`}>
