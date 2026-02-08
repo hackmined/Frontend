@@ -1,6 +1,6 @@
 import { create } from 'zustand';
-import { User, Team, RegistrationStatus } from '@/types';
-import { getToken, setToken as saveToken, removeToken, isAuthenticated as checkAuth } from '../auth/token';
+import { User, Team } from '@/types';
+import { setToken as saveToken, removeToken, isAuthenticated as checkAuth } from '../auth/token';
 
 interface AuthState {
     user: User | null;

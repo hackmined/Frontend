@@ -10,7 +10,6 @@ import { User, Team } from "@/types";
 import TeamStatus from "@/components/dashboard/TeamStatus";
 import TeamCreationModal from "@/components/team/TeamCreationModal";
 import TeamCreationForm from "@/components/team/TeamCreationForm";
-import InviteMemberModal from "@/components/team/InviteMemberModal";
 import InviteForm from "@/components/team/InviteForm";
 import InvitationsList from "@/components/team/InvitationsList";
 import Starfield from "@/components/ui/Starfield/Starfield";
@@ -134,7 +133,7 @@ export default function DashboardPage() {
                                             {user.profilePicture ? (
                                                 <img
                                                     src={user.profilePicture}
-                                                    alt={user.fullName}
+                                                    alt={`Profile picture of ${user.fullName}`}
                                                     style={{
                                                         width: '100%',
                                                         height: '100%',
