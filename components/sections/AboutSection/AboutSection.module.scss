@@ -8,6 +8,15 @@
     position: relative;
     // border-right: 1px solid $color-black;
     // border-left: 1px solid $color-black;
+
+    @media (max-width: $breakpoint-mobile) {
+        flex-direction: column;
+        height: auto;
+        min-height: 100vh;
+        overflow: hidden;
+        padding-top: 4rem; // Add top padding
+        padding-bottom: 4rem; // Add bottom padding
+    }
 }
 
 // --- First Half: Intro ---
@@ -18,6 +27,11 @@
     display: flex;
     justify-content: center;
     align-items: center;
+
+    @media (max-width: $breakpoint-mobile) {
+        width: 100%;
+        height: 60vh;
+    }
 }
 
 .bgImageContainer {
@@ -52,6 +66,14 @@
     width: 115%;
     color: $color-black;
 
+    @media (max-width: $breakpoint-mobile) {
+        width: 90%;
+        top: 60%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        text-align: center;
+    }
+
     h2 {
         font-size: clamp(1.5rem, 3vw, 2.5rem);
         margin: 0 0 1rem 0;
@@ -85,6 +107,20 @@
     justify-content: center;
     align-items: center;
     overflow: hidden;
+
+    @media (max-width: $breakpoint-mobile) {
+        width: 100%;
+        height: auto; // Auto height to fit content
+        min-height: 60vh;
+        margin-top: 0;
+        padding-bottom: 2rem;
+        flex-direction: column; // Stack stats vertically? Or keep them floating?
+        // User wants "readjust all components". Floating stats might be messy on small screens.
+        // Let's keep them absolute but ensure the container is tall enough.
+        // Or better, make them relative/grid?
+        // The current CSS uses absolute positioning for cards.
+        // Let's just ensure height is enough.
+    }
 }
 
 .centralScreen {
@@ -119,6 +155,12 @@
         align-items: center;
         margin-top: -2.5%;
 
+        @media (max-width: $breakpoint-mobile) {
+            margin-top: -1%;
+            width: 62%;
+            height: 57%;
+        }
+
         img,
         video {
             width: 100%;
@@ -140,6 +182,19 @@
     text-align: center;
     // Adjusted padding: Top 1rem, Sides 1.5rem, Bottom 3rem (increased gap)
     padding: 1rem 2.5rem 2.5rem 2rem;
+
+    @media (max-width: $breakpoint-mobile) {
+        position: relative;
+        top: auto !important;
+        left: auto !important;
+        right: auto !important;
+        bottom: auto !important;
+        transform: none !important;
+        margin: 1rem;
+        width: 80% !important; // Make them wide
+        max-width: 300px;
+        rotate: 0deg !important; // Reset rotation
+    }
 
     // Enable container queries
     container-type: inline-size;

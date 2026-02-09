@@ -22,7 +22,156 @@ export default function HorizontalScroll({ children }: HorizontalScrollProps) {
     const indicatorRef = useRef<HTMLDivElement | null>(null);
 
     useLayoutEffect(() => {
-        let ctx = gsap.context(() => {
+        let ctx = gsap.matchMedia();
+
+        ctx.add("(max-width: 767px)", () => {
+            if (!sectionRef.current || !triggerRef.current) return;
+
+            const trigger = triggerRef.current;
+            const portal = portalRef.current;
+            const logo = logoRef.current;
+            const portalMask = portal?.querySelector('[data-portal-mask]') as HTMLElement | null;
+            const indicator = indicatorRef.current;
+
+            // Portal scroll distance (in timeline units)
+            const portalScrollDistance = window.innerHeight;
+
+            // Initialize logo state explicitly
+            if (logo) {
+                gsap.set(logo, {
+                    x: 0,
+                    y: 0,
+                    left: "50%",
+                    top: "50%",
+                    xPercent: -50,
+                    yPercent: -50,
+                    width: '12vw', // Start large like desktop
+                    maxWidth: '400px'
+                });
+            }
+
+            const tl = gsap.timeline({
+                defaults: { ease: "none" }
+            });
+
+            // ===== PHASE 1: PORTAL EXPANSION =====
+            const portalTextFront = portal?.querySelector('[data-portal-text-front]') as HTMLElement;
+            const portalTextBack = portal?.querySelector('[data-portal-text-back]') as HTMLElement;
+
+            if (portal && portalMask) {
+                if (portalTextFront) {
+                    tl.to(portalTextFront, {
+                        scale: 10,
+                        yPercent: 4000,
+                        opacity: 0,
+                        duration: portalScrollDistance,
+                        ease: "power2.in",
+                    }, 0);
+                }
+
+                tl.to(portalMask, {
+                    scale: 8,
+                    duration: portalScrollDistance,
+                    ease: "power2.inOut",
+                }, 0);
+
+                if (portalTextBack) {
+                    tl.to(portalTextBack, {
+                        scale: 8,
+                        yPercent: -4000,
+                        opacity: 0,
+                        duration: portalScrollDistance,
+                        ease: "power2.in",
+                    }, 0);
+                }
+
+                if (indicator) {
+                    tl.to(indicator, {
+                        opacity: 0,
+                        y: 20,
+                        duration: portalScrollDistance * 0.3,
+                        ease: "power1.out"
+                    }, 0);
+                }
+
+                // LOGO ANIMATION (Mobile)
+                if (logo) {
+                    const navLogo = document.querySelector('[data-nav-logo]');
+                    let targetTop = '35px';
+                    let targetWidth = '40px';
+
+                    // On mobile, maybe center top or top-left?
+                    // Let's target top-left similar to desktop but adjusted for mobile padding
+                    let targetLeft = '20px';
+
+                    if (navLogo) {
+                        const rect = navLogo.getBoundingClientRect();
+                        const centerY = rect.top + rect.height / 2;
+                        targetTop = `${centerY}px`;
+                        // targetLeft = `${rect.left}px`; // Use if explicit match needed
+                        targetWidth = `${rect.width}px`;
+                    }
+
+                    // Move to top
+                    tl.to(logo, {
+                        top: targetTop,
+                        width: targetWidth,
+                        yPercent: -50,
+                        xPercent: -50, // Keep centered initially? No, let's move to top-center first maybe
+                        duration: portalScrollDistance,
+                        ease: "power2.inOut",
+                    }, 0);
+
+                    // Slide to right (or left)
+                    // User asked for "sliding to the right". 
+                    // Let's assume they meant generic "slide into position".
+                    // If desktop slides left (to '40px'), mobile should probably slide to a safe spot.
+                    // '20px' from left is safe.
+
+                    const slideDuration = window.innerHeight * 0.5; // Shorter slide
+
+                    tl.to(logo, {
+                        left: targetLeft,
+                        xPercent: 0, // Remove center offset
+                        duration: slideDuration,
+                        ease: "none"
+                    }, ">");
+                }
+            }
+
+            // Total distance to pin
+            const totalDistance = portalScrollDistance + (window.innerHeight * 0.5); // Portal + Slide
+
+            const totalDuration = tl.duration();
+            const portalEndProgress = portalScrollDistance / totalDuration;
+            let portalHidden = false;
+
+            ScrollTrigger.create({
+                animation: tl,
+                trigger: trigger,
+                start: "top top",
+                end: () => `+=${totalDistance}`,
+                scrub: 1,
+                pin: true,
+                anticipatePin: 1,
+                invalidateOnRefresh: true,
+                onUpdate: (self) => {
+                    if (!portal) return;
+                    if (self.progress > portalEndProgress && !portalHidden) {
+                        gsap.set(portal, { autoAlpha: 0 });
+                        portalHidden = true;
+                    }
+                    else if (self.progress <= portalEndProgress && portalHidden) {
+                        gsap.set(portal, { autoAlpha: 1 });
+                        portalHidden = false;
+                    }
+                }
+            });
+
+        });
+
+        // Desktop Logic
+        ctx.add("(min-width: 768px)", () => {
             if (!sectionRef.current || !triggerRef.current) return;
 
             const scrollSection = sectionRef.current;
@@ -116,6 +265,7 @@ export default function HorizontalScroll({ children }: HorizontalScrollProps) {
                     const navLogo = document.querySelector('[data-nav-logo]');
                     let targetTop = '35px'; // Fallback
                     let targetLeft = '40px'; // Fallback for phase 2
+                    let targetWidth = '40px';
 
                     if (navLogo) {
                         const rect = navLogo.getBoundingClientRect();
@@ -123,11 +273,12 @@ export default function HorizontalScroll({ children }: HorizontalScrollProps) {
                         const centerY = rect.top + rect.height / 2;
                         targetTop = `${centerY}px`;
                         targetLeft = `${rect.left}px`;
+                        targetWidth = `${rect.width}px`;
                     }
 
                     tl.to(logo, {
                         top: targetTop, // Dynamic top
-                        width: '40px', // Shrink to reasonable logo size
+                        width: targetWidth, // Shrink to reasonable logo size
                         yPercent: -50, // Keep centered vertically relative to the new top
                         xPercent: -50, // FORCE horizontal centering
                         duration: portalScrollDistance,
@@ -295,10 +446,7 @@ export default function HorizontalScroll({ children }: HorizontalScrollProps) {
                     }
                 }
             });
-        }, sectionRef);
-
-        // Handle resize explicitly if needed, but for now let's see if this fixes the init issue.
-        // The main issue previously might have been just calculation timing.
+        });
 
         return () => ctx.revert();
     }, []);

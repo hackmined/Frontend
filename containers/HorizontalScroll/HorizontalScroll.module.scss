@@ -5,6 +5,13 @@
     background: #0f0f0f; // Dark background to match theme
     min-height: 100vh;
     position: relative;
+
+    @media (max-width: $breakpoint-mobile) {
+        height: auto;
+        min-height: 100vh;
+        overflow-y: visible;
+        overflow-x: hidden;
+    }
 }
 
 .backgroundImage {
@@ -62,6 +69,13 @@
     display: flex;
     flex-direction: row;
     position: relative;
+
+    @media (max-width: $breakpoint-mobile) {
+        flex-direction: column;
+        height: auto;
+        width: 100%;
+        overflow-x: hidden;
+    }
 }
 
 .verticalText {

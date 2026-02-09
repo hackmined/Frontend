@@ -31,6 +31,11 @@
     z-index: 2;
     text-shadow: 0 0 10px rgba(255, 255, 255, 0.3);
 
+    @media (max-width: $breakpoint-mobile) {
+        font-size: 2rem;
+        margin-bottom: $spacing-xl;
+    }
+
     &::after {
         content: '';
         display: block;

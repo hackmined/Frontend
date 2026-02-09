@@ -46,6 +46,46 @@ const initialCategories: OrganizerCategory[] = [
                 image: "/avatar-placeholder.png",
                 bio: "Specializing in Paleobotany and computational biology.",
                 socials: { linkedin: "#" }
+            },
+            {
+                id: 3,
+                name: "Dr. Tejal Upadhyay",
+                role: "Faculty",
+                image: "/avatar-placeholder.png",
+                bio: "Specializing in Paleobotany and computational biology.",
+                socials: { linkedin: "#" }
+            },
+            {
+                id: 4,
+                name: "Dr. Tarjini Vyas",
+                role: "Faculty",
+                image: "/avatar-placeholder.png",
+                bio: "Specializing in Paleobotany and computational biology.",
+                socials: { linkedin: "#" }
+            },
+            {
+                id: 5,
+                name: "Dr. Sapan Mankand",
+                role: "Faculty",
+                image: "/avatar-placeholder.png",
+                bio: "Specializing in Paleobotany and computational biology.",
+                socials: { linkedin: "#" }
+            },
+            {
+                id: 6,
+                name: "Dr. Priyank Thakker",
+                role: "Faculty",
+                image: "/avatar-placeholder.png",
+                bio: "Specializing in Paleobotany and computational biology.",
+                socials: { linkedin: "#" }
+            },
+            {
+                id: 7,
+                name: "Mr. Ajay Patel",
+                role: "Faculty",
+                image: "/avatar-placeholder.png",
+                bio: "Specializing in Paleobotany and computational biology.",
+                socials: { linkedin: "#" }
             }
         ]
     },

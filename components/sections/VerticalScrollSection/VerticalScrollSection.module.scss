@@ -12,6 +12,15 @@
     padding: 0 4rem; // Add side padding
     box-sizing: border-box;
     overflow: hidden;
+
+    @media (max-width: $breakpoint-mobile) {
+        height: auto;
+        min-height: 0; // Allow it to collapse
+        padding: 0;
+        flex-direction: column;
+        overflow: visible;
+        display: none; // Hide on mobile as requested
+    }
 }
 
 .contentWrapper {
@@ -23,6 +32,18 @@
     height: 100%;
     align-items: center;
     // border: 2px solid red;
+
+    @media (max-width: $breakpoint-mobile) {
+        display: flex;
+        flex-direction: column-reverse; // Text on top (visually, but DOM order is stack then text? wait. HTML order is stack then text. If I want text on top, column-reverse puts text (2nd) on top of stack (1st). )
+        // Actually, let's see. Stack is 1st child, Text is 2nd. column-reverse puts 2nd on top.
+        // Or I can keep it column and just let stack be on top.
+        // Let's stick to standard flow first: Text usually introduces the section.
+        // IF I want text first, I should use column-reverse because text is the 2nd child.
+        flex-direction: column-reverse;
+        height: auto;
+        gap: 2rem;
+    }
 }
 
 .stackColumn {
@@ -33,6 +54,12 @@
     display: flex;
     flex-direction: column;
     justify-content: flex-start; // Let content flow from top
+
+    @media (max-width: $breakpoint-mobile) {
+        width: 100%;
+        height: 50vh; // Give it some height for the stack
+        min-height: 400px;
+    }
 }
 
 .textColumn {
@@ -44,6 +71,13 @@
     height: 100%;
     pointer-events: auto; // Allow interaction
     z-index: 10; // Ensure it sits on top of any overlapping stack elements
+
+    @media (max-width: $breakpoint-mobile) {
+        height: auto;
+        width: 100%;
+        text-align: center;
+        align-self: auto;
+    }
 }
 
 .stickyText {
@@ -62,6 +96,10 @@
         margin-bottom: 1.5rem;
         color: $foreground-inverse; // Switch to white text for dark background
         /* background: linear-gradient(135deg, #fff 0%, #aaa 100%); */
+
+        @media (max-width: $breakpoint-mobile) {
+            font-size: 2.5rem;
+        }
     }
 
     p {
@@ -69,5 +107,13 @@
         color: rgba($foreground-inverse, 0.7); // Light muted text
         line-height: 1.6;
         max-width: 500px;
+    }
+
+    @media (max-width: $breakpoint-mobile) {
+        height: auto;
+        position: relative;
+        align-items: center;
+        text-align: center;
+        padding-top: 2rem;
     }
 }

@@ -11,6 +11,12 @@
     /* Transparent so the global background/parallax works */
     background: transparent;
     overflow: hidden; // Prevent overflow from floating animation if it goes too wide
+
+    @media (max-width: $breakpoint-mobile) {
+        flex-direction: column;
+        justify-content: flex-start;
+        padding-top: 15vh;
+    }
 }
 
 .imageContainer {
@@ -25,6 +31,11 @@
     max-width: 800px;
     min-width: 300px;
     height: auto;
+
+    @media (max-width: $breakpoint-mobile) {
+        width: 85vw; // Slightly smaller than 90 to avoid edge touching
+        max-width: 400px; // Cap it so it doesn't get huge on larger phones
+    }
 
     will-change: transform;
 
@@ -74,12 +85,20 @@
     }
 
     @media (max-width: $breakpoint-mobile) {
-        bottom: 15%; // Move up a bit on mobile to avoid strict bottom edge
-        right: 50%;
-        transform: translateX(50%) rotate(0deg); // Center on mobile? Or just right
-        // Let's keep it right for now but maybe smaller
-        right: 20px;
-        transform: rotate(-45deg);
+        top: auto;
+        bottom: 12%;
+        left: 50%;
+        right: auto;
+        transform: translateX(-50%) rotate(0deg);
+        width: 60vw; // Make it prominent but not overwhelming
+        max-width: 250px;
+        display: flex;
+        justify-content: center;
+
+        img {
+            width: 100%;
+            max-width: none;
+        }
     }
 }
 
@@ -109,10 +128,6 @@
     left: 5%;
     width: 15vw;
     min-width: 100px;
-
-    img {
-        // animation removed
-    }
 }
 
 .rightPlanet {
@@ -120,10 +135,6 @@
     right: 8%;
     width: 12vw;
     min-width: 80px;
-
-    img {
-        // animation removed
-    }
 }
 
 .bottomPlanet {
@@ -131,10 +142,6 @@
     right: 30%;
     width: 20vw;
     min-width: 150px;
-
-    img {
-        // animation removed
-    }
 }
 
 // Satellites

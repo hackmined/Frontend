@@ -12,7 +12,10 @@ export default function HeroSection() {
 
     useLayoutEffect(() => {
         const ctx = gsap.context(() => {
-            gsap.fromTo(containerRef.current,
+            const registerBtn = document.querySelector(`.${styles.registerButton}`);
+            const targets = [containerRef.current, registerBtn].filter(Boolean);
+
+            gsap.fromTo(targets,
                 {
                     opacity: 0,
                     y: 800 // Start 200px below
@@ -22,6 +25,7 @@ export default function HeroSection() {
                     y: 0, // Slide up to original position
                     duration: 1.5,
                     ease: "power2.out",
+                    stagger: 0.1, // Slight stagger for effect
                     scrollTrigger: {
                         trigger: containerRef.current,
                         start: "top 80%", // slightly earlier
