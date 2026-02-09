@@ -30,7 +30,7 @@
 
     @media (max-width: $breakpoint-mobile) {
         width: 100%;
-        height: 60vh;
+        height: 50vh; // Reduced to pull next section closer
     }
 }
 
@@ -45,6 +45,13 @@
     justify-content: center;
     align-items: center;
     z-index: 1;
+
+    @media (max-width: $breakpoint-mobile) {
+        width: 100%; // Reset width for mobile
+        top: 50%; // Match text box center
+        left: 50%;
+        height: 180%; // Elongated slightly
+    }
 }
 
 .aboutImage {
@@ -52,6 +59,11 @@
     height: auto;
     max-height: 120vh;
     object-fit: cover;
+
+    @media (max-width: $breakpoint-mobile) {
+        width: 150%; // Still a bit larger to fill space but not 200%
+        max-height: 60vh;
+    }
 }
 
 .textBox {
@@ -67,8 +79,8 @@
     color: $color-black;
 
     @media (max-width: $breakpoint-mobile) {
-        width: 90%;
-        top: 60%;
+        width: 65%; // Slightly narrower to fit inside monitor better
+        top: 20%; // Match image container center
         left: 50%;
         transform: translate(-50%, -50%);
         text-align: center;
@@ -81,7 +93,7 @@
     }
 
     .p1 {
-        font-size: clamp(0.7rem, 1.5vw, 1.25rem);
+        font-size: clamp(0.9rem, 1.5vw, 1.25rem);
         line-height: 1.5;
         margin: 0;
         opacity: 0.9;
@@ -110,16 +122,14 @@
 
     @media (max-width: $breakpoint-mobile) {
         width: 100%;
-        height: auto; // Auto height to fit content
-        min-height: 60vh;
+        height: auto;
+        min-height: 80vh;
         margin-top: 0;
-        padding-bottom: 2rem;
-        flex-direction: column; // Stack stats vertically? Or keep them floating?
-        // User wants "readjust all components". Floating stats might be messy on small screens.
-        // Let's keep them absolute but ensure the container is tall enough.
-        // Or better, make them relative/grid?
-        // The current CSS uses absolute positioning for cards.
-        // Let's just ensure height is enough.
+        padding: 0rem 1rem 6rem 1rem; // Reduced top padding
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 0; // Control individually with margins
     }
 }
 
@@ -135,6 +145,16 @@
     align-items: center;
     z-index: 10;
 
+    @media (max-width: $breakpoint-mobile) {
+        position: relative;
+        left: auto;
+        top: auto;
+        transform: rotate(-10deg); // Dynamic angle
+        width: 95%;
+        margin: 1.5rem 0; // Reduced margin from 3rem
+        z-index: 5;
+    }
+
     .screenBg {
         width: 100%;
         height: 100%;
@@ -142,6 +162,11 @@
         position: absolute;
         top: 0;
         left: 0;
+
+        @media (max-width: $breakpoint-mobile) {
+            position: relative;
+            height: auto;
+        }
     }
 
     .screenContent {
@@ -156,9 +181,13 @@
         margin-top: -2.5%;
 
         @media (max-width: $breakpoint-mobile) {
-            margin-top: -1%;
+            position: absolute; // Re-absolute because screenBg is relative now
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
             width: 62%;
             height: 57%;
+            margin-top: -1%;
         }
 
         img,
@@ -190,10 +219,22 @@
         right: auto !important;
         bottom: auto !important;
         transform: none !important;
-        margin: 1rem;
-        width: 80% !important; // Make them wide
-        max-width: 300px;
-        rotate: 0deg !important; // Reset rotation
+        width: 75% !important;
+        max-width: 280px;
+        margin: -2rem 0; // Overlap for depth
+        z-index: 6;
+
+        &:nth-child(odd) {
+            align-self: flex-start;
+            margin-left: 5%;
+            transform: rotate(-5deg) !important;
+        }
+
+        &:nth-child(even) {
+            align-self: flex-end;
+            margin-right: 5%;
+            transform: rotate(5deg) !important;
+        }
     }
 
     // Enable container queries

@@ -2,16 +2,20 @@
 @use '@/styles/variables.scss' as *;
 
 .container {
-    width: 100vw;
-    height: 100vh;
-    flex-shrink: 0;
-    position: relative;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    padding: 0 4rem; // Add side padding
-    box-sizing: border-box;
-    overflow: hidden;
+    //width: 100vw;
+    //height: 100vh;
+    //flex-shrink: 0;
+    //position: relative;
+    //display: flex;
+    //align-items: center;
+    //justify-content: center;
+    //padding: 0 4rem; // Add side padding
+    //box-sizing: border-box;
+    //overflow: hidden;
+    //remove the below to activate the tracks section 
+    display: none;
+    width: 0;
+    height: 0;
 
     @media (max-width: $breakpoint-mobile) {
         height: auto;

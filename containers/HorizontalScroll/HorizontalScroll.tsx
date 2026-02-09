@@ -45,7 +45,7 @@ export default function HorizontalScroll({ children }: HorizontalScrollProps) {
                     top: "50%",
                     xPercent: -50,
                     yPercent: -50,
-                    width: '12vw', // Start large like desktop
+                    width: '40vw', // Higher boost for smaller screens
                     maxWidth: '400px'
                 });
             }
@@ -200,7 +200,9 @@ export default function HorizontalScroll({ children }: HorizontalScrollProps) {
                     left: "50%",
                     top: "50%",
                     xPercent: -50,
-                    yPercent: -50
+                    yPercent: -50,
+                    width: '12vw', // Match CSS initial width
+                    maxWidth: '400px'
                 });
             }
 

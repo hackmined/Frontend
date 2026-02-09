@@ -192,11 +192,21 @@
     // Center it initially
     transform: translate(-50%, -50%);
     z-index: 900; // Below Navbar (1000) but above portal (50)
-    width: 12vw; // Start large
+    width: 12vw; // Initial desktop size
+    min-width: 40px; // Allow shrinking to navbar size
     max-width: 400px;
+
+    @media (max-width: $breakpoint-mobile) {
+        width: 40vw; // Higher boost for mobile
+        min-width: 40px; // Allow shrinking to navbar size
+        max-width: 280px; // Cap slightly to prevent it being too huge on wide mobile
+    }
+
     height: auto;
     object-fit: contain;
-    will-change: transform, top, width;
+    will-change: transform,
+    top,
+    width;
 }
 
 // ===== SCROLL INDICATOR =====
