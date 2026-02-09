@@ -190,6 +190,8 @@
 .cancelButton {
     background: transparent;
     color: #64748b;
+    right: 14rem;
+    position: absolute;
 
     &:hover:not(:disabled) {
         background: #f1f5f9;
@@ -201,7 +203,8 @@
     background: #1f2937;
     color: white;
     border-color: #1f2937;
-
+    position: absolute;
+    bottom: 20%;
     transform: translateY(60px);
 
     &:hover:not(:disabled) {

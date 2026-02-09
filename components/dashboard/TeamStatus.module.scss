@@ -82,6 +82,8 @@
     display: flex;
     align-items: center;
     gap: 0.5rem;
+    position: absolute;
+    right: 6rem;
 }
 
 .leaderBadge {
@@ -104,6 +106,7 @@
     font-family: var(--font-gaegu);
     font-weight: 700;
     border: 1px solid transparent;
+    position: absolute;
 
     &:hover {
         color: #991b1b;
