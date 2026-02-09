@@ -64,7 +64,7 @@ export default function LoginPage() {
             <Starfield />
 
             <div className={styles.loginWrapper}>
-                <div className={styles.signInCard}>
+                <div className={styles.tempSignInCard}>
                     <div className={styles.panelContent}>
                         <p className={styles.year}>HackaMined 2026</p>
 

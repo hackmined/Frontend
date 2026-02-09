@@ -11,6 +11,11 @@
     background-position: center;
     background-repeat: no-repeat;
     width: 100%;
+
+    @media (max-width: 768px) {
+        padding: 2rem 0.75rem;
+        overflow-x: hidden; // Prevent horizontal overflow
+    }
 }
 
 .contentWrapper {
@@ -26,12 +31,18 @@
 
     @media (max-width: 768px) {
         max-width: 95vw;
+        overflow: hidden; // Prevent overflow
+        box-sizing: border-box;
     }
 }
 
 .pageHeader {
     text-align: center;
     margin-bottom: 3rem;
+
+    @media (max-width: 768px) {
+        margin-bottom: 2rem;
+    }
 
     h1 {
         font-size: clamp(2.5rem, 5vw, 3.5rem);
@@ -41,18 +52,35 @@
         letter-spacing: 0.05em;
         font-family: var(--font-gaegu);
         text-shadow: 0 0 20px rgba(255, 255, 255, 0.3);
+
+        @media (max-width: 768px) {
+            font-size: clamp(2rem, 8vw, 2.5rem);
+            margin-bottom: 0.75rem;
+            text-align: center;
+        }
     }
 
     .subtitle {
         color: rgb(209, 213, 219);
         font-size: 1.125rem;
         letter-spacing: 0.1em;
+
+        @media (max-width: 768px) {
+            font-size: 1rem;
+            letter-spacing: 0.05em;
+            text-align: center;
+        }
     }
 
     .description {
         color: rgb(156, 163, 175);
         font-size: 1rem;
         margin-top: 0.5rem;
+
+        @media (max-width: 768px) {
+            font-size: 0.9rem;
+            text-align: center;
+        }
     }
 }
 
@@ -72,6 +100,14 @@
     transition: transform 0.3s ease;
     backdrop-filter: blur(10px);
 
+    @media (max-width: 768px) {
+        padding: 1.5rem;
+        border-radius: 1rem;
+        margin-bottom: 1.5rem;
+        overflow: hidden; // Prevent overflow
+        box-sizing: border-box;
+    }
+
     &:hover {
         transform: translateY(-2px);
     }
@@ -86,6 +122,10 @@
             0 0 0 1px rgba(0, 0, 0, 0.5),
             0 0 15px rgba(0, 242, 255, 0.1);
         z-index: 5;
+
+        @media (max-width: 768px) {
+            border-radius: 1rem;
+        }
     }
 
     .content {
@@ -134,12 +174,28 @@
     font-family: var(--font-gaegu);
     transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
 
+    @media (max-width: 768px) {
+        padding: 1rem 1.5rem;
+        font-size: 1rem;
+        min-height: 48px; // Touch-friendly
+        background: #1f2937; // Darker for better contrast on white
+        color: white;
+        font-weight: 700;
+        box-sizing: border-box;
+        width: 100%;
+        max-width: 100%;
+    }
+
     &:hover:not(:disabled) {
         background: #cbcbcb;
         transform: translateY(-2px) scale(1.01);
         box-shadow:
             0 0 20px rgba(227, 254, 255, 0.5),
             0 0 10px rgba(255, 255, 255, 0.5);
+
+        @media (max-width: 768px) {
+            background: #111827;
+        }
     }
 
     &:active:not(:disabled) {
@@ -153,6 +209,11 @@
         transform: none;
         box-shadow: none;
         border: 1px solid #374151;
+
+        @media (max-width: 768px) {
+            background: #374151;
+            color: #9ca3af;
+        }
     }
 }
 
@@ -238,8 +299,23 @@
     font-size: 1rem;
     transition: all 0.2s ease;
 
+    @media (max-width: 768px) {
+        padding: 0.875rem 1rem;
+        font-size: 16px; // Prevent zoom on iOS
+        min-height: 48px; // Touch-friendly
+        background: rgba(255, 255, 255, 0.9); // White background for better readability
+        color: #1f2937; // Dark text
+        border: 2px solid rgba(0, 0, 0, 0.1);
+        box-sizing: border-box;
+        width: 100%;
+    }
+
     &::placeholder {
         color: #6b7280;
+
+        @media (max-width: 768px) {
+            color: #9ca3af;
+        }
     }
 
     &:focus {
@@ -247,6 +323,12 @@
         border-color: rgba(0, 242, 255, 0.5);
         box-shadow: 0 0 10px rgba(0, 242, 255, 0.1);
         background: rgba(15, 15, 20, 0.8);
+
+        @media (max-width: 768px) {
+            background: rgba(255, 255, 255, 1);
+            border-color: #2563eb;
+            box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.1);
+        }
     }
 
     &:disabled {

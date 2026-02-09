@@ -112,7 +112,7 @@ export default function DashboardPage() {
             <Starfield />
 
             <div className={styles.loginWrapper}>
-                <div className={styles.mainPanel}>
+                <div className={styles.tempMainPanel}>
                     <div className={styles.panelContent}>
 
                         {/* ================= PROFILE VIEW ================= */}

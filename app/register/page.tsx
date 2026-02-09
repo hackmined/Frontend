@@ -85,7 +85,7 @@ export default function RegisterPage() {
                 <Starfield />
 
                 <div className={styles.loginWrapper}>
-                    <div className={styles.signInCard}>
+                    <div className={styles.tempSignInCard}>
                         <div className={styles.panelContent}>
                             <RegistrationForm
                                 onSubmit={handleRegistrationSubmit}
@@ -105,9 +105,9 @@ export default function RegisterPage() {
             <Starfield />
 
             <div className={styles.loginWrapper}>
-                <div className={styles.signInCard}>
+                <div className={styles.tempSignInCard}>
                     <div className={styles.panelContent}>
-                        <p className={styles.year}>HackaMined 2026</p>
+                        <p className={styles.year}>HACKaMINeD 2026</p>
 
                         <p className={styles.tagline}>
                             CODE • COMPETE • CONQUER

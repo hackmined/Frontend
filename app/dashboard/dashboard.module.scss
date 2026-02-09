@@ -48,6 +48,52 @@
     transform: translateY(5%);
 }
 
+/* ================= TEMP PANEL (NEW MOBILE VERSION) ================= */
+
+.tempMainPanel {
+    height: 120vh;
+    max-height: 920px;
+    aspect-ratio: 1 / 0.85;
+    width: auto;
+
+    background-image: url('/panel.svg');
+    background-size: contain;
+    background-position: center;
+    background-repeat: no-repeat;
+
+    position: relative;
+    overflow: hidden;
+
+    transform: translateY(5%);
+
+    @media (max-width: 768px) {
+        // Remove background image, use white glassmorphism
+        background-image: none;
+        background: rgba(255, 255, 255, 0.15); // White with transparency
+        backdrop-filter: blur(20px);
+        border: 2px solid rgba(255, 255, 255, 0.3);
+        border-radius: 24px;
+        box-shadow:
+            0 8px 32px 0 rgba(0, 0, 0, 0.1),
+            inset 0 0 60px rgba(255, 255, 255, 0.2);
+
+        width: 95vw;
+        max-width: 600px; // Constrain max width
+        height: auto; // Content-responsive
+        min-height: auto; // Remove min-height constraint
+        max-height: none;
+        aspect-ratio: unset;
+        transform: translateY(0);
+        padding: 2rem 1.5rem; // Add padding for content spacing
+
+        // Ensure center alignment
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        overflow: hidden; // Prevent overflow on both axes
+    }
+}
+
 /* ================= WHITE SCREEN ================= */
 
 .panelContent {
@@ -65,6 +111,19 @@
     justify-content: space-between;
 
     color: #4b5563;
+
+    @media (max-width: 768px) {
+        position: static; // Remove absolute positioning
+        width: 100%;
+        max-width: 100%;
+        height: auto;
+        padding: 0; // Remove padding (handled by parent)
+        gap: 1.5rem; // Add spacing between elements
+        justify-content: center; // Keep centered
+        align-items: center; // Ensure horizontal centering
+        overflow: hidden; // Prevent overflow
+        box-sizing: border-box;
+    }
 }
 
 /* ================= SHARED TYPOGRAPHY ================= */
@@ -74,12 +133,28 @@
     font-size: 2.8rem;
     font-weight: 700;
     color: #1f2937;
+
+    @media (max-width: 768px) {
+        font-size: 2.2rem !important;
+        color: #1f2937 !important; // Dark gray for better contrast
+        margin-bottom: 0.5rem;
+        font-weight: 800 !important;
+        text-align: center;
+    }
 }
 
 .subtitle {
     font-family: var(--font-gaegu);
     font-size: 1.4rem;
     color: #64748b;
+
+    @media (max-width: 768px) {
+        font-size: 1.2rem !important;
+        color: #1f2937 !important; // Dark gray for better contrast
+        margin-bottom: 1rem;
+        font-weight: 600 !important;
+        text-align: center;
+    }
 }
 
 /* ================= PROFILE / TEAM BASE ================= */
@@ -90,11 +165,6 @@
     height: 100%;
     display: flex;
     flex-direction: column;
-
-}
-
-.teamLayout {
-    /* For team view specific tweaks if needed */
 }
 
 /* ================= HEADER ================= */
@@ -147,11 +217,26 @@
     flex-direction: column;
     gap: 0.5rem;
     align-items: flex-start;
+
+    @media (max-width: 768px) {
+        width: 100% !important;
+        max-width: 100% !important;
+        gap: 0.75rem;
+        overflow: hidden !important;
+        box-sizing: border-box !important;
+    }
 }
 
 .infoItem {
     display: flex;
     flex-direction: column;
+
+    @media (max-width: 768px) {
+        width: 100% !important; // Full width to prevent overflow
+        max-width: 100% !important;
+        overflow: hidden !important; // Prevent content from breaking layout
+        box-sizing: border-box !important;
+    }
 }
 
 .label {
@@ -160,12 +245,32 @@
     color: #64748b;
     letter-spacing: 0.05em;
     text-transform: uppercase;
+
+    @media (max-width: 768px) {
+        font-size: 1rem !important;
+        color: #1f2937 !important; // Dark gray for better contrast
+        font-weight: 600 !important;
+        text-align: center;
+    }
 }
 
 .value {
     font-family: var(--font-gaegu);
     font-size: 1.4rem;
     color: #1f2937;
+
+    @media (max-width: 768px) {
+        font-size: 1.2rem !important;
+        color: #1f2937 !important; // Dark gray for better contrast
+        font-weight: 700 !important;
+        word-break: break-all !important; // Force break on any character
+        overflow-wrap: anywhere !important;
+        hyphens: auto !important;
+        max-width: 100% !important;
+        white-space: normal !important;
+        overflow: hidden !important;
+        text-align: center;
+    }
 }
 
 /* ================= TEAM DASHBOARD ================= */
@@ -193,6 +298,24 @@
     flex-direction: column;
     align-items: center;
     text-align: center;
+
+    @media (max-width: 768px) {
+        min-width: 100px;
+        max-width: 150px; // Prevent overflow
+
+        .label {
+            font-size: 0.9rem;
+            color: #1f2937; // Darker for better contrast
+            text-align: center;
+        }
+
+        .value {
+            font-size: 1.1rem;
+            color: #1f2937; // Darker for better contrast
+            word-break: break-word;
+            text-align: center;
+        }
+    }
 }
 
 .inviteButtonContainer {
@@ -218,6 +341,21 @@
 
     &:hover {
         background-color: #1d4ed8;
+    }
+
+    @media (max-width: 768px) {
+        width: 100%;
+        max-width: 100%;
+        justify-content: center;
+        padding: 0.75rem 1rem;
+        font-size: 1rem;
+        min-height: 48px;
+        background-color: #1f2937; // Darker for better contrast on white
+        box-sizing: border-box;
+
+        &:hover {
+            background-color: #111827;
+        }
     }
 }
 
@@ -256,6 +394,15 @@
 
     &:hover {
         background-color: #000;
+    }
+
+    @media (max-width: 768px) {
+        width: 100%;
+        max-width: 100%;
+        padding: 0.75rem 1rem;
+        min-height: 48px;
+        font-size: 1rem;
+        box-sizing: border-box;
     }
 }
 
@@ -327,6 +474,7 @@
         width: 84%;
         height: 60%;
         padding: 1.4rem;
+        overflow-y: auto; // Allow scrolling on mobile
     }
 
     .bodyZone {
@@ -334,22 +482,85 @@
         gap: 1.2rem;
     }
 
+    .avatar {
+        width: 120px;
+        height: 120px;
+        font-size: 4rem;
+    }
+
     .teamBody {
         gap: 1.5rem;
+        padding: 0 0.5rem;
     }
 
     .teamMeta {
         flex-direction: row;
         gap: 1rem;
         flex-wrap: wrap;
+        justify-content: space-around;
+    }
+
+    .teamMetaItem {
+        min-width: 100px;
+
+        .label {
+            font-size: 1rem;
+        }
+
+        .value {
+            font-size: 1.2rem;
+        }
     }
 
     .infoZone {
+        align-items: center !important;
+        text-align: center !important;
+        width: 100%;
+    }
+
+    .infoItem {
+        width: 100%;
+        max-width: 100%;
         align-items: center;
-        text-align: center;
     }
 
     .title {
         font-size: 2rem;
+    }
+
+    .subtitle {
+        font-size: 1.1rem;
+    }
+
+    .label {
+        font-size: 1rem;
+    }
+
+    .value {
+        font-size: 1.2rem;
+        max-width: 100%;
+        word-wrap: break-word !important;
+        overflow-wrap: break-word !important;
+        white-space: normal !important;
+        padding: 0 0.25rem;
+    }
+
+    .navButton {
+        font-size: 1.1rem;
+        padding: 0.5rem;
+        color: #1f2937;
+    }
+
+    .inviteButton,
+    .createTeamButton {
+        width: 100%;
+        padding: 0.75rem 1rem;
+        font-size: 1rem;
+        min-height: 48px; // Touch-friendly
+    }
+
+    .inviteButtonContainer {
+        justify-content: center;
+        width: 100%;
     }
 }
