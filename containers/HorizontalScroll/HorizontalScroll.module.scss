@@ -191,7 +191,7 @@
     left: 50%;
     // Center it initially
     transform: translate(-50%, -50%);
-    z-index: 2000; // Very high, above portal (50) and potentially header (1000)
+    z-index: 900; // Below Navbar (1000) but above portal (50)
     width: 12vw; // Start large
     max-width: 400px;
     height: auto;
