@@ -14,6 +14,10 @@ $neon-glow: #77a4d4;
     background: transparent;
     position: relative;
     overflow: hidden;
+
+    @media (max-width: $breakpoint-mobile) {
+        padding: 80px 1.5rem 3rem 1.5rem;
+    }
 }
 
 .sectionContent {
@@ -25,6 +29,10 @@ $neon-glow: #77a4d4;
     gap: 3rem;
     position: relative;
     z-index: 10;
+
+    @media (max-width: $breakpoint-mobile) {
+        gap: 2rem;
+    }
 }
 
 .sectionTitle {
@@ -69,6 +77,12 @@ $neon-glow: #77a4d4;
     display: flex;
     flex-direction: column;
     gap: 1.5rem;
+
+    @media (max-width: $breakpoint-mobile) {
+        padding: 1.5rem;
+        gap: 1.2rem;
+        border-radius: 20px;
+    }
 }
 
 .formGroup {
@@ -96,6 +110,12 @@ $neon-glow: #77a4d4;
         font-family: $font-family-base;
         font-size: 1.1rem;
         transition: all 0.3s ease;
+
+        @media (max-width: $breakpoint-mobile) {
+            padding: 1rem;
+            font-size: 1rem;
+            border-radius: 10px;
+        }
 
         &:focus {
             outline: none;
@@ -136,6 +156,12 @@ $neon-glow: #77a4d4;
     overflow: hidden;
     box-shadow: 0 10px 20px rgba(0, 0, 0, 0.3);
 
+    @media (max-width: $breakpoint-mobile) {
+        padding: 1rem 1.5rem;
+        font-size: 1.1rem;
+        margin-top: 0.5rem;
+    }
+
     &::before {
         content: '';
         position: absolute;
@@ -170,6 +196,12 @@ $neon-glow: #77a4d4;
     background: rgba(255, 255, 255, 0.02);
     border-radius: 24px;
     border: 1px solid rgba(255, 255, 255, 0.05);
+
+    @media (max-width: $breakpoint-mobile) {
+        padding: 1.5rem;
+        gap: 2rem;
+        border-radius: 20px;
+    }
 }
 
 .infoItem {
@@ -179,6 +211,11 @@ $neon-glow: #77a4d4;
         color: #ffffff;
         margin-bottom: 0.8rem;
         text-shadow: 0 0 15px rgba(255, 255, 255, 0.2);
+
+        @media (max-width: $breakpoint-mobile) {
+            font-size: 1.5rem;
+            margin-bottom: 0.5rem;
+        }
     }
 
     p {
@@ -186,6 +223,10 @@ $neon-glow: #77a4d4;
         font-size: 1.3rem;
         color: rgba(255, 255, 255, 0.85);
         line-height: 1.6;
+
+        @media (max-width: $breakpoint-mobile) {
+            font-size: 1.1rem;
+        }
 
         a {
             color: $accent-2;
@@ -221,10 +262,22 @@ $neon-glow: #77a4d4;
     margin-top: 1.5rem;
     border: 1px solid rgba(255, 255, 255, 0.1);
 
+    @media (max-width: $breakpoint-mobile) {
+        padding: 1rem 1.5rem;
+        font-size: 1.1rem;
+        width: 100%;
+        margin-top: 1rem;
+    }
+
     svg {
         width: 28px;
         height: 28px;
         fill: currentColor;
+
+        @media (max-width: $breakpoint-mobile) {
+            width: 24px;
+            height: 24px;
+        }
     }
 
     &:hover {
