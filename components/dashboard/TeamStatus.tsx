@@ -137,7 +137,7 @@ export default function TeamStatus({ team, invitations = [], isLeader, userId, o
 
                         {isLeader && (
                             <button
-                                onClick={() => handleCancelInvitation(invite.id || invite._id, invite.email || '')}
+                                onClick={() => handleCancelInvitation((invite.id || invite._id || ''), invite.email || '')}
                                 disabled={!!removingId}
                                 className={styles.removeButton}
                                 style={{ padding: '0.25rem 0.75rem', fontSize: '0.75rem' }}
