@@ -68,7 +68,7 @@ export default function HeroSection() {
             >
                 <img src="/register.svg" alt="Register" />
             </Link>
-            <div
+            {/* <div
                 className={styles.leftPlanet}
                 onMouseMove={(e) => {
                     const el = e.currentTarget;
@@ -83,9 +83,9 @@ export default function HeroSection() {
                 }}
             >
                 <img src="/left-planet.webp" alt="" />
-            </div>
+            </div> */}
 
-            <div
+            {/* <div
                 className={styles.rightPlanet}
                 onMouseMove={(e) => {
                     const el = e.currentTarget;
@@ -99,7 +99,7 @@ export default function HeroSection() {
                 }}
             >
                 <img src="/right-planet.webp" alt="" />
-            </div>
+            </div> */}
 
             {/* <div
                 className={styles.bottomPlanet}

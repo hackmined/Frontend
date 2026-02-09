@@ -16,6 +16,7 @@ export default function HorizontalScroll({ children }: HorizontalScrollProps) {
     const triggerRef = useRef<HTMLDivElement | null>(null);
     const bgRef = useRef<HTMLImageElement | null>(null);
     const starsRef = useRef<HTMLImageElement | null>(null);
+    const planetsRef = useRef<HTMLImageElement | null>(null);
     const portalRef = useRef<HTMLDivElement | null>(null);
     const logoRef = useRef<HTMLImageElement | null>(null);
     const indicatorRef = useRef<HTMLDivElement | null>(null);
@@ -28,6 +29,7 @@ export default function HorizontalScroll({ children }: HorizontalScrollProps) {
             const trigger = triggerRef.current;
             const bg = bgRef.current;
             const stars = starsRef.current;
+            const planets = planetsRef.current;
             const portal = portalRef.current;
             const logo = logoRef.current;
             const portalMask = portal?.querySelector('[data-portal-mask]') as HTMLElement | null;
@@ -165,6 +167,7 @@ export default function HorizontalScroll({ children }: HorizontalScrollProps) {
             let currentX = 0;
             let currentBgX = 0;
             let currentStarsX = 0;
+            let currentPlanetsX = 0;
 
             // ===== PHASE 2: HORIZONTAL SCROLL =====
             sections.forEach((section, index) => {
@@ -220,6 +223,15 @@ export default function HorizontalScroll({ children }: HorizontalScrollProps) {
                         }, "<");
                     }
 
+                    if (planets) {
+                        // Planets move even faster (0.35 multiplier)
+                        currentPlanetsX -= width * 0.35;
+                        tl.to(planets, {
+                            x: currentPlanetsX,
+                            duration: width
+                        }, "<");
+                    }
+
                     totalHorizontalScroll += width;
                 }
             });
@@ -242,6 +254,14 @@ export default function HorizontalScroll({ children }: HorizontalScrollProps) {
                 stars.style.width = `${requiredStarsWidth}px`;
                 stars.style.maxWidth = "none";
                 stars.style.objectFit = "cover";
+            }
+
+            if (planets) {
+                const parallaxDistance = totalHorizontalScroll * 0.35;
+                const requiredPlanetsWidth = window.innerWidth + parallaxDistance + 1000;
+                planets.style.width = `${requiredPlanetsWidth}px`;
+                planets.style.maxWidth = "none";
+                planets.style.objectFit = "cover";
             }
 
             // SINGLE ScrollTrigger for everything
@@ -300,6 +320,14 @@ export default function HorizontalScroll({ children }: HorizontalScrollProps) {
                 src="/stars.svg"
                 alt="Stars"
                 className={styles.starsLayer}
+            />
+
+            {/* Parallax Planets Layer - Moves even faster, in front of stars */}
+            <img
+                ref={planetsRef}
+                src="/planets.svg"
+                alt="Planets"
+                className={styles.planetsLayer}
             />
 
             {/* Logo - Animates from center to navbar */}

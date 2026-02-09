@@ -43,3 +43,11 @@ export const removeMember = async (memberId: string): Promise<any> => {
     return response.data.data;
 };
 
+/**
+ * Cancel a pending invitation
+ */
+export const cancelInvitation = async (invitationId: string): Promise<any> => {
+    const response = await apiClient.delete<{ status: string; data: any }>(`/invitations/${invitationId}`);
+    return response.data.data;
+};
+
