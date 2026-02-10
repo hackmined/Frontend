@@ -3,7 +3,7 @@
 import { useState, FormEvent } from "react";
 import styles from "./RegistrationForm.module.scss";
 import { RegistrationData } from "@/types";
-import { validateRegistrationData, ValidationErrors } from "@/lib/utils/validation";
+import { validateRegistrationData, validateFields, ValidationErrors } from "@/lib/utils/validation";
 
 type Step = 1 | 2 | 3 | 4;
 
@@ -46,19 +46,14 @@ export default function RegistrationForm({ onSubmit, loading, error }: Props) {
     };
 
     const validateStep = (): boolean => {
-        const required: (keyof RegistrationData)[][] = [
+        const stepFields: (keyof RegistrationData)[][] = [
             ["fullName", "phoneNumber", "whatsappNumber"],
             ["college", "degree", "branch", "graduationYear"],
             ["city", "state", "country"],
             [],
         ];
 
-        const errors: ValidationErrors = {};
-        required[currentStep - 1].forEach(field => {
-            if (!formData[field]) {
-                errors[field] = "Required";
-            }
-        });
+        const errors = validateFields(formData, stepFields[currentStep - 1]);
 
         setValidationErrors(errors);
         return Object.keys(errors).length === 0;

@@ -101,18 +101,32 @@ export const validateEmail = (email: string): string | null => {
 };
 
 /**
+ * Validate ONLY specific fields
+ */
+export const validateFields = (data: Partial<RegistrationData>, fields: (keyof RegistrationData)[]): ValidationErrors => {
+    const allErrors = validateRegistrationData(data);
+    const filteredErrors: ValidationErrors = {};
+
+    fields.forEach(field => {
+        if (allErrors[field]) {
+            filteredErrors[field] = allErrors[field];
+        }
+    });
+
+    return filteredErrors;
+};
+
+/**
  * Validate phone number (Indian format)
- * Accepts: 10 digits with optional +91 or 0 prefix
+ * Accepts: 10 digits starting with 6-9
  */
 const isValidPhoneNumber = (phone: string): boolean => {
     // Remove spaces, hyphens, and parentheses
     const cleaned = phone.replace(/[\s\-()]/g, '');
 
-    // Check for valid Indian phone number patterns:
-    // 1. 10 digits: 9876543210
-    // 2. +91 followed by 10 digits: +919876543210
-    // 3. 0 followed by 10 digits: 09876543210
-    const phoneRegex = /^(\+91)?0?[6-9]\d{9}$/;
+    // Check for valid Indian phone number patterns (after stripping +91 or 0)
+    // Must be 10 digits starting with [6-9]
+    const phoneRegex = /^(\+91|0)?([6-9]\d{9})$/;
 
     return phoneRegex.test(cleaned);
 };
