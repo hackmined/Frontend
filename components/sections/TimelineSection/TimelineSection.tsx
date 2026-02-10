@@ -10,28 +10,28 @@ const timelineEvents: TimelineEvent[] = [
         id: '1',
         number: '01',
         title: 'Registration Opens',
-        date: 'February 1, 2026',
+        date: 'February 10, 2026',
         description: 'Sign up and form your team'
     },
     {
         id: '2',
         number: '02',
         title: 'Hacking Begins',
-        date: 'March 15, 9:00 AM',
-        description: '24 hours of pure innovation'
+        date: 'March 5, 9:00 AM',
+        description: '48 hours of pure innovation'
     },
     {
         id: '3',
         number: '03',
         title: 'Submissions Close',
-        date: 'March 16, 9:00 AM',
+        date: 'March 7, 12:00 PM',
         description: 'Final push and submit your project'
     },
     {
         id: '4',
         number: '04',
         title: 'Winners Announced',
-        date: 'March 16, 2:00 PM',
+        date: 'March 8, 6:00 PM',
         description: 'Grand finale and awards ceremony'
     }
 ];
