@@ -4,6 +4,7 @@ import gsap from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import styles from './OrganizersSection.module.scss';
 import Starfield from '@/components/ui/Starfield/Starfield';
+import { LinkedInIcon, GithubIcon, TwitterIcon } from '@/components/ui/Icons/Icons';
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -35,185 +36,160 @@ const initialCategories: OrganizerCategory[] = [
                 id: 1,
                 name: "Dr. Vishal Parikh",
                 role: "Faculty",
-                image: "/avatar-placeholder.png",
-                bio: "Professor of Computer Science with 20 years of experience.",
+                image: "/TeamPhotos/Faculties/VP.jpg",
+                bio: "",
                 socials: { linkedin: "#" }
             },
             {
                 id: 2,
                 name: "Dr. Rupal Kapdi",
                 role: "Faculty",
-                image: "/avatar-placeholder.png",
-                bio: "Specializing in Paleobotany and computational biology.",
+                image: "/TeamPhotos/Faculties/RK.jpg",
+                bio: "",
                 socials: { linkedin: "#" }
             },
             {
                 id: 3,
                 name: "Dr. Tejal Upadhyay",
                 role: "Faculty",
-                image: "/avatar-placeholder.png",
-                bio: "Specializing in Paleobotany and computational biology.",
+                image: "/TeamPhotos/Faculties/TU.jpg",
+                bio: "",
                 socials: { linkedin: "#" }
             },
             {
                 id: 4,
-                name: "Dr. Tarjini Vyas",
+                name: "Dr. Tarjni Vyas",
                 role: "Faculty",
-                image: "/avatar-placeholder.png",
-                bio: "Specializing in Paleobotany and computational biology.",
+                image: "/TeamPhotos/Faculties/TV.jpg",
+                bio: "",
                 socials: { linkedin: "#" }
             },
             {
                 id: 5,
                 name: "Dr. Sapan Mankand",
                 role: "Faculty",
-                image: "/avatar-placeholder.png",
-                bio: "Specializing in Paleobotany and computational biology.",
+                image: "/TeamPhotos/Faculties/SM.jpg",
+                bio: "",
                 socials: { linkedin: "#" }
             },
             {
                 id: 6,
                 name: "Dr. Priyank Thakker",
                 role: "Faculty",
-                image: "/avatar-placeholder.png",
-                bio: "Specializing in Paleobotany and computational biology.",
+                image: "/TeamPhotos/Faculties/PT.jpg",
+                bio: "",
                 socials: { linkedin: "#" }
             },
             {
                 id: 7,
                 name: "Mr. Ajay Patel",
                 role: "Faculty",
-                image: "/avatar-placeholder.png",
-                bio: "Specializing in Paleobotany and computational biology.",
+                image: "/TeamPhotos/Faculties/AP.jpg",
+                bio: "",
                 socials: { linkedin: "#" }
             }
         ]
     },
     {
-        id: 'president',
-        title: 'President',
+        id: 'organising-committee',
+        title: 'Organising Committee',
         members: [
             {
                 id: 11,
                 name: "Karm Dave",
-                role: "DSC President",
-                image: "/avatar-placeholder.png",
-                bio: "Leading the vision and execution of Hackamined 2026.",
+                role: "",
+                image: "/TeamPhotos/Students/Karm.jpg",
+                bio: "",
                 socials: { linkedin: "#", github: "#" }
             },
             {
                 id: 12,
                 name: "Het Modi",
-                role: "CSI President",
+                role: "",
                 image: "/avatar-placeholder.png",
-                bio: "Leading the vision and execution of Hackamined 2026.",
+                bio: "",
                 socials: { linkedin: "#", github: "#" }
-            }
-        ]
-    },
-    {
-        id: 'vice-president',
-        title: 'Vice President',
-        members: [
+            },
             {
                 id: 21,
                 name: "Krisha Shastri",
-                role: "DSC Vice President",
-                image: "/avatar-placeholder.png",
-                bio: "Overseeing technical operations and team coordination.",
+                role: "",
+                image: "/TeamPhotos/Students/Krisha.jpg",
+                bio: "",
                 socials: { linkedin: "#", github: "#" }
             },
             {
                 id: 22,
                 name: "Mihir Jain",
-                role: "CSI Vice President",
+                role: "",
                 image: "/avatar-placeholder.png",
-                bio: "Overseeing technical operations and team coordination.",
+                bio: "",
                 socials: { linkedin: "#", github: "#" }
-            }
-        ]
-    },
-    {
-        id: 'secretary',
-        title: 'Secretary',
-        members: [
+            },
             {
                 id: 31,
                 name: "Jyot Kikani",
-                role: "DSC General Secretary",
-                image: "/avatar-placeholder.png",
-                bio: "Creative mind behind the visuals and user experience.",
-                socials: { linkedin: "#" }
+                role: "",
+                image: "/TeamPhotos/Students/Jyot.jpg",
+                bio: "",
+                socials: { linkedin: "#", github: "#" }
             },
             {
                 id: 32,
                 name: "Luv Patel",
-                role: "CSI General Secretary",
+                role: "",
                 image: "/avatar-placeholder.png",
-                bio: "Ensuring everything runs smoothly from start to finish.",
-                socials: { linkedin: "#" }
+                bio: "",
+                socials: { linkedin: "#", github: "#" }
             },
             {
                 id: 33,
                 name: "Rudra Moradiya",
-                role: "CSI Organising Secretary ",
+                role: "",
                 image: "/avatar-placeholder.png",
-                bio: "Connecting with partners to make this event possible.",
-                socials: { linkedin: "#" }
+                bio: "",
+                socials: { linkedin: "#", github: "#" }
             },
             {
                 id: 34,
                 name: "Hrushi Bhanvadiya",
-                role: "CSI Joint Secretary",
+                role: "",
                 image: "/avatar-placeholder.png",
-                bio: "Spreading the word and managing social media.",
-                socials: { linkedin: "#" }
-            }
-        ]
-    },
-    {
-        id: 'technical-team',
-        title: 'Technical Team',
-        members: [
+                bio: "",
+                socials: { linkedin: "#", github: "#" }
+            },
             {
                 id: 401,
                 name: "Hem Kastiya",
-                role: "DSC Technical Head",
-                image: "/avatar-placeholder.png",
-                bio: "Creative mind behind the visuals and user experience.",
-                socials: { linkedin: "#" }
+                role: "",
+                image: "/TeamPhotos/Students/Hem.jpg",
+                bio: "",
+                socials: { linkedin: "#", github: "#" }
             },
             {
                 id: 402,
                 name: "Jay Gor",
-                role: "DSC Technical Head",
-                image: "/avatar-placeholder.png",
-                bio: "Ensuring everything runs smoothly from start to finish.",
-                socials: { linkedin: "#" }
+                role: "",
+                image: "/TeamPhotos/Students/Jay.jpg",
+                bio: "",
+                socials: { linkedin: "#", github: "#" }
             },
             {
                 id: 403,
                 name: "Chinmay Patel",
-                role: "CSI Technical Head",
+                role: "",
                 image: "/avatar-placeholder.png",
-                bio: "Connecting with partners to make this event possible.",
-                socials: { linkedin: "#" }
+                bio: "",
+                socials: { linkedin: "#", github: "#" }
             },
             {
                 id: 404,
                 name: "Ritika Parikh",
-                role: "CSI Technical Head",
+                role: "",
                 image: "/avatar-placeholder.png",
-                bio: "Spreading the word and managing social media.",
-                socials: { linkedin: "#" }
+                bio: "",
+                socials: { linkedin: "#", github: "#" }
             }
-        ]
-    },
-    {
-        id: 'social-team',
-        title: 'Social Team',
-        members: [
-
         ]
     }
 
@@ -354,9 +330,9 @@ export default function OrganizersSection() {
                                 {member.bio && <p className={styles.bio}>{member.bio}</p>}
 
                                 <div className={styles.socials}>
-                                    {member.socials?.linkedin && <a href={member.socials.linkedin} target="_blank" rel="noopener noreferrer">LI</a>}
-                                    {member.socials?.github && <a href={member.socials.github} target="_blank" rel="noopener noreferrer">GH</a>}
-                                    {member.socials?.twitter && <a href={member.socials.twitter} target="_blank" rel="noopener noreferrer">TW</a>}
+                                    {member.socials?.linkedin && <a href={member.socials.linkedin} target="_blank" rel="noopener noreferrer"><LinkedInIcon /></a>}
+                                    {member.socials?.github && <a href={member.socials.github} target="_blank" rel="noopener noreferrer"><GithubIcon /></a>}
+                                    {member.socials?.twitter && <a href={member.socials.twitter} target="_blank" rel="noopener noreferrer"><TwitterIcon /></a>}
                                 </div>
                             </div>
                         ))}
