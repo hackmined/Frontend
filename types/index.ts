@@ -90,6 +90,7 @@ export interface Team {
     status?: TeamStatus;
     lockDate?: string;
     teamCode?: string;
+    willAttendOffline?: boolean | null;
     createdAt: string;
     updatedAt?: string;
 }

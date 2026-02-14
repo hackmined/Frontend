@@ -4,7 +4,7 @@ import { useEffect, useState } from "react";
 import { useRouter } from "next/navigation";
 import { useAuthStore } from "@/lib/stores/authStore";
 import { getUserProfile } from "@/lib/api/user";
-import { getTeam } from "@/lib/api/team";
+import { getTeam, confirmOfflineAttendance } from "@/lib/api/team";
 import { User, Team } from "@/types";
 
 import TeamStatus from "@/components/dashboard/TeamStatus";
@@ -12,7 +12,10 @@ import TeamCreationModal from "@/components/team/TeamCreationModal";
 import TeamCreationForm from "@/components/team/TeamCreationForm";
 import InviteForm from "@/components/team/InviteForm";
 import InvitationsList from "@/components/team/InvitationsList";
+import OfflineAttendanceModal from "@/components/team/OfflineAttendanceModal";
 import Starfield from "@/components/ui/Starfield/Starfield";
+import RulebookModal from "@/components/dashboard/RulebookModal";
+import TeamFlowGuide from "@/components/dashboard/TeamFlowGuide";
 
 import styles from "./dashboard.module.scss";
 
@@ -29,6 +32,8 @@ export default function DashboardPage() {
     const [teamAction, setTeamAction] = useState<'create' | 'join'>('create');
     const [showCreateTeamModal, setShowCreateTeamModal] = useState(false);
     const [isInviting, setIsInviting] = useState(false);
+    const [showRulebook, setShowRulebook] = useState(false);
+    const [showTeamGuide, setShowTeamGuide] = useState(false);
 
     useEffect(() => {
         checkAuth();
@@ -216,6 +221,22 @@ export default function DashboardPage() {
                         {/* ================= TEAM VIEW ================= */}
                         {currentView === "team" && (
                             <div className={styles.teamLayout}>
+                                {/* Top Action Buttons */}
+                                <div className={styles.topActions}>
+                                    <button 
+                                        className={styles.rulebookButton}
+                                        onClick={() => setShowRulebook(true)}
+                                    >
+                                        Rulebook 📖
+                                    </button>
+                                    <button 
+                                        className={styles.guideButton}
+                                        onClick={() => setShowTeamGuide(true)}
+                                    >
+                                        How Teams Work 🔧
+                                    </button>
+                                </div>
+
                                 <div className={styles.headerZone}>
                                     <h1 className={styles.title}>
                                         Team Dashboard
@@ -269,8 +290,17 @@ export default function DashboardPage() {
                                             )}
                                         </div>
 
-                                        {/* Invite Button for Leaders (only if space available) */}
-
+                                        {/* Offline Attendance Status (for team leader, or when confirmed) */}
+                                        {user.isTeamLeader && (
+                                            <OfflineAttendanceModal
+                                                currentStatus={team.willAttendOffline ?? null}
+                                                teamName={team.name}
+                                                onConfirm={async (willAttend) => {
+                                                    await confirmOfflineAttendance(team._id || team.id, willAttend);
+                                                    loadData();
+                                                }}
+                                            />
+                                        )}
 
                                         <div className={styles.teamStatusBox}>
                                             {isInviting ? (
@@ -361,6 +391,18 @@ export default function DashboardPage() {
                 isOpen={showCreateTeamModal}
                 onClose={() => setShowCreateTeamModal(false)}
                 onSuccess={handleTeamCreated}
+            />
+
+            {/* Rulebook Modal */}
+            <RulebookModal 
+                isOpen={showRulebook} 
+                onClose={() => setShowRulebook(false)} 
+            />
+
+            {/* Team Flow Guide Modal */}
+            <TeamFlowGuide 
+                isOpen={showTeamGuide} 
+                onClose={() => setShowTeamGuide(false)} 
             />
         </main>
     );

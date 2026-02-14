@@ -51,3 +51,10 @@ export const cancelInvitation = async (invitationId: string): Promise<any> => {
     return response.data.data;
 };
 
+/**
+ * Confirm offline attendance for the team (leader only)
+ */
+export const confirmOfflineAttendance = async (teamId: string, willAttend: boolean): Promise<Team> => {
+    const response = await apiClient.post<{ status: string; data: { team: Team } }>(`/team/${teamId}/offline-attendance`, { willAttend });
+    return response.data.data.team;
+};

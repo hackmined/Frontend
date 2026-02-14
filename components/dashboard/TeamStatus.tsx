@@ -68,14 +68,14 @@ export default function TeamStatus({ team, invitations = [], isLeader, userId, o
                 </div>
             )}
 
-            {(members as User[]).map((member) => {
+            {(members as User[]).map((member, index) => {
                 const leaderId = getUserId(team.leaderId);
                 const isMemberLeader = member.id === leaderId;
                 const canRemove = isLeader && !isMemberLeader;
 
                 return (
                     <div
-                        key={member.id}
+                        key={member.id || member._id || `member-${index}`}
                         className={styles.memberCard}
                     >
                         <div className={styles.memberInfo}>
@@ -111,9 +111,9 @@ export default function TeamStatus({ team, invitations = [], isLeader, userId, o
             })}
 
             {/* Pending Invitations */}
-            {invitations && invitations.map((invite) => (
+            {invitations && invitations.map((invite, index) => (
                 <div
-                    key={invite.id || invite._id}
+                    key={invite.id || invite._id || `invite-${index}`}
                     className={`${styles.memberCard}`}
                     style={{ opacity: 0.7, borderStyle: 'dashed' }}
                 >

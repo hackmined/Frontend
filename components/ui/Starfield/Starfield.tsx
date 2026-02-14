@@ -1,4 +1,6 @@
-import React, { useMemo } from 'react';
+"use client";
+
+import React, { useState, useEffect } from 'react';
 import styles from './Starfield.module.scss';
 
 interface StarfieldProps {
@@ -13,9 +15,16 @@ const generateStars = (count: number, color: string) => {
 };
 
 const Starfield: React.FC<StarfieldProps> = ({ className, dimmed = false }) => {
-    const smallStars = useMemo(() => generateStars(100, 'white'), []);
-    const mediumStars = useMemo(() => generateStars(50, 'white'), []);
-    const largeStars = useMemo(() => generateStars(20, '#00f2ff'), []);
+    const [smallStars, setSmallStars] = useState('');
+    const [mediumStars, setMediumStars] = useState('');
+    const [largeStars, setLargeStars] = useState('');
+
+    useEffect(() => {
+        // Generate stars only on client side after mount
+        setSmallStars(generateStars(100, 'white'));
+        setMediumStars(generateStars(50, 'white'));
+        setLargeStars(generateStars(20, '#00f2ff'));
+    }, []);
 
     return (
         <div className={`${styles.starfield} ${dimmed ? styles.dimmed : ''} ${className || ''}`}>

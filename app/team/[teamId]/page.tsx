@@ -3,12 +3,13 @@
 import { useEffect, useState } from 'react';
 import { useRouter, useParams } from 'next/navigation';
 import { useAuthStore } from '@/lib/stores/authStore';
-import { getTeam } from '@/lib/api/team';
+import { getTeam, confirmOfflineAttendance } from '@/lib/api/team';
 import { Team, User, getUserId } from '@/types';
 import { getErrorMessage } from '@/lib/utils/errors';
 import TeamCard from '@/components/team/TeamCard';
 import MemberList from '@/components/team/MemberList';
 import InviteForm from '@/components/team/InviteForm';
+import OfflineAttendanceModal from '@/components/team/OfflineAttendanceModal';
 import LoadingSpinner from '@/components/ui/LoadingSpinner/LoadingSpinner';
 import Starfield from '@/components/ui/Starfield/Starfield';
 import styles from '@/styles/shared-page.module.scss';
@@ -25,6 +26,17 @@ export default function TeamManagementPage() {
     // Safe leader check using helper function
     const isLeader = team && user && getUserId(team.leaderId) === user.id;
     const canEdit = team?.status === 'OPEN';
+
+    // Debug: Log leader status
+    useEffect(() => {
+        if (team && user) {
+            console.log('=== Leader Check ===');
+            console.log('Team Leader ID:', getUserId(team.leaderId));
+            console.log('Current User ID:', user.id);
+            console.log('Is Leader:', isLeader);
+            console.log('Team willAttendOffline:', team.willAttendOffline);
+        }
+    }, [team, user, isLeader]);
 
     useEffect(() => {
         checkAuth();
@@ -107,6 +119,36 @@ export default function TeamManagementPage() {
                 </div>
 
                 <div className="space-y-8">
+                    {/* Offline Attendance Confirmation (Leader Only) */}
+                    {/* Temporarily showing to ALL users for debugging */}
+                    <div className={styles.billboardCard}>
+                        <div className={styles.border}></div>
+                        <div className={styles.content}>
+                            <div style={{ padding: '1rem', background: 'rgba(255,255,255,0.1)', marginBottom: '1rem', borderRadius: '8px' }}>
+                                <p style={{ color: 'white', fontSize: '0.9rem' }}>
+                                    Debug Info:<br/>
+                                    Is Leader: {isLeader ? 'YES' : 'NO'}<br/>
+                                    User ID: {user?.id}<br/>
+                                    Leader ID: {team ? getUserId(team.leaderId) : 'N/A'}
+                                </p>
+                            </div>
+                            {isLeader ? (
+                                <OfflineAttendanceModal
+                                    currentStatus={team.willAttendOffline ?? null}
+                                    teamName={team.name}
+                                    onConfirm={async (willAttend) => {
+                                        await confirmOfflineAttendance(team._id || team.id, willAttend);
+                                        await loadTeamData();
+                                    }}
+                                />
+                            ) : (
+                                <div style={{ color: 'white', textAlign: 'center', padding: '2rem' }}>
+                                    <p>You are not the team leader. Only the leader can confirm offline attendance.</p>
+                                </div>
+                            )}
+                        </div>
+                    </div>
+
                     {/* Team Info */}
                     <TeamCard
                         team={team}
