@@ -3,7 +3,7 @@
 .formContainer {
     width: 100%;
     height: 100%;
-    padding: 1rem 3rem;
+    padding: 1rem 1rem;
     display: flex;
     flex-direction: column;
     font-family: var(--font-gaegu);
@@ -18,12 +18,12 @@
 
 .title {
     font-size: 2.6rem;
-    color: #1f2937;
+    color: #f1f5f9;
 }
 
 .subtitle {
     font-size: 1.3rem;
-    color: #64748b;
+    color: #94a3b8;
 }
 
 /* ================= ERROR ================= */
@@ -50,7 +50,7 @@
     display: grid;
     grid-template-columns: auto 1fr;
     align-items: center;
-    gap: 2rem;
+    gap: 1rem;
     padding: 0.6rem 0;
 }
 
@@ -58,7 +58,7 @@
     font-size: 1rem;
     letter-spacing: 0.18em;
     text-transform: uppercase;
-    color: #334155;
+    color: #cbd5e1;
     text-align: left;
     white-space: nowrap;
 }
@@ -80,7 +80,7 @@
     left: 0;
     top: 75%;
     transform: translateY(-50%);
-    color: rgba(0, 0, 0, 0.2);
+    color: rgba(255, 255, 255, 0.2);
     pointer-events: none;
 }
 
@@ -92,8 +92,8 @@
     font-family: var(--font-gaegu);
     font-size: 1.3rem;
     letter-spacing: 0.1em;
-    color: #0f172a;
-    caret-color: #2563eb;
+    color: #f8fafc;
+    caret-color: #60a5fa;
 }
 
 /* ================= ERROR STATE ================= */
@@ -130,15 +130,15 @@
 .choice {
     padding: 0.3rem 1.2rem;
     border-radius: 999px;
-    border: 2px solid #64748b;
+    border: 2px solid #94a3b8;
     background: transparent;
     letter-spacing: 0.15em;
     cursor: pointer;
 }
 
 .choice.active {
-    background: #0f172a;
-    color: #f8fafc;
+    background: #f1f5f9;
+    color: #0f172a;
 }
 
 /* ================= FOOTER ================= */
@@ -155,11 +155,16 @@
     font-weight: 700;
     font-family: var(--font-gaegu);
     cursor: pointer;
+    color: #cbd5e1;
+    
+    &:hover {
+        color: #f1f5f9;
+    }
 }
 
 .submitButton {
-    background: #1f2937;
-    color: white;
+    background: #f1f5f9;
+    color: #0f172a;
     border-radius: 10px;
     font-family: var(--font-gaegu);
     padding: 0.7rem 2rem;
@@ -178,10 +183,10 @@
     width: 42px;
     height: 5px;
     border-radius: 6px;
-    background: #d1d5db;
+    background: #475569;
 
     &.active {
-        background: #1f2937;
+        background: #f1f5f9;
     }
 }
 

@@ -91,13 +91,9 @@
 
 .card {
     width: 100%;
-    // Glassmorphism Dark Theme
-    background: rgba(255, 255, 255, 0.2);
-    backdrop-filter: blur(10px);
-    -webkit-backdrop-filter: blur(10px);
-    border: 1px solid rgba(255, 255, 255, 0.1);
-
-    // Rounded shape instead of square
+    // Dark Mode Card Theme
+    background: #0f172a;
+    border: 3px solid #334155;
     border-radius: 20px;
 
     padding: $spacing-lg;
@@ -105,24 +101,23 @@
     flex-direction: column;
     align-items: center;
     text-align: center;
-    transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275); // Bouncy transition
+    transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
     position: relative;
     overflow: hidden;
 
-    // Inner glow effect
-    box-shadow: inset 0 0 20px rgba(0, 0, 0, 0.2);
+    box-shadow: 0 10px 40px rgba(0, 0, 0, 0.6);
 
     &:hover {
         transform: translateY(-10px) scale(1.02);
-        background: rgba(255, 255, 255, 0.07);
-        border: 1px solid rgba(255, 255, 255, 0.3);
+        background: #1e293b;
+        border-color: #475569;
         box-shadow:
-            0 20px 40px rgba(0, 0, 0, 0.4),
+            0 20px 40px rgba(0, 0, 0, 0.5),
             inset 0 0 20px rgba(255, 255, 255, 0.05);
 
         .imageWrapper {
             transform: scale(1.1);
-            border-color: $accent-2; // Change border color on hover
+            border-color: $accent-2;
             box-shadow: 0 0 15px $accent-2;
         }
 
@@ -138,11 +133,11 @@
     border-radius: 50%;
     overflow: hidden;
     margin-bottom: $spacing-md;
-    border: 3px solid $primary;
+    border: 3px solid #334155;
     background-color: $color-black;
     position: relative;
     transition: all 0.4s ease;
-    box-shadow: 0 0 10px rgba($primary, 0.5);
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
 
     img {
         width: 100%;
@@ -155,15 +150,15 @@
     font-family: $font-family-title;
     font-size: $font-size-lg;
     font-weight: $font-weight-bold;
-    color: $color-white;
+    color: #f1f5f9;
     margin-bottom: $spacing-xs;
-    text-shadow: 0 2px 4px rgba(0, 0, 0, 0.5);
+    text-shadow: none;
 }
 
 .role {
     font-family: $font-family-base;
     font-size: $font-size-md;
-    color: $primary;
+    color: #cbd5e1;
     font-weight: $font-weight-bold;
     margin-bottom: $spacing-md;
     text-transform: uppercase;
@@ -173,7 +168,7 @@
 .bio {
     font-family: $font-family-base;
     font-size: $font-size-sm;
-    color: $text-muted;
+    color: #94a3b8;
     margin-bottom: $spacing-md;
     line-height: 1.5;
     opacity: 0.8;
@@ -189,14 +184,14 @@
     border-top: 1px solid rgba(255, 255, 255, 0.05);
 
     a {
-        color: $color-white;
+        color: #cbd5e1;
         font-size: $font-size-lg;
         transition: all 0.3s ease;
-        opacity: 0.7;
+        opacity: 0.8;
 
         &:hover {
             opacity: 1;
-            color: $accent-2;
+            color: #f1f5f9;
             transform: translateY(-2px);
         }
     }

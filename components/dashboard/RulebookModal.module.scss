@@ -27,8 +27,8 @@
 }
 
 .modal {
-    background: $background;
-    border: 2px solid $foreground;
+    background: #0f172a; /* Dark Slate Blue */
+    border: 3px solid #334155;
     border-radius: 24px;
     max-width: 650px;
     width: 100%;
@@ -36,7 +36,7 @@
     overflow: hidden;
     display: flex;
     flex-direction: column;
-    box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+    box-shadow: 0 20px 60px rgba(0, 0, 0, 0.6);
     animation: slideUp 0.3s ease-out;
 }
 
@@ -56,8 +56,8 @@
     align-items: center;
     justify-content: space-between;
     padding: 1.5rem 2rem;
-    border-bottom: 2px solid $foreground;
-    background: $background;
+    border-bottom: 2px dashed rgba(255, 255, 255, 0.1);
+    background: rgba(255, 255, 255, 0.03);
 }
 
 .titleWrapper {
@@ -66,12 +66,12 @@
     gap: 0.75rem;
 
     svg {
-        color: $primary;
+        color: #cbd5e1;
         flex-shrink: 0;
     }
 
     h2 {
-        color: $foreground;
+        color: #f1f5f9;
         font-family: $font-family-base;
         font-size: 1.75rem;
         font-weight: 700;
@@ -82,8 +82,8 @@
 
 .closeButton {
     background: transparent;
-    border: 2px solid $foreground;
-    color: $foreground;
+    border: 2px solid #475569;
+    color: #cbd5e1;
     width: 40px;
     height: 40px;
     border-radius: 50%;
@@ -100,8 +100,9 @@
     }
 
     &:hover {
-        background: $foreground;
-        color: $background;
+        background: #334155;
+        color: #f1f5f9;
+        border-color: #94a3b8;
         transform: rotate(90deg);
     }
 }
@@ -116,16 +117,16 @@
     }
 
     &::-webkit-scrollbar-track {
-        background: rgba(0, 0, 0, 0.05);
+        background: rgba(255, 255, 255, 0.05);
         border-radius: 4px;
     }
 
     &::-webkit-scrollbar-thumb {
-        background: $primary;
+        background: #475569;
         border-radius: 4px;
 
         &:hover {
-            background: darken($primary, 10%);
+            background: #64748b;
         }
     }
 }
@@ -145,12 +146,12 @@
     margin-bottom: 1rem;
 
     svg {
-        color: $primary;
+        color: #cbd5e1;
         flex-shrink: 0;
     }
 
     h3 {
-        color: $foreground;
+        color: #f1f5f9;
         font-family: $font-family-base;
         font-size: 1.35rem;
         font-weight: 600;
@@ -163,7 +164,7 @@
     padding-left: 1.75rem;
     
     li {
-        color: $foreground;
+        color: #cbd5e1;
         font-family: $font-family-base;
         font-size: 1.05rem;
         margin-bottom: 0.75rem;
@@ -175,7 +176,7 @@
 
         strong {
             font-weight: 700;
-            color: $primary;
+            color: #f1f5f9;
         }
     }
 }
@@ -188,7 +189,7 @@
     }
 
     h4 {
-        color: $foreground;
+        color: #f1f5f9;
         font-family: $font-family-base;
         font-size: 1.15rem;
         font-weight: 600;
@@ -200,20 +201,20 @@
     display: flex;
     gap: 0.75rem;
     padding: 1rem 1.25rem;
-    background: rgba($accent-1, 0.08);
-    border: 2px solid $accent-1;
+    background: rgba(239, 68, 68, 0.1); /* Red tint */
+    border: 2px solid rgba(239, 68, 68, 0.3);
     border-radius: 12px;
     margin-top: 0.75rem;
 
     svg {
-        color: $accent-1;
+        color: #fca5a5;
         flex-shrink: 0;
         margin-top: 0.25rem;
     }
 
     p {
         margin: 0 0 0.5rem 0;
-        color: $foreground;
+        color: #e2e8f0;
         font-size: 1rem;
         line-height: 1.5;
 
@@ -223,7 +224,7 @@
 
         strong {
             font-weight: 700;
-            color: $accent-1;
+            color: #fca5a5;
         }
     }
 
@@ -232,7 +233,7 @@
         padding-left: 1.5rem;
 
         li {
-            color: $foreground;
+            color: #e2e8f0;
             font-size: 0.95rem;
             margin-bottom: 0.4rem;
             line-height: 1.5;
@@ -247,48 +248,48 @@
 .warningNote {
     margin-top: 0.5rem;
     font-weight: 600;
-    color: $accent-1 !important;
+    color: #fca5a5 !important;
 }
 
 .infoBox {
     display: flex;
     gap: 0.75rem;
     padding: 1rem 1.25rem;
-    background: rgba($primary, 0.08);
-    border: 2px solid $primary;
+    background: rgba(255, 255, 255, 0.05); /* White tint */
+    border: 2px solid #334155;
     border-radius: 12px;
     margin-top: 0.75rem;
 
     svg {
-        color: $primary;
+        color: #cbd5e1;
         flex-shrink: 0;
         margin-top: 0.25rem;
     }
 
     p {
         margin: 0;
-        color: $foreground;
+        color: #cbd5e1;
         font-size: 1rem;
         line-height: 1.6;
 
         strong {
             font-weight: 700;
-            color: $primary;
+            color: #f1f5f9;
         }
     }
 }
 
 .footer {
     padding: 1.5rem 2rem;
-    border-top: 2px solid $foreground;
+    border-top: 2px dashed rgba(255, 255, 255, 0.1);
     text-align: center;
-    background: $background;
+    background: rgba(255, 255, 255, 0.03);
 }
 
 .closeBtn {
-    background: $foreground;
-    color: $background;
-    border: 2px solid $foreground;
+    background: #f1f5f9;
+    color: #0f172a;
+    border: 2px solid #f1f5f9;
     padding: 0.875rem 2.5rem;
     border-radius: 12px;
     font-size: 1.1rem;
@@ -298,10 +299,10 @@
     transition: all 0.2s ease;
 
     &:hover {
-        background: $background;
-        color: $foreground;
+        background: #e2e8f0;
+        border-color: #e2e8f0;
         transform: translateY(-2px);
-        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.4);
     }
 
     &:active {
