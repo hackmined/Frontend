@@ -70,9 +70,12 @@
     animation: slideIn 0.5s ease-out;
 
     @media (max-width: 768px) {
-        width: 95%;
+        width: 90%;
+        margin: 0 auto; /* Centered by parent flex */
         padding: 1.5rem;
         height: auto;
+        max-height: 85vh;
+        overflow-y: auto;
         min-height: auto;
     }
 }

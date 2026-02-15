@@ -86,12 +86,11 @@ export default function InviteForm({ onInviteSuccess, onCancel }: InviteFormProp
                     </div>
                 </div>
 
-                <div className={styles.modalFooter} style={{ padding: '1rem 0 0 0', justifyContent: 'flex-start', gap: '1rem' }}>
+                <div className={styles.modalFooter}>
                     <button
                         type="submit"
                         className={`${styles.button} ${styles.createButton}`}
                         disabled={loading}
-                        style={{ transform: 'none' }} // Ensure no weird transforms
                     >
                         {loading ? 'Sending...' : 'Send Invitation'}
                     </button>
