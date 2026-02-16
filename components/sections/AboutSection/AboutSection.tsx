@@ -24,7 +24,7 @@ export default function AboutSection() {
                     </p>
                     <br />
                     <p className={styles.p2}>
-                        Organized by...
+                        Organized by CSI and COE-DS
                     </p>
                 </div>
             </div>
@@ -79,7 +79,7 @@ export default function AboutSection() {
                 {/* 5. $150K+ PRIZES */}
                 <div className={`${styles.statCard} ${styles.card5}`}>
                     <img src="/banner.svg" alt="bg" className={styles.cardBg} />
-                    <div className={styles.statValue}>350K+</div>
+                    <div className={styles.statValue}>150K+</div>
                     <div className={styles.statLabel}>PRIZES</div>
                 </div>
             </div>

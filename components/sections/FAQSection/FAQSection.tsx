@@ -9,11 +9,11 @@ interface FAQItem {
 
 const faqs: FAQItem[] = [
     {
-        question: "What is HackaMined?",
-        answer: "HackaMINeD is a hybrid hackathon, formed by merging HackNUthon and MINeD, where participants build innovative solutions in online and offline (limited seats at Nirma University) modes."
+        question: "What is HACKaMINeD?",
+        answer: "HACKaMINeD is a hybrid hackathon, formed by merging HackNUthon and MINeD, where participants build innovative solutions in online and offline (limited seats at Nirma University) modes."
     },
     {
-        question: "Who can participate in HackaMINeD?",
+        question: "Who can participate in HACKaMINeD?",
         answer: "Anyone can participate beginners, developers, designers, and innovators."
     },
     {
