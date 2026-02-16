@@ -1,0 +1,61 @@
+
+@use '@/styles/variables.scss' as *;
+
+.loadingScreen {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background-color: #0f0f0f; // Matching the deep dark theme
+    z-index: 9999;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    opacity: 1;
+    pointer-events: all;
+    transition: opacity 0.5s ease-in-out; 
+
+    &.hidden {
+        opacity: 0;
+        pointer-events: none;
+    }
+}
+
+.content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 1.5rem;
+    position: relative;
+    z-index: 10000;
+}
+
+.logo {
+    width: 150px;
+    height: auto;
+    object-fit: contain;
+    margin-bottom: 0.5rem;
+    
+    @media (min-width: $breakpoint-tablet) {
+        width: 200px;
+    }
+}
+
+.spinner {
+    // Ensure spinner is visible
+    div[class*="border-gray-600"] {
+        border-color: rgba(255, 255, 255, 0.2);
+        border-top-color: $primary; // Using primary color for the spinner
+    }
+}
+
+.loadingText {
+    color: rgba(255, 255, 255, 0.7);
+    font-size: 0.9rem;
+    font-weight: 500;
+    letter-spacing: 0.05em;
+    font-family: var(--font-mono, monospace); // Use monospace if available, or default
+    min-height: 1.5em; // Prevent layout shift
+    text-align: center;
+}

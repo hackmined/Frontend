@@ -1,8 +1,10 @@
 "use client";
 import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/dist/ScrollTrigger";
-import { useLayoutEffect, useRef } from "react";
+
+import { useLayoutEffect, useRef, useState, useEffect } from "react";
 import styles from './HorizontalScroll.module.scss';
+import LoadingScreen from "@/components/ui/LoadingScreen/LoadingScreen";
 
 // Register GSAP plugin outside component to prevent re-registration on every render
 gsap.registerPlugin(ScrollTrigger);
@@ -12,6 +14,7 @@ interface HorizontalScrollProps {
 }
 
 export default function HorizontalScroll({ children }: HorizontalScrollProps) {
+
     const sectionRef = useRef<HTMLDivElement | null>(null);
     const triggerRef = useRef<HTMLDivElement | null>(null);
     const bgRef = useRef<HTMLImageElement | null>(null);
@@ -20,6 +23,30 @@ export default function HorizontalScroll({ children }: HorizontalScrollProps) {
     const portalRef = useRef<HTMLDivElement | null>(null);
     const logoRef = useRef<HTMLImageElement | null>(null);
     const indicatorRef = useRef<HTMLDivElement | null>(null);
+    const [isLoading, setIsLoading] = useState(true);
+
+    useEffect(() => {
+        // Minimum loading time of 2 seconds to prevent flickering
+        const minLoadTime = 2000;
+        const startTime = Date.now();
+
+        const handleLoad = () => {
+            const elapsedTime = Date.now() - startTime;
+            const remainingTime = Math.max(0, minLoadTime - elapsedTime);
+
+            setTimeout(() => {
+                setIsLoading(false);
+            }, remainingTime);
+        };
+
+        if (document.readyState === 'complete') {
+            handleLoad();
+        } else {
+            window.addEventListener('load', handleLoad);
+        }
+
+        return () => window.removeEventListener('load', handleLoad);
+    }, []);
 
     useLayoutEffect(() => {
         let ctx = gsap.matchMedia();
@@ -455,6 +482,9 @@ export default function HorizontalScroll({ children }: HorizontalScrollProps) {
 
     return (
         <main className={styles.scrollSectionOuter}>
+            {/* Loading Screen Overlay */}
+            {isLoading && <LoadingScreen />}
+
             {/* Parallax Background Image */}
             <img
                 ref={bgRef}
