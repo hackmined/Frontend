@@ -66,7 +66,7 @@ const initialCategories: OrganizerCategory[] = [
             },
             {
                 id: 5,
-                name: "Dr. Sapan Mankand",
+                name: "Dr. Sapan Mankad",
                 role: "Faculty",
                 image: "/TeamPhotos/Faculties/SM.jpg",
                 bio: "",

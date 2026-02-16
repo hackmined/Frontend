@@ -26,7 +26,7 @@ const faqs: FAQItem[] = [
     },
     {
         question: "If you have additional questions…",
-        answer: "You can contact us at hackamined.contact@gmail.com or reach out via our official Discord server."
+        answer: "You can contact us at hackamined@nirmauni.ac.in or reach out via our official Discord server."
     }
 ];
 

@@ -75,7 +75,7 @@ export default function ContactSection() {
                             <h3>General Inquiries</h3>
                             <p>
                                 Have a question about the hackathon? <br />
-                                Email us at: <a href="mailto:hackamined.contact@gmail.com">hackamined.contact@gmail.com</a>
+                                Email us at: <a href="mailto:hackamined@nirmauni.ac.in">hackamined@nirmauni.ac.in</a>
                             </p>
                         </div>
 
