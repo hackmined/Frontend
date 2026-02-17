@@ -168,7 +168,7 @@ const initialCategories: OrganizerCategory[] = [
         id: 7,
         name: "Harsh Shah",
         role: "",
-        image: "/TeamPhotos/Students/Jay.jpg",
+        image: "/TeamPhotos/Students/Harsh_M.jpg",
         bio: "",
         socials: {
           linkedin: "https://www.linkedin.com/in/harsh-mehul-shah",
