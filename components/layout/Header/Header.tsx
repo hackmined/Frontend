@@ -62,7 +62,8 @@ export default function Header() {
                 <Link href="/" className={styles.logo} data-nav-logo>
                     {pathname !== '/' && (
                         <img
-                            src="/Hackamined Logo White.svg"
+                            src="/Hackamined Logo.svg"
+                            style={{ filter: 'invert(1)' }}
                             alt="Hackamined"
                             className={styles.staticLogo}
                         />

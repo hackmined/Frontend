@@ -257,7 +257,7 @@ const initialCategories: OrganizerCategory[] = [
         id: 15,
         name: "Aryan Vadhadiya",
         role: "",
-        image: "/TeamPhotos/Students/Aryan.jpg",
+        image: "/TeamPhotos/Students/Aryan_V.jpg",
         bio: "",
         socials: {
           linkedin: "https://www.linkedin.com/in/aryan-vadhadiya-4608b7320/",
