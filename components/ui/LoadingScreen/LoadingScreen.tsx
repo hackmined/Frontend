@@ -35,15 +35,15 @@ export default function LoadingScreen({ className = '' }: LoadingScreenProps) {
 
     useEffect(() => {
         const ctx = gsap.context(() => {
-            gsap.fromTo(logoRef.current, 
+            gsap.fromTo(logoRef.current,
                 { opacity: 0.5, scale: 0.95 },
-                { 
-                    opacity: 1, 
-                    scale: 1.05, 
-                    duration: 1.5, 
-                    repeat: -1, 
-                    yoyo: true, 
-                    ease: "sine.inOut" 
+                {
+                    opacity: 1,
+                    scale: 1.05,
+                    duration: 1.5,
+                    repeat: -1,
+                    yoyo: true,
+                    ease: "sine.inOut"
                 }
             );
 
@@ -61,11 +61,12 @@ export default function LoadingScreen({ className = '' }: LoadingScreenProps) {
     return (
         <div ref={containerRef} className={`${styles.loadingScreen} ${className}`}>
             <div className={styles.content}>
-                 <img 
+                <img
                     ref={logoRef}
-                    src="/Hackamined Logo White.svg" 
-                    alt="Hackamined" 
+                    src="/Hackamined Logo.svg"
+                    alt="Hackamined"
                     className={styles.logo}
+                    style={{ filter: "invert(100%)" }}
                 />
                 <LoadingSpinner size="lg" className={styles.spinner} />
                 <p ref={textRef} className={styles.loadingText}>{loadingText}</p>

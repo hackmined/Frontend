@@ -513,9 +513,10 @@ export default function HorizontalScroll({ children }: HorizontalScrollProps) {
             {/* Logo - Animates from center to navbar */}
             <img
                 ref={logoRef}
-                src="/Hackamined Logo White.svg"
+                src="/Hackamined Logo.svg"
                 alt="HackaMined"
                 className={styles.animatedLogo}
+                style={{ filter: "invert(100%)", fill: "white" }}
             />
 
             {/* Portal Overlay - Creates "entering" effect on scroll */}
