@@ -85,13 +85,13 @@ export default function AboutSection() {
           <div className={styles.statLabel}>STATES</div>
         </div>
 
-        {/* 5. $150K+ PRIZES */}
-        <div className={`${styles.statCard} ${styles.card5}`}>
-          <img src="/banner.svg" alt="bg" className={styles.cardBg} />
-          <div className={styles.statValue}>150K+</div>
-          <div className={styles.statLabel}>PRIZES</div>
-        </div>
-      </div>
-    </section>
-  );
+                {/* 5. $450K+ PRIZE POOL */}
+                <div className={`${styles.statCard} ${styles.card5}`}>
+                    <img src="/banner.svg" alt="bg" className={styles.cardBg} />
+                    <div className={styles.statValue}>450K+</div>
+                    <div className={styles.statLabel}>PRIZE POOL</div>
+                </div>
+            </div>
+        </section>
+    );
 }
