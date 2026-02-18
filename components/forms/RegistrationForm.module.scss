@@ -60,7 +60,8 @@
     text-transform: uppercase;
     color: #cbd5e1;
     text-align: left;
-    white-space: nowrap;
+    white-space: normal;
+    word-wrap: break-word;
 }
 
 .required {
@@ -70,8 +71,10 @@
 .valueWrapper {
     position: relative;
     display: flex;
-    align-items: center;
-    gap: 1rem;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 0.3rem;
+    width: 100%;
 }
 
 .valueWrapper::before {
@@ -85,7 +88,7 @@
 }
 
 .deviceInput {
-    flex: 1;
+    width: 100%;
     background: transparent;
     border: none;
     outline: none;
@@ -108,8 +111,12 @@
 
 .fieldError {
     font-size: 0.8rem;
-    color: #b91c1c;
-    white-space: nowrap;
+    color: #ef4444;
+    white-space: normal;
+    word-wrap: break-word;
+    margin-top: 0.2rem;
+    padding-left: 0.2rem;
+    max-width: 100%;
 }
 
 /* ================= YES / NO ================= */
@@ -118,13 +125,14 @@
     display: grid;
     grid-template-columns: auto 1fr;
     align-items: center;
-    gap: 2rem;
+    gap: 1rem;
     padding: 0.8rem 0;
 }
 
 .choiceGroup {
     display: flex;
     gap: 0.8rem;
+    flex-wrap: wrap;
 }
 
 .choice {
@@ -134,11 +142,20 @@
     background: transparent;
     letter-spacing: 0.15em;
     cursor: pointer;
+    font-family: var(--font-gaegu);
+    font-size: 1rem;
+    color: #cbd5e1;
+    transition: all 0.2s ease;
 }
 
 .choice.active {
     background: #f1f5f9;
     color: #0f172a;
+    border-color: #f1f5f9;
+}
+
+.choice:hover {
+    border-color: #f1f5f9;
 }
 
 /* ================= FOOTER ================= */
