@@ -1,340 +1,339 @@
-@use '@/styles/variables.scss' as *;
+@use "@/styles/variables.scss" as *;
 
 .aboutSection {
-    width: 100vw;
-    height: 100vh;
-    flex-shrink: 0;
-    display: flex;
-    position: relative;
-    // border-right: 1px solid $color-black;
-    // border-left: 1px solid $color-black;
+  width: 100vw;
+  height: 100vh;
+  flex-shrink: 0;
+  display: flex;
+  position: relative;
+  // border-right: 1px solid $color-black;
+  // border-left: 1px solid $color-black;
 
-    @media (max-width: $breakpoint-mobile) {
-        flex-direction: column;
-        height: auto;
-        min-height: 100vh;
-        overflow: hidden;
-        padding-top: 4rem; // Add top padding
-        padding-bottom: 4rem; // Add bottom padding
-    }
+  @media (max-width: $breakpoint-mobile) {
+    flex-direction: column;
+    height: auto;
+    min-height: 100vh;
+    overflow: hidden;
+    padding-top: 4rem; // Add top padding
+    padding-bottom: 4rem; // Add bottom padding
+  }
 }
 
 // --- First Half: Intro ---
 .imageWrapper {
-    width: 40vw;
-    height: 100%;
-    position: relative;
-    display: flex;
-    justify-content: center;
-    align-items: center;
+  width: 40vw;
+  height: 100%;
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 
-    @media (max-width: $breakpoint-mobile) {
-        width: 100%;
-        height: 50vh; // Reduced to pull next section closer
-    }
+  @media (max-width: $breakpoint-mobile) {
+    width: 100%;
+    height: 50vh; // Reduced to pull next section closer
+  }
 }
 
 .bgImageContainer {
-    position: absolute;
-    top: 80%;
-    left: 55%;
-    transform: translate(-50%, -50%);
-    width: 200%;
-    height: 100%;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    z-index: 1;
+  position: absolute;
+  top: 80%;
+  left: 55%;
+  transform: translate(-50%, -50%);
+  width: 200%;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1;
 
-    @media (max-width: $breakpoint-mobile) {
-        width: 100%; // Reset width for mobile
-        top: 50%; // Match text box center
-        left: 50%;
-        height: 180%; // Elongated slightly
-    }
+  @media (max-width: $breakpoint-mobile) {
+    width: 100%; // Reset width for mobile
+    top: 50%; // Match text box center
+    left: 50%;
+    height: 180%; // Elongated slightly
+  }
 }
 
 .aboutImage {
-    width: 200%;
-    height: auto;
-    max-height: 120vh;
-    object-fit: cover;
+  width: 200%;
+  height: auto;
+  max-height: 120vh;
+  object-fit: cover;
 
-    @media (max-width: $breakpoint-mobile) {
-        width: 150%; // Still a bit larger to fill space but not 200%
-        max-height: 60vh;
-    }
+  @media (max-width: $breakpoint-mobile) {
+    width: 150%; // Still a bit larger to fill space but not 200%
+    max-height: 60vh;
+  }
 }
 
 .textBox {
-    position: absolute;
-    top: 50%;
-    left: 55%;
-    transform: translate(-50%, -50%) rotate(0.5deg);
-    z-index: 2;
+  position: absolute;
+  top: 50%;
+  left: 55%;
+  transform: translate(-50%, -50%) rotate(0.5deg);
+  z-index: 2;
 
-    padding: 2rem;
-    max-width: 600px;
-    width: 115%;
-    color: $color-black;
+  padding: 2rem;
+  max-width: 600px;
+  width: 115%;
+  color: $color-black;
 
-    @media (max-width: $breakpoint-mobile) {
-        width: 65%; // Slightly narrower to fit inside monitor better
-        top: 20%; // Match image container center
-        left: 50%;
-        transform: translate(-50%, -50%);
-        text-align: center;
-    }
+  @media (max-width: $breakpoint-mobile) {
+    width: 65%; // Slightly narrower to fit inside monitor better
+    top: 20%; // Match image container center
+    left: 50%;
+    transform: translate(-50%, -50%);
+    text-align: center;
+  }
 
-    h2 {
-        font-size: clamp(1.5rem, 3vw, 2.5rem);
-        margin: 0 0 1rem 0;
-        font-weight: bold;
-    }
+  h2 {
+    font-size: clamp(1.5rem, 3vw, 2.5rem);
+    margin: 0 0 1rem 0;
+    font-weight: bold;
+  }
 
-    .p1 {
-        font-size: clamp(0.9rem, 1.5vw, 1.25rem);
-        line-height: 1.5;
-        margin: 0;
-        opacity: 0.9;
-        rotate: 0.5deg;
-    }
+  .p1 {
+    font-size: clamp(0.9rem, 1.5vw, 1.25rem);
+    line-height: 1.5;
+    margin: 0;
+    opacity: 0.9;
+    rotate: 0.5deg;
+  }
 
-    .p2 {
-        font-size: clamp(0.7rem, 1.5vw, 1.25rem);
-        line-height: 1.5;
-        margin: 0;
-        opacity: 0.9;
-        rotate: -0.8deg;
-    }
+  .p2 {
+    font-size: clamp(0.7rem, 1.5vw, 1.25rem);
+    line-height: 1.5;
+    margin: 0;
+    opacity: 0.9;
+    rotate: -0.8deg;
+  }
 }
-
 
 // --- Second Half: Stats / Spaceship ---
 .statsWrapper {
-    width: 100vw;
-    height: 100%;
-    position: relative;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    overflow: hidden;
+  width: 100vw;
+  height: 100%;
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  overflow: hidden;
 
-    @media (max-width: $breakpoint-mobile) {
-        width: 100%;
-        height: auto;
-        min-height: 80vh;
-        margin-top: 0;
-        padding: 0rem 1rem 6rem 1rem; // Reduced top padding
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        gap: 0; // Control individually with margins
-    }
+  @media (max-width: $breakpoint-mobile) {
+    width: 100%;
+    height: auto;
+    min-height: 80vh;
+    margin-top: 0;
+    padding: 0rem 1rem 6rem 1rem; // Reduced top padding
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0; // Control individually with margins
+  }
 }
 
 .centralScreen {
+  position: absolute;
+  left: 60%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  width: clamp(250px, 40vw, 550px);
+  aspect-ratio: 16 / 9;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 10;
+
+  @media (max-width: $breakpoint-mobile) {
+    position: relative;
+    left: auto;
+    top: auto;
+    transform: rotate(-10deg); // Dynamic angle
+    width: 95%;
+    margin: 1.5rem 0; // Reduced margin from 3rem
+    z-index: 5;
+  }
+
+  .screenBg {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
     position: absolute;
-    left: 60%;
-    top: 55%;
-    transform: translate(-50%, -50%);
-    width: clamp(300px, 45vw, 650px);
-    aspect-ratio: 16 / 9;
+    top: 0;
+    left: 0;
+
+    @media (max-width: $breakpoint-mobile) {
+      position: relative;
+      height: auto;
+    }
+  }
+
+  .screenContent {
+    z-index: 2;
+    width: 63%;
+    height: 58%;
+    border-radius: 6px;
+    overflow: hidden;
     display: flex;
     justify-content: center;
     align-items: center;
-    z-index: 10;
+    margin-top: 2%;
 
     @media (max-width: $breakpoint-mobile) {
-        position: relative;
-        left: auto;
-        top: auto;
-        transform: rotate(-10deg); // Dynamic angle
-        width: 95%;
-        margin: 1.5rem 0; // Reduced margin from 3rem
-        z-index: 5;
+      position: absolute; // Re-absolute because screenBg is relative now
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      width: 62%;
+      height: 57%;
+      margin-top: 1%;
     }
 
-    .screenBg {
-        width: 100%;
-        height: 100%;
-        object-fit: contain;
-        position: absolute;
-        top: 0;
-        left: 0;
-
-        @media (max-width: $breakpoint-mobile) {
-            position: relative;
-            height: auto;
-        }
+    img,
+    video {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
     }
-
-    .screenContent {
-        z-index: 2;
-        width: 63%;
-        height: 58%;
-        border-radius: 6px;
-        overflow: hidden;
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        margin-top: -2.5%;
-
-        @media (max-width: $breakpoint-mobile) {
-            position: absolute; // Re-absolute because screenBg is relative now
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-            width: 62%;
-            height: 57%;
-            margin-top: -1%;
-        }
-
-        img,
-        video {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-        }
-    }
+  }
 }
 
 .statCard {
+  position: absolute;
+  // Default fallback if not overridden
+  width: clamp(140px, 16vw, 240px);
+  aspect-ratio: 4 / 3;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  // Adjusted padding: Top 1rem, Sides 1.5rem, Bottom 3rem (increased gap)
+  padding: 1rem 2.5rem 2.5rem 2rem;
+
+  @media (max-width: $breakpoint-mobile) {
+    position: relative;
+    top: auto !important;
+    left: auto !important;
+    right: auto !important;
+    bottom: auto !important;
+    transform: none !important;
+    width: 75% !important;
+    max-width: 280px;
+    margin: -2rem 0; // Overlap for depth
+    z-index: 6;
+
+    &:nth-child(odd) {
+      align-self: flex-start;
+      margin-left: 5%;
+      transform: rotate(-5deg) !important;
+    }
+
+    &:nth-child(even) {
+      align-self: flex-end;
+      margin-right: 5%;
+      transform: rotate(5deg) !important;
+    }
+  }
+
+  // Enable container queries
+  container-type: inline-size;
+
+  animation-name: float;
+  animation-duration: 6s;
+  animation-iteration-count: infinite;
+  animation-timing-function: ease-in-out;
+
+  .cardBg {
     position: absolute;
-    // Default fallback if not overridden
-    width: clamp(140px, 16vw, 240px);
-    aspect-ratio: 4 / 3;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    text-align: center;
-    // Adjusted padding: Top 1rem, Sides 1.5rem, Bottom 3rem (increased gap)
-    padding: 1rem 2.5rem 2.5rem 2rem;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: fill;
+    z-index: -1;
+  }
 
-    @media (max-width: $breakpoint-mobile) {
-        position: relative;
-        top: auto !important;
-        left: auto !important;
-        right: auto !important;
-        bottom: auto !important;
-        transform: none !important;
-        width: 75% !important;
-        max-width: 280px;
-        margin: -2rem 0; // Overlap for depth
-        z-index: 6;
+  .statValue {
+    font-family: inherit;
+    // Scale relative to container width (using cqw units)
+    font-size: 18cqw;
+    font-weight: 800;
+    color: #000;
+    line-height: 1;
+    margin-bottom: 2cqw;
+  }
 
-        &:nth-child(odd) {
-            align-self: flex-start;
-            margin-left: 5%;
-            transform: rotate(-5deg) !important;
-        }
-
-        &:nth-child(even) {
-            align-self: flex-end;
-            margin-right: 5%;
-            transform: rotate(5deg) !important;
-        }
-    }
-
-    // Enable container queries
-    container-type: inline-size;
-
-    animation-name: float;
-    animation-duration: 6s;
-    animation-iteration-count: infinite;
-    animation-timing-function: ease-in-out;
-
-    .cardBg {
-        position: absolute;
-        top: 0;
-        left: 0;
-        width: 100%;
-        height: 100%;
-        object-fit: fill;
-        z-index: -1;
-    }
-
-    .statValue {
-        font-family: inherit;
-        // Scale relative to container width (using cqw units)
-        font-size: 18cqw;
-        font-weight: 800;
-        color: #000;
-        line-height: 1;
-        margin-bottom: 2cqw;
-    }
-
-    .statLabel {
-        font-family: inherit;
-        font-size: 8cqw;
-        font-weight: 600;
-        text-transform: uppercase;
-        color: #000;
-        letter-spacing: 0.05em;
-    }
+  .statLabel {
+    font-family: inherit;
+    font-size: 8cqw;
+    font-weight: 600;
+    text-transform: uppercase;
+    color: #000;
+    letter-spacing: 0.05em;
+  }
 }
 
 // Positioning & Custom Sizes
 .card1 {
-    // Top Left - UPDATED BY USER
-    top: 42%;
-    left: 21%;
-    width: clamp(120px, 21vw, 360px);
-    aspect-ratio: 4/3;
-    animation-delay: 0s;
-    rotate: 6deg;
+  // Top Left - UPDATED BY USER
+  top: 42%;
+  left: 21%;
+  width: clamp(120px, 21vw, 360px);
+  aspect-ratio: 4/3;
+  animation-delay: 0s;
+  rotate: 6deg;
 }
 
 .card2 {
-    // Bottom Left
-    bottom: 5%;
-    left: 23%;
-    width: clamp(220px, 22vw, 360px);
-    aspect-ratio: 4/3;
-    animation-delay: 1.5s;
-    rotate: -8deg;
+  // Bottom Left
+  bottom: 5%;
+  left: 23%;
+  width: clamp(220px, 22vw, 360px);
+  aspect-ratio: 4/3;
+  animation-delay: 1.5s;
+  rotate: -8deg;
 }
 
 .card3 {
-    // Center Bottom
-    bottom: -7%;
-    left: 43%;
-    width: clamp(160px, 26vw, 460px);
-    aspect-ratio: 4/3;
-    animation-delay: 0.5s;
+  // Center Bottom
+  bottom: -7%;
+  left: 43%;
+  width: clamp(160px, 26vw, 460px);
+  aspect-ratio: 4/3;
+  animation-delay: 0.5s;
 }
 
 .card4 {
-    // Top Right
-    top: 38%;
-    right: 0%;
-    width: clamp(110px, 18vw, 380px);
-    aspect-ratio: 4/3;
-    animation-delay: 2s;
-    rotate: -10deg;
+  // Top Right
+  top: 38%;
+  right: 0%;
+  width: clamp(110px, 18vw, 380px);
+  aspect-ratio: 4/3;
+  animation-delay: 2s;
+  rotate: -10deg;
 }
 
 .card5 {
-    // Bottom Right
-    bottom: 12%;
-    right: 2%;
-    width: clamp(150px, 20vw, 350px);
-    aspect-ratio: 4/3;
-    animation-delay: 1s;
-    rotate: 6deg;
+  // Bottom Right
+  bottom: 12%;
+  right: 2%;
+  width: clamp(150px, 20vw, 350px);
+  aspect-ratio: 4/3;
+  animation-delay: 1s;
+  rotate: 6deg;
 }
 
 @keyframes float {
-    0% {
-        transform: translateY(0px) rotate(0deg);
-    }
+  0% {
+    transform: translateY(0px) rotate(0deg);
+  }
 
-    50% {
-        transform: translateY(-12px) rotate(1deg);
-    }
+  50% {
+    transform: translateY(-12px) rotate(1deg);
+  }
 
-    100% {
-        transform: translateY(0px) rotate(0deg);
-    }
+  100% {
+    transform: translateY(0px) rotate(0deg);
+  }
 }
