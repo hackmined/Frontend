@@ -25,7 +25,7 @@ export default function CTASection() {
                         <h4>Follow Us</h4>
                         <div className={styles.socialLinks}>
                             <a href="#twitter">Twitter</a>
-                            <a href="#discord">Discord</a>
+                            <a href="https://discord.gg/ezqzBGCk" target="_blank" rel="noopener noreferrer">Discord</a>
                             <a href="#linkedin">LinkedIn</a>
                         </div>
                     </div>
