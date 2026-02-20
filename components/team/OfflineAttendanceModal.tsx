@@ -120,7 +120,7 @@ export default function OfflineAttendanceModal({
                                 <div className={styles.subsection}>
                                     <h5>1. Team Composition</h5>
                                     <ul>
-                                        <li>Each team must have <strong>2-4 members</strong></li>
+                                        <li>Each team must have <strong>2-5 members</strong></li>
                                         <li>All team members must be registered on the platform</li>
                                         <li>Teams cannot be modified after the registration deadline</li>
                                     </ul>

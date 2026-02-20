@@ -50,7 +50,7 @@ export default function MemberList({ members, leaderId, isUserLeader, canEdit, o
             <div className={styles.border}></div>
             <div className={styles.content}>
                 <h3 className={styles.cardHeader}>
-                    Team Members ({members.length}/4)
+                    Team Members ({members.length}/5)
                 </h3>
 
                 {error && (

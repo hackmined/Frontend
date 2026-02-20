@@ -274,11 +274,11 @@ export default function DashboardPage() {
                                                     Members
                                                 </span>
                                                 <span className={styles.value}>
-                                                    {team.members.length} / 4
+                                                    {team.members.length} / 5
                                                 </span>
                                             </div>
 
-                                            {user.isTeamLeader && !isInviting && (team.members.length + (teamInvitations?.length || 0)) < 4 && (
+                                            {user.isTeamLeader && !isInviting && (team.members.length + (teamInvitations?.length || 0)) < 5 && (
                                                 <div className={styles.inviteButtonContainer}>
                                                     <button
                                                         onClick={() => setIsInviting(true)}

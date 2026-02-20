@@ -42,7 +42,7 @@ export default function RulebookModal({ isOpen, onClose }: RulebookModalProps) {
                         <div className={styles.subsection}>
                             <h4>1. Team Composition</h4>
                             <ul>
-                                <li>Each team must have <strong>2-4 members</strong></li>
+                                <li>Each team must have <strong>2-5 members</strong></li>
                                 <li>All team members must be registered on the platform</li>
                                 <li>Teams cannot be modified after the registration deadline</li>
                             </ul>
