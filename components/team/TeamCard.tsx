@@ -111,7 +111,7 @@ export default function TeamCard({ team, isLeader = false, canEdit = false, onTe
                 <div className="text-gray-400 text-sm space-y-2 mb-6 border-t border-white/10 pt-4">
                     <p className="flex items-center gap-2">
                         <span className="text-gray-500">Members:</span>
-                        <span className="text-white font-mono">{team.members.length}/4</span>
+                        <span className="text-white font-mono">{team.members.length}/5</span>
                     </p>
                     {team.lockDate && (
                         <p className="flex items-center gap-2">

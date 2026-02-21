@@ -1,5 +1,4 @@
-"use client";
-
+'use client';
 import React, { useState, useEffect } from 'react';
 import styles from './Starfield.module.scss';
 
@@ -20,7 +19,6 @@ const Starfield: React.FC<StarfieldProps> = ({ className, dimmed = false }) => {
     const [largeStars, setLargeStars] = useState('');
 
     useEffect(() => {
-        // Generate stars only on client side after mount
         setSmallStars(generateStars(100, 'white'));
         setMediumStars(generateStars(50, 'white'));
         setLargeStars(generateStars(20, '#00f2ff'));

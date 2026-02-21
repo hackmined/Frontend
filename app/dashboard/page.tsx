@@ -4,7 +4,7 @@ import { useEffect, useState } from "react";
 import { useRouter } from "next/navigation";
 import { useAuthStore } from "@/lib/stores/authStore";
 import { getUserProfile } from "@/lib/api/user";
-import { getTeam, confirmOfflineAttendance } from "@/lib/api/team";
+import { getTeam, confirmOfflineAttendance, deleteTeam } from "@/lib/api/team";
 import { User, Team } from "@/types";
 
 import TeamStatus from "@/components/dashboard/TeamStatus";
@@ -34,6 +34,7 @@ export default function DashboardPage() {
     const [isInviting, setIsInviting] = useState(false);
     const [showRulebook, setShowRulebook] = useState(false);
     const [showTeamGuide, setShowTeamGuide] = useState(false);
+    const [isDeletingTeam, setIsDeletingTeam] = useState(false);
 
     useEffect(() => {
         checkAuth();
@@ -107,6 +108,23 @@ export default function DashboardPage() {
                     setTeamInvitations(invitations || []);
                 });
             }
+        }
+    };
+
+    const handleDeleteTeam = async () => {
+        if (!confirm('Are you sure you want to delete the team? This cannot be undone. All members will be removed from the team.')) return;
+        setIsDeletingTeam(true);
+        try {
+            await deleteTeam();
+            setTeam(null);
+            setTeamInvitations([]);
+            setTeamAction('create');
+            await loadData(); // refresh user state (clears teamId & isTeamLeader)
+        } catch (error) {
+            console.error('Failed to delete team:', error);
+            alert('Failed to delete team. Please try again.');
+        } finally {
+            setIsDeletingTeam(false);
         }
     };
 
@@ -285,6 +303,24 @@ export default function DashboardPage() {
                                                         className={styles.inviteButton}
                                                     >
                                                         Invite Member
+                                                    </button>
+                                                </div>
+                                            )}
+
+                                            {user.isTeamLeader && (
+                                                <div className={styles.inviteButtonContainer}>
+                                                    <button
+                                                        onClick={handleDeleteTeam}
+                                                        className={styles.deleteTeamButton}
+                                                        disabled={isDeletingTeam}
+                                                    >
+                                                        <svg xmlns="http://www.w3.org/2000/svg" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                                                            <polyline points="3 6 5 6 21 6"/>
+                                                            <path d="M19 6l-1 14a2 2 0 0 1-2 2H8a2 2 0 0 1-2-2L5 6"/>
+                                                            <path d="M10 11v6M14 11v6"/>
+                                                            <path d="M9 6V4a1 1 0 0 1 1-1h4a1 1 0 0 1 1 1v2"/>
+                                                        </svg>
+                                                        {isDeletingTeam ? 'Deleting...' : 'Delete Team'}
                                                     </button>
                                                 </div>
                                             )}

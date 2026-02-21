@@ -1,14 +1,14 @@
 import type { Metadata } from "next";
-import {Bruno_Ace, Nunito } from "next/font/google";
+import { Gaegu, Bruno_Ace } from "next/font/google";
 import "./globals.css";
 import Header from "@/components/layout/Header/Header";
 import ScrollProgress from "@/components/layout/ScrollProgress/ScrollProgress";
 import CursorTrail from "@/components/ui/CursorTrail/CursorTrail";
 
-const nunito = Nunito({
+const gaegu = Gaegu({
   subsets: ["latin"],
-  weight: ["300","400", "700"],
-  variable: "--font-nunito"
+  weight: ["300", "400", "700"],
+  variable: "--font-gaegu"
 });
 
 const brunoAce = Bruno_Ace({
@@ -30,11 +30,11 @@ export default function RootLayout({
   return (
     <html lang="en">
       <head>
-        {/* <link rel="preload" href="/panel.svg" as="image" /> */}
+        <link rel="preload" href="/panel.svg" as="image" />
         <link rel="preload" href="/bg.svg" as="image" />
         <script src="https://accounts.google.com/gsi/client" async defer></script>
       </head>
-      <body className={`${nunito.className} ${brunoAce.variable}`}>
+      <body className={`${gaegu.className} ${brunoAce.variable}`}>
         <CursorTrail />
         <ScrollProgress />
         <Header />

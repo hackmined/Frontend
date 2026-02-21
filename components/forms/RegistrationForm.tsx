@@ -50,7 +50,7 @@ export default function RegistrationForm({ onSubmit, loading, error }: Props) {
             ["fullName", "phoneNumber", "whatsappNumber"],
             ["college", "degree", "branch", "graduationYear"],
             ["city", "state", "country"],
-            [], // Social profiles - optional
+            [],
         ];
 
         const errors = validateFields(formData, stepFields[currentStep - 1]);
@@ -90,10 +90,9 @@ export default function RegistrationForm({ onSubmit, loading, error }: Props) {
                 <input
                     name={name}
                     type={type}
-                    value={String(formData[name] || "")}
+                    value={formData[name] || ""}
                     onChange={handleChange}
                     className={styles.deviceInput}
-                    placeholder={`Enter ${label.toLowerCase()}`}
                 />
                 {validationErrors[name] && (
                     <p className={styles.fieldError}>{validationErrors[name]}</p>

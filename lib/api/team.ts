@@ -58,3 +58,11 @@ export const confirmOfflineAttendance = async (teamId: string, willAttend: boole
     const response = await apiClient.post<{ status: string; data: { team: Team } }>(`/team/${teamId}/offline-attendance`, { willAttend });
     return response.data.data.team;
 };
+
+/**
+ * Delete team (leader only)
+ */
+export const deleteTeam = async (): Promise<{ message: string }> => {
+    const response = await apiClient.delete<{ status: string; data: { message: string } }>('/team/delete');
+    return response.data.data;
+};
