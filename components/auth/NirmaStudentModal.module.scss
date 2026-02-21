@@ -1,269 +1,273 @@
 .modalOverlay {
-    position: fixed;
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(0, 0, 0, 0.6);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 2000;
+  padding: 1rem;
+  animation: fadeIn 0.2s ease;
+  backdrop-filter: blur(4px);
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+.modalPanel {
+  background: #0f172a; /* Dark slate blue */
+  border-radius: 16px;
+  border: 3px solid #334155;
+  box-shadow: 0 10px 40px rgba(0, 0, 0, 0.6);
+  width: 100%;
+  max-width: 550px;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  font-family: $font-family-base;
+  animation: slideIn 0.3s ease;
+}
+
+@keyframes slideIn {
+  from {
+    transform: translateY(-30px) scale(0.95);
+    opacity: 0;
+  }
+  to {
+    transform: translateY(0) scale(1);
+    opacity: 1;
+  }
+}
+
+.modalHeader {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  padding: 1.5rem 1.75rem;
+  border-bottom: 2px dashed rgba(255, 255, 255, 0.1);
+  background: rgba(255, 255, 255, 0.03);
+}
+
+.headerIcon {
+  width: 32px;
+  height: 32px;
+  color: #cbd5e1;
+  flex-shrink: 0;
+}
+
+.title {
+  font-family: $font-family-base;
+  font-size: 1.9rem;
+  font-weight: 700;
+  color: #f1f5f9;
+  margin: 0;
+  text-transform: uppercase;
+  letter-spacing: 0.03em;
+}
+
+.modalBody {
+  padding: 2rem 1.75rem;
+}
+
+.question {
+  font-size: 1.4rem;
+  font-weight: 600;
+  color: #f1f5f9;
+  text-align: center;
+  margin-bottom: 1.75rem;
+  line-height: 1.4;
+}
+
+.infoBox {
+  display: flex;
+  gap: 0.75rem;
+  background: rgba(255, 255, 255, 0.05);
+  border: 2px solid #334155;
+  border-radius: 10px;
+  padding: 1rem;
+  margin-bottom: 1rem;
+  align-items: flex-start;
+}
+
+.infoIcon {
+  width: 22px;
+  height: 22px;
+  color: #cbd5e1;
+  flex-shrink: 0;
+  margin-top: 2px;
+  opacity: 0.7;
+}
+
+.infoText {
+  flex: 1;
+
+  strong {
+    display: block;
+    font-size: 1rem;
+    font-weight: 700;
+    color: #f1f5f9;
+    margin-bottom: 0.25rem;
+  }
+
+  p {
+    font-size: 0.9rem;
+    font-weight: 500;
+    color: #cbd5e1;
+    line-height: 1.4;
+    margin: 0;
+  }
+}
+
+.buttonGroup {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+  margin-top: 2rem;
+}
+
+.choiceButton {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.75rem;
+  padding: 1rem 1.5rem;
+  border-radius: 12px;
+  border: 2.5px solid #334155;
+  font-family: $font-family-base;
+  font-size: 1.1rem;
+  font-weight: 700;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  position: relative;
+  overflow: hidden;
+
+  svg {
+    width: 22px;
+    height: 22px;
+    flex-shrink: 0;
+    transition: transform 0.2s ease;
+  }
+
+  span {
+    position: relative;
+    z-index: 1;
+  }
+
+  &::before {
+    content: "";
+    position: absolute;
     top: 0;
     left: 0;
     right: 0;
     bottom: 0;
-    background: rgba(0, 0, 0, 0.6);
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    z-index: 2000;
-    padding: 1rem;
-    animation: fadeIn 0.2s ease;
-    backdrop-filter: blur(4px);
-}
+    opacity: 0;
+    transition: opacity 0.2s ease;
+  }
 
-@keyframes fadeIn {
-    from { opacity: 0; }
-    to { opacity: 1; }
-}
+  &:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
 
-.modalPanel {
-    background: #0f172a; /* Dark slate blue */
-    border-radius: 16px;
-    border: 3px solid #334155;
-    box-shadow: 0 10px 40px rgba(0, 0, 0, 0.6);
-    width: 100%;
-    max-width: 550px;
-    display: flex;
-    flex-direction: column;
-    overflow: hidden;
-    font-family: var(--font-gaegu);
-    animation: slideIn 0.3s ease;
-}
-
-@keyframes slideIn {
-    from {
-        transform: translateY(-30px) scale(0.95);
-        opacity: 0;
-    }
-    to {
-        transform: translateY(0) scale(1);
-        opacity: 1;
-    }
-}
-
-.modalHeader {
-    display: flex;
-    align-items: center;
-    gap: 0.75rem;
-    padding: 1.5rem 1.75rem;
-    border-bottom: 2px dashed rgba(255, 255, 255, 0.1);
-    background: rgba(255, 255, 255, 0.03);
-}
-
-.headerIcon {
-    width: 32px;
-    height: 32px;
-    color: #cbd5e1;
-    flex-shrink: 0;
-}
-
-.title {
-    font-family: var(--font-gaegu);
-    font-size: 1.9rem;
-    font-weight: 700;
-    color: #f1f5f9;
-    margin: 0;
-    text-transform: uppercase;
-    letter-spacing: 0.03em;
-}
-
-.modalBody {
-    padding: 2rem 1.75rem;
-}
-
-.question {
-    font-size: 1.4rem;
-    font-weight: 600;
-    color: #f1f5f9;
-    text-align: center;
-    margin-bottom: 1.75rem;
-    line-height: 1.4;
-}
-
-.infoBox {
-    display: flex;
-    gap: 0.75rem;
-    background: rgba(255, 255, 255, 0.05);
-    border: 2px solid #334155;
-    border-radius: 10px;
-    padding: 1rem;
-    margin-bottom: 1rem;
-    align-items: flex-start;
-}
-
-.infoIcon {
-    width: 22px;
-    height: 22px;
-    color: #cbd5e1;
-    flex-shrink: 0;
-    margin-top: 2px;
-    opacity: 0.7;
-}
-
-.infoText {
-    flex: 1;
-    
-    strong {
-        display: block;
-        font-size: 1rem;
-        font-weight: 700;
-        color: #f1f5f9;
-        margin-bottom: 0.25rem;
-    }
-    
-    p {
-        font-size: 0.9rem;
-        font-weight: 500;
-        color: #cbd5e1;
-        line-height: 1.4;
-        margin: 0;
-    }
-}
-
-.buttonGroup {
-    display: flex;
-    flex-direction: column;
-    gap: 0.75rem;
-    margin-top: 2rem;
-}
-
-.choiceButton {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    gap: 0.75rem;
-    padding: 1rem 1.5rem;
-    border-radius: 12px;
-    border: 2.5px solid #334155;
-    font-family: var(--font-gaegu);
-    font-size: 1.1rem;
-    font-weight: 700;
-    cursor: pointer;
-    transition: all 0.2s ease;
-    position: relative;
-    overflow: hidden;
-    
     svg {
-        width: 22px;
-        height: 22px;
-        flex-shrink: 0;
-        transition: transform 0.2s ease;
+      transform: scale(1.1);
     }
-    
-    span {
-        position: relative;
-        z-index: 1;
-    }
-    
+
     &::before {
-        content: '';
-        position: absolute;
-        top: 0;
-        left: 0;
-        right: 0;
-        bottom: 0;
-        opacity: 0;
-        transition: opacity 0.2s ease;
+      opacity: 1;
     }
-    
-    &:hover {
-        transform: translateY(-2px);
-        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
-        
-        svg {
-            transform: scale(1.1);
-        }
-        
-        &::before {
-            opacity: 1;
-        }
-    }
-    
-    &:active {
-        transform: translateY(0);
-    }
+  }
+
+  &:active {
+    transform: translateY(0);
+  }
 }
 
 .nirmaButton {
-    background: #f1f5f9;
-    color: #0f172a;
-    border-color: #f1f5f9;
-    
-    &::before {
-        background: linear-gradient(135deg, #e2e8f0 0%, #f8fafc 100%);
-    }
-    
-    &:hover {
-        border-color: #e2e8f0;
-    }
+  background: #f1f5f9;
+  color: #0f172a;
+  border-color: #f1f5f9;
+
+  &::before {
+    background: linear-gradient(135deg, #e2e8f0 0%, #f8fafc 100%);
+  }
+
+  &:hover {
+    border-color: #e2e8f0;
+  }
 }
 
 .nonNirmaButton {
-    background: transparent;
-    color: #cbd5e1;
-    border-color: #475569;
-    
-    &::before {
-        background: rgba(255, 255, 255, 0.1);
-    }
-    
-    &:hover {
-        color: #f1f5f9;
-        border-color: #94a3b8;
-    }
+  background: transparent;
+  color: #cbd5e1;
+  border-color: #475569;
+
+  &::before {
+    background: rgba(255, 255, 255, 0.1);
+  }
+
+  &:hover {
+    color: #f1f5f9;
+    border-color: #94a3b8;
+  }
 }
 
 @media (max-width: 768px) {
-    .modalPanel {
-        max-width: 95%;
+  .modalPanel {
+    max-width: 95%;
+  }
+
+  .modalHeader {
+    padding: 1.25rem 1.25rem;
+  }
+
+  .headerIcon {
+    width: 28px;
+    height: 28px;
+  }
+
+  .title {
+    font-size: 1.6rem;
+  }
+
+  .modalBody {
+    padding: 1.5rem 1.25rem;
+  }
+
+  .question {
+    font-size: 1.2rem;
+    margin-bottom: 1.5rem;
+  }
+
+  .infoBox {
+    padding: 0.85rem;
+  }
+
+  .infoText {
+    strong {
+      font-size: 0.95rem;
     }
-    
-    .modalHeader {
-        padding: 1.25rem 1.25rem;
+
+    p {
+      font-size: 0.85rem;
     }
-    
-    .headerIcon {
-        width: 28px;
-        height: 28px;
+  }
+
+  .choiceButton {
+    padding: 0.9rem 1.25rem;
+    font-size: 1rem;
+
+    svg {
+      width: 20px;
+      height: 20px;
     }
-    
-    .title {
-        font-size: 1.6rem;
-    }
-    
-    .modalBody {
-        padding: 1.5rem 1.25rem;
-    }
-    
-    .question {
-        font-size: 1.2rem;
-        margin-bottom: 1.5rem;
-    }
-    
-    .infoBox {
-        padding: 0.85rem;
-    }
-    
-    .infoText {
-        strong {
-            font-size: 0.95rem;
-        }
-        
-        p {
-            font-size: 0.85rem;
-        }
-    }
-    
-    .choiceButton {
-        padding: 0.9rem 1.25rem;
-        font-size: 1rem;
-        
-        svg {
-            width: 20px;
-            height: 20px;
-        }
-    }
+  }
 }

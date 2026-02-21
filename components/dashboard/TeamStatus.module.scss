@@ -1,123 +1,123 @@
 .container {
-    display: flex;
-    flex-direction: column;
-    gap: 0.5rem;
-    width: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  width: 100%;
 }
 
 .error {
-    color: #dc2626;
-    background-color: #fef2f2;
-    font-size: 0.875rem;
-    padding: 0.5rem;
-    border-radius: 0.25rem;
-    margin-bottom: 0.5rem;
-    font-family: var(--font-gaegu);
+  color: #dc2626;
+  background-color: #fef2f2;
+  font-size: 0.875rem;
+  padding: 0.5rem;
+  border-radius: 0.25rem;
+  margin-bottom: 0.5rem;
+  font-family: $font-family-base;
 }
 
 .noMembers {
-    color: #94a3b8;
-    font-family: var(--font-gaegu);
-    font-size: 1rem;
+  color: #94a3b8;
+  font-family: $font-family-base;
+  font-size: 1rem;
 }
 
 .memberCard {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    padding: 0.5rem;
-    background-color: rgba(255, 255, 255, 0.05);
-    border-radius: 0.5rem;
-    border: 1px solid #334155;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0.5rem;
+  background-color: rgba(255, 255, 255, 0.05);
+  border-radius: 0.5rem;
+  border: 1px solid #334155;
 }
 
 .memberInfo {
-    display: flex;
-    align-items: center;
-    gap: 0.5rem;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
 }
 
 .imageContainer {
-    width: 2rem;
-    height: 2rem;
-    border-radius: 9999px;
-    background-color: #3b82f6;
-    color: white;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-size: 0.875rem;
-    font-weight: 700;
-    overflow: hidden;
+  width: 2rem;
+  height: 2rem;
+  border-radius: 9999px;
+  background-color: #3b82f6;
+  color: white;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 0.875rem;
+  font-weight: 700;
+  overflow: hidden;
 
-    img {
-        width: 100%;
-        height: 100%;
-        object-fit: cover;
-    }
+  img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
 }
 
 .details {
-    display: flex;
-    flex-direction: column;
+  display: flex;
+  flex-direction: column;
 }
 
 .name {
-    font-family: var(--font-gaegu);
-    font-size: 1.1rem;
-    /* Slightly larger for readability */
-    font-weight: 700;
-    color: #f1f5f9;
-    line-height: 1.2;
+  font-family: $font-family-base;
+  font-size: 1.1rem;
+  /* Slightly larger for readability */
+  font-weight: 700;
+  color: #f1f5f9;
+  line-height: 1.2;
 }
 
 .email {
-    font-size: 0.75rem;
-    color: #94a3b8;
-    font-family: monospace;
-    /* Trying monospace for email */
+  font-size: 0.75rem;
+  color: #94a3b8;
+  font-family: monospace;
+  /* Trying monospace for email */
 }
 
 .actions {
-    display: flex;
-    align-items: center;
-    gap: 0.5rem;
-    position: absolute;
-    right: 6rem;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  position: absolute;
+  right: 6rem;
 }
 
 .leaderBadge {
-    font-size: 0.75rem;
-    background-color: rgba(234, 179, 8, 0.2);
-    color: #fde047;
-    padding: 0.125rem 0.5rem;
-    border: 1px solid rgba(234, 179, 8, 0.4);
-    border-radius: 9999px;
-    font-weight: 600;
-    font-family: var(--font-gaegu);
-    letter-spacing: 0.05em;
+  font-size: 0.75rem;
+  background-color: rgba(234, 179, 8, 0.2);
+  color: #fde047;
+  padding: 0.125rem 0.5rem;
+  border: 1px solid rgba(234, 179, 8, 0.4);
+  border-radius: 9999px;
+  font-weight: 600;
+  font-family: $font-family-base;
+  letter-spacing: 0.05em;
 }
 
 .removeButton {
-    font-size: 0.75rem;
-    color: #dc2626;
-    padding: 0.25rem 0.5rem;
-    border-radius: 0.25rem;
-    transition: all 0.2s;
-    font-family: var(--font-gaegu);
-    font-weight: 700;
-    border: 1px solid transparent;
-    position: absolute;
-    right: 0rem;
+  font-size: 0.75rem;
+  color: #dc2626;
+  padding: 0.25rem 0.5rem;
+  border-radius: 0.25rem;
+  transition: all 0.2s;
+  font-family: $font-family-base;
+  font-weight: 700;
+  border: 1px solid transparent;
+  position: absolute;
+  right: 0rem;
 
-    &:hover {
-        color: #991b1b;
-        background-color: #fef2f2;
-        border-color: #fee2e2;
-    }
+  &:hover {
+    color: #991b1b;
+    background-color: #fef2f2;
+    border-color: #fee2e2;
+  }
 
-    &:disabled {
-        opacity: 0.5;
-        cursor: not-allowed;
-    }
+  &:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+  }
 }

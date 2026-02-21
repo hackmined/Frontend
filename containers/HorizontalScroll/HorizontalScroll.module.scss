@@ -1,118 +1,118 @@
-@use '@/styles/variables.scss' as *;
+@use "@/styles/variables.scss" as *;
 
 .scrollSectionOuter {
-    overflow: hidden;
-    background: #0f0f0f; // Dark background to match theme
-    min-height: 100vh;
-    position: relative;
+  overflow: hidden;
+  background: #0f0f0f; // Dark background to match theme
+  min-height: 100vh;
+  position: relative;
 
-    @media (max-width: $breakpoint-mobile) {
-        height: auto;
-        min-height: 100vh;
-        overflow-y: visible;
-        overflow-x: hidden;
-    }
+  @media (max-width: $breakpoint-mobile) {
+    height: auto;
+    min-height: 100vh;
+    overflow-y: visible;
+    overflow-x: hidden;
+  }
 }
 
 .backgroundImage {
-    position: fixed;
-    top: 0;
-    left: 0;
-    height: 100vh;
-    width: auto;
-    min-width: 100vw;
-    /* Ensure it covers width at minimum */
-    max-width: none;
-    z-index: 0;
-    /* Behind content but in front of base background */
-    pointer-events: none;
-    will-change: transform;
-    object-fit: cover;
+  position: fixed;
+  top: 0;
+  left: 0;
+  height: 100vh;
+  width: auto;
+  min-width: 100vw;
+  /* Ensure it covers width at minimum */
+  max-width: none;
+  z-index: 0;
+  /* Behind content but in front of base background */
+  pointer-events: none;
+  will-change: transform;
+  object-fit: cover;
 }
 
 .starsLayer {
-    position: fixed;
-    top: 0;
-    left: 0;
-    height: 100vh;
-    width: auto;
-    min-width: 100vw;
-    /* Ensure it covers width at minimum */
-    max-width: none;
-    z-index: 0;
-    /* In front of base background (0) DOM order handles layering */
-    pointer-events: none;
-    will-change: transform;
-    object-fit: cover;
-    mix-blend-mode: screen;
-    /* Optional: helps blend stars on top of dark bg */
+  position: fixed;
+  top: 0;
+  left: 0;
+  height: 100vh;
+  width: auto;
+  min-width: 100vw;
+  /* Ensure it covers width at minimum */
+  max-width: none;
+  z-index: 0;
+  /* In front of base background (0) DOM order handles layering */
+  pointer-events: none;
+  will-change: transform;
+  object-fit: cover;
+  mix-blend-mode: screen;
+  /* Optional: helps blend stars on top of dark bg */
 }
 
 .planetsLayer {
-    position: fixed;
-    top: 0;
-    left: 0;
-    height: 100vh;
-    width: auto;
-    min-width: 100vw;
-    /* Ensure it covers width at minimum */
-    max-width: none;
-    z-index: 0;
-    /* In front of stars (0) but behind content. DOM order handles layering */
-    pointer-events: none;
-    will-change: transform;
-    object-fit: cover;
+  position: fixed;
+  top: 0;
+  left: 0;
+  height: 100vh;
+  width: auto;
+  min-width: 100vw;
+  /* Ensure it covers width at minimum */
+  max-width: none;
+  z-index: 0;
+  /* In front of stars (0) but behind content. DOM order handles layering */
+  pointer-events: none;
+  will-change: transform;
+  object-fit: cover;
 }
 
 .scrollSectionInner {
-    height: 100vh;
-    display: flex;
-    flex-direction: row;
-    position: relative;
+  height: 100vh;
+  display: flex;
+  flex-direction: row;
+  position: relative;
 
-    @media (max-width: $breakpoint-mobile) {
-        flex-direction: column;
-        height: auto;
-        width: 100%;
-        overflow-x: hidden;
-    }
+  @media (max-width: $breakpoint-mobile) {
+    flex-direction: column;
+    height: auto;
+    width: 100%;
+    overflow-x: hidden;
+  }
 }
 
 .verticalText {
-    position: fixed;
-    right: 0;
-    top: 0;
-    height: 100vh;
-    width: 60px;
-    background: $background-alt;
-    border-left: 1px solid $foreground;
-    display: flex;
-    flex-direction: column;
-    justify-content: space-around;
-    align-items: center;
-    z-index: 100;
-    padding: 2rem 0;
+  position: fixed;
+  right: 0;
+  top: 0;
+  height: 100vh;
+  width: 60px;
+  background: $background-alt;
+  border-left: 1px solid $foreground;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  align-items: center;
+  z-index: 100;
+  padding: 2rem 0;
 
-    span {
-        writing-mode: vertical-rl;
-        text-orientation: mixed;
-        transform: rotate(180deg);
-        font-size: 0.75rem;
-        font-weight: $font-weight-semibold;
-        letter-spacing: 0.2em;
-        color: $foreground;
-        white-space: nowrap;
-        opacity: 0.4;
-        transition: opacity $transition-base;
-    }
+  span {
+    writing-mode: vertical-rl;
+    text-orientation: mixed;
+    transform: rotate(180deg);
+    font-size: 0.75rem;
+    font-weight: $font-weight-semibold;
+    letter-spacing: 0.2em;
+    color: $foreground;
+    white-space: nowrap;
+    opacity: 0.4;
+    transition: opacity $transition-base;
+  }
 
-    &:hover span {
-        opacity: 0.8;
-    }
+  &:hover span {
+    opacity: 0.8;
+  }
 
-    @media (max-width: $breakpoint-mobile) {
-        display: none;
-    }
+  @media (max-width: $breakpoint-mobile) {
+    display: none;
+  }
 }
 
 // ===== PORTAL EFFECT STYLES =====
@@ -124,178 +124,175 @@
 // 3. Adjust --portal-initial-scale to control starting size
 
 .portalOverlay {
-    position: fixed;
-    inset: 0;
-    z-index: 50; // Above content, below navbar
-    pointer-events: none;
-    display: flex;
-    align-items: center;
-    justify-content: center;
+  position: fixed;
+  inset: 0;
+  z-index: 50; // Above content, below navbar
+  pointer-events: none;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 
-    // Portal appearance (TWEAK THESE!)
-    // --portal-initial-scale: Starting scale of the mask image (default: 1)
-    // --portal-final-scale: Ending scale when fully expanded (default: 8)
-    --portal-initial-scale: 1;
-    --portal-final-scale: 8;
+  // Portal appearance (TWEAK THESE!)
+  // --portal-initial-scale: Starting scale of the mask image (default: 1)
+  // --portal-final-scale: Ending scale when fully expanded (default: 8)
+  --portal-initial-scale: 1;
+  --portal-final-scale: 8;
 }
 
 .portalMask {
-    // The portal mask image - should have a transparent hole in the center
-    // GSAP will scale this up to reveal the content behind
-    position: absolute;
-    width: 100vw;
-    height: 100vh;
-    object-fit: cover;
-    transform: scale(var(--portal-initial-scale));
-    transform-origin: center center;
-    will-change: transform;
+  // The portal mask image - should have a transparent hole in the center
+  // GSAP will scale this up to reveal the content behind
+  position: absolute;
+  width: 100vw;
+  height: 100vh;
+  object-fit: cover;
+  transform: scale(var(--portal-initial-scale));
+  transform-origin: center center;
+  will-change: transform;
 }
 
 // Portal text layers for parallax effect
 // Different z-index and scale rates create 3D depth illusion
 
 .portalTextBack {
-    position: absolute;
-    top: 20%;
-    left: 50%;
-    transform: translateX(-50%);
-    font-size: clamp(1.5rem, 4vw, 3rem);
-    font-weight: $font-weight-bold;
-    color: $foreground-muted;
-    letter-spacing: 0.3em;
-    text-transform: uppercase;
-    white-space: nowrap;
-    z-index: 1; // Behind the mask
-    will-change: transform, opacity;
+  position: absolute;
+  top: 20%;
+  left: 50%;
+  transform: translateX(-50%);
+  font-size: clamp(1.5rem, 4vw, 3rem);
+  font-weight: $font-weight-bold;
+  color: $foreground-muted;
+  letter-spacing: 0.3em;
+  text-transform: uppercase;
+  white-space: nowrap;
+  z-index: 1; // Behind the mask
+  will-change: transform, opacity;
 }
 
 .portalTextFront {
-    position: absolute;
-    bottom: 15%;
-    left: 50%;
-    transform: translateX(-50%);
-    font-size: clamp(2rem, 6vw, 5rem);
-    font-weight: $font-weight-black;
-    color: $foreground-inverse;
-    letter-spacing: 0.1em;
-    text-transform: uppercase;
-    white-space: nowrap;
-    z-index: 10; // In front of the mask
-    will-change: transform, opacity;
+  position: absolute;
+  bottom: 15%;
+  left: 50%;
+  transform: translateX(-50%);
+  font-size: clamp(2rem, 6vw, 5rem);
+  font-weight: $font-weight-black;
+  color: $foreground-inverse;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  white-space: nowrap;
+  z-index: 10; // In front of the mask
+  will-change: transform, opacity;
 }
 
 // Animated Logo
 .animatedLogo {
-    position: fixed;
-    top: 50%;
-    left: 50%;
-    // Center it initially
-    transform: translate(-50%, -50%);
-    z-index: 900; // Below Navbar (1000) but above portal (50)
-    width: 12vw; // Initial desktop size
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  // Center it initially
+  transform: translate(-50%, -50%);
+  z-index: 900; // Below Navbar (1000) but above portal (50)
+  width: 12vw; // Initial desktop size
+  min-width: 40px; // Allow shrinking to navbar size
+  max-width: 400px;
+
+  @media (max-width: $breakpoint-mobile) {
+    width: 40vw; // Higher boost for mobile
     min-width: 40px; // Allow shrinking to navbar size
-    max-width: 400px;
+    max-width: 280px; // Cap slightly to prevent it being too huge on wide mobile
+  }
 
-    @media (max-width: $breakpoint-mobile) {
-        width: 40vw; // Higher boost for mobile
-        min-width: 40px; // Allow shrinking to navbar size
-        max-width: 280px; // Cap slightly to prevent it being too huge on wide mobile
-    }
-
-    height: auto;
-    object-fit: contain;
-    will-change: transform,
-    top,
-    width;
+  height: auto;
+  object-fit: contain;
+  will-change: transform, top, width;
 }
 
 // ===== SCROLL INDICATOR =====
 .scrollIndicator {
-    position: absolute;
-    bottom: 2vh;
-    right: 1vw;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    gap: 1.5rem;
-    z-index: 100;
-    pointer-events: none;
-    font-family: var(--font-gaegu);
+  position: absolute;
+  bottom: 2vh;
+  right: 1vw;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1.5rem;
+  z-index: 100;
+  pointer-events: none;
+  font-family: $font-family-base;
 
-    span {
-        font-size: 1.2rem;
-        color: rgba(255, 255, 255, 0.6);
-        letter-spacing: 0.1em;
-        text-transform: uppercase;
-    }
+  span {
+    font-size: 1.2rem;
+    color: rgba(255, 255, 255, 0.6);
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+  }
 }
 
 .mouse {
-    width: 25px;
-    height: 42px;
-    border: 2px solid rgba(255, 255, 255, 0.4);
-    border-radius: 20px;
-    position: relative;
+  width: 25px;
+  height: 42px;
+  border: 2px solid rgba(255, 255, 255, 0.4);
+  border-radius: 20px;
+  position: relative;
 
-    &::before {
-        content: '';
-        width: 4px;
-        height: 4px;
-        position: absolute;
-        top: 8px;
-        left: 50%;
-        transform: translateX(-50%);
-        background: white;
-        border-radius: 50%;
-        opacity: 0.8;
-    }
-}
-
-.wheel {
+  &::before {
+    content: "";
     width: 4px;
-    height: 8px;
-    background: white;
+    height: 4px;
     position: absolute;
     top: 8px;
     left: 50%;
     transform: translateX(-50%);
-    border-radius: 2px;
-    animation: scrollWheel 2s infinite ease-in-out;
+    background: white;
+    border-radius: 50%;
+    opacity: 0.8;
+  }
+}
+
+.wheel {
+  width: 4px;
+  height: 8px;
+  background: white;
+  position: absolute;
+  top: 8px;
+  left: 50%;
+  transform: translateX(-50%);
+  border-radius: 2px;
+  animation: scrollWheel 2s infinite ease-in-out;
 }
 
 @keyframes scrollWheel {
-    0% {
-        transform: translate(-50%, 0);
-        opacity: 0;
-    }
+  0% {
+    transform: translate(-50%, 0);
+    opacity: 0;
+  }
 
-    20% {
-        opacity: 1;
-    }
+  20% {
+    opacity: 1;
+  }
 
-    50% {
-        transform: translate(-50%, 15px);
-        opacity: 1;
-    }
+  50% {
+    transform: translate(-50%, 15px);
+    opacity: 1;
+  }
 
-    80% {
-        opacity: 0;
-    }
+  80% {
+    opacity: 0;
+  }
 
-    100% {
-        transform: translate(-50%, 0);
-        opacity: 0;
-    }
+  100% {
+    transform: translate(-50%, 0);
+    opacity: 0;
+  }
 }
 
 @keyframes pulse {
+  0%,
+  100% {
+    opacity: 0.3;
+  }
 
-    0%,
-    100% {
-        opacity: 0.3;
-    }
-
-    50% {
-        opacity: 0.8;
-    }
+  50% {
+    opacity: 0.8;
+  }
 }

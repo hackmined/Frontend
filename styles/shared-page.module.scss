@@ -2,350 +2,355 @@
 // This provides a consistent look and feel across dashboard, team management, etc.
 
 .pageContainer {
-    min-height: 100vh;
-    padding: 5rem 1rem;
-    position: relative;
-    overflow: hidden;
-    background-image: url('/bg.svg');
-    background-size: cover;
-    background-position: center;
-    background-repeat: no-repeat;
-    width: 100%;
+  min-height: 100vh;
+  padding: 5rem 1rem;
+  position: relative;
+  overflow: hidden;
+  background-image: url("/bg.svg");
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  width: 100%;
 
-    @media (max-width: 768px) {
-        padding: 2rem 0.75rem;
-        overflow-x: hidden; // Prevent horizontal overflow
-    }
+  @media (max-width: 768px) {
+    padding: 2rem 0.75rem;
+    overflow-x: hidden; // Prevent horizontal overflow
+  }
 }
 
 .contentWrapper {
-    max-width: 70vw;
-    width: 100%;
-    margin: 0 auto;
-    position: relative;
-    z-index: 10;
+  max-width: 70vw;
+  width: 100%;
+  margin: 0 auto;
+  position: relative;
+  z-index: 10;
 
-    @media (max-width: 1024px) {
-        max-width: 85vw;
-    }
+  @media (max-width: 1024px) {
+    max-width: 85vw;
+  }
 
-    @media (max-width: 768px) {
-        max-width: 95vw;
-        overflow: hidden; // Prevent overflow
-        box-sizing: border-box;
-    }
+  @media (max-width: 768px) {
+    max-width: 95vw;
+    overflow: hidden; // Prevent overflow
+    box-sizing: border-box;
+  }
 }
 
 .pageHeader {
-    text-align: center;
-    margin-bottom: 3rem;
+  text-align: center;
+  margin-bottom: 3rem;
+
+  @media (max-width: 768px) {
+    margin-bottom: 2rem;
+  }
+
+  h1 {
+    font-size: clamp(2.5rem, 5vw, 3.5rem);
+    font-weight: bold;
+    color: white;
+    margin-bottom: 1rem;
+    letter-spacing: 0.05em;
+    font-family: $font-family-base;
+    text-shadow: 0 0 20px rgba(255, 255, 255, 0.3);
 
     @media (max-width: 768px) {
-        margin-bottom: 2rem;
+      font-size: clamp(2rem, 8vw, 2.5rem);
+      margin-bottom: 0.75rem;
+      text-align: center;
     }
+  }
 
-    h1 {
-        font-size: clamp(2.5rem, 5vw, 3.5rem);
-        font-weight: bold;
-        color: white;
-        margin-bottom: 1rem;
-        letter-spacing: 0.05em;
-        font-family: var(--font-gaegu);
-        text-shadow: 0 0 20px rgba(255, 255, 255, 0.3);
+  .subtitle {
+    color: rgb(209, 213, 219);
+    font-size: 1.125rem;
+    letter-spacing: 0.1em;
 
-        @media (max-width: 768px) {
-            font-size: clamp(2rem, 8vw, 2.5rem);
-            margin-bottom: 0.75rem;
-            text-align: center;
-        }
+    @media (max-width: 768px) {
+      font-size: 1rem;
+      letter-spacing: 0.05em;
+      text-align: center;
     }
+  }
 
-    .subtitle {
-        color: rgb(209, 213, 219);
-        font-size: 1.125rem;
-        letter-spacing: 0.1em;
+  .description {
+    color: rgb(156, 163, 175);
+    font-size: 1rem;
+    margin-top: 0.5rem;
 
-        @media (max-width: 768px) {
-            font-size: 1rem;
-            letter-spacing: 0.05em;
-            text-align: center;
-        }
+    @media (max-width: 768px) {
+      font-size: 0.9rem;
+      text-align: center;
     }
-
-    .description {
-        color: rgb(156, 163, 175);
-        font-size: 1rem;
-        margin-top: 0.5rem;
-
-        @media (max-width: 768px) {
-            font-size: 0.9rem;
-            text-align: center;
-        }
-    }
+  }
 }
 
 // Billboard-style card component
 .billboardCard {
-    position: relative;
-    padding: 2.5rem;
-    width: 100%;
-    margin-bottom: 2rem;
+  position: relative;
+  padding: 2.5rem;
+  width: 100%;
+  margin-bottom: 2rem;
 
-    background-color: rgba(15, 15, 20, 0.6);
-    background-size: 100% 100%;
-    background-position: center;
-    background-repeat: no-repeat;
+  background-color: rgba(15, 15, 20, 0.6);
+  background-size: 100% 100%;
+  background-position: center;
+  background-repeat: no-repeat;
 
+  border-radius: 1.5rem;
+  transition: transform 0.3s ease;
+  backdrop-filter: blur(10px);
+
+  @media (max-width: 768px) {
+    padding: 1.5rem;
+    border-radius: 1rem;
+    margin-bottom: 1.5rem;
+    overflow: hidden; // Prevent overflow
+    box-sizing: border-box;
+  }
+
+  &:hover {
+    transform: translateY(-2px);
+  }
+
+  .border {
+    position: absolute;
+    inset: 0;
     border-radius: 1.5rem;
-    transition: transform 0.3s ease;
-    backdrop-filter: blur(10px);
+    border: 2px solid rgba(0, 242, 255, 0.3);
+    pointer-events: none;
+    box-shadow:
+      0 0 0 1px rgba(0, 0, 0, 0.5),
+      0 0 15px rgba(0, 242, 255, 0.1);
+    z-index: 5;
 
     @media (max-width: 768px) {
-        padding: 1.5rem;
-        border-radius: 1rem;
-        margin-bottom: 1.5rem;
-        overflow: hidden; // Prevent overflow
-        box-sizing: border-box;
+      border-radius: 1rem;
     }
+  }
 
-    &:hover {
-        transform: translateY(-2px);
-    }
-
-    .border {
-        position: absolute;
-        inset: 0;
-        border-radius: 1.5rem;
-        border: 2px solid rgba(0, 242, 255, 0.3);
-        pointer-events: none;
-        box-shadow:
-            0 0 0 1px rgba(0, 0, 0, 0.5),
-            0 0 15px rgba(0, 242, 255, 0.1);
-        z-index: 5;
-
-        @media (max-width: 768px) {
-            border-radius: 1rem;
-        }
-    }
-
-    .content {
-        position: relative;
-        z-index: 10;
-    }
+  .content {
+    position: relative;
+    z-index: 10;
+  }
 }
 
 // Card header with gradient line
 .cardHeader {
-    font-size: 2rem;
-    font-weight: bold;
-    color: #ffffff;
-    margin-bottom: 2rem;
-    font-family: var(--font-gaegu);
-    text-transform: uppercase;
-    letter-spacing: 0.1em;
-    text-shadow: 0 0 10px rgba(255, 255, 255, 0.3);
+  font-size: 2rem;
+  font-weight: bold;
+  color: #ffffff;
+  margin-bottom: 2rem;
+  font-family: $font-family-base;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  text-shadow: 0 0 10px rgba(255, 255, 255, 0.3);
 
-    display: flex;
-    align-items: center;
-    gap: 1rem;
+  display: flex;
+  align-items: center;
+  gap: 1rem;
 
-    &::after {
-        content: '';
-        flex: 1;
-        height: 1px;
-        background: linear-gradient(90deg, rgba(0, 242, 255, 0.5), transparent);
-        border-radius: 2px;
-    }
+  &::after {
+    content: "";
+    flex: 1;
+    height: 1px;
+    background: linear-gradient(90deg, rgba(0, 242, 255, 0.5), transparent);
+    border-radius: 2px;
+  }
 }
 
 // Primary button style
 .primaryButton {
+  width: 100%;
+  background: #889191;
+  color: black;
+  font-weight: 800;
+  padding: 1.25rem 2rem;
+  border-radius: 1.25rem;
+  border: none;
+  cursor: pointer;
+  font-size: 1.125rem;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  font-family: $font-family-base;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+
+  @media (max-width: 768px) {
+    padding: 1rem 1.5rem;
+    font-size: 1rem;
+    min-height: 48px; // Touch-friendly
+    background: #1f2937; // Darker for better contrast on white
+    color: white;
+    font-weight: 700;
+    box-sizing: border-box;
     width: 100%;
-    background: #889191;
-    color: black;
-    font-weight: 800;
-    padding: 1.25rem 2rem;
-    border-radius: 1.25rem;
-    border: none;
-    cursor: pointer;
-    font-size: 1.125rem;
-    letter-spacing: 0.1em;
-    text-transform: uppercase;
-    font-family: var(--font-gaegu);
-    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    max-width: 100%;
+  }
+
+  &:hover:not(:disabled) {
+    background: #cbcbcb;
+    transform: translateY(-2px) scale(1.01);
+    box-shadow:
+      0 0 20px rgba(227, 254, 255, 0.5),
+      0 0 10px rgba(255, 255, 255, 0.5);
 
     @media (max-width: 768px) {
-        padding: 1rem 1.5rem;
-        font-size: 1rem;
-        min-height: 48px; // Touch-friendly
-        background: #1f2937; // Darker for better contrast on white
-        color: white;
-        font-weight: 700;
-        box-sizing: border-box;
-        width: 100%;
-        max-width: 100%;
+      background: #111827;
     }
+  }
 
-    &:hover:not(:disabled) {
-        background: #cbcbcb;
-        transform: translateY(-2px) scale(1.01);
-        box-shadow:
-            0 0 20px rgba(227, 254, 255, 0.5),
-            0 0 10px rgba(255, 255, 255, 0.5);
+  &:active:not(:disabled) {
+    transform: translateY(0) scale(0.99);
+  }
 
-        @media (max-width: 768px) {
-            background: #111827;
-        }
+  &:disabled {
+    background: #1f2937;
+    color: #6b7280;
+    cursor: not-allowed;
+    transform: none;
+    box-shadow: none;
+    border: 1px solid #374151;
+
+    @media (max-width: 768px) {
+      background: #374151;
+      color: #9ca3af;
     }
-
-    &:active:not(:disabled) {
-        transform: translateY(0) scale(0.99);
-    }
-
-    &:disabled {
-        background: #1f2937;
-        color: #6b7280;
-        cursor: not-allowed;
-        transform: none;
-        box-shadow: none;
-        border: 1px solid #374151;
-
-        @media (max-width: 768px) {
-            background: #374151;
-            color: #9ca3af;
-        }
-    }
+  }
 }
 
 // Secondary button style
 .secondaryButton {
-    background: rgba(255, 255, 255, 0.1);
-    color: white;
-    font-weight: 600;
-    padding: 0.875rem 1.5rem;
-    border-radius: 1rem;
-    border: 1px solid rgba(255, 255, 255, 0.2);
-    cursor: pointer;
-    font-size: 0.95rem;
-    transition: all 0.3s ease;
+  background: rgba(255, 255, 255, 0.1);
+  color: white;
+  font-weight: 600;
+  padding: 0.875rem 1.5rem;
+  border-radius: 1rem;
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  cursor: pointer;
+  font-size: 0.95rem;
+  transition: all 0.3s ease;
 
-    &:hover:not(:disabled) {
-        background: rgba(255, 255, 255, 0.2);
-        border-color: rgba(0, 242, 255, 0.5);
-        box-shadow: 0 0 10px rgba(0, 242, 255, 0.2);
-    }
+  &:hover:not(:disabled) {
+    background: rgba(255, 255, 255, 0.2);
+    border-color: rgba(0, 242, 255, 0.5);
+    box-shadow: 0 0 10px rgba(0, 242, 255, 0.2);
+  }
 
-    &:disabled {
-        background: rgba(255, 255, 255, 0.05);
-        color: #6b7280;
-        cursor: not-allowed;
-        border-color: transparent;
-    }
+  &:disabled {
+    background: rgba(255, 255, 255, 0.05);
+    color: #6b7280;
+    cursor: not-allowed;
+    border-color: transparent;
+  }
 }
 
 // Error message banner
 .errorBanner {
-    background: rgba(239, 68, 68, 0.1);
-    border: 2px solid rgb(239, 68, 68);
-    color: rgb(248, 113, 113);
-    padding: 1rem 1.5rem;
-    border-radius: 1rem;
-    backdrop-filter: blur(4px);
-    margin-bottom: 2rem;
-    font-weight: 500;
+  background: rgba(239, 68, 68, 0.1);
+  border: 2px solid rgb(239, 68, 68);
+  color: rgb(248, 113, 113);
+  padding: 1rem 1.5rem;
+  border-radius: 1rem;
+  backdrop-filter: blur(4px);
+  margin-bottom: 2rem;
+  font-weight: 500;
 }
 
 // Grid layouts
 .gridTwo {
-    display: grid;
-    grid-template-columns: 1fr;
-    gap: 2rem;
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 2rem;
 
-    @media (min-width: 768px) {
-        grid-template-columns: repeat(2, 1fr);
-    }
+  @media (min-width: 768px) {
+    grid-template-columns: repeat(2, 1fr);
+  }
 }
 
 .gridThree {
-    display: grid;
-    grid-template-columns: 1fr;
-    gap: 2rem;
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 2rem;
 
-    @media (min-width: 1024px) {
-        grid-template-columns: repeat(3, 1fr);
-    }
+  @media (min-width: 1024px) {
+    grid-template-columns: repeat(3, 1fr);
+  }
 }
 
 // Form styles
 .formGroup {
-    margin-bottom: 1.5rem;
+  margin-bottom: 1.5rem;
 
-    label {
-        display: block;
-        font-size: 0.95rem;
-        font-weight: 500;
-        color: #d1d5db;
-        margin-bottom: 0.5rem;
-    }
+  label {
+    display: block;
+    font-size: 0.95rem;
+    font-weight: 500;
+    color: #d1d5db;
+    margin-bottom: 0.5rem;
+  }
 }
 
 .inputField {
+  width: 100%;
+  padding: 0.75rem 1rem;
+  background: rgba(15, 15, 20, 0.6);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  border-radius: 0.75rem;
+  color: white;
+  font-size: 1rem;
+  transition: all 0.2s ease;
+
+  @media (max-width: 768px) {
+    padding: 0.875rem 1rem;
+    font-size: 16px; // Prevent zoom on iOS
+    min-height: 48px; // Touch-friendly
+    background: rgba(
+      255,
+      255,
+      255,
+      0.9
+    ); // White background for better readability
+    color: #1f2937; // Dark text
+    border: 2px solid rgba(0, 0, 0, 0.1);
+    box-sizing: border-box;
     width: 100%;
-    padding: 0.75rem 1rem;
-    background: rgba(15, 15, 20, 0.6);
-    border: 1px solid rgba(255, 255, 255, 0.2);
-    border-radius: 0.75rem;
-    color: white;
-    font-size: 1rem;
-    transition: all 0.2s ease;
+  }
+
+  &::placeholder {
+    color: #6b7280;
 
     @media (max-width: 768px) {
-        padding: 0.875rem 1rem;
-        font-size: 16px; // Prevent zoom on iOS
-        min-height: 48px; // Touch-friendly
-        background: rgba(255, 255, 255, 0.9); // White background for better readability
-        color: #1f2937; // Dark text
-        border: 2px solid rgba(0, 0, 0, 0.1);
-        box-sizing: border-box;
-        width: 100%;
+      color: #9ca3af;
     }
+  }
 
-    &::placeholder {
-        color: #6b7280;
+  &:focus {
+    outline: none;
+    border-color: rgba(0, 242, 255, 0.5);
+    box-shadow: 0 0 10px rgba(0, 242, 255, 0.1);
+    background: rgba(15, 15, 20, 0.8);
 
-        @media (max-width: 768px) {
-            color: #9ca3af;
-        }
+    @media (max-width: 768px) {
+      background: rgba(255, 255, 255, 1);
+      border-color: #2563eb;
+      box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.1);
     }
+  }
 
-    &:focus {
-        outline: none;
-        border-color: rgba(0, 242, 255, 0.5);
-        box-shadow: 0 0 10px rgba(0, 242, 255, 0.1);
-        background: rgba(15, 15, 20, 0.8);
-
-        @media (max-width: 768px) {
-            background: rgba(255, 255, 255, 1);
-            border-color: #2563eb;
-            box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.1);
-        }
-    }
-
-    &:disabled {
-        opacity: 0.5;
-        cursor: not-allowed;
-    }
+  &:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+  }
 }
 
 .helperText {
-    margin-top: 0.5rem;
-    font-size: 0.875rem;
-    color: #9ca3af;
+  margin-top: 0.5rem;
+  font-size: 0.875rem;
+  color: #9ca3af;
 }
 
 .buttonsContainer {
-    display: flex;
-    flex-direction: column;
-    gap: 1rem;
-    margin-top: 2rem;
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  margin-top: 2rem;
 }

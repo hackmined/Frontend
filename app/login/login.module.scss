@@ -1,242 +1,242 @@
 .pageContainer {
-    height: 100vh;
-    width: 100vw;
-    margin: 0;
-    padding: 0;
-    position: relative;
-    overflow: hidden;
+  height: 100vh;
+  width: 100vw;
+  margin: 0;
+  padding: 0;
+  position: relative;
+  overflow: hidden;
 
-    background-image: url('/bg.svg');
-    background-size: cover;
-    background-position: center;
-    background-repeat: no-repeat;
+  background-image: url("/bg.svg");
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
 
-    &.centerContent {
-        display: flex;
-        align-items: center;
-        justify-content: center;
-    }
+  &.centerContent {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
 }
 
 /* -------------------------------------------------- */
 
 .loginWrapper {
-    height: 100%;
-    width: 100%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
+  height: 100%;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 /* -------------------------------------------------- */
 
 .signInCard {
-    height: 100vh;
-    max-height: 920px;
-    aspect-ratio: 1 / 0.85;
-    width: auto;
+  height: 100vh;
+  max-height: 920px;
+  aspect-ratio: 1 / 0.85;
+  width: auto;
 
-    background-image: url('/panel.svg');
-    background-size: contain;
-    background-position: center;
-    background-repeat: no-repeat;
+  background-image: url("/panel.svg");
+  background-size: contain;
+  background-position: center;
+  background-repeat: no-repeat;
 
-    display: flex;
-    align-items: center;
-    justify-content: center;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 
-    overflow: hidden;
+  overflow: hidden;
 }
 
 /* -------------------------------------------------- */
 /* TEMP SIGN IN CARD (NEW MOBILE VERSION) */
 
 .tempSignInCard {
-    height: 100vh;
-    max-height: 920px;
-    aspect-ratio: 1 / 0.85;
-    width: auto;
+  height: 100vh;
+  max-height: 920px;
+  aspect-ratio: 1 / 0.85;
+  width: auto;
 
-    background-image: url('/panel.svg');
-    background-size: contain;
-    background-position: center;
-    background-repeat: no-repeat;
+  background-image: url("/panel.svg");
+  background-size: contain;
+  background-position: center;
+  background-repeat: no-repeat;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  overflow: hidden;
+
+  @media (max-width: 768px) {
+    // Remove background image, use white glassmorphism
+    background-image: none !important;
+    background: rgba(255, 255, 255, 0.15); // White with transparency
+    backdrop-filter: blur(20px);
+    border: 2px solid rgba(255, 255, 255, 0.3);
+    border-radius: 24px;
+    box-shadow:
+      0 8px 32px 0 rgba(0, 0, 0, 0.1),
+      inset 0 0 60px rgba(255, 255, 255, 0.2);
+
+    width: 95vw;
+    max-width: 600px;
+    height: auto; // Content-responsive
+    min-height: auto;
+    max-height: none;
+    aspect-ratio: unset;
+    transform: none !important;
+    padding: 2rem 1.5rem; // Add padding for content spacing
 
     display: flex;
+    flex-direction: column;
     align-items: center;
     justify-content: center;
-
     overflow: hidden;
-
-    @media (max-width: 768px) {
-        // Remove background image, use white glassmorphism
-        background-image: none !important;
-        background: rgba(255, 255, 255, 0.15); // White with transparency
-        backdrop-filter: blur(20px);
-        border: 2px solid rgba(255, 255, 255, 0.3);
-        border-radius: 24px;
-        box-shadow:
-            0 8px 32px 0 rgba(0, 0, 0, 0.1),
-            inset 0 0 60px rgba(255, 255, 255, 0.2);
-
-        width: 95vw;
-        max-width: 600px;
-        height: auto; // Content-responsive
-        min-height: auto;
-        max-height: none;
-        aspect-ratio: unset;
-        transform: none !important;
-        padding: 2rem 1.5rem; // Add padding for content spacing
-
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        justify-content: center;
-        overflow: hidden;
-        position: relative; // Context for absolute children if any
-    }
+    position: relative; // Context for absolute children if any
+  }
 }
 
 /* -------------------------------------------------- */
 
 .panelContent {
+  width: 100%;
+  max-width: 600px;
+  max-height: 85%;
+  box-sizing: border-box;
+
+  padding: 1.5rem 2.5rem 4rem;
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+
+  text-align: center;
+  color: #4b5563;
+
+  /* visual alignment for illustrated panel */
+  transform: translateY(-25%);
+
+  @media (max-width: 768px) {
+    position: relative !important;
+    top: auto !important;
+    left: auto !important;
+    transform: none !important;
     width: 100%;
-    max-width: 600px;
-    max-height: 85%;
-    box-sizing: border-box;
-
-    padding: 1.5rem 2.5rem 4rem;
-
+    max-width: 100%;
+    height: auto;
+    max-height: 85vh;
+    padding: 0;
+    gap: 1.5rem;
     display: flex;
     flex-direction: column;
-    align-items: center;
     justify-content: center;
-
-    text-align: center;
-    color: #4b5563;
-
-    /* visual alignment for illustrated panel */
-    transform: translateY(-25%);
-
-    @media (max-width: 768px) {
-        position: relative !important;
-        top: auto !important;
-        left: auto !important;
-        transform: none !important;
-        width: 100%;
-        max-width: 100%;
-        height: auto;
-        max-height: 85vh;
-        padding: 0;
-        gap: 1.5rem;
-        display: flex;
-        flex-direction: column;
-        justify-content: center;
-        align-items: center;
-        overflow-y: auto;
-        overflow-x: hidden;
-        box-sizing: border-box;
-    }
+    align-items: center;
+    overflow-y: auto;
+    overflow-x: hidden;
+    box-sizing: border-box;
+  }
 }
 
 /* -------------------------------------------------- */
 
 .year {
-    font-family: var(--font-gaegu);
-    width: 100%;
-    font-size: 4rem;
-    font-weight: 700;
-    color: #000000;
+  font-family: $font-family-base;
+  width: 100%;
+  font-size: 4rem;
+  font-weight: 700;
+  color: #000000;
 
-    @media (max-width: 768px) {
-        font-size: 2.5rem !important;
-        color: #1f2937 !important; // Dark gray for better contrast
-        margin-bottom: 0.75rem;
-        font-weight: 800 !important;
-        text-align: center;
-    }
+  @media (max-width: 768px) {
+    font-size: 2.5rem !important;
+    color: #1f2937 !important; // Dark gray for better contrast
+    margin-bottom: 0.75rem;
+    font-weight: 800 !important;
+    text-align: center;
+  }
 }
 
 /* -------------------------------------------------- */
 
 .tagline {
-    font-family: var(--font-gaegu);
-    font-size: clamp(0.9rem, 1.4vw, 1.1rem);
-    font-weight: 500;
-    letter-spacing: 0.15em;
-    color: #64748b;
-    margin-bottom: 2.2rem;
+  font-family: $font-family-base;
+  font-size: clamp(0.9rem, 1.4vw, 1.1rem);
+  font-weight: 500;
+  letter-spacing: 0.15em;
+  color: #64748b;
+  margin-bottom: 2.2rem;
 
-    @media (max-width: 768px) {
-        font-size: 0.95rem !important;
-        color: #1f2937 !important; // Dark gray for better contrast
-        margin-bottom: 1.5rem;
-        letter-spacing: 0.1em;
-        font-weight: 600 !important;
-        text-align: center;
-    }
+  @media (max-width: 768px) {
+    font-size: 0.95rem !important;
+    color: #1f2937 !important; // Dark gray for better contrast
+    margin-bottom: 1.5rem;
+    letter-spacing: 0.1em;
+    font-weight: 600 !important;
+    text-align: center;
+  }
 }
 
 /* -------------------------------------------------- */
 
 .formRegion {
-    width: 200%;
+  width: 200%;
 
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    gap: 0.75rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.75rem;
+
+  h2 {
+    font-family: $font-family-base;
+    font-size: clamp(1.8rem, 3vw, 2.4rem);
+    font-weight: 700;
+    color: #1f2937;
+    margin-bottom: 0.6rem;
+  }
+
+  @media (max-width: 768px) {
+    width: 100%;
+    max-width: 100%;
+    gap: 1rem;
+    overflow: hidden;
+    box-sizing: border-box;
 
     h2 {
-        font-family: var(--font-gaegu);
-        font-size: clamp(1.8rem, 3vw, 2.4rem);
-        font-weight: 700;
-        color: #1f2937;
-        margin-bottom: 0.6rem;
+      word-break: break-word;
+      overflow-wrap: break-word;
+      color: #1f2937;
+      text-align: center;
+      width: 100%;
     }
-
-    @media (max-width: 768px) {
-        width: 100%;
-        max-width: 100%;
-        gap: 1rem;
-        overflow: hidden;
-        box-sizing: border-box;
-
-        h2 {
-            word-break: break-word;
-            overflow-wrap: break-word;
-            color: #1f2937;
-            text-align: center;
-            width: 100%;
-        }
-    }
+  }
 }
 
 /* -------------------------------------------------- */
 
 .helperText {
-    font-size: 0.95rem;
-    color: #475569;
-    margin-bottom: 1.4rem;
+  font-size: 0.95rem;
+  color: #475569;
+  margin-bottom: 1.4rem;
 }
 
 /* -------------------------------------------------- */
 
 .disclaimer {
-    font-size: 0.7rem;
-    color: #6b7280;
-    margin-top: 0.75rem;
-    font-style: italic;
+  font-size: 0.7rem;
+  color: #6b7280;
+  margin-top: 0.75rem;
+  font-style: italic;
 
-    @media (max-width: 768px) {
-        font-size: 0.75rem;
-        color: #4b5563; // Darker for better contrast
-        word-break: break-word;
-        overflow-wrap: break-word;
-        max-width: 100%;
-        line-height: 1.5;
-        text-align: center;
-    }
+  @media (max-width: 768px) {
+    font-size: 0.75rem;
+    color: #4b5563; // Darker for better contrast
+    word-break: break-word;
+    overflow-wrap: break-word;
+    max-width: 100%;
+    line-height: 1.5;
+    text-align: center;
+  }
 }
 
 /* Consolidated Mobile Styles into their respective components above */

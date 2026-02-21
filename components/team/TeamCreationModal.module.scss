@@ -1,306 +1,305 @@
 /* ================= MODAL OVERLAY ================= */
 
 .modalOverlay {
-    position: fixed;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    background: rgba(0, 0, 0, 0.5);
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    z-index: 1000;
-    animation: fadeIn 0.2s ease;
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(0, 0, 0, 0.5);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1000;
+  animation: fadeIn 0.2s ease;
 }
 
 @keyframes fadeIn {
-    from {
-        opacity: 0;
-    }
+  from {
+    opacity: 0;
+  }
 
-    to {
-        opacity: 1;
-    }
+  to {
+    opacity: 1;
+  }
 }
 
 /* ================= MODAL PANEL ================= */
 
 .modalPanel {
-    background: #0f172a;
-    border-radius: 14px;
-    border: 3px solid #334155;
-    box-shadow: 0 10px 40px rgba(0, 0, 0, 0.6);
-    width: 90%;
-    max-width: 500px;
-    max-height: 90vh;
-    overflow-y: auto;
-    font-family: var(--font-gaegu);
-    animation: slideIn 0.3s ease;
+  background: #0f172a;
+  border-radius: 14px;
+  border: 3px solid #334155;
+  box-shadow: 0 10px 40px rgba(0, 0, 0, 0.6);
+  width: 90%;
+  max-width: 500px;
+  max-height: 90vh;
+  overflow-y: auto;
+  font-family: $font-family-base;
+  animation: slideIn 0.3s ease;
 }
 
 @keyframes slideIn {
-    from {
-        transform: translateY(-20px);
-        opacity: 0;
-    }
+  from {
+    transform: translateY(-20px);
+    opacity: 0;
+  }
 
-    to {
-        transform: translateY(0);
-        opacity: 1;
-    }
+  to {
+    transform: translateY(0);
+    opacity: 1;
+  }
 }
 
 /* ================= HEADER ================= */
 
 .modalHeader {
-    padding: 1.5rem 2rem;
-    border-bottom: 2px dashed rgba(0, 0, 0, 0.2);
+  padding: 1.5rem 2rem;
+  border-bottom: 2px dashed rgba(0, 0, 0, 0.2);
 }
 
 .title {
-    font-size: 2.2rem;
-    color: #f1f5f9;
-    margin: 0;
+  font-size: 2.2rem;
+  color: #f1f5f9;
+  margin: 0;
 }
 
 /* ================= BODY ================= */
 
 .modalBody {
-    padding: 2rem;
+  padding: 2rem;
 }
 
 .inputGroup {
-    display: grid;
-    grid-template-columns: 150px 1fr;
-    align-items: center;
-    gap: 1rem;
-    margin-bottom: 1.5rem;
-    width: 100%;
-    position: relative;
-    /* Context for absolute positioning */
+  display: grid;
+  grid-template-columns: 150px 1fr;
+  align-items: center;
+  gap: 1rem;
+  margin-bottom: 1.5rem;
+  width: 100%;
+  position: relative;
+  /* Context for absolute positioning */
 }
 
 .label {
-    font-size: 1.6rem;
-    letter-spacing: 0.1em;
-    text-transform: uppercase;
-    color: #cbd5e1;
-    font-family: var(--font-gaegu);
-    font-weight: 600;
+  font-size: 1.6rem;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: #cbd5e1;
+  font-family: $font-family-base;
+  font-weight: 600;
 }
 
 .required {
-    color: #ef4444;
+  color: #ef4444;
 }
 
 .valueWrapper {
-    position: relative;
-    display: flex;
-    align-items: center;
-    width: 100%;
+  position: relative;
+  display: flex;
+  align-items: center;
+  width: 100%;
 }
 
 .valueWrapper::before {
-    content: "................................................................................................";
-    position: absolute;
-    left: 0;
-    top: 65%;
-    width: 100%;
-    overflow: hidden;
-    white-space: nowrap;
-    transform: translateY(-50%);
-    color: rgba(255, 255, 255, 0.2);
-    pointer-events: none;
-    font-family: monospace;
-    letter-spacing: 2px;
+  content: "................................................................................................";
+  position: absolute;
+  left: 0;
+  top: 65%;
+  width: 100%;
+  overflow: hidden;
+  white-space: nowrap;
+  transform: translateY(-50%);
+  color: rgba(255, 255, 255, 0.2);
+  pointer-events: none;
+  font-family: monospace;
+  letter-spacing: 2px;
 }
 
 .input,
 .textarea {
-    width: 100%;
-    font-size: 1.8rem;
-    font-family: var(--font-gaegu);
-    border: none;
-    background: transparent;
-    padding: 0.6rem 0.5rem;
-    color: #f1f5f9;
-    outline: none;
-    position: relative;
-    z-index: 1;
+  width: 100%;
+  font-size: 1.8rem;
+  font-family: $font-family-base;
+  border: none;
+  background: transparent;
+  padding: 0.6rem 0.5rem;
+  color: #f1f5f9;
+  outline: none;
+  position: relative;
+  z-index: 1;
 
-    &:focus {
-        outline: none;
-        box-shadow: none;
-        border: none;
-    }
+  &:focus {
+    outline: none;
+    box-shadow: none;
+    border: none;
+  }
 }
 
 .textarea {
-    resize: vertical;
-    min-height: 60px;
-    border-bottom: 2px dashed rgba(255, 255, 255, 0.2);
-    /* Textarea might not work well with dots, using line */
+  resize: vertical;
+  min-height: 60px;
+  border-bottom: 2px dashed rgba(255, 255, 255, 0.2);
+  /* Textarea might not work well with dots, using line */
 }
 
 .charCount {
-    font-size: 0.8rem;
-    color: #64748b;
-    position: absolute;
-    bottom: 0.2rem;
-    right: 0;
-    pointer-events: none;
-    padding-left: 0.5rem;
+  font-size: 0.8rem;
+  color: #64748b;
+  position: absolute;
+  bottom: 0.2rem;
+  right: 0;
+  pointer-events: none;
+  padding-left: 0.5rem;
 }
 
 .errorMessage {
-    background: #fee2e2;
-    border: 2px solid #ef4444;
-    color: #991b1b;
-    padding: 1rem;
-    border-radius: 8px;
-    margin-bottom: 1rem;
-    font-size: 1.1rem;
+  background: #fee2e2;
+  border: 2px solid #ef4444;
+  color: #991b1b;
+  padding: 1rem;
+  border-radius: 8px;
+  margin-bottom: 1rem;
+  font-size: 1.1rem;
 }
 
 /* ================= FOOTER ================= */
 
 .modalFooter {
-    padding: 1.5rem 2rem;
-    display: flex;
-    gap: 1rem;
-    justify-content: flex-end;
+  padding: 1.5rem 2rem;
+  display: flex;
+  gap: 1rem;
+  justify-content: flex-end;
 }
 
 .button {
-    font-family: var(--font-gaegu);
-    font-size: 0.9rem;
-    padding: 0.7rem 1.5rem;
-    border-radius: 10px;
-    border: 2px solid #94a3b8;
-    cursor: pointer;
-    transition: all 0.2s ease;
+  font-family: $font-family-base;
+  font-size: 0.9rem;
+  padding: 0.7rem 1.5rem;
+  border-radius: 10px;
+  border: 2px solid #94a3b8;
+  cursor: pointer;
+  transition: all 0.2s ease;
 
-    &:disabled {
-        opacity: 0.5;
-        cursor: not-allowed;
-    }
+  &:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+  }
 }
 
 .cancelButton {
-    background: transparent;
-    color: #64748b;
-    right: 14rem;
-    position: absolute;
+  background: transparent;
+  color: #64748b;
+  right: 14rem;
+  position: absolute;
 
-    &:hover:not(:disabled) {
-        background: #f1f5f9;
-        border-color: #475569;
-    }
+  &:hover:not(:disabled) {
+    background: #f1f5f9;
+    border-color: #475569;
+  }
 }
 
 .createButton {
-    background: #f1f5f9;
-    color: #0f172a;
-    border-color: #f1f5f9;
-    position: absolute;
-    bottom: 20%;
-    transform: translateY(60px);
+  background: #f1f5f9;
+  color: #0f172a;
+  border-color: #f1f5f9;
+  position: absolute;
+  bottom: 20%;
+  transform: translateY(60px);
 
-    &:hover:not(:disabled) {
-        background: #374151;
-        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-    }
+  &:hover:not(:disabled) {
+    background: #374151;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  }
 }
 
 .inlineForm {
-    width: 100%;
-    animation: fadeIn 0.3s ease;
+  width: 100%;
+  animation: fadeIn 0.3s ease;
 
-    .inputGroup {
-        margin-bottom: 0.5rem;
-    }
+  .inputGroup {
+    margin-bottom: 0.5rem;
+  }
 
-    .label {
-        font-size: 0.9rem;
-    }
+  .label {
+    font-size: 0.9rem;
+  }
 
-    .input,
-    .textarea {
-        padding: 0.3rem 0.6rem;
-        font-size: 1rem;
-    }
+  .input,
+  .textarea {
+    padding: 0.3rem 0.6rem;
+    font-size: 1rem;
+  }
 }
 
 .createButton,
 .cancelButton {
-    position: static;
-    transform: none;
-    bottom: auto;
-    right: auto;
-    margin: 0;
+  position: static;
+  transform: none;
+  bottom: auto;
+  right: auto;
+  margin: 0;
 }
 
 .modalFooter {
-    padding: 1rem 0 0 0;
-    justify-content: flex-start;
-    display: flex;
-    gap: 1rem;
+  padding: 1rem 0 0 0;
+  justify-content: flex-start;
+  display: flex;
+  gap: 1rem;
 }
 
-
 .inlineFooter {
-    display: flex;
-    gap: 1rem;
-    margin-top: 0.5rem;
-    justify-content: flex-start;
+  display: flex;
+  gap: 1rem;
+  margin-top: 0.5rem;
+  justify-content: flex-start;
 }
 
 /* ================= MOBILE RESPONSIVE ================= */
 @media (max-width: 480px) {
-    .modalPanel {
-        width: 95%;
-        max-height: 85vh;
-        margin: 0 auto;
+  .modalPanel {
+    width: 95%;
+    max-height: 85vh;
+    margin: 0 auto;
+  }
+
+  .modalHeader {
+    padding: 1.25rem 1.5rem;
+  }
+
+  .title {
+    font-size: 1.8rem;
+  }
+
+  .modalBody {
+    padding: 1.5rem;
+  }
+
+  .inlineForm {
+    .inputGroup {
+      grid-template-columns: 1fr;
+      gap: 0.5rem;
+      margin-bottom: 2rem;
     }
 
-    .modalHeader {
-        padding: 1.25rem 1.5rem;
+    .label {
+      font-size: 1.2rem;
     }
 
-    .title {
-        font-size: 1.8rem;
+    .valueWrapper::before {
+      top: 70%;
     }
 
-    .modalBody {
-        padding: 1.5rem;
+    .modalFooter {
+      padding-top: 0;
+      flex-direction: column-reverse; /* Stack buttons, cancel at bottom */
+      gap: 0.75rem;
     }
 
-    .inlineForm {
-        .inputGroup {
-            grid-template-columns: 1fr;
-            gap: 0.5rem;
-            margin-bottom: 2rem;
-        }
-
-        .label {
-            font-size: 1.2rem;
-        }
-
-        .valueWrapper::before {
-            top: 70%;
-        }
-        
-        .modalFooter {
-            padding-top: 0;
-            flex-direction: column-reverse; /* Stack buttons, cancel at bottom */
-            gap: 0.75rem;
-        }
-        
-        .createButton, 
-        .cancelButton {
-            width: 100%;
-            justify-content: center;
-        }
+    .createButton,
+    .cancelButton {
+      width: 100%;
+      justify-content: center;
     }
+  }
 }
