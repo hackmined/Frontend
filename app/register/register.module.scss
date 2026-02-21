@@ -1,10 +1,9 @@
 .pageContainer {
-  height: 100vh;
+  min-height: 100vh;
   width: 100vw;
   margin: 0;
   padding: 0;
   position: relative;
-  overflow: hidden;
 
   background-image: url("/bg.svg");
   background-size: cover;
@@ -34,9 +33,11 @@
 /* TEMP SIGN IN CARD (NEW MOBILE VERSION) */
 
 .tempSignInCard {
-  background: #0f172a; /* Dark slate blue */
+  background: #0f172a;
+  /* Dark slate blue */
   border-radius: 16px;
-  border: 3px solid #334155; /* Lighter border for contrast */
+  border: 3px solid #334155;
+  /* Lighter border for contrast */
   box-shadow: 0 10px 40px rgba(0, 0, 0, 0.6);
 
   width: 100%;
@@ -49,7 +50,6 @@
   justify-content: center;
 
   position: relative;
-  overflow: hidden;
 
   /* Animation similar to modal */
   animation: slideIn 0.5s ease-out;
@@ -65,6 +65,7 @@
     opacity: 0;
     transform: translateY(20px);
   }
+
   to {
     opacity: 1;
     transform: translateY(0);
@@ -80,7 +81,8 @@
   align-items: center;
   justify-content: center;
   text-align: center;
-  color: #cbd5e1; /* Light text */
+  color: #cbd5e1;
+  /* Light text */
 }
 
 /* -------------------------------------------------- */
@@ -129,7 +131,8 @@
     font-family: $font-family-base;
     font-size: 1.8rem;
     font-weight: 700;
-    color: #f1f5f9; /* Light text */
+    color: #f1f5f9;
+    /* Light text */
     margin-bottom: 0.5rem;
     text-align: center;
   }
@@ -235,8 +238,10 @@
   align-items: center;
   gap: 0.75rem;
   padding: 1rem 2rem;
-  background: #f1f5f9; /* Light button */
-  color: #0f172a; /* Dark text */
+  background: #f1f5f9;
+  /* Light button */
+  color: #0f172a;
+  /* Dark text */
   border: 2.5px solid #f1f5f9;
   border-radius: 12px;
   font-family: $font-family-base;

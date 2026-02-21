@@ -223,13 +223,13 @@ export default function DashboardPage() {
                             <div className={styles.teamLayout}>
                                 {/* Top Action Buttons */}
                                 <div className={styles.topActions}>
-                                    <button 
+                                    <button
                                         className={styles.rulebookButton}
                                         onClick={() => setShowRulebook(true)}
                                     >
                                         Rulebook 📖
                                     </button>
-                                    <button 
+                                    <button
                                         className={styles.guideButton}
                                         onClick={() => setShowTeamGuide(true)}
                                     >
@@ -332,9 +332,9 @@ export default function DashboardPage() {
                                                     style={{
                                                         marginTop: 0,
                                                         width: '180px',
-                                                        backgroundColor: teamAction === 'create' ? '#1f2937' : 'transparent',
-                                                        color: teamAction === 'create' ? 'white' : '#1f2937',
-                                                        border: '2px solid #1f2937'
+                                                        backgroundColor: teamAction === 'create' ? '#f1f5f9' : 'transparent',
+                                                        color: teamAction === 'create' ? '#1f2937' : '#f1f5f9',
+                                                        border: '2px solid #f1f5f9'
                                                     }}
                                                 >
                                                     Create Team
@@ -346,9 +346,9 @@ export default function DashboardPage() {
                                                     style={{
                                                         marginTop: 0,
                                                         width: '180px',
-                                                        backgroundColor: teamAction === 'join' ? '#1f2937' : 'transparent',
-                                                        color: teamAction === 'join' ? 'white' : '#1f2937',
-                                                        border: '2px solid #1f2937'
+                                                        backgroundColor: teamAction === 'join' ? '#f1f5f9' : 'transparent',
+                                                        color: teamAction === 'join' ? '#1f2937' : '#f1f5f9',
+                                                        border: '2px solid #f1f5f9'
                                                     }}
                                                 >
                                                     Join Team
@@ -394,15 +394,15 @@ export default function DashboardPage() {
             />
 
             {/* Rulebook Modal */}
-            <RulebookModal 
-                isOpen={showRulebook} 
-                onClose={() => setShowRulebook(false)} 
+            <RulebookModal
+                isOpen={showRulebook}
+                onClose={() => setShowRulebook(false)}
             />
 
             {/* Team Flow Guide Modal */}
-            <TeamFlowGuide 
-                isOpen={showTeamGuide} 
-                onClose={() => setShowTeamGuide(false)} 
+            <TeamFlowGuide
+                isOpen={showTeamGuide}
+                onClose={() => setShowTeamGuide(false)}
             />
         </main>
     );
