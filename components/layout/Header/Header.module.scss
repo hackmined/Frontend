@@ -1,111 +1,140 @@
-@use '@/styles/variables.scss' as *;
+@use "@/styles/variables.scss" as *;
 
 .header {
-    position: fixed;
-    top: 10px;
-    left: 10px;
-    right: 10px;
-    border: none;
-    border-radius: 6px;
-    z-index: $z-header;
-    transition: all $transition-base;
+  position: fixed;
+  top: 10px;
+  left: 10px;
+  right: 10px;
+  border: none;
+  border-radius: 6px;
+  z-index: $z-header;
+  transition: all $transition-base;
 }
 
 .container {
-    max-width: 100%;
-    margin: 0 auto;
-    padding: 0.6rem 1rem;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
+  max-width: 100%;
+  margin: 0 auto;
+  padding: 0.6rem 1rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
 }
 
 .logo {
-    font-size: 1.5rem;
-    font-weight: 400;
-    font-style: italic;
-    color: $color-white;
-    text-decoration: none;
-    letter-spacing: 0.02em;
-    transition: opacity $transition-base;
+  font-size: 1.5rem;
+  font-weight: 400;
+  font-style: italic;
+  color: $color-white;
+  text-decoration: none;
+  letter-spacing: 0.02em;
+  transition: opacity $transition-base;
 
-    &:hover {
-        opacity: 0.8;
-    }
+  &:hover {
+    opacity: 0.8;
+  }
 }
 
 .staticLogo {
-    width: 40px;
-    height: auto;
-    object-fit: contain;
-    display: block; // Removes extra space below inline images
+  width: 40px;
+  height: auto;
+  object-fit: contain;
+  display: block; // Removes extra space below inline images
 }
 
 .nav {
-    display: flex;
-    gap: 3rem;
-    align-items: center;
+  display: flex;
+  gap: 3rem;
+  align-items: center;
 
-    @media (max-width: $breakpoint-mobile) {
-        position: fixed;
-        top: 0;
-        right: -100%;
-        height: 100vh;
-        width: 80%;
-        max-width: 300px;
-        background: rgba(15, 15, 15, 0.95); // Dark background with slight transparency
-        backdrop-filter: blur(10px);
-        flex-direction: column;
-        justify-content: center;
-        gap: $spacing-lg;
-        transition: right $transition-base;
-        border-left: 1px solid rgba(255, 255, 255, 0.1);
-    }
+  @media (max-width: $breakpoint-mobile) {
+    position: fixed;
+    top: 0;
+    right: -100%;
+    height: 100vh;
+    width: 80%;
+    max-width: 300px;
+    background: rgba(
+      15,
+      15,
+      15,
+      0.95
+    ); // Dark background with slight transparency
+    backdrop-filter: blur(10px);
+    flex-direction: column;
+    justify-content: center;
+    gap: $spacing-lg;
+    transition: right $transition-base;
+    border-left: 1px solid rgba(255, 255, 255, 0.1);
+  }
 }
 
 .mobileOpen {
-    @media (max-width: $breakpoint-mobile) {
-        right: 0;
-    }
+  @media (max-width: $breakpoint-mobile) {
+    right: 0;
+  }
 }
 
 .navLink {
-    color: $color-white;
-    text-decoration: none;
-    font-family: $font-family-title;
-    font-weight: 700;
-    font-size: 1rem;
-    text-transform: uppercase;
-    letter-spacing: 0.05em;
-    position: relative;
-    transition: transform 0.2s ease-out, color $transition-base;
-    will-change: transform;
+  color: $color-white;
+  text-decoration: none;
+  font-family: $font-family-title;
+  font-weight: 700;
+  font-size: 1rem;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  position: relative;
+  transition:
+    transform 0.2s ease-out,
+    color $transition-base;
+  will-change: transform;
 
-    &:hover {
-        color: $color-red;
-    }
+  &:hover {
+    color: $color-red;
+  }
 
-    @media (max-width: $breakpoint-mobile) {
-        font-size: $font-size-lg;
-    }
+  @media (max-width: $breakpoint-mobile) {
+    font-size: $font-size-lg;
+  }
+}
+
+.logoutButton {
+  background: none;
+  border: none;
+  cursor: pointer;
+  color: $color-red;
+  font-family: $font-family-title;
+  font-weight: 700;
+  font-size: 1rem;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  padding: 0;
+  transition: opacity $transition-base;
+
+  &:hover {
+    opacity: 0.75;
+  }
+
+  @media (max-width: $breakpoint-mobile) {
+    font-size: $font-size-lg;
+  }
 }
 
 .mobileMenuToggle {
-    display: none;
-    background: none;
-    border: none;
-    color: $color-white;
-    font-size: $font-size-2xl;
-    cursor: pointer;
-    z-index: $z-header + 1;
+  display: none;
+  background: none;
+  border: none;
+  color: $color-white;
+  font-size: $font-size-2xl;
+  cursor: pointer;
+  z-index: $z-header + 1;
 
-    @media (max-width: $breakpoint-mobile) {
-        display: block;
-    }
+  @media (max-width: $breakpoint-mobile) {
+    display: block;
+  }
 }
 
 .menuIcon,
 .closeIcon {
-    display: block;
-    transition: transform $transition-base;
+  display: block;
+  transition: transform $transition-base;
 }

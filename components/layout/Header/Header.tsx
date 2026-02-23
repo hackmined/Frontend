@@ -13,7 +13,7 @@ const baseNavItems: NavItem[] = [
 
 export default function Header() {
     const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
-    const { isAuthenticated, checkAuth } = useAuthStore();
+    const { isAuthenticated, checkAuth, logout } = useAuthStore();
     const pathname = usePathname();
 
     useEffect(() => {
@@ -83,6 +83,17 @@ export default function Header() {
                             {item.label}
                         </Link>
                     ))}
+                    {isAuthenticated && (
+                        <button
+                            className={styles.logoutButton}
+                            onClick={() => {
+                                setMobileMenuOpen(false);
+                                logout();
+                            }}
+                        >
+                            LOGOUT
+                        </button>
+                    )}
                 </nav>
 
                 <button
