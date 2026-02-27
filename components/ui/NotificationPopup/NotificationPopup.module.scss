@@ -1,0 +1,209 @@
+@use '@/styles/variables.scss' as *;
+
+// ── Shake + slide-up entry ──
+@keyframes shakeIn {
+    0% {
+        opacity: 0;
+        transform: translateY(28px) rotate(-1deg);
+    }
+
+    40% {
+        opacity: 1;
+        transform: translateY(-6px) rotate(0.5deg);
+    }
+
+    60% {
+        transform: translateY(3px) rotate(-0.3deg);
+    }
+
+    80% {
+        transform: translateY(-2px) rotate(0.1deg);
+    }
+
+    100% {
+        opacity: 1;
+        transform: translateY(0) rotate(0deg);
+    }
+}
+
+@keyframes slideOut {
+    from {
+        opacity: 1;
+        transform: translateY(0);
+    }
+
+    to {
+        opacity: 0;
+        transform: translateY(28px);
+    }
+}
+
+// ── Pulsing red glow on the border ──
+@keyframes dangerPulse {
+
+    0%,
+    100% {
+        box-shadow:
+            0 0 0 1px rgba(0, 0, 0, 0.5),
+            0 0 12px rgba(239, 68, 68, 0.25);
+        border-color: rgba(239, 68, 68, 0.55);
+    }
+
+    50% {
+        box-shadow:
+            0 0 0 1px rgba(0, 0, 0, 0.5),
+            0 0 32px rgba(239, 68, 68, 0.65);
+        border-color: rgba(255, 120, 80, 0.90);
+    }
+}
+
+// ── Blinking dot on the label ──
+@keyframes blink {
+
+    0%,
+    100% {
+        opacity: 1;
+    }
+
+    50% {
+        opacity: 0;
+    }
+}
+
+// ── Wrapper ──
+.popup {
+    position: fixed;
+    bottom: 2rem;
+    right: 2rem;
+    z-index: 9999;
+
+    max-width: 340px;
+    width: calc(100vw - 2.5rem);
+
+    // Dark red-tinted glassmorphism
+    background: rgba(28, 6, 6, 0.82);
+    backdrop-filter: blur(16px);
+    -webkit-backdrop-filter: blur(16px);
+
+    border-radius: $radius-lg;
+    padding: 0; // header + body handle their own padding
+    overflow: hidden;
+
+    opacity: 0;
+    pointer-events: none;
+
+    &.open {
+        animation: shakeIn 0.55s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+        pointer-events: auto;
+    }
+
+    &.closing {
+        animation: slideOut 0.35s cubic-bezier(0.55, 0, 1, 0.45) forwards;
+        pointer-events: none;
+    }
+
+    @media (max-width: $breakpoint-mobile) {
+        bottom: 1.2rem;
+        right: 0.8rem;
+        left: 0.8rem;
+        max-width: none;
+        width: auto;
+    }
+}
+
+// ── Pulsing danger border overlay ──
+.border {
+    position: absolute;
+    inset: 0;
+    border-radius: $radius-lg;
+    border: 1.5px solid rgba(239, 68, 68, 0.55);
+    pointer-events: none;
+    animation: dangerPulse 1.8s ease-in-out infinite;
+}
+
+// ── Red accent header strip ──
+.header {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.55rem 1rem 0.5rem;
+    background: rgba(185, 28, 28, 0.55);
+    border-bottom: 1px solid rgba(239, 68, 68, 0.35);
+}
+
+.dot {
+    width: 7px;
+    height: 7px;
+    border-radius: 50%;
+    background: #f87171;
+    flex-shrink: 0;
+    animation: blink 1s step-start infinite;
+}
+
+.label {
+    font-family: $font-family-base;
+    font-size: 0.72rem;
+    font-weight: $font-weight-bold;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: #fca5a5;
+}
+
+// ── Content row ──
+.inner {
+    display: flex;
+    align-items: flex-start;
+    gap: 0.75rem;
+    padding: 0.85rem 1rem 0.9rem 1rem;
+}
+
+// ── Message list ──
+.messageList {
+    flex: 1;
+    margin: 0;
+    padding-left: 1.1rem; // indent for the bullets
+    list-style: disc;
+    display: flex;
+    flex-direction: column;
+    gap: 0.45rem;
+}
+
+.messageItem {
+    font-family: $font-family-base;
+    font-size: $font-size-xs;
+    font-weight: $font-weight-medium;
+    line-height: 1.6;
+    color: rgba(255, 220, 220, 0.92);
+    word-break: break-word;
+
+    // Tint the bullet disc to match the red theme
+    &::marker {
+        color: #f87171;
+    }
+}
+
+// ── Close button ──
+.closeBtn {
+    flex-shrink: 0;
+    background: transparent;
+    border: none;
+    color: rgba(252, 165, 165, 0.5);
+    font-size: 0.85rem;
+    line-height: 1;
+    cursor: pointer;
+    padding: 0.15rem 0.25rem;
+    border-radius: $radius-sm;
+    transition:
+        color $transition-fast,
+        background $transition-fast;
+
+    &:hover {
+        color: #fca5a5;
+        background: rgba(239, 68, 68, 0.18);
+    }
+
+    &:focus-visible {
+        outline: 2px solid rgba(239, 68, 68, 0.7);
+        outline-offset: 2px;
+    }
+}

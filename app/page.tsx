@@ -6,16 +6,20 @@ import TimelineSection from "@/components/sections/TimelineSection/TimelineSecti
 import TracksSection from "@/components/sections/TracksSection/TracksSection";
 import FAQSection from "@/components/sections/FAQSection/FAQSection";
 import VerticalScrollSection from "@/components/sections/VerticalScrollSection/VerticalScrollSection";
+import NotificationPopup from "@/components/ui/NotificationPopup/NotificationPopup";
 
 export default function Home() {
   return (
-    <HorizontalScroll>
-      <HeroSection />
-      <AboutSection />
-      <VerticalScrollSection />
-      <TimelineSection />
-      <TracksSection />
-      <FAQSection />
-    </HorizontalScroll>
+    <>
+      <HorizontalScroll>
+        <HeroSection />
+        <AboutSection />
+        <VerticalScrollSection />
+        <TimelineSection />
+        <TracksSection />
+        <FAQSection />
+      </HorizontalScroll>
+      <NotificationPopup />
+    </>
   );
 }
