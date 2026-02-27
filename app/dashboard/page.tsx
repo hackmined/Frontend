@@ -4,7 +4,7 @@ import { useEffect, useState } from "react";
 import { useRouter } from "next/navigation";
 import { useAuthStore } from "@/lib/stores/authStore";
 import { getUserProfile } from "@/lib/api/user";
-import { getTeam, confirmOfflineAttendance, deleteTeam } from "@/lib/api/team";
+import { getTeam, deleteTeam } from "@/lib/api/team";
 import { User, Team } from "@/types";
 
 import TeamStatus from "@/components/dashboard/TeamStatus";
@@ -12,7 +12,6 @@ import TeamCreationModal from "@/components/team/TeamCreationModal";
 import TeamCreationForm from "@/components/team/TeamCreationForm";
 import InviteForm from "@/components/team/InviteForm";
 import InvitationsList from "@/components/team/InvitationsList";
-import OfflineAttendanceModal from "@/components/team/OfflineAttendanceModal";
 import Starfield from "@/components/ui/Starfield/Starfield";
 import RulebookModal from "@/components/dashboard/RulebookModal";
 import TeamFlowGuide from "@/components/dashboard/TeamFlowGuide";
@@ -326,17 +325,28 @@ export default function DashboardPage() {
                                             )}
                                         </div>
 
-                                        {/* Offline Attendance Status (for team leader, or when confirmed) */}
-                                        {user.isTeamLeader && (
-                                            <OfflineAttendanceModal
-                                                currentStatus={team.willAttendOffline ?? null}
-                                                teamName={team.name}
-                                                onConfirm={async (willAttend) => {
-                                                    await confirmOfflineAttendance(team._id || team.id, willAttend);
-                                                    loadData();
-                                                }}
-                                            />
-                                        )}
+                                        {/* Online-Only Participation Notice */}
+                                        <div style={{
+                                            background: 'linear-gradient(135deg, rgba(251, 191, 36, 0.12), rgba(245, 158, 11, 0.08))',
+                                            border: '1px solid rgba(251, 191, 36, 0.35)',
+                                            borderRadius: '12px',
+                                            padding: '1rem 1.25rem',
+                                            marginBottom: '1rem',
+                                            display: 'flex',
+                                            alignItems: 'flex-start',
+                                            gap: '0.75rem',
+                                        }}>
+                                            <span style={{ fontSize: '1.25rem', lineHeight: 1, flexShrink: 0 }}>📢</span>
+                                            <div>
+                                                <p style={{ color: '#fbbf24', fontWeight: 700, margin: '0 0 0.25rem', fontSize: '0.9rem', letterSpacing: '0.02em' }}>
+                                                    Important Notice — Online Participation Only
+                                                </p>
+                                                <p style={{ color: '#e5e7eb', margin: 0, fontSize: '0.82rem', lineHeight: 1.5 }}>
+                                                    Due to an overwhelming number of registrations, all new participants will be participating
+                                                    <strong style={{ color: '#fde68a' }}> online only</strong>. Offline attendance confirmations are no longer applicable for new registrants.
+                                                </p>
+                                            </div>
+                                        </div>
 
                                         <div className={styles.teamStatusBox}>
                                             {isInviting ? (
