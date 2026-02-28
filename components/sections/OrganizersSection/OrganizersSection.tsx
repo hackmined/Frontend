@@ -396,6 +396,17 @@ const initialCategories: OrganizerCategory[] = [
           github: "https://github.com/Rey-J-Sh/",
         },
       },
+      {
+        id: 28,
+        name: "Jaimin Parmar",
+        role: "",
+        image: "/TeamPhotos/Students/Jaimin.jpg",
+        bio: "",
+        socials: {
+          linkedin: "https://www.linkedin.com/in/jaimin-parmar-a4a62a332/",
+          github: "https://github.com/Jaimin2687",
+        },
+      }
     ],
   },
 ];
