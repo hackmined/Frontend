@@ -1,116 +1,383 @@
 @use '@/styles/variables.scss' as *;
 
+// =============================================
+// TRACKS SECTION — Main wrapper
+// =============================================
 .tracksSection {
     min-height: 100vh;
-    width: 100vw;
+    width: 100%;
     display: flex;
     justify-content: center;
-    align-items: center;
-    padding: 120px 5vw 5vw 5vw;
-    /* Added top padding to clear header */
+    align-items: flex-start;
+    padding: 5rem 5vw 6rem 5vw;
     background: transparent;
     position: relative;
     overflow: hidden;
-    flex-shrink: 0;
+
+    @media (max-width: $breakpoint-mobile) {
+        padding: 3rem 5vw 4rem 5vw;
+    }
 }
 
-.sectionContent {
-    max-width: 1400px;
-    width: 100%;
-    height: 100%;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    position: relative;
-    z-index: 10;
-}
-
-.backgroundTitle {
+// Big watermark background label
+.bgLabel {
     position: absolute;
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
     font-family: $font-family-title;
-    font-size: 15vw;
-    /* Massive size */
+    font-size: clamp(8rem, 18vw, 20rem);
     font-weight: 900;
     color: transparent;
-    -webkit-text-stroke: 2px rgba(255, 255, 255, 0.15);
+    -webkit-text-stroke: 2px rgba(255, 255, 255, 0.05);
     white-space: nowrap;
-    z-index: 1;
-    /* Behind overlay */
+    z-index: 0;
     pointer-events: none;
     user-select: none;
-    letter-spacing: 0.1em;
-    width: 100%;
-    text-align: center;
+    letter-spacing: 0.15em;
 }
 
-.comingSoonOverlay {
+// =============================================
+// CONTENT WRAPPER
+// =============================================
+.sectionContent {
+    max-width: 1300px;
+    width: 100%;
     position: relative;
     z-index: 10;
-    text-align: center;
-
-    /* Premium Glass Card */
-    background: rgba(20, 20, 40, 0.6);
-    backdrop-filter: blur(20px);
-    -webkit-backdrop-filter: blur(20px);
-    padding: 4rem 10vw;
-    /* Wide padding */
-    border: 1px solid rgba(255, 255, 255, 0.1);
-    border-radius: 200px;
-    /* Fully rounded/pill shape as per image? No image shows rect with rounded corners. Let's stick to standard 24px or try pill if image looks like it. Image shows rounded rectangle. Stick to 24px but maybe wider */
-    border-radius: 24px;
-    box-shadow:
-        0 20px 50px rgba(0, 0, 0, 0.5),
-        inset 0 0 0 1px rgba(255, 255, 255, 0.05);
-
     display: flex;
     flex-direction: column;
     align-items: center;
-    justify-content: center;
-    min-width: 60vw;
-    /* Make it wide */
+    gap: 3rem;
 }
 
-.comingSoonOverlay h2 {
-    position: relative;
-    z-index: 1;
+// =============================================
+// HEADER
+// =============================================
+.header {
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.75rem;
+
+    @media (max-width: $breakpoint-mobile) {
+        gap: 0.5rem;
+    }
+}
+
+.headerTag {
+    font-family: $font-family-title;
+    font-size: 0.8rem;
+    letter-spacing: 0.35em;
+    color: $primary;
+    text-transform: uppercase;
+    opacity: 0.9;
+}
+
+.title {
     font-family: $font-family-base;
-    /* Handwritten style */
-    font-size: clamp(2rem, 5vw, 4rem);
+    font-size: clamp(2.4rem, 5vw, 4rem);
+    font-weight: 900;
     color: #ffffff;
+    letter-spacing: 0.05em;
     text-transform: uppercase;
     margin: 0;
-    letter-spacing: 0.1em;
-    /* Neon Glow Effect */
+    line-height: 1.1;
     text-shadow:
-        0 0 10px rgba(255, 255, 255, 0.8),
-        0 0 20px rgba(255, 255, 255, 0.5),
-        0 0 30px $primary;
-    animation: pulse 3s infinite alternate;
-    line-height: 1.4;
-}
+        0 0 20px rgba(255, 255, 255, 0.25),
+        0 0 60px rgba($primary, 0.2);
 
-@keyframes pulse {
-    from {
-        text-shadow:
-            0 0 10px rgba(255, 255, 255, 0.8),
-            0 0 20px rgba(255, 255, 255, 0.5),
-            0 0 30px $primary;
-    }
-
-    to {
-        text-shadow:
-            0 0 15px rgba(255, 255, 255, 1),
-            0 0 30px rgba(255, 255, 255, 0.8),
-            0 0 50px $primary,
-            0 0 70px $primary;
+    @media (max-width: $breakpoint-mobile) {
+        font-size: clamp(1.8rem, 9vw, 2.8rem);
     }
 }
 
-@media (max-width: $breakpoint-mobile) {
-    .tracksGrid {
+.subtitle {
+    font-family: $font-family-base;
+    font-size: clamp(0.95rem, 1.5vw, 1.15rem);
+    color: rgba(209, 213, 219, 0.85);
+    max-width: 550px;
+    line-height: 1.6;
+    margin: 0;
+    margin-top: 0.25rem;
+
+    @media (max-width: $breakpoint-mobile) {
+        font-size: 0.95rem;
+        max-width: 90%;
+    }
+}
+
+// =============================================
+// TRACKS GRID
+// =============================================
+.tracksGrid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1.5rem;
+    width: 100%;
+
+    @media (max-width: $breakpoint-tablet) {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 1.25rem;
+    }
+
+    @media (max-width: $breakpoint-mobile) {
         grid-template-columns: 1fr;
+        gap: 1rem;
     }
+}
+
+// =============================================
+// TRACK CARD
+// =============================================
+.trackCard {
+    position: relative;
+    border-radius: 20px;
+    padding: 2rem 1.75rem 1.75rem;
+    cursor: default;
+    transition:
+        transform 0.35s cubic-bezier(0.34, 1.56, 0.64, 1),
+        box-shadow 0.35s ease;
+    overflow: hidden;
+
+    // Base glass bg
+    background: rgba(12, 12, 22, 0.55);
+    backdrop-filter: blur(18px);
+    -webkit-backdrop-filter: blur(18px);
+
+    &:hover {
+        transform: translateY(-8px) scale(1.02);
+
+        .cardBorder {
+            opacity: 1;
+        }
+
+        .cardNumber {
+            opacity: 0.12;
+        }
+    }
+
+    @media (max-width: $breakpoint-mobile) {
+        padding: 1.5rem 1.25rem;
+        border-radius: 16px;
+    }
+}
+
+// Gradient overlay per-card (subtle glow tint at top)
+.gradientBlue {
+    background: linear-gradient(145deg,
+            rgba(119, 164, 212, 0.09) 0%,
+            rgba(12, 12, 22, 0.55) 60%);
+    box-shadow: 0 8px 40px rgba(119, 164, 212, 0.08);
+}
+
+.gradientGreen {
+    background: linear-gradient(145deg,
+            rgba(52, 211, 153, 0.09) 0%,
+            rgba(12, 12, 22, 0.55) 60%);
+    box-shadow: 0 8px 40px rgba(52, 211, 153, 0.08);
+}
+
+.gradientYellow {
+    background: linear-gradient(145deg,
+            rgba(251, 176, 64, 0.09) 0%,
+            rgba(12, 12, 22, 0.55) 60%);
+    box-shadow: 0 8px 40px rgba(251, 176, 64, 0.08);
+}
+
+.gradientEmerald {
+    background: linear-gradient(145deg,
+            rgba(16, 185, 129, 0.09) 0%,
+            rgba(12, 12, 22, 0.55) 60%);
+    box-shadow: 0 8px 40px rgba(16, 185, 129, 0.08);
+}
+
+.gradientPurple {
+    background: linear-gradient(145deg,
+            rgba(167, 139, 250, 0.09) 0%,
+            rgba(12, 12, 22, 0.55) 60%);
+    box-shadow: 0 8px 40px rgba(167, 139, 250, 0.08);
+}
+
+.gradientPink {
+    background: linear-gradient(145deg,
+            rgba(255, 133, 165, 0.09) 0%,
+            rgba(12, 12, 22, 0.55) 60%);
+    box-shadow: 0 8px 40px rgba(255, 133, 165, 0.08);
+}
+
+// =============================================
+// GLOWING BORDER (shared base)
+// =============================================
+.cardBorder {
+    position: absolute;
+    inset: 0;
+    border-radius: 20px;
+    border: 1.5px solid transparent;
+    pointer-events: none;
+    opacity: 0.5;
+    transition: opacity 0.35s ease;
+    z-index: 1;
+
+    @media (max-width: $breakpoint-mobile) {
+        border-radius: 16px;
+    }
+}
+
+// Accent border colors
+.accentBlue.cardBorder {
+    border-color: rgba(119, 164, 212, 0.6);
+    box-shadow:
+        inset 0 0 20px rgba(119, 164, 212, 0.07),
+        0 0 18px rgba(119, 164, 212, 0.15);
+}
+
+.accentGreen.cardBorder {
+    border-color: rgba(52, 211, 153, 0.6);
+    box-shadow:
+        inset 0 0 20px rgba(52, 211, 153, 0.07),
+        0 0 18px rgba(52, 211, 153, 0.15);
+}
+
+.accentYellow.cardBorder {
+    border-color: rgba(251, 176, 64, 0.6);
+    box-shadow:
+        inset 0 0 20px rgba(251, 176, 64, 0.07),
+        0 0 18px rgba(251, 176, 64, 0.15);
+}
+
+.accentEmerald.cardBorder {
+    border-color: rgba(16, 185, 129, 0.6);
+    box-shadow:
+        inset 0 0 20px rgba(16, 185, 129, 0.07),
+        0 0 18px rgba(16, 185, 129, 0.15);
+}
+
+.accentPurple.cardBorder {
+    border-color: rgba(167, 139, 250, 0.6);
+    box-shadow:
+        inset 0 0 20px rgba(167, 139, 250, 0.07),
+        0 0 18px rgba(167, 139, 250, 0.15);
+}
+
+.accentPink.cardBorder {
+    border-color: rgba(255, 133, 165, 0.6);
+    box-shadow:
+        inset 0 0 20px rgba(255, 133, 165, 0.07),
+        0 0 18px rgba(255, 133, 165, 0.15);
+}
+
+// =============================================
+// CARD INNER CONTENT
+// =============================================
+.cardInner {
+    position: relative;
+    z-index: 2;
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+}
+
+.cardTop {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 0.25rem;
+}
+
+.cardIcon {
+    font-size: 2.2rem;
+    line-height: 1;
+    filter: drop-shadow(0 0 6px rgba(255, 255, 255, 0.25));
+    transition: transform 0.3s ease;
+
+    .trackCard:hover & {
+        transform: scale(1.15) rotate(-5deg);
+    }
+}
+
+.cardTag {
+    font-family: $font-family-title;
+    font-size: 0.65rem;
+    letter-spacing: 0.25em;
+    text-transform: uppercase;
+    padding: 0.3rem 0.75rem;
+    border-radius: 100px;
+    border: 1px solid currentColor;
+    opacity: 0.8;
+    transition: opacity 0.3s ease;
+
+    .trackCard:hover & {
+        opacity: 1;
+    }
+}
+
+// Tag text colors
+.accentBlue.cardTag {
+    color: rgba(119, 164, 212, 0.95);
+    border-color: rgba(119, 164, 212, 0.4);
+}
+
+.accentGreen.cardTag {
+    color: rgba(52, 211, 153, 0.95);
+    border-color: rgba(52, 211, 153, 0.4);
+}
+
+.accentYellow.cardTag {
+    color: rgba(251, 176, 64, 0.95);
+    border-color: rgba(251, 176, 64, 0.4);
+}
+
+.accentEmerald.cardTag {
+    color: rgba(16, 185, 129, 0.95);
+    border-color: rgba(16, 185, 129, 0.4);
+}
+
+.accentPurple.cardTag {
+    color: rgba(167, 139, 250, 0.95);
+    border-color: rgba(167, 139, 250, 0.4);
+}
+
+.accentPink.cardTag {
+    color: rgba(255, 133, 165, 0.95);
+    border-color: rgba(255, 133, 165, 0.4);
+}
+
+.cardTitle {
+    font-family: $font-family-base;
+    font-size: clamp(1.15rem, 1.8vw, 1.4rem);
+    font-weight: 800;
+    color: #ffffff;
+    letter-spacing: 0.03em;
+    text-transform: uppercase;
+    margin: 0;
+    line-height: 1.2;
+    text-shadow: 0 0 12px rgba(255, 255, 255, 0.15);
+}
+
+.cardDescription {
+    font-family: $font-family-base;
+    font-size: clamp(0.85rem, 1.1vw, 0.95rem);
+    color: rgba(209, 213, 219, 0.75);
+    line-height: 1.65;
+    margin: 0;
+}
+
+// =============================================
+// CARD WATERMARK NUMBER
+// =============================================
+.cardNumber {
+    position: absolute;
+    bottom: -0.5rem;
+    right: 1rem;
+    font-family: $font-family-title;
+    font-size: 5rem;
+    font-weight: 900;
+    color: rgba(255, 255, 255, 0.05);
+    line-height: 1;
+    pointer-events: none;
+    user-select: none;
+    transition: opacity 0.35s ease;
+    z-index: 1;
 }
