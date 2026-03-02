@@ -7,6 +7,7 @@ import { NavItem } from '@/types';
 import { useAuthStore } from '@/lib/stores/authStore';
 
 const baseNavItems: NavItem[] = [
+    //{ label: 'TRACKS', href: '/tracks' },
     { label: 'CONTACT', href: '/contact' },
     { label: 'ORGANIZERS', href: '/organizers' },
 ];
