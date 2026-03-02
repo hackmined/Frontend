@@ -15,7 +15,6 @@ const tracks = [
         description:
             "Build intelligent systems using ML to solve real-world problems like prediction, automation, and personalization. Push the boundaries of what machines can learn and understand.",
         accentClass: styles.accentBlue,
-        gradientClass: styles.gradientBlue,
     },
     {
         id: "healthtech",
@@ -25,7 +24,6 @@ const tracks = [
         description:
             "Design solutions that revolutionize healthcare delivery, patient monitoring, mental health, or medical diagnostics. Technology can save lives — build something that matters.",
         accentClass: styles.accentGreen,
-        gradientClass: styles.gradientGreen,
     },
     {
         id: "fintech",
@@ -35,7 +33,6 @@ const tracks = [
         description:
             "Reimagine how people interact with money. From digital payments and personal finance tools to decentralized banking and fraud detection, financial inclusion starts here.",
         accentClass: styles.accentYellow,
-        gradientClass: styles.gradientYellow,
     },
     {
         id: "sustainability",
@@ -45,7 +42,6 @@ const tracks = [
         description:
             "Tackle climate change, pollution, renewable energy, and sustainable agriculture through creative tech solutions. Build a greener future with code.",
         accentClass: styles.accentEmerald,
-        gradientClass: styles.gradientEmerald,
     },
     {
         id: "web3",
@@ -55,7 +51,6 @@ const tracks = [
         description:
             "Explore decentralized applications, smart contracts, DAOs, digital identity, and NFT utilities. Shape the next era of the internet where users own their data.",
         accentClass: styles.accentPurple,
-        gradientClass: styles.gradientPurple,
     },
     {
         id: "open",
@@ -65,7 +60,6 @@ const tracks = [
         description:
             "Got an idea that doesn't fit a box? This track is for bold, unconventional projects that challenge norms. If it's impactful — it belongs here.",
         accentClass: styles.accentPink,
-        gradientClass: styles.gradientPink,
     },
     {
         id: "ai-ml1",
@@ -75,7 +69,6 @@ const tracks = [
         description:
             "Build intelligent systems using ML to solve real-world problems like prediction, automation, and personalization. Push the boundaries of what machines can learn and understand.",
         accentClass: styles.accentBlue,
-        gradientClass: styles.gradientBlue,
     },
     {
         id: "healthtech1",
@@ -85,7 +78,6 @@ const tracks = [
         description:
             "Design solutions that revolutionize healthcare delivery, patient monitoring, mental health, or medical diagnostics. Technology can save lives — build something that matters.",
         accentClass: styles.accentGreen,
-        gradientClass: styles.gradientGreen,
     },
     {
         id: "fintech1",
@@ -95,7 +87,6 @@ const tracks = [
         description:
             "Reimagine how people interact with money. From digital payments and personal finance tools to decentralized banking and fraud detection, financial inclusion starts here.",
         accentClass: styles.accentYellow,
-        gradientClass: styles.gradientYellow,
     },
     {
         id: "sustainability1",
@@ -105,7 +96,6 @@ const tracks = [
         description:
             "Tackle climate change, pollution, renewable energy, and sustainable agriculture through creative tech solutions. Build a greener future with code.",
         accentClass: styles.accentEmerald,
-        gradientClass: styles.gradientEmerald,
     },
     {
         id: "web32",
@@ -115,7 +105,6 @@ const tracks = [
         description:
             "Explore decentralized applications, smart contracts, DAOs, digital identity, and NFT utilities. Shape the next era of the internet where users own their data.",
         accentClass: styles.accentPurple,
-        gradientClass: styles.gradientPurple,
     },
     {
         id: "open1",
@@ -125,7 +114,6 @@ const tracks = [
         description:
             "Got an idea that doesn't fit a box? This track is for bold, unconventional projects that challenge norms. If it's impactful — it belongs here.",
         accentClass: styles.accentPink,
-        gradientClass: styles.gradientPink,
     },
 ];
 
@@ -181,11 +169,6 @@ export default function TracksSection() {
 
     return (
         <section ref={sectionRef} className={styles.tracksSection}>
-            {/* Background large text */}
-            <div className={styles.bgLabel} aria-hidden="true">
-                TRACKS
-            </div>
-
             <div className={styles.sectionContent}>
                 {/* Header */}
                 <div ref={headingRef} className={styles.header}>
@@ -203,11 +186,8 @@ export default function TracksSection() {
                         <div
                             key={track.id}
                             ref={(el) => { cardsRef.current[i] = el; }}
-                            className={`${styles.trackCard} ${track.gradientClass}`}
+                            className={styles.trackCard}
                         >
-                            {/* Glow border overlay */}
-                            <div className={`${styles.cardBorder} ${track.accentClass}`} />
-
                             {/* Card content */}
                             <div className={styles.cardInner}>
                                 <div className={styles.cardTop}>

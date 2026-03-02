@@ -1,0 +1,187 @@
+@use "@/styles/variables.scss" as *;
+
+.section {
+  position: relative;
+  width: 100%;
+  min-height: 100vh;
+  padding: $spacing-2xl $spacing-md;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  overflow-x: hidden;
+
+  @media (max-width: $breakpoint-mobile) {
+    padding: $spacing-xl $spacing-sm;
+  }
+}
+
+.title {
+  font-family: $font-family-title;
+  font-size: $font-size-3xl;
+  color: $color-white;
+  margin-bottom: $spacing-2xl;
+  text-align: center;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  position: relative;
+  z-index: 2;
+  text-shadow: 0 0 10px rgba(255, 255, 255, 0.3);
+
+  @media (max-width: $breakpoint-mobile) {
+    font-size: 2rem;
+    margin-bottom: $spacing-xl;
+  }
+
+  &::after {
+    content: "";
+    display: block;
+    width: 60px;
+    height: 4px;
+    background-color: $color-red;
+    margin: $spacing-xs auto 0;
+    box-shadow: 0 0 10px $color-red;
+  }
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  gap: $spacing-lg;
+  width: 100%;
+  max-width: 1200px;
+  justify-items: center;
+  z-index: 2;
+}
+
+.card {
+  width: 100%;
+  background: #0f172a;
+  border: 3px solid #334155;
+  border-radius: 20px;
+  padding: $spacing-lg;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+  position: relative;
+  overflow: hidden;
+  box-shadow: 0 10px 40px rgba(0, 0, 0, 0.6);
+
+  &:hover {
+    transform: translateY(-10px) scale(1.02);
+    background: #1e293b;
+    border-color: #475569;
+    box-shadow:
+      0 20px 40px rgba(0, 0, 0, 0.5),
+      inset 0 0 20px rgba(255, 255, 255, 0.05);
+
+    .imageWrapper {
+      transform: scale(1.1);
+      border-color: $accent-2;
+      box-shadow: 0 0 15px $accent-2;
+    }
+
+    .role {
+      letter-spacing: 0.1em;
+    }
+  }
+}
+
+.imageWrapper {
+  width: 120px;
+  height: 120px;
+  border-radius: 50%;
+  overflow: hidden;
+  margin-bottom: $spacing-md;
+  border: 3px solid #334155;
+  background-color: $color-black;
+  position: relative;
+  transition: all 0.4s ease;
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+
+  img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+}
+
+.name {
+  font-family: $font-family-title;
+  font-size: $font-size-lg;
+  font-weight: $font-weight-bold;
+  color: #f1f5f9;
+  margin-bottom: $spacing-xs;
+  text-shadow: none;
+}
+
+.role {
+  font-family: $font-family-base;
+  font-size: $font-size-md;
+  color: #cbd5e1;
+  font-weight: $font-weight-bold;
+  margin-bottom: $spacing-md;
+  text-transform: uppercase;
+  transition: all 0.3s ease;
+}
+
+.bio {
+  font-family: $font-family-base;
+  font-size: $font-size-sm;
+  color: #94a3b8;
+  margin-bottom: $spacing-md;
+  line-height: 1.5;
+  opacity: 0.8;
+}
+
+.socials {
+  display: flex;
+  gap: $spacing-sm;
+  margin-top: auto;
+  width: 100%;
+  justify-content: center;
+  padding-top: $spacing-sm;
+  border-top: 1px solid rgba(255, 255, 255, 0.05);
+
+  a {
+    color: #cbd5e1;
+    font-size: $font-size-lg;
+    transition: all 0.3s ease;
+    opacity: 0.8;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    &:hover {
+      opacity: 1;
+      color: #f1f5f9;
+      transform: translateY(-2px);
+    }
+
+    svg {
+      width: 24px;
+      height: 24px;
+    }
+  }
+}
+
+.bgDecoration {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  top: 0;
+  left: 0;
+  pointer-events: none;
+  z-index: 1;
+  opacity: 0.15;
+  background:
+    radial-gradient(circle at 15% 15%, rgba($primary, 0.4) 0%, transparent 25%),
+    radial-gradient(
+      circle at 85% 85%,
+      rgba($accent-1, 0.4) 0%,
+      transparent 25%
+    ),
+    radial-gradient(circle at 50% 50%, rgba($accent-2, 0.2) 0%, transparent 35%);
+  filter: blur(40px);
+}
