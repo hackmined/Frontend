@@ -74,7 +74,7 @@ export default function AboutSection() {
         {/* 3. 1000+ HACKERS (Center Bottom) */}
         <div className={`${styles.statCard} ${styles.card3}`}>
           <img src="/banner.svg" alt="bg" className={styles.cardBg} />
-          <div className={styles.statValue}>1000+</div>
+          <div className={styles.statValue}>1500+</div>
           <div className={styles.statLabel}>HACKERS</div>
         </div>
 
@@ -88,7 +88,7 @@ export default function AboutSection() {
                 {/* 5. $450K+ PRIZE POOL */}
                 <div className={`${styles.statCard} ${styles.card5}`}>
                     <img src="/banner.svg" alt="bg" className={styles.cardBg} />
-                    <div className={styles.statValue}>450K+</div>
+                    <div className={styles.statValue}>500K+</div>
                     <div className={styles.statLabel}>PRIZE POOL</div>
                 </div>
             </div>

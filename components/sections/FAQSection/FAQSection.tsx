@@ -17,6 +17,10 @@ const faqs: FAQItem[] = [
         answer: "Anyone can participate beginners, developers, designers, and innovators."
     },
     {
+        question: "Are Cross-University teams allowed?",
+        answer: "Yes, a team can have students from multiple universities"
+    },
+    {
         question: "Do I need to attend any in-person events to be eligible?",
         answer: "No. Both online and offline participants are eligible. Offline participation is subject to limited seats."
     },
