@@ -344,6 +344,8 @@ export default function DashboardPage() {
                                                 <p style={{ color: '#e5e7eb', margin: 0, fontSize: '0.82rem', lineHeight: 1.5 }}>
                                                     Due to an overwhelming number of registrations, all new participants will be participating
                                                     <strong style={{ color: '#fde68a' }}> online only</strong>. Offline attendance confirmations are no longer applicable for new registrants.
+                                                    <br/><br/>
+                                                    <strong style={{ color: '#fde68a' }}>Note: </strong>This applies to Non-Nirma students only. For Nirma students it is mandatory to attend offline.
                                                 </p>
                                             </div>
                                         </div>
