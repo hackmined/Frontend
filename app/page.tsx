@@ -7,6 +7,8 @@ import FAQSection from "@/components/sections/FAQSection/FAQSection";
 import VerticalScrollSection from "@/components/sections/VerticalScrollSection/VerticalScrollSection";
 import NotificationPopup from "@/components/ui/NotificationPopup/NotificationPopup";
 
+import SponsorsSection from "@/components/sections/SponsorsSection/SponsorsSection";
+
 export default function Home() {
   return (
     <>
@@ -15,6 +17,7 @@ export default function Home() {
         <AboutSection />
         <VerticalScrollSection />
         <TimelineSection />
+        {/* <SponsorsSection /> */}
         <FAQSection />
       </HorizontalScroll>
       <NotificationPopup />

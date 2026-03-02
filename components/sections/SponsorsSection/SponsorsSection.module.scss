@@ -1,0 +1,206 @@
+@use "@/styles/variables.scss" as *;
+
+.sponsorsSection {
+  width: 100vw;
+  min-width: 100vw;
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: transparent;
+  padding: 2rem $spacing-md; // Significantly reduced from 6rem
+  padding-top: 8rem;
+  position: relative;
+  z-index: 20;
+
+  @media (max-width: $breakpoint-mobile) {
+    padding: 2rem $spacing-sm; // Adjust for mobile
+    height: auto;
+    min-height: unset; // Stack normally on mobile
+  }
+}
+
+.sectionContent {
+  width: 100%;
+  max-width: 1200px;
+  display: flex;
+  flex-direction: column;
+  gap: $spacing-md; // Reduced from spacing-lg
+  align-items: center;
+}
+
+.sectionTitle {
+  font-family: $font-family-title;
+  font-size: 2.5rem; // Slightly smaller title
+  line-height: 1;
+  margin-bottom: 0;
+  text-align: center;
+  color: #ffffff;
+  text-transform: uppercase;
+  font-weight: 700;
+  text-shadow: 0 0 20px rgba(50, 100, 255, 0.5);
+
+  @media (max-width: $breakpoint-mobile) {
+    font-size: 2rem;
+  }
+}
+
+.sponsorsGrid {
+  display: flex;
+  flex-direction: column;
+  gap: $spacing-sm; // Reduced gap from spacing-md between tiers
+  width: 100%;
+  align-items: center;
+
+  @media (max-width: $breakpoint-mobile) {
+    gap: $spacing-md;
+  }
+}
+
+.tierHeading {
+  font-family: $font-family-base;
+  color: rgba(255, 255, 255, 0.7);
+  font-size: 0.9rem; // Slightly smaller heading
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  margin-bottom: $spacing-xs; // Reduced from spacing-sm
+  text-align: center;
+  font-weight: 600;
+}
+
+.sponsorImagePlaceholder {
+  background: rgba(255, 255, 255, 0.05);
+  border: 2px dashed rgba(255, 255, 255, 0.4);
+  border-radius: 12px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: rgba(255, 255, 255, 0.6);
+  font-family: $font-family-base;
+  text-align: center;
+  text-decoration: none; // in case it's an anchor
+  transition: all $transition-base;
+  box-shadow: inset 0 0 20px rgba(0, 0, 0, 0.1);
+
+  &:hover {
+    background: rgba(255, 255, 255, 0.1);
+    border-color: rgba(255, 255, 255, 0.8);
+    transform: translateY(-2px);
+  }
+}
+
+// Title Tier
+.titleTier {
+  width: 100%;
+  max-width: 500px; // Further restrict max-width
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+
+  .titleImage {
+    width: 100%;
+    height: 120px; // Scaled down height
+    font-size: 1.2rem;
+    font-weight: 600;
+
+    @media (max-width: $breakpoint-mobile) {
+      height: 90px;
+      font-size: 1rem;
+    }
+  }
+}
+
+// Premium Tiers (Diamond & Gold)
+.premiumTiers {
+  display: flex;
+  gap: $spacing-md;
+  width: 100%;
+  max-width: 500px;
+  justify-content: center;
+
+  @media (max-width: $breakpoint-mobile) {
+    flex-direction: column;
+    gap: $spacing-md;
+  }
+}
+
+.premiumCol {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+
+  .diamondImage,
+  .goldImage {
+    width: 100%;
+    height: 100px; // Scaled down height
+    font-size: 1rem;
+    font-weight: 500;
+  }
+}
+
+// Track Tiers
+.trackTiers {
+  width: 100vw;
+  overflow: hidden;
+  position: relative;
+  padding: $spacing-sm 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.marqueeWrapper {
+  width: 100%;
+  overflow: hidden;
+  /* Edge fading */
+  mask-image: linear-gradient(
+    to right,
+    transparent,
+    black 15%,
+    black 85%,
+    transparent
+  );
+  -webkit-mask-image: linear-gradient(
+    to right,
+    transparent,
+    black 15%,
+    black 85%,
+    transparent
+  );
+  display: flex;
+  padding: $spacing-sm 0;
+}
+
+.marqueeContent {
+  display: flex;
+  width: max-content;
+  animation: marquee 40s linear infinite;
+
+  &:hover {
+    animation-play-state: paused;
+  }
+}
+
+.marqueeGroup {
+  display: flex;
+  gap: $spacing-md;
+  padding-right: $spacing-md;
+}
+
+.trackImage {
+  width: 160px;
+  height: 90px;
+  flex-shrink: 0;
+  font-size: 1rem;
+}
+
+@keyframes marquee {
+  0% {
+    transform: translateX(0);
+  }
+  100% {
+    transform: translateX(-50%);
+  }
+}
