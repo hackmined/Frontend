@@ -21,7 +21,7 @@ import styles from "./dashboard.module.scss";
 type DashboardView = "individual" | "team";
 
 // Team operations flag - set to false to lock team management
-const TEAM_OPERATIONS_ENABLED = false;
+const TEAM_OPERATIONS_ENABLED = true;
 
 export default function DashboardPage() {
     const router = useRouter();
