@@ -6,7 +6,7 @@ import styles from "./SponsorsSection.module.scss";
 const TITLE_SPONSOR = {
   name: "Binghamton University",
   image: "/Sponsors/BU.png",
-  tier: "In Collaboration With",
+  tier: "Grand Prize Sponsor",
   website: "https://www.binghamton.edu",
 };
 
@@ -58,10 +58,30 @@ export default function SponsorsSection() {
 
           {/* Diamond & Gold Tiers */}
           <div className={styles.premiumTiers}>
-            <div className={styles.premiumCol}>
-              <h3 className={styles.tierHeading}>Diamond Sponsor</h3>
+            {GOLD_SPONSORS.slice(0, Math.ceil(GOLD_SPONSORS.length / 2)).map(
+              (sponsor, index) => (
+                <div key={`gold-left-${index}`} className={styles.premiumCol}>
+                  <h3 className={styles.tierHeading}>Gold Sponsor</h3>
+                  <div
+                    className={`${styles.sponsorImagePlaceholder} ${styles.goldImage}`}
+                  >
+                    <Image
+                      src={sponsor.image}
+                      alt={sponsor.name}
+                      fill
+                      style={{ objectFit: "contain" }}
+                    />
+                  </div>
+                </div>
+              ),
+            )}
+
+            <div className={`${styles.premiumCol} ${styles.highlightedCol}`}>
+              <h3 className={`${styles.tierHeading} ${styles.highlightText}`}>
+                Diamond Sponsor
+              </h3>
               <div
-                className={`${styles.sponsorImagePlaceholder} ${styles.diamondImage}`}
+                className={`${styles.sponsorImagePlaceholder} ${styles.diamondImage} ${styles.highlightBox}`}
               >
                 <Image
                   src={DIAMOND_SPONSOR.image}
@@ -71,21 +91,24 @@ export default function SponsorsSection() {
                 />
               </div>
             </div>
-            {GOLD_SPONSORS.map((sponsor, index) => (
-              <div key={`gold-${index}`} className={styles.premiumCol}>
-                <h3 className={styles.tierHeading}>Gold Sponsor</h3>
-                <div
-                  className={`${styles.sponsorImagePlaceholder} ${styles.goldImage}`}
-                >
-                  <Image
-                    src={sponsor.image}
-                    alt={sponsor.name}
-                    fill
-                    style={{ objectFit: "contain" }}
-                  />
+
+            {GOLD_SPONSORS.slice(Math.ceil(GOLD_SPONSORS.length / 2)).map(
+              (sponsor, index) => (
+                <div key={`gold-right-${index}`} className={styles.premiumCol}>
+                  <h3 className={styles.tierHeading}>Gold Sponsor</h3>
+                  <div
+                    className={`${styles.sponsorImagePlaceholder} ${styles.goldImage}`}
+                  >
+                    <Image
+                      src={sponsor.image}
+                      alt={sponsor.name}
+                      fill
+                      style={{ objectFit: "contain" }}
+                    />
+                  </div>
                 </div>
-              </div>
-            ))}
+              ),
+            )}
           </div>
 
           {/* Track Sponsors */}
