@@ -12,26 +12,25 @@ const TITLE_SPONSOR = {
 
 const DIAMOND_SPONSOR = {
   name: "Diamond Sponsor",
-  image: "/sponsors/diamond.png",
+  image: "/Sponsors/diamond.png",
 };
 
 const GOLD_SPONSORS = [
-  { name: "Gold Sponsor 1", image: "/sponsors/gold1.png" },
-  { name: "Gold Sponsor 2", image: "/sponsors/gold2.png" },
+  { name: "Gold Sponsor 1", image: "/Sponsors/gold1.png" },
+  { name: "Gold Sponsor 2", image: "/Sponsors/gold2.png" },
 ];
 
 const TRACK_SPONSORS = [
-  { name: "Sponsor 1", image: "/sponsors/1.png" },
-  { name: "Sponsor 2", image: "/sponsors/2.png" },
-  { name: "Sponsor 3", image: "/sponsors/3.png" },
-  { name: "Sponsor 4", image: "/sponsors/4.png" },
-  { name: "Sponsor 5", image: "/sponsors/5.png" },
-  { name: "Sponsor 6", image: "/sponsors/6.png" },
-  { name: "Sponsor 7", image: "/sponsors/7.png" },
-  { name: "Sponsor 8", image: "/sponsors/8.png" },
-  { name: "Sponsor 9", image: "/sponsors/9.png" },
-  { name: "Sponsor 10", image: "/sponsors/10.png" },
-  { name: "Sponsor 11", image: "/sponsors/11.png" },
+  { name: "Sponsor 1", image: "/Sponsors/1.png" },
+  { name: "Sponsor 2", image: "/Sponsors/3.png" },
+  { name: "Sponsor 4", image: "/Sponsors/4.png" },
+  { name: "Sponsor 5", image: "/Sponsors/5.png" },
+  { name: "Sponsor 6", image: "/Sponsors/6.png" },
+  { name: "Sponsor 7", image: "/Sponsors/7.png" },
+  { name: "Sponsor 8", image: "/Sponsors/8.png" },
+  { name: "Sponsor 9", image: "/Sponsors/9.png" },
+  { name: "Sponsor 10", image: "/Sponsors/10.png" },
+  { name: "Sponsor 11", image: "/Sponsors/11.png" },
 ];
 export default function SponsorsSection() {
   return (
