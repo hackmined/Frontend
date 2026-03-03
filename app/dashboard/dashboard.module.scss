@@ -566,7 +566,8 @@
     /* Reset absolute positioning from desktop if any remains, strictly flex for mobile */
     position: static;
     width: 100%;
-    height: 100%;
+    height: auto;
+    min-height: 100%;
     padding: 0.5rem;
     overflow-y: visible;
     /* Let parent handle scroll if needed */
@@ -574,11 +575,18 @@
     flex-direction: column;
   }
 
+  .profileLayout,
+  .teamLayout {
+    height: auto;
+    min-height: 100%;
+  }
+
   .bodyZone {
     flex-direction: column;
     gap: 0.5rem;
     /* Reduced gap */
     width: 100%;
+    overflow-y: visible;
   }
 
   .avatar {
@@ -591,6 +599,7 @@
   .teamBody {
     gap: 1.5rem;
     padding: 0 0.5rem;
+    overflow-y: visible;
   }
 
   .teamMeta {
