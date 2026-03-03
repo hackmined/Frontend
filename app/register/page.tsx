@@ -12,6 +12,9 @@ import RegistrationForm from '@/components/forms/RegistrationForm';
 import Starfield from '@/components/ui/Starfield/Starfield';
 import styles from './register.module.scss';
 
+// Registration closed flag - set to false to close registrations
+const REGISTRATION_ENABLED = false;
+
 export default function RegisterPage() {
     const router = useRouter();
     const { user, isAuthenticated, checkAuth, login, updateUser } = useAuthStore();
@@ -34,6 +37,13 @@ export default function RegisterPage() {
         setError(null);
 
         try {
+            // Check if registration is enabled
+            if (!REGISTRATION_ENABLED) {
+                setError('Registrations are currently closed.');
+                setIsSubmitting(false);
+                return;
+            }
+
             // Authenticate with Google to get user data
             const authResponse = await loginWithGoogle(credential);
 
@@ -92,6 +102,34 @@ export default function RegisterPage() {
                                 loading={isSubmitting}
                                 error={error}
                             />
+                        </div>
+                    </div>
+                </div>
+            </main>
+        );
+    }
+
+    // Show registration closed message if registrations are disabled
+    if (!REGISTRATION_ENABLED) {
+        return (
+            <main className={`${styles.pageContainer} ${styles.centerContent}`}>
+                <Starfield />
+
+                <div className={styles.loginWrapper}>
+                    <div className={styles.tempSignInCard}>
+                        <div className={styles.panelContent}>
+                            <p className={styles.year}>HACKaMINeD 2026</p>
+
+                            <p className={styles.tagline}>
+                                CODE • COMPETE • CONQUER
+                            </p>
+
+                            <div className={styles.formRegion}>
+                                <h2>Registration Closed</h2>
+                                <p style={{ textAlign: 'center', marginTop: '1rem', fontSize: '1.1rem' }}>
+                                    Thank you for your interest! Registrations for HACKaMINeD 2026 are now closed.
+                                </p>
+                            </div>
                         </div>
                     </div>
                 </div>
