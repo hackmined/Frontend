@@ -5,7 +5,7 @@ import styles from "./SponsorsSection.module.scss";
 
 const TITLE_SPONSOR = {
   name: "Binghamton University",
-  image: "/sponsors/BU.png",
+  image: "/Sponsors/BU.png",
   tier: "In Collaboration With",
   website: "https://www.binghamton.edu",
 };
