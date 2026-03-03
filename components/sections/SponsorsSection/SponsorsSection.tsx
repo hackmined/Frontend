@@ -33,7 +33,6 @@ const TRACK_SPONSORS = [
   { name: "Sponsor 10", image: "/sponsors/10.png" },
   { name: "Sponsor 11", image: "/sponsors/11.png" },
 ];
-
 export default function SponsorsSection() {
   return (
     <section className={styles.sponsorsSection} id="sponsors">
