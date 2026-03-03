@@ -1,37 +1,37 @@
 "use client";
 import React from "react";
+import Image from "next/image";
 import styles from "./SponsorsSection.module.scss";
 
 const TITLE_SPONSOR = {
   name: "Binghamton University",
-  logo: "🎓", // Replace with actual logo image later
+  image: "/sponsors/BU.png",
   tier: "In Collaboration With",
   website: "https://www.binghamton.edu",
 };
 
 const DIAMOND_SPONSOR = {
-  name: "Diamond Corp",
-  logo: "💎", // mock logo
+  name: "Diamond Sponsor",
+  image: "/sponsors/diamond.png",
 };
 
-const GOLD_SPONSOR = {
-  name: "Gold Inc",
-  logo: "🥇",
-};
+const GOLD_SPONSORS = [
+  { name: "Gold Sponsor 1", image: "/sponsors/gold1.png" },
+  { name: "Gold Sponsor 2", image: "/sponsors/gold2.png" },
+];
 
 const TRACK_SPONSORS = [
-  { name: "Sponsor 1", logo: "🚀" },
-  { name: "Sponsor 2", logo: "🌟" },
-  { name: "Sponsor 3", logo: "🔥" },
-  { name: "Sponsor 4", logo: "💡" },
-  { name: "Sponsor 5", logo: "⚡" },
-  { name: "Sponsor 6", logo: "🎯" },
-  { name: "Sponsor 7", logo: "🛡️" },
-  { name: "Sponsor 8", logo: "🧠" },
-  { name: "Sponsor 9", logo: "🌐" },
-  { name: "Sponsor 10", logo: "📈" },
-  { name: "Sponsor 11", logo: "🔧" },
-  { name: "Sponsor 12", logo: "🎨" },
+  { name: "Sponsor 1", image: "/sponsors/1.png" },
+  { name: "Sponsor 2", image: "/sponsors/2.png" },
+  { name: "Sponsor 3", image: "/sponsors/3.png" },
+  { name: "Sponsor 4", image: "/sponsors/4.png" },
+  { name: "Sponsor 5", image: "/sponsors/5.png" },
+  { name: "Sponsor 6", image: "/sponsors/6.png" },
+  { name: "Sponsor 7", image: "/sponsors/7.png" },
+  { name: "Sponsor 8", image: "/sponsors/8.png" },
+  { name: "Sponsor 9", image: "/sponsors/9.png" },
+  { name: "Sponsor 10", image: "/sponsors/10.png" },
+  { name: "Sponsor 11", image: "/sponsors/11.png" },
 ];
 
 export default function SponsorsSection() {
@@ -41,7 +41,6 @@ export default function SponsorsSection() {
         <h2 className={styles.sectionTitle}>Our Sponsors</h2>
 
         <div className={styles.sponsorsGrid}>
-          {/* Title Sponsor */}
           <div className={styles.titleTier}>
             <h3 className={styles.tierHeading}>{TITLE_SPONSOR.tier}</h3>
             <a
@@ -50,7 +49,12 @@ export default function SponsorsSection() {
               rel="noopener noreferrer"
               className={`${styles.sponsorImagePlaceholder} ${styles.titleImage}`}
             >
-              {TITLE_SPONSOR.name} Logo
+              <Image
+                src={TITLE_SPONSOR.image}
+                alt={TITLE_SPONSOR.name}
+                fill
+                style={{ objectFit: "contain" }}
+              />
             </a>
           </div>
 
@@ -61,17 +65,29 @@ export default function SponsorsSection() {
               <div
                 className={`${styles.sponsorImagePlaceholder} ${styles.diamondImage}`}
               >
-                {DIAMOND_SPONSOR.name} Logo
+                <Image
+                  src={DIAMOND_SPONSOR.image}
+                  alt={DIAMOND_SPONSOR.name}
+                  fill
+                  style={{ objectFit: "contain" }}
+                />
               </div>
             </div>
-            <div className={styles.premiumCol}>
-              <h3 className={styles.tierHeading}>Gold Sponsor</h3>
-              <div
-                className={`${styles.sponsorImagePlaceholder} ${styles.goldImage}`}
-              >
-                {GOLD_SPONSOR.name} Logo
+            {GOLD_SPONSORS.map((sponsor, index) => (
+              <div key={`gold-${index}`} className={styles.premiumCol}>
+                <h3 className={styles.tierHeading}>Gold Sponsor</h3>
+                <div
+                  className={`${styles.sponsorImagePlaceholder} ${styles.goldImage}`}
+                >
+                  <Image
+                    src={sponsor.image}
+                    alt={sponsor.name}
+                    fill
+                    style={{ objectFit: "contain" }}
+                  />
+                </div>
               </div>
-            </div>
+            ))}
           </div>
 
           {/* Track Sponsors */}
@@ -86,7 +102,12 @@ export default function SponsorsSection() {
                       key={`track-1-${index}`}
                       className={`${styles.sponsorImagePlaceholder} ${styles.trackImage}`}
                     >
-                      {sponsor.name}
+                      <Image
+                        src={sponsor.image}
+                        alt={sponsor.name}
+                        fill
+                        style={{ objectFit: "contain" }}
+                      />
                     </div>
                   ))}
                 </div>
@@ -97,7 +118,12 @@ export default function SponsorsSection() {
                       key={`track-2-${index}`}
                       className={`${styles.sponsorImagePlaceholder} ${styles.trackImage}`}
                     >
-                      {sponsor.name}
+                      <Image
+                        src={sponsor.image}
+                        alt={sponsor.name}
+                        fill
+                        style={{ objectFit: "contain" }}
+                      />
                     </div>
                   ))}
                 </div>

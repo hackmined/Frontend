@@ -70,8 +70,10 @@
 
 .sponsorImagePlaceholder {
   background: rgba(255, 255, 255, 0.05);
-  border: 2px dashed rgba(255, 255, 255, 0.4);
+  border: none;
   border-radius: 12px;
+  position: relative;
+  overflow: hidden;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -115,7 +117,7 @@
   display: flex;
   gap: $spacing-md;
   width: 100%;
-  max-width: 500px;
+  max-width: 800px;
   justify-content: center;
 
   @media (max-width: $breakpoint-mobile) {

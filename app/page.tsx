@@ -17,7 +17,7 @@ export default function Home() {
         <AboutSection />
         <VerticalScrollSection />
         <TimelineSection />
-        {/* <SponsorsSection /> */}
+        <SponsorsSection />
         <FAQSection />
       </HorizontalScroll>
       <NotificationPopup />
