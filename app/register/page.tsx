@@ -130,12 +130,12 @@ export default function RegisterPage() {
                                 <p style={{ textAlign: 'center', marginTop: '1rem', fontSize: '1.1rem', marginBottom: '2rem' }}>
                                     Thank you for your interest! Registrations for HACKaMINeD 2026 are now closed.
                                 </p>
-                                
+
                                 <div style={{ marginTop: '2rem', textAlign: 'center' }}>
                                     <p style={{ marginBottom: '1rem', fontSize: '1rem', color: '#94a3b8' }}>
                                         Already registered?
                                     </p>
-                                    <Link 
+                                    <Link
                                         href="/login"
                                         style={{
                                             display: 'inline-block',

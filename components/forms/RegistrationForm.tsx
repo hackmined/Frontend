@@ -7,6 +7,9 @@ import { validateRegistrationData, validateFields, ValidationErrors } from "@/li
 
 type Step = 1 | 2 | 3 | 4;
 
+// Registration closed flag - set to false to close registrations
+const REGISTRATION_ENABLED = false;
+
 interface Props {
     onSubmit: (data: RegistrationData) => Promise<void>;
     loading: boolean;
@@ -105,6 +108,26 @@ export default function RegistrationForm({ onSubmit, loading, error }: Props) {
 
     return (
         <div className={styles.formContainer}>
+            {!REGISTRATION_ENABLED && (
+                <div style={{
+                    backgroundColor: '#fee2e2',
+                    border: '1px solid #fca5a5',
+                    borderRadius: '0.375rem',
+                    padding: '1rem',
+                    marginBottom: '1.5rem',
+                    textAlign: 'center'
+                }}>
+                    <p style={{
+                        color: '#991b1b',
+                        fontSize: '1rem',
+                        fontWeight: '600',
+                        margin: 0
+                    }}>
+                        Registration is currently closed. No new registrations are being accepted at this time.
+                    </p>
+                </div>
+            )}
+
             <div className={styles.headerZone}>
                 <h2 className={styles.title}>
                     {["Personal Information", "Education", "Location", "Social Profiles"][currentStep - 1]}
