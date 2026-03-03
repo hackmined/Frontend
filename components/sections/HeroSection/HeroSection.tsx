@@ -10,7 +10,7 @@ import { useAuthStore } from "@/lib/stores/authStore";
 gsap.registerPlugin(ScrollTrigger);
 
 // Registration closed flag - set to false to close registrations
-const REGISTRATION_ENABLED = false;
+const REGISTRATION_ENABLED = true;
 
 export default function HeroSection() {
   const containerRef = useRef<HTMLDivElement>(null);

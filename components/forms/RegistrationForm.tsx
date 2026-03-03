@@ -8,7 +8,7 @@ import { validateRegistrationData, validateFields, ValidationErrors } from "@/li
 type Step = 1 | 2 | 3 | 4;
 
 // Registration closed flag - set to false to close registrations
-const REGISTRATION_ENABLED = false;
+const REGISTRATION_ENABLED = true;
 
 interface Props {
     onSubmit: (data: RegistrationData) => Promise<void>;
