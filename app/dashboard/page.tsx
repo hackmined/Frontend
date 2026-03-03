@@ -20,6 +20,9 @@ import styles from "./dashboard.module.scss";
 
 type DashboardView = "individual" | "team";
 
+// Team operations flag - set to false to lock team management
+const TEAM_OPERATIONS_ENABLED = false;
+
 export default function DashboardPage() {
     const router = useRouter();
     const { isAuthenticated, checkAuth } = useAuthStore();
@@ -295,7 +298,7 @@ export default function DashboardPage() {
                                                 </span>
                                             </div>
 
-                                            {user.isTeamLeader && !isInviting && (team.members.length + (teamInvitations?.length || 0)) < 5 && (
+                                            {user.isTeamLeader && !isInviting && (team.members.length + (teamInvitations?.length || 0)) < 5 && TEAM_OPERATIONS_ENABLED && (
                                                 <div className={styles.inviteButtonContainer}>
                                                     <button
                                                         onClick={() => setIsInviting(true)}
@@ -306,7 +309,7 @@ export default function DashboardPage() {
                                                 </div>
                                             )}
 
-                                            {user.isTeamLeader && (
+                                            {user.isTeamLeader && TEAM_OPERATIONS_ENABLED && (
                                                 <div className={styles.inviteButtonContainer}>
                                                     <button
                                                         onClick={handleDeleteTeam}
@@ -314,10 +317,10 @@ export default function DashboardPage() {
                                                         disabled={isDeletingTeam}
                                                     >
                                                         <svg xmlns="http://www.w3.org/2000/svg" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-                                                            <polyline points="3 6 5 6 21 6"/>
-                                                            <path d="M19 6l-1 14a2 2 0 0 1-2 2H8a2 2 0 0 1-2-2L5 6"/>
-                                                            <path d="M10 11v6M14 11v6"/>
-                                                            <path d="M9 6V4a1 1 0 0 1 1-1h4a1 1 0 0 1 1 1v2"/>
+                                                            <polyline points="3 6 5 6 21 6" />
+                                                            <path d="M19 6l-1 14a2 2 0 0 1-2 2H8a2 2 0 0 1-2-2L5 6" />
+                                                            <path d="M10 11v6M14 11v6" />
+                                                            <path d="M9 6V4a1 1 0 0 1 1-1h4a1 1 0 0 1 1 1v2" />
                                                         </svg>
                                                         {isDeletingTeam ? 'Deleting...' : 'Delete Team'}
                                                     </button>
@@ -344,7 +347,7 @@ export default function DashboardPage() {
                                                 <p style={{ color: '#e5e7eb', margin: 0, fontSize: '0.82rem', lineHeight: 1.5 }}>
                                                     Due to an overwhelming number of registrations, all new participants will be participating
                                                     <strong style={{ color: '#fde68a' }}> online only</strong>. Offline attendance confirmations are no longer applicable for new registrants.
-                                                    <br/><br/>
+                                                    <br /><br />
                                                     <strong style={{ color: '#fde68a' }}>Note: </strong>This applies to Non-Nirma students only. For Nirma students it is mandatory to attend offline.
                                                 </p>
                                             </div>
@@ -372,49 +375,59 @@ export default function DashboardPage() {
                                     </div>
                                 ) : (
                                     <div className={styles.bodyZone} style={{ alignItems: 'flex-start', paddingTop: '1rem' }}>
-                                        <div className={styles.infoZone} style={{ width: '100%', alignItems: 'center' }}>
-                                            <div className={styles.infoItem} style={{ flexDirection: 'row', gap: '1rem', width: '100%', justifyContent: 'center' }}>
-                                                <button
-                                                    onClick={() => setTeamAction('create')}
-                                                    className={styles.createTeamButton}
-                                                    style={{
-                                                        marginTop: 0,
-                                                        width: '180px',
-                                                        backgroundColor: teamAction === 'create' ? '#f1f5f9' : 'transparent',
-                                                        color: teamAction === 'create' ? '#1f2937' : '#f1f5f9',
-                                                        border: '2px solid #f1f5f9'
-                                                    }}
-                                                >
-                                                    Create Team
-                                                </button>
-
-                                                <button
-                                                    onClick={() => setTeamAction('join')}
-                                                    className={styles.createTeamButton}
-                                                    style={{
-                                                        marginTop: 0,
-                                                        width: '180px',
-                                                        backgroundColor: teamAction === 'join' ? '#f1f5f9' : 'transparent',
-                                                        color: teamAction === 'join' ? '#1f2937' : '#f1f5f9',
-                                                        border: '2px solid #f1f5f9'
-                                                    }}
-                                                >
-                                                    Join Team
-                                                </button>
+                                        {!TEAM_OPERATIONS_ENABLED ? (
+                                            <div className={styles.infoZone} style={{ width: '100%', alignItems: 'center', textAlign: 'center' }}>
+                                                <p style={{ fontSize: '1.1rem', color: '#ef4444', marginBottom: '1rem' }}>
+                                                    Team management is currently locked. No new teams can be created or joined at this time.
+                                                </p>
                                             </div>
+                                        ) : (
+                                            <>
+                                                <div className={styles.infoZone} style={{ width: '100%', alignItems: 'center' }}>
+                                                    <div className={styles.infoItem} style={{ flexDirection: 'row', gap: '1rem', width: '100%', justifyContent: 'center' }}>
+                                                        <button
+                                                            onClick={() => setTeamAction('create')}
+                                                            className={styles.createTeamButton}
+                                                            style={{
+                                                                marginTop: 0,
+                                                                width: '180px',
+                                                                backgroundColor: teamAction === 'create' ? '#f1f5f9' : 'transparent',
+                                                                color: teamAction === 'create' ? '#1f2937' : '#f1f5f9',
+                                                                border: '2px solid #f1f5f9'
+                                                            }}
+                                                        >
+                                                            Create Team
+                                                        </button>
 
-                                            <div style={{ width: '100%', maxWidth: '500px', marginTop: '2rem' }}>
-                                                {teamAction === 'create' && (
-                                                    <TeamCreationForm
-                                                        onSuccess={handleTeamCreated}
-                                                    />
-                                                )}
+                                                        <button
+                                                            onClick={() => setTeamAction('join')}
+                                                            className={styles.createTeamButton}
+                                                            style={{
+                                                                marginTop: 0,
+                                                                width: '180px',
+                                                                backgroundColor: teamAction === 'join' ? '#f1f5f9' : 'transparent',
+                                                                color: teamAction === 'join' ? '#1f2937' : '#f1f5f9',
+                                                                border: '2px solid #f1f5f9'
+                                                            }}
+                                                        >
+                                                            Join Team
+                                                        </button>
+                                                    </div>
 
-                                                {teamAction === 'join' && (
-                                                    <InvitationsList onInvitationAccepted={handleInvitationAccepted} />
-                                                )}
-                                            </div>
-                                        </div>
+                                                    <div style={{ width: '100%', maxWidth: '500px', marginTop: '2rem' }}>
+                                                        {teamAction === 'create' && (
+                                                            <TeamCreationForm
+                                                                onSuccess={handleTeamCreated}
+                                                            />
+                                                        )}
+
+                                                        {teamAction === 'join' && (
+                                                            <InvitationsList onInvitationAccepted={handleInvitationAccepted} />
+                                                        )}
+                                                    </div>
+                                                </div>
+                                            </>
+                                        )}
                                     </div>
                                 )}
 
