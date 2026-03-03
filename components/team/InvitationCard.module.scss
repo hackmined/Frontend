@@ -25,14 +25,14 @@
 
 .teamName {
   font-size: 1.4rem;
-  color: #1f2937;
+  color: #f1f5f9;
   white-space: nowrap;
   font-weight: 600;
 }
 
 .inviter {
   font-size: 1rem;
-  color: #64748b;
+  color: #94a3b8;
   overflow: hidden;
 }
 
@@ -56,8 +56,9 @@
   font-size: 0.9rem;
   padding: 0.3rem 0.8rem;
   border-radius: 999px;
-  border: 2px solid #64748b;
+  border: 2px solid #cbd5e1;
   background: transparent;
+  color: #f1f5f9;
   cursor: pointer;
   transition: all 0.2s ease;
   text-transform: uppercase;
@@ -70,9 +71,9 @@
   }
 
   &:hover:not(:disabled) {
-    background: #1f2937;
-    color: white;
-    border-color: #1f2937;
+    background: #f1f5f9;
+    color: #0f172a;
+    border-color: #f1f5f9;
   }
 }
 

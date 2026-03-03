@@ -29,6 +29,7 @@
   background-color: rgba(255, 255, 255, 0.05);
   border-radius: 0.5rem;
   border: 1px solid #334155;
+  width: 100%;
 }
 
 .memberInfo {
@@ -60,6 +61,7 @@
 .details {
   display: flex;
   flex-direction: column;
+  min-width: 0;
 }
 
 .name {
@@ -69,21 +71,24 @@
   font-weight: 700;
   color: #f1f5f9;
   line-height: 1.2;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 
 .email {
   font-size: 0.75rem;
   color: #94a3b8;
   font-family: monospace;
-  /* Trying monospace for email */
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 
 .actions {
   display: flex;
   align-items: center;
   gap: 0.5rem;
-  position: absolute;
-  right: 6rem;
 }
 
 .leaderBadge {
@@ -107,8 +112,6 @@
   font-family: $font-family-base;
   font-weight: 700;
   border: 1px solid transparent;
-  position: absolute;
-  right: 0rem;
 
   &:hover {
     color: #991b1b;
