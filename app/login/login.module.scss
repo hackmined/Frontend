@@ -30,70 +30,41 @@
 
 /* -------------------------------------------------- */
 
-.signInCard {
-  height: 100vh;
-  max-height: 920px;
-  aspect-ratio: 1 / 0.85;
-  width: auto;
-
-  background-image: url("/panel.svg");
-  background-size: contain;
-  background-position: center;
-  background-repeat: no-repeat;
-
-  display: flex;
-  align-items: center;
-  justify-content: center;
-
-  overflow: hidden;
-}
-
-/* -------------------------------------------------- */
-/* TEMP SIGN IN CARD (NEW MOBILE VERSION) */
-
 .tempSignInCard {
-  height: 100vh;
-  max-height: 920px;
-  aspect-ratio: 1 / 0.85;
-  width: auto;
+  background: #0f172a;
+  border-radius: 16px;
+  border: 3px solid #334155;
+  box-shadow: 0 10px 40px rgba(0, 0, 0, 0.6);
 
-  background-image: url("/panel.svg");
-  background-size: contain;
-  background-position: center;
-  background-repeat: no-repeat;
+  width: 95%;
+  max-width: 500px;
+  height: auto;
+  min-height: 480px;
+  padding: 3rem 2rem;
 
   display: flex;
-  align-items: center;
-  justify-content: center;
-
+  flex-direction: column;
+  position: relative;
   overflow: hidden;
+
+  animation: slideIn 0.5s ease-out;
 
   @media (max-width: 768px) {
-    // Remove background image, use white glassmorphism
-    background-image: none !important;
-    background: rgba(255, 255, 255, 0.15); // White with transparency
-    backdrop-filter: blur(20px);
-    border: 2px solid rgba(255, 255, 255, 0.3);
-    border-radius: 24px;
-    box-shadow:
-      0 8px 32px 0 rgba(0, 0, 0, 0.1),
-      inset 0 0 60px rgba(255, 255, 255, 0.2);
-
-    width: 95vw;
-    max-width: 600px;
-    height: auto; // Content-responsive
+    width: 90%;
+    margin: 0 auto;
+    padding: 2.5rem 1.5rem;
     min-height: auto;
-    max-height: none;
-    aspect-ratio: unset;
-    transform: none !important;
-    padding: 2rem 1.5rem; // Add padding for content spacing
+  }
+}
 
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    overflow: hidden;
-    position: relative; // Context for absolute children if any
+@keyframes slideIn {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
   }
 }
 
@@ -101,41 +72,16 @@
 
 .panelContent {
   width: 100%;
-  max-width: 600px;
-  max-height: 85%;
-  box-sizing: border-box;
-
-  padding: 1.5rem 2.5rem 4rem;
-
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
-
   text-align: center;
-  color: #4b5563;
-
-  /* visual alignment for illustrated panel */
-  transform: translateY(-25%);
+  color: #cbd5e1;
+  flex: 1;
 
   @media (max-width: 768px) {
-    position: relative !important;
-    top: auto !important;
-    left: auto !important;
-    transform: none !important;
-    width: 100%;
-    max-width: 100%;
-    height: auto;
-    max-height: 85vh;
-    padding: 0;
-    gap: 1.5rem;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    overflow-y: auto;
-    overflow-x: hidden;
-    box-sizing: border-box;
+    gap: 1rem;
   }
 }
 
@@ -144,15 +90,13 @@
 .year {
   font-family: $font-family-base;
   width: 100%;
-  font-size: 4rem;
+  font-size: 2.8rem;
   font-weight: 700;
-  color: #000000;
+  color: #f1f5f9;
+  margin-bottom: 0.5rem;
 
   @media (max-width: 768px) {
-    font-size: 2.5rem !important;
-    color: #1f2937 !important; // Dark gray for better contrast
-    margin-bottom: 0.75rem;
-    font-weight: 800 !important;
+    font-size: 2.2rem !important;
     text-align: center;
   }
 }
@@ -164,15 +108,13 @@
   font-size: clamp(0.9rem, 1.4vw, 1.1rem);
   font-weight: 500;
   letter-spacing: 0.15em;
-  color: #64748b;
-  margin-bottom: 2.2rem;
+  color: #94a3b8;
+  margin-bottom: 2.5rem;
 
   @media (max-width: 768px) {
     font-size: 0.95rem !important;
-    color: #1f2937 !important; // Dark gray for better contrast
     margin-bottom: 1.5rem;
     letter-spacing: 0.1em;
-    font-weight: 600 !important;
     text-align: center;
   }
 }
@@ -180,63 +122,48 @@
 /* -------------------------------------------------- */
 
 .formRegion {
-  width: 200%;
-
+  width: 100%;
+  max-width: 320px;
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: 0.75rem;
+  gap: 1rem;
 
   h2 {
     font-family: $font-family-base;
-    font-size: clamp(1.8rem, 3vw, 2.4rem);
+    font-size: clamp(1.4rem, 2vw, 1.8rem);
     font-weight: 700;
-    color: #1f2937;
-    margin-bottom: 0.6rem;
+    color: #f1f5f9;
+    margin-bottom: 0.5rem;
   }
 
   @media (max-width: 768px) {
     width: 100%;
-    max-width: 100%;
-    gap: 1rem;
-    overflow: hidden;
-    box-sizing: border-box;
-
     h2 {
-      word-break: break-word;
-      overflow-wrap: break-word;
-      color: #1f2937;
       text-align: center;
-      width: 100%;
     }
   }
 }
 
 /* -------------------------------------------------- */
 
-.helperText {
-  font-size: 0.95rem;
-  color: #475569;
-  margin-bottom: 1.4rem;
-}
-
-/* -------------------------------------------------- */
-
 .disclaimer {
-  font-size: 0.7rem;
-  color: #6b7280;
-  margin-top: 0.75rem;
-  font-style: italic;
+  font-size: 0.9rem;
+  color: #94a3b8;
+  margin-top: 1.5rem;
+  font-style: normal;
+  text-decoration: none;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  transition: color 0.2s;
+
+  &:hover {
+    color: #f1f5f9;
+  }
 
   @media (max-width: 768px) {
-    font-size: 0.75rem;
-    color: #4b5563; // Darker for better contrast
-    word-break: break-word;
-    overflow-wrap: break-word;
-    max-width: 100%;
-    line-height: 1.5;
+    font-size: 0.85rem;
     text-align: center;
   }
 }
-
-/* Consolidated Mobile Styles into their respective components above */
