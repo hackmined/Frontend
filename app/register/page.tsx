@@ -2,6 +2,7 @@
 
 import { useEffect, useState } from 'react';
 import { useRouter } from 'next/navigation';
+import Link from 'next/link';
 import { useAuthStore } from '@/lib/stores/authStore';
 import { RegistrationStatus, RegistrationData } from '@/types';
 import { registerIndividual, getUserProfile } from '@/lib/api/user';
@@ -126,9 +127,34 @@ export default function RegisterPage() {
 
                             <div className={styles.formRegion}>
                                 <h2>Registration Closed</h2>
-                                <p style={{ textAlign: 'center', marginTop: '1rem', fontSize: '1.1rem' }}>
+                                <p style={{ textAlign: 'center', marginTop: '1rem', fontSize: '1.1rem', marginBottom: '2rem' }}>
                                     Thank you for your interest! Registrations for HACKaMINeD 2026 are now closed.
                                 </p>
+                                
+                                <div style={{ marginTop: '2rem', textAlign: 'center' }}>
+                                    <p style={{ marginBottom: '1rem', fontSize: '1rem', color: '#94a3b8' }}>
+                                        Already registered?
+                                    </p>
+                                    <Link 
+                                        href="/login"
+                                        style={{
+                                            display: 'inline-block',
+                                            padding: '0.75rem 2rem',
+                                            backgroundColor: '#f1f5f9',
+                                            color: '#1f2937',
+                                            textDecoration: 'none',
+                                            borderRadius: '0.375rem',
+                                            fontWeight: '600',
+                                            transition: 'background-color 0.2s',
+                                            border: 'none',
+                                            cursor: 'pointer'
+                                        }}
+                                        onMouseEnter={(e) => e.currentTarget.style.backgroundColor = '#e2e8f0'}
+                                        onMouseLeave={(e) => e.currentTarget.style.backgroundColor = '#f1f5f9'}
+                                    >
+                                        Sign In to Dashboard
+                                    </Link>
+                                </div>
                             </div>
                         </div>
                     </div>

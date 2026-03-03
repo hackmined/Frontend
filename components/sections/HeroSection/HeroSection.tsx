@@ -1,15 +1,28 @@
 "use client";
-import React, { useRef, useLayoutEffect } from "react";
+import React, { useRef, useLayoutEffect, useState, useEffect } from "react";
 import Link from "next/link";
 import Image from "next/image";
 import styles from "./HeroSection.module.scss";
 import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/dist/ScrollTrigger";
+import { useAuthStore } from "@/lib/stores/authStore";
 
 gsap.registerPlugin(ScrollTrigger);
 
+// Registration closed flag - set to false to close registrations
+const REGISTRATION_ENABLED = false;
+
 export default function HeroSection() {
   const containerRef = useRef<HTMLDivElement>(null);
+  const { isAuthenticated, checkAuth } = useAuthStore();
+  const [showLoginBtn, setShowLoginBtn] = useState(false);
+
+  useEffect(() => {
+    checkAuth();
+    if (isAuthenticated) {
+      setShowLoginBtn(true);
+    }
+  }, [isAuthenticated, checkAuth]);
 
   useLayoutEffect(() => {
     const ctx = gsap.context(() => {
@@ -60,7 +73,7 @@ export default function HeroSection() {
       </div>
 
       <Link
-        href="/register"
+        href={showLoginBtn ? "/dashboard" : (REGISTRATION_ENABLED ? "/register" : "/login")}
         className={styles.registerButton}
         onMouseMove={(e) => {
           const btn = e.currentTarget;
@@ -81,10 +94,10 @@ export default function HeroSection() {
         }}
       >
         <Image
-          src="/register.png"
+          src={showLoginBtn ? "/register.png" : (REGISTRATION_ENABLED ? "/register.png" : "/register.png")}
           width={400}
           height={150}
-          alt="Register"
+          alt={showLoginBtn ? "Dashboard" : (REGISTRATION_ENABLED ? "Register" : "Login")}
           priority
           unoptimized
         />
