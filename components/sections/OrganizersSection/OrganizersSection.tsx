@@ -126,7 +126,7 @@ const initialCategories: OrganizerCategory[] = [
         id: 4,
         name: "Jaimin Parmar",
         role: "",
-        image: "/TeamPhotos/Students/Jaimin.jpg",
+        image: "/TeamPhotos/Students/Jaimin.jpeg",
         bio: "",
         socials: {
           linkedin: "https://www.linkedin.com/in/jaimin-parmar-a4a62a332/",
@@ -318,6 +318,17 @@ const initialCategories: OrganizerCategory[] = [
         socials: {
           linkedin: "https://www.linkedin.com/in/fery-patel-a8a600366/",
           github: "https://github.com/ferypatel1028-dev",
+        },
+      },
+      {
+        id: 7,
+        name: "Hitesh Thacker",
+        role: "",
+        image: "/TeamPhotos/Students/Hitesh.jpg",
+        bio: "",
+        socials: {
+          linkedin: "https://www.linkedin.com/in/hitesh-thacker-b22682284/",
+          github: "https://github.com/hiteshthacker",
         },
       },
     ],
@@ -628,7 +639,7 @@ const initialCategories: OrganizerCategory[] = [
         id: 28,
         name: "Jaimin Parmar",
         role: "",
-        image: "/TeamPhotos/Students/Jaimin.jpg",
+        image: "/TeamPhotos/Students/Jaimin.jpeg",
         bio: "",
         socials: {
           linkedin: "https://www.linkedin.com/in/jaimin-parmar-a4a62a332/",
