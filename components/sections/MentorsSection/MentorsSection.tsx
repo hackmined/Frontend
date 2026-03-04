@@ -21,12 +21,108 @@ interface Mentor {
 const mentors: Mentor[] = [
   {
     id: 1,
-    name: "Mr. Parth Agrawal",
+    name: "Mr Parth Agrawal",
     companyLogo: "/Sponsors/gold1.png",
     trackTitle: "Storyhack: Agentic Video Edits",
     image: "/Mentors/Cactus1.jpeg",
-    linkedin: "https://www.linkedin.com/in/htrap94/",
+    linkedin: "https://www.linkedin.com/in/htrap94/"
   },
+  {
+    id: 2,
+    name: "Ms Riddhi Shah",
+    companyLogo: "/Sponsors/gold1.png",
+    trackTitle: "Fix my paper formatting, Agent Paperpal",
+    image: "#",
+    linkedin: "https://www.linkedin.com/in/i-riddhishah/"
+  },
+  {
+    id: 3,
+    name: "Mr Jimit Tank",
+    companyLogo: "/Sponsors/3.png",
+    trackTitle: "SmartContainer Risk Engine",
+    image: "#",
+    linkedin: "#"
+  },
+  {
+    id: 4,
+    name: "Mr Rohan Sankhrani",
+    companyLogo: "/Sponsors/1.png",
+    trackTitle: "AI-Powered Revenue & Voice Copilot for Restaurants",
+    image: "#",
+    linkedin: "#"
+  },
+  {
+    "id": 5,
+    "name": "Mr Satish Patel",
+    "companyLogo": "/Sponsors/5.png",
+    "trackTitle": "TBA",
+    "image": "#",
+    "linkedin": "https://www.linkedin.com/in/patelsatish/"
+  },
+  {
+    "id": 6,
+    "name": "Mr Mahesh Patel",
+    "companyLogo": "/Sponsors/2.png",
+    "trackTitle": "AI-Driven Solar Inverter Failure Prediction for Proactive Risk Management.",
+    "image": "#",
+    "linkedin": "https://www.linkedin.com/in/mahesh-patel-"
+  },
+  {
+    "id": 7,
+    "name": "Mr Abhishek Rawal",
+    "companyLogo": "/Sponsors/9.png",
+    "trackTitle": "#",
+    "image": "#",
+    "linkedin": "https://www.linkedin.com/in/abhishek-rawal-"
+  },
+  {
+    "id": 8,
+    "name": "Mr Abhishek Desai",
+    "companyLogo": "/Sponsors/11.png",
+    "trackTitle": "Build an Impact Metric (IM) for cricketers",
+    "image": "#",
+    "linkedin": "#"
+  },
+  {
+    "id": 9,
+    "name": "Jalshree Bhatt, Mukund Thakker",
+    "companyLogo": "/Sponsors/4.png",
+    "trackTitle": "AI for students",
+    "image": "#",
+    "linkedin": "https://www.linkedin.com/in/thakkermukund/"
+  },
+  {
+    "id": 10,
+    "name": "Asha Mangtani",
+    "companyLogo": "/Sponsors/10.png",
+    "trackTitle": "AI-Driven Forest Monitoring & Analytics",
+    "image": "#",
+    "linkedin": "https://www.linkedin.com/in/asha-mangtani/"
+  },
+  {
+    "id": 11,
+    "name": "Ashish Sahu",
+    "companyLogo": "/Sponsors/8.png",
+    "trackTitle": "ZeroLeak Hackathon by Skylocks",
+    "image": "#",
+    "linkedin": "https://www.linkedin.com/in/kk852767/"
+  },
+  {
+    "id": 12,
+    "name": "Mr Vinish Lonhare",
+    "companyLogo": "/Sponsors/7.png",
+    "trackTitle": "AI and NLP in Digital Media",
+    "image": "#",
+    "linkedin": "#"
+  },
+  {
+    "id": 13,
+    "name": "Yuvraj Parmar",
+    "companyLogo": "/Sponsors/6.png",
+    "trackTitle": "Next-Gen Smart ERP: Integrated Manufacturing, Finance & Production Simulation System",
+    "image": "#",
+    "linkedin": "#"
+  }
 ];
 
 export default function MentorsSection() {
