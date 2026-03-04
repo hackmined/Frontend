@@ -42,7 +42,7 @@ const initialCategories: OrganizerCategory[] = [
         role: "Faculty",
         image: "/TeamPhotos/Faculties/VP.jpg",
         bio: "",
-        socials: { linkedin: "#" },
+        socials: { linkedin: "https://in.linkedin.com/in/dr-vishal-parikh-phd-0b561b70" },
       },
       {
         id: 2,
@@ -50,7 +50,7 @@ const initialCategories: OrganizerCategory[] = [
         role: "Faculty",
         image: "/TeamPhotos/Faculties/RK.jpg",
         bio: "",
-        socials: { linkedin: "#" },
+        socials: { linkedin: "https://in.linkedin.com/in/dr-rupal-kapdi-474620256" },
       },
       {
         id: 3,
@@ -58,7 +58,7 @@ const initialCategories: OrganizerCategory[] = [
         role: "Faculty",
         image: "/TeamPhotos/Faculties/TU.jpg",
         bio: "",
-        socials: { linkedin: "#" },
+        socials: { linkedin: "https://in.linkedin.com/in/tejal-upadhyay-0a115b20" },
       },
       {
         id: 4,
@@ -66,7 +66,7 @@ const initialCategories: OrganizerCategory[] = [
         role: "Faculty",
         image: "/TeamPhotos/Faculties/TV.jpg",
         bio: "",
-        socials: { linkedin: "#" },
+        socials: { linkedin: "https://in.linkedin.com/in/tarjni-vyas-12699b28" },
       },
       {
         id: 5,
@@ -74,15 +74,15 @@ const initialCategories: OrganizerCategory[] = [
         role: "Faculty",
         image: "/TeamPhotos/Faculties/SM.jpg",
         bio: "",
-        socials: { linkedin: "#" },
+        socials: { linkedin: "https://in.linkedin.com/in/sapan-h-mankad-4815601a" },
       },
       {
         id: 6,
-        name: "Dr. Priyank Thakker",
+        name: "Dr. Priyank Thakkar",
         role: "Faculty",
         image: "/TeamPhotos/Faculties/PT.jpg",
         bio: "",
-        socials: { linkedin: "#" },
+        socials: { linkedin: "https://in.linkedin.com/in/priyank-thakkar-b165561a5" },
       },
       {
         id: 7,
@@ -90,7 +90,7 @@ const initialCategories: OrganizerCategory[] = [
         role: "Faculty",
         image: "/TeamPhotos/Faculties/AP.jpg",
         bio: "",
-        socials: { linkedin: "#" },
+        socials: { linkedin: "https://in.linkedin.com/in/ajaykumar-patel-011aa99b" },
       },
     ],
   },
