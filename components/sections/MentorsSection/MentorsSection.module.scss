@@ -82,7 +82,7 @@
       box-shadow: 0 0 15px $accent-2;
     }
 
-    .role {
+    .trackTitle {
       letter-spacing: 0.1em;
     }
   }
@@ -116,23 +116,30 @@
   text-shadow: none;
 }
 
-.role {
-  font-family: $font-family-base;
-  font-size: $font-size-md;
-  color: #cbd5e1;
-  font-weight: $font-weight-bold;
+.infoContainer {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: $spacing-sm;
   margin-bottom: $spacing-md;
-  text-transform: uppercase;
-  transition: all 0.3s ease;
 }
 
-.bio {
+.companyLogo {
+  height: 24px;
+  width: auto;
+  max-width: 80px;
+  object-fit: contain;
+  border-radius: 4px;
+}
+
+.trackTitle {
   font-family: $font-family-base;
-  font-size: $font-size-sm;
-  color: #94a3b8;
-  margin-bottom: $spacing-md;
-  line-height: 1.5;
-  opacity: 0.8;
+  font-size: $font-size-md;
+  color: #bcbfc2;
+  // font-weight: $font-weight-bold;
+  // text-transform: uppercase;
+  transition: all 0.3s ease;
 }
 
 .socials {

@@ -12,57 +12,20 @@ gsap.registerPlugin(ScrollTrigger);
 interface Mentor {
   id: number;
   name: string;
-  role: string;
-  bio: string;
+  companyLogo: string;
+  trackTitle: string;
   image: string;
-  socials?: {
-    linkedin?: string;
-    email?: string;
-  };
+  linkedin: string;
 }
 
 const mentors: Mentor[] = [
   {
     id: 1,
-    name: "Abhishek Sharma",
-    role: "Software Engineer @ Oracle",
-    bio: "Specializes in building scalable backend systems and databases, having extensive experience with Java and cloud infrastructure.",
-    image: "",
-    socials: {
-      linkedin: "https://linkedin.com/in/example1",
-      email: "abhishek@example.com",
-    },
-  },
-  {
-    id: 2,
-    name: "Sneha Patel",
-    role: "Frontend Lead @ Meta",
-    bio: "Expert in React and modern CSS design systems, passionate about web performance and accessibility.",
-    image: "",
-    socials: {
-      linkedin: "https://linkedin.com/in/example2",
-    },
-  },
-  {
-    id: 3,
-    name: "Anjali Gupta",
-    role: "Data Scientist @ Google",
-    bio: "Experienced in machine learning models and data pipelines, turning complex data into actionable insights.",
-    image: "",
-    socials: {
-      email: "anjali@example.com",
-    },
-  },
-  {
-    id: 4,
-    name: "Rohan Desai",
-    role: "DevOps Engineer @ AWS",
-    bio: "Enabling seamless CI/CD and cloud scalability. Focuses on system architecture and Kubernetes.",
-    image: "",
-    socials: {
-      linkedin: "https://linkedin.com/in/example4",
-      email: "rohan@example.com",
-    },
+    name: "Mr. Parth Agrawal",
+    companyLogo: "/Sponsors/gold1.png",
+    trackTitle: "Storyhack: Agentic Video Edits",
+    image: "/Mentors/Cactus1.jpeg",
+    linkedin: "https://www.linkedin.com/in/htrap94/",
   },
 ];
 
@@ -166,35 +129,31 @@ export default function MentorsSection() {
               />
             </div>
             <h3 className={styles.name}>{mentor.name}</h3>
-            <p className={styles.role}>{mentor.role}</p>
-            {mentor.bio && <p className={styles.bio}>{mentor.bio}</p>}
+
+            <div className={styles.infoContainer}>
+              {mentor.companyLogo && (
+                <img
+                  src={mentor.companyLogo}
+                  alt="Company logo"
+                  className={styles.companyLogo}
+                  onError={(e) => {
+                    e.currentTarget.style.display = "none";
+                  }}
+                />
+              )}
+              {mentor.trackTitle && (
+                <p className={styles.trackTitle}>{mentor.trackTitle}</p>
+              )}
+            </div>
 
             <div className={styles.socials}>
-              {mentor.socials?.linkedin && (
+              {mentor.linkedin && (
                 <a
-                  href={mentor.socials.linkedin}
+                  href={mentor.linkedin}
                   target="_blank"
                   rel="noopener noreferrer"
                 >
                   <LinkedInIcon />
-                </a>
-              )}
-              {mentor.socials?.email && (
-                <a href={`mailto:${mentor.socials.email}`}>
-                  <svg
-                    xmlns="http://www.w3.org/2000/svg"
-                    width="24"
-                    height="24"
-                    viewBox="0 0 24 24"
-                    fill="none"
-                    stroke="currentColor"
-                    strokeWidth="2"
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                  >
-                    <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z" />
-                    <polyline points="22,6 12,13 2,6" />
-                  </svg>
                 </a>
               )}
             </div>
