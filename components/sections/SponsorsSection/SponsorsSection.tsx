@@ -22,7 +22,8 @@ const GOLD_SPONSORS = [
 
 const TRACK_SPONSORS = [
   { name: "Sponsor 1", image: "/Sponsors/1.png" },
-  { name: "Sponsor 2", image: "/Sponsors/3.png" },
+  { name: "Sponsor 2", image: "/Sponsors/2.png" },
+  { name: "Sponsor 3", image: "/Sponsors/3.png" },
   { name: "Sponsor 4", image: "/Sponsors/4.png" },
   { name: "Sponsor 5", image: "/Sponsors/5.png" },
   { name: "Sponsor 6", image: "/Sponsors/6.png" },
