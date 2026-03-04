@@ -14,7 +14,7 @@ import Starfield from '@/components/ui/Starfield/Starfield';
 import styles from './register.module.scss';
 
 // Registration closed flag - set to false to close registrations
-const REGISTRATION_ENABLED = true;
+const REGISTRATION_ENABLED = false;
 
 export default function RegisterPage() {
     const router = useRouter();
