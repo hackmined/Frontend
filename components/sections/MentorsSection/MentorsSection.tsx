@@ -21,15 +21,15 @@ interface Mentor {
 const mentors: Mentor[] = [
   {
     id: 1,
-    name: "Mr Parth Agrawal",
+    name: "Mr. Parth Agrawal",
     companyLogo: "/Sponsors/gold1.png",
     trackTitle: "Storyhack: Agentic Video Edits",
-    image: "/Mentors/cactus1.jpeg",
+    image: "/Mentors/Cactus1.jpeg",
     linkedin: "https://www.linkedin.com/in/htrap94/"
   },
   {
     id: 2,
-    name: "Ms Riddhi Shah",
+    name: "Ms. Riddhi Shah",
     companyLogo: "/Sponsors/gold1.png",
     trackTitle: "Fix my paper formatting, Agent Paperpal",
     image: "/Mentors/paperpal1.jpeg",
@@ -37,7 +37,7 @@ const mentors: Mentor[] = [
   },
   {
     id: 3,
-    name: "Mr Jimit Tank",
+    name: "Mr. Jimit Tank",
     companyLogo: "/Sponsors/3.png",
     trackTitle: "SmartContainer Risk Engine",
     image: "/Mentors/intech1.jpeg",
@@ -45,7 +45,7 @@ const mentors: Mentor[] = [
   },
   {
     id: 4,
-    name: "Mr Rohan Sankhrani",
+    name: "Mr. Rohan Sankhrani",
     companyLogo: "/Sponsors/1.png",
     trackTitle: "AI-Powered Revenue & Voice Copilot for Restaurants",
     image: "/Mentors/petpooja1.jpeg",
@@ -53,7 +53,7 @@ const mentors: Mentor[] = [
   },
   {
     id: 5,
-    name: "Mr Satish Patel",
+    name: "Mr. Satish Patel",
     companyLogo: "/Sponsors/5.png",
     trackTitle: "",
     image: "/Mentors/dyulabs1.jpeg",
@@ -61,7 +61,7 @@ const mentors: Mentor[] = [
   },
   {
     id: 6,
-    name: "Mr Mahesh Patel",
+    name: "Mr. Mahesh Patel",
     companyLogo: "/Sponsors/2.png",
     trackTitle: "AI-Driven Solar Inverter Failure Prediction for Proactive Risk Management.",
     image: "/Mentors/aubergine1.jpeg",
@@ -69,7 +69,7 @@ const mentors: Mentor[] = [
   },
   {
     id: 7,
-    name: "Mr Abhishek Rawal",
+    name: "Mr. Abhishek Rawal",
     companyLogo: "/Sponsors/9.png",
     trackTitle: "",
     image: "/Mentors/devx1.jpeg",
@@ -77,7 +77,7 @@ const mentors: Mentor[] = [
   },
   {
     id: 8,
-    name: "Mr Abhishek Desai",
+    name: "Mr. Abhishek Desai",
     companyLogo: "/Sponsors/11.png",
     trackTitle: "Build an Impact Metric (IM) for cricketers",
     image: "/Mentors/cricheroes1.jpeg",
@@ -85,7 +85,7 @@ const mentors: Mentor[] = [
   },
   {
     id: 9,
-    name: "Jalshree Bhatt",
+    name: "Ms. Jalshree Bhatt",
     companyLogo: "/Sponsors/4.png",
     trackTitle: "AI for students",
     image: "#",
@@ -93,7 +93,7 @@ const mentors: Mentor[] = [
   },
   {
     id: 10,
-    name: "Asha Mangtani",
+    name: "Ms. Asha Mangtani",
     companyLogo: "/Sponsors/10.png",
     trackTitle: "AI-Driven Forest Monitoring & Analytics",
     image: "/Mentors/amnex1.jpeg",
@@ -101,7 +101,7 @@ const mentors: Mentor[] = [
   },
   {
     id: 11,
-    name: "Ashish Sahu",
+    name: "Mr. Ashish Sahu",
     companyLogo: "/Sponsors/8.png",
     trackTitle: "ZeroLeak Hackathon by Skylocks",
     image: "#",
@@ -109,7 +109,7 @@ const mentors: Mentor[] = [
   },
   {
     id: 12,
-    name: "Mr Vinish Lonhare",
+    name: "Mr. Vinish Lonhare",
     companyLogo: "/Sponsors/7.png",
     trackTitle: "AI and NLP in Digital Media",
     image: "/Mentors/quantloop1.jpeg",
@@ -117,7 +117,7 @@ const mentors: Mentor[] = [
   },
   {
     id: 13,
-    name: "Yuvraj Parmar",
+    name: "Mr. Yuvraj Parmar",
     companyLogo: "/Sponsors/6.png",
     trackTitle: "Next-Gen Smart ERP: Integrated Manufacturing, Finance & Production Simulation System",
     image: "#",
