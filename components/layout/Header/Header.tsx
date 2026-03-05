@@ -10,7 +10,7 @@ const baseNavItems: NavItem[] = [
   //{ label: 'TRACKS', href: '/tracks' },
   { label: "CONTACT", href: "/contact" },
   { label: "ORGANIZERS", href: "/organizers" },
-  // { label: "MENTORS", href: "/mentors" },
+  { label: "MENTORS", href: "/mentors" },
 ];
 
 export default function Header() {
