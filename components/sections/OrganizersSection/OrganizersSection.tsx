@@ -167,7 +167,7 @@ const initialCategories: OrganizerCategory[] = [
         id: 4,
         name: "Hrushi bhanvadiya",
         role: "",
-        image: "/TeamPhotos/Students/Hrushi.jpg",
+        image: "/TeamPhotos/Students/Hrushi.jpeg",
         bio: "",
         socials: {
           linkedin: "https://www.linkedin.com/in/hrushi-bhanvadiya-081818280/",
@@ -269,7 +269,7 @@ const initialCategories: OrganizerCategory[] = [
         id: 2,
         name: "Hrushi Bhanvadiya",
         role: "",
-        image: "/TeamPhotos/Students/Hrushi.jpg",
+        image: "/TeamPhotos/Students/Hrushi.jpeg",
         bio: "",
         socials: {
           linkedin: "https://www.linkedin.com/in/hrushi-bhanvadiya-081818280/",
@@ -507,7 +507,7 @@ const initialCategories: OrganizerCategory[] = [
         id: 16,
         name: "Hrushi Bhanvadiya",
         role: "",
-        image: "/TeamPhotos/Students/Hrushi.jpg",
+        image: "/TeamPhotos/Students/Hrushi.jpeg",
         bio: "",
         socials: {
           linkedin: "https://www.linkedin.com/in/hrushi-bhanvadiya-081818280/",
