@@ -67,31 +67,31 @@ export default function AboutSection() {
         {/* 2. 30 UNIVERSITIES */}
         <div className={`${styles.statCard} ${styles.card2}`}>
           <img src="/banner.svg" alt="bg" className={styles.cardBg} />
-          <div className={styles.statValue}>30+</div>
+          <div className={styles.statValue}>150+</div>
           <div className={styles.statLabel}>UNIVERSITIES</div>
         </div>
 
         {/* 3. 1000+ HACKERS (Center Bottom) */}
         <div className={`${styles.statCard} ${styles.card3}`}>
           <img src="/banner.svg" alt="bg" className={styles.cardBg} />
-          <div className={styles.statValue}>1500+</div>
+          <div className={styles.statValue}>2000+</div>
           <div className={styles.statLabel}>HACKERS</div>
         </div>
 
         {/* 4. 12 STATES */}
         <div className={`${styles.statCard} ${styles.card4}`}>
           <img src="/banner.svg" alt="bg" className={styles.cardBg} />
-          <div className={styles.statValue}>12</div>
+          <div className={styles.statValue}>20</div>
           <div className={styles.statLabel}>STATES</div>
         </div>
 
-                {/* 5. $450K+ PRIZE POOL */}
-                <div className={`${styles.statCard} ${styles.card5}`}>
-                    <img src="/banner.svg" alt="bg" className={styles.cardBg} />
-                    <div className={styles.statValue}>500K+</div>
-                    <div className={styles.statLabel}>PRIZE POOL</div>
-                </div>
-            </div>
-        </section>
-    );
+        {/* 5. $450K+ PRIZE POOL */}
+        <div className={`${styles.statCard} ${styles.card5}`}>
+          <img src="/banner.svg" alt="bg" className={styles.cardBg} />
+          <div className={styles.statValue}>500K+</div>
+          <div className={styles.statLabel}>PRIZE POOL</div>
+        </div>
+      </div>
+    </section>
+  );
 }
